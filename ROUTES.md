@@ -1,15 +1,31 @@
+# Application Routes
+
+## Main Routes
+
+```bash
 "/",                            SplashPageHandler
 "/about/",                      AboutHandler
+"/users/",                      UserIndexHandler
+"/learner_profile/",            ViewLearnerProfileHandler
+"/view_episode/{id}",           EpisodeHandler
+```
+
+## Auth/Config
+
+```bash
 "/signup/",                     SignUpFunc
 "/login/",                      LoginFunc
 "/logout/",                     LogoutFunc
-"/learner_profile/",            ViewLearnerProfileHandler
 "/google/login",                google.StateHa ... nil))
 "/google/callback",             google.StateHa ... nil))
-"/users/",                      UserIndexHandler
-"/view_episode/{id}",           EpisodeHandler
+```
+
+## CRUD Functions (Create Retrieve Update Delete)
+
+```bash
 "/new/",                        AddEpisodeHandler
+"/add_experience/{verb}/",      AddExperienceHandler
 "/modify/{id}",                 ModifyEpisodeHandler
 "/delete/{id}",                 DeleteEpisodeHandler
-"/add_experience/{verb}/",      AddExperienceHandler
 "/delete_experience/{id}",      DeleteExperienceHandler
+```
