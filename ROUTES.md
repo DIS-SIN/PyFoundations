@@ -29,3 +29,7 @@
 "/delete/{id}",                 DeleteEpisodeHandler
 "/delete_experience/{id}",      DeleteExperienceHandler
 ```
+
+## Where is the project issues?
+
+Check out our issues board in github
