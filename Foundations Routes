@@ -1,0 +1,15 @@
+"/",                            SplashPageHandler
+"/about/",                      AboutHandler
+"/signup/",                     SignUpFunc
+"/login/",                      LoginFunc
+"/logout/",                     LogoutFunc
+"/learner_profile/",            ViewLearnerProfileHandler
+"/google/login",                google.StateHa ... nil))
+"/google/callback",             google.StateHa ... nil))
+"/users/",                      UserIndexHandler
+"/view_episode/{id}",           EpisodeHandler
+"/new/",                        AddEpisodeHandler
+"/modify/{id}",                 ModifyEpisodeHandler
+"/delete/{id}",                 DeleteEpisodeHandler
+"/add_experience/{verb}/",      AddExperienceHandler
+"/delete_experience/{id}",      DeleteExperienceHandler
