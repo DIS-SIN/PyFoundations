@@ -1,3 +1,4 @@
+
 # Use an official Python runtime as a parent image
 FROM python:3.7-slim
 
@@ -17,7 +18,7 @@ EXPOSE 5054
 ENV NAME pyfoundations
 
 # Run app.py when the container launches
-CMD ["python", "application.py"]
+#CMD ["python", "application.py"]
 
 ############################################################################
 # docker for newbs manpage

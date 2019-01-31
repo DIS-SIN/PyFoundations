@@ -10,3 +10,5 @@ _site
 /*.gz
 /*.map
 .ipynb_checkpoints
+.vscode
+**/__pycache__/
