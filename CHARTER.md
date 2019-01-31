@@ -1,6 +1,6 @@
 ## Project Charter
 
-This project is intended to serve as an experiment in distruption and the potentials of a digital public service. These applications, no matter how polished they may look, are not being actively maintained by a formalized team. These projects are usually dreamt up, designed, built, tested, deployed, and verified by 1-2 curious and keen public servants.
+This project is intended to serve as an experiment in distruption and the potentials of a digital public service. These applications, no matter how polished they may look, are not being actively maintained by a formalized team. These projects are usually dreamt up, designed, built, tested, deployed, and verified by 3 curious and keen public servants.
 
 ## Project Goal(s)
 * Serve as a basic building block for other developers to use

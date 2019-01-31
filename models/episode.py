@@ -1,22 +1,31 @@
 from sqlalchemy import Column, Integer, String, DateTime, Sequence, ForeignKey
 from sqlalchemy.dialects.postgresql import ARRAY, JSON, BIGINT
 from sqlalchemy.orm import relationship
-import basemodel 
+import basemodel
+import image
 class Edit(basemodel.Base):
+    """Edit class represents a edit to content on busrides episode
+       postgres-table-name: edit
+       primary-key-series-name: edits_id_seq 
+    """
     __tablename__ = "edits"
     edit_id = Column('ID', BIGINT, Sequence("edits_id_seq"), primary_key = True)
     description = Column("Description", String)
     date = Column("Date", DateTime)
-    episode_id = Column(BIGINT, ForeignKey("episodes.ID"))
+    episode_id = Column("EpisodeID",BIGINT, ForeignKey("episodes.ID"))
     episodes = relationship("Episode", back_populates= "edits")
 class Episode(basemodel.Base):
+    """Episode class represents a busrides episode
+       postgres-table-name: episodes
+       primary-key-series-name: episodes_id_seq
+    """
     __tablename__ = 'episodes'
     episode_id = Column('ID', BIGINT, Sequence("episodes_id_seq"), primary_key = True)
     title = Column('Title', String)
     tagline = Column('Tagline', String)
     subtitle = Column('SubTitle', String)
     author = Column('Author', BIGINT) #to be related to User table 
-    image = Column('Image', BIGINT) #to be related to image table
+    image =  relationship("Image", order_by= image.Image.addedon, back_populates="episodes" ) #to be related to image table
     videos = Column("Videos", ARRAY(BIGINT, dimensions = 1)) #To be related to videos table
     podcasts = Column("Podcasts", ARRAY(BIGINT, dimensions = 1)) #To be related to podcasts table 
     likes = Column("Likes", Integer)
