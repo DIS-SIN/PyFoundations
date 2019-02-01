@@ -36,3 +36,5 @@ class Experience(basemodel.Base):
     depth = Column("Depth", Integer)
     comments = relationship("ExperienceComments", order_by= ExperienceComments.timestamp, back_populates= "experiences")    
     tags = Column("Tags", ARRAY(BIGINT, dimensions = 1))
+    learner_profile_id = Column("LearnerProfileID", ForeignKey("learner_profiles.ID"))
+    learner_profiles = relationship("LearnerProfile", back_populates="experiences")
