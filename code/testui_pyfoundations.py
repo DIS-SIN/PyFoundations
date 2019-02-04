@@ -17,7 +17,7 @@ bp = Blueprint('pyfoundations', __name__, url_prefix = '/pyfoundations')
 @bp.route('/home', methods = ('GET', 'POST'))
 def render_home():
     if request.method == 'GET':
-        return render_template('pyfoundations/pyfoundations.tmpl.html', pyfoundationsanswer="home!")
+        return render_template('pyfoundations/index.html', pyfoundationsanswer="home!")
 
 # api requests, returns json
 @bp.route('/api', methods = ('GET', 'POST'))
