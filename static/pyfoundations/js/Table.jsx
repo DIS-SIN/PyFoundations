@@ -18,7 +18,7 @@ const TableBody = props => {
             <tr key={index}>
                 <td>{row.fieldName}</td>
                 <td>{row.fieldValue}</td>
-                <td><button onClick={() => props.removeDevLang(index)}>Delete</button></td>
+                <td><button onClick={() => props.removeTableContent(index)}>Delete</button></td>
             </tr>
         );
     });
@@ -28,14 +28,14 @@ const TableBody = props => {
 
 class Table extends Component {
     render() {
-        const { tableContentData, removeDevLang } = this.props;
+        const { tableContentData, removeTableContent } = this.props;
 
         return(
             <table>
                 <TableHeader />
                 <TableBody 
                     tableContentData={tableContentData}
-                    removeDevLang={removeDevLang}
+                    removeTableContent={removeTableContent}
                 />
             </table>
         ); 

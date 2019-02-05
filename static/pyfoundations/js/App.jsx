@@ -25,7 +25,7 @@ const FormHeader = () => {
 
 class App extends React.Component {
   state = {
-    devLangs: [
+    tableContent: [
       /*
       {
         "fieldName": "Javascript",
@@ -35,30 +35,30 @@ class App extends React.Component {
     ]
   };
   
-  removeDevLang = index => {
-    const { devLangs } = this.state;
+  removeTableContent = index => {
+    const { tableContent } = this.state;
     
     this.setState({
-        devLangs: devLangs.filter((devLangs, i) => {
+      tableContent: tableContent.filter((tableContent, i) => {
             return i !== index;
         })
     });
   }
 
-  handleSubmit = devLang => {
-    this.setState({devLangs: [...this.state.devLangs, devLang]});
+  handleSubmit = tableContentItem => {
+    this.setState({tableContent: [...this.state.tableContent, tableContentItem]});
   }
 
   render () {
-    const { devLangs } = this.state;
+    const { tableContent } = this.state;
 
     return (
       <div className="container">
         <HeaderGreeting />
         <HeaderTagLine />
         <Table 
-          tableContentData={devLangs}
-          removeDevLang={this.removeDevLang}
+          tableContentData={tableContent}
+          removeTableContent={this.removeTableContent}
         />
         <FormHeader />
         <Form 
