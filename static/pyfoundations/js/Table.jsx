@@ -6,6 +6,7 @@ const TableHeader = () => {
             <tr>
                 <th>Name</th>
                 <th>FileType</th>
+                <th>Action</th>
             </tr>
         </thead>
     );
@@ -17,6 +18,7 @@ const TableBody = props => {
             <tr key={index}>
                 <td>{row.fieldName}</td>
                 <td>{row.fieldValue}</td>
+                <td><button onClick={() => props.removeDevLang(index)}>Delete</button></td>
             </tr>
         );
     });
@@ -26,13 +28,14 @@ const TableBody = props => {
 
 class Table extends Component {
     render() {
-        const { tableContentData } = this.props;
+        const { tableContentData, removeDevLang } = this.props;
 
         return(
             <table>
                 <TableHeader />
                 <TableBody 
                     tableContentData={tableContentData}
+                    removeDevLang={removeDevLang}
                 />
             </table>
         ); 

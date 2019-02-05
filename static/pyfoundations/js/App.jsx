@@ -8,9 +8,10 @@ const HeaderGreeting = () => {
   );
 }
 
+
 class App extends React.Component {
-  render () {
-    const tableContent = [
+  state = {
+    devLangs: [
       {
         "fieldName": "Javascript",
         "fieldValue":".js"
@@ -30,14 +31,33 @@ class App extends React.Component {
       {
         "fieldName": "SASS",
         "fieldValue":".scss"
-      }
-    ];
+      },
+      {
+        "fieldName": "PowerShell",
+        "fieldValue":".ps1"
+      }  
+    ]
+  };
+  
+  removeDevLang = index => {
+    const { devLangs } = this.state;
+    
+    this.setState({
+        devLangs: devLangs.filter((devLangs, i) => {
+            return i !== index;
+        })
+    });
+  }
+
+  render () {
+    const { devLangs } = this.state;
 
     return (
       <div className="container">
         <HeaderGreeting />
         <Table 
-          tableContentData={tableContent}
+          tableContentData={devLangs}
+          removeDevLang={this.removeDevLang}
         />
       </div>
     );
