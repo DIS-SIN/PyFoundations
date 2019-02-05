@@ -3,6 +3,8 @@ import React from "react";
 import Table from "./Table";
 import Form from "./Form";
 
+import Api from "./Api";
+
 const HeaderGreeting = () => {
   return (
     <h1> Hello... React!</h1>
@@ -29,26 +31,6 @@ class App extends React.Component {
         "fieldName": "Javascript",
         "fieldValue":".js"
       },
-      {
-        "fieldName": "Python",
-        "fieldValue":".py"
-      },
-      {
-        "fieldName": "JSX",
-        "fieldValue":".jsx"
-      },
-      {
-        "fieldName": "HTML",
-        "fieldValue":".html"
-      },      
-      {
-        "fieldName": "SASS",
-        "fieldValue":".scss"
-      },
-      {
-        "fieldName": "PowerShell",
-        "fieldValue":".ps1"
-      } 
       */ 
     ]
   };
@@ -82,6 +64,7 @@ class App extends React.Component {
         <Form 
           handleSubmit={this.handleSubmit}
         />
+        <Api />
       </div>
     );
   }

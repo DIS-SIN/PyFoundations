@@ -4,8 +4,8 @@ const TableHeader = () => {
     return (
         <thead>
             <tr>
-                <th>Name</th>
-                <th>FileType</th>
+                <th>FieldName</th>
+                <th>FieldValue</th>
                 <th>Action</th>
             </tr>
         </thead>
