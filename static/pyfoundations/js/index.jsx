@@ -5,4 +5,4 @@ import App from "./App";
 
 require('./../sass/pyfoundations.css.scss');
 
-ReactDOM.render(<App />, document.getElementById("content"));
+ReactDOM.render(<App />, document.getElementById("root"));

@@ -17,7 +17,7 @@ bp = Blueprint('pyfoundations', __name__, url_prefix = '/pyfoundations')
 @bp.route('/home', methods = ('GET', 'POST'))
 def render_home():
     if request.method == 'GET':
-        return render_template('pyfoundations/index.html', pyfoundationsanswer="home!")
+        return render_template('pyfoundations/react-index.tmpl.html', pyfoundationsanswer="home!")
 
 # api requests, returns json
 @bp.route('/api', methods = ('GET', 'POST'))
@@ -46,7 +46,7 @@ def get_pyfoundations_db_json(answerfile):
         return data
 
 # setup some pyfoundations answers
-pyfoundations_db = get_pyfoundations_db_json('pyfoundations-en');
+pyfoundations_db = get_pyfoundations_db_json('pyfoundations-en')
     
 # the api return as json response, this can be used for whatever application you like
 def api_handle_pyfoundations_message(request):
@@ -56,7 +56,7 @@ def api_handle_pyfoundations_message(request):
 # regular response, returns html to the render
 def handle_pyfoundations_message(request,render_template_target=None):
     if render_template_target is None:
-        render_template_target = 'pyfoundations/pyfoundations.tmpl.html'
+        render_template_target = 'pyfoundations/react-index.tmpl.html'
 
     #debug
     if app_set_debug_mode >= 1: 
@@ -82,5 +82,5 @@ def handle_pyfoundations_message(request,render_template_target=None):
     return render_template(render_template_target, pyfoundationsanswer=pyfoundations_answer)
     
 # annnd run it
-if __name__ == '__main__':
-    app.run(host = '0.0.0.0', port=5054)
+#if __name__ == '__main__':
+#    app.run(host = '0.0.0.0', port=5054)

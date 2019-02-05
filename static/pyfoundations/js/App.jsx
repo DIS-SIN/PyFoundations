@@ -1,7 +1,47 @@
 // App.jsx
 import React from "react";
-export default class App extends React.Component {
+import Table from "./Table";
+
+const HeaderGreeting = () => {
+  return (
+    <h1> Hello... React!</h1>
+  );
+}
+
+class App extends React.Component {
   render () {
-    return <p> Hello React!</p>;
+    const tableContent = [
+      {
+        "fieldName": "Javascript",
+        "fieldValue":".js"
+      },
+      {
+        "fieldName": "Python",
+        "fieldValue":".py"
+      },
+      {
+        "fieldName": "JSX",
+        "fieldValue":".jsx"
+      },
+      {
+        "fieldName": "HTML",
+        "fieldValue":".html"
+      },      
+      {
+        "fieldName": "SASS",
+        "fieldValue":".scss"
+      }
+    ];
+
+    return (
+      <div className="container">
+        <HeaderGreeting />
+        <Table 
+          tableContentData={tableContent}
+        />
+      </div>
+    );
   }
 }
+
+export default App;
