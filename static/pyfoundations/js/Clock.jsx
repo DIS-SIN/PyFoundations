@@ -1,8 +1,8 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 
 const ClockHeader = () => {
     return (
-        <small>Clock: </small>
+        <small>Clock:</small>
     );
 }
 

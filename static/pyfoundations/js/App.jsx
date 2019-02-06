@@ -3,6 +3,8 @@ import React from "react";
 import Table from "./Table";
 import Form from "./Form";
 import Clock from "./Clock";
+import Toggle from "./Toggle";
+import LoginControl from "./LoginControl";
 
 import Api from "./Api";
 
@@ -62,7 +64,10 @@ class App extends React.Component {
       <div className="container">
         <HeaderGreeting />
         <HeaderTagLine />
+        <LoginControl />
         <Clock />
+        <Toggle />
+        <Toggle />
         <Table 
           tableContentData={tableContent}
           removeTableContent={this.removeTableContent}
