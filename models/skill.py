@@ -14,15 +14,15 @@ class Skill(basemodel.Base):
     # TODO Review Relationship
     learning_points = relationship('LearningPoint')
     learning_points_id = Column(
-        "LearningPointId", ForeignKey("learning_points.id"))
+        'LearningPointId', ForeignKey('learning_points.id'))
     # TODO Review relationship
     knowledge_points = relationship('KnowledgePoint')
     knowledge_points_id = Column(
-        "KnowledgePointId", ForeignKey("knowledge_points.id"))
-    slug = Column("Slug", String)
+        'KnowledgePointId', ForeignKey('knowledge_points.id'))
+    slug = Column('Slug', String)
     # TODO Review relationship
     tags = Column('Tag', relationship('Tag'))
-    tags_id = Column(Integer, ForeignKey("tag.id"))
+    tags_id = Column(Integer, ForeignKey('tag.id'))
 
 # 	ID              int64 `schema: "-"`
 # 	Name            string

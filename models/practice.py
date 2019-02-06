@@ -12,8 +12,8 @@ class Practice(basemodel.Base):
     name = Column('Name', String)
     description = Column('Description', String)
     # TODO related to tags table
-    tags = Column("Tags", ARRAY(BIGINT, dimensions=1))
-    slug = Column("Slug", String)
+    tags = Column('Tags', ARRAY(BIGINT, dimensions=1))
+    slug = Column('Slug', String)
 
 # ID          int64 `schema: "-"`
 # Name        string

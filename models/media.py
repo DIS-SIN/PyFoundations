@@ -14,7 +14,7 @@ class Video(basemodel.Base):
     path = Column('Path', String)
     added_on = Column('AddedOn', DateTime)
     # TODO related to learning_points table
-    learning_points = Column("LearningPoints", ARRAY(BIGINT, dimensions=1))
+    learning_points = Column('LearningPoints', ARRAY(BIGINT, dimensions=1))
 
 # 	ID             int64 `schema: "-"`
 # 	Title          string
@@ -35,7 +35,7 @@ class Podcast(basemodel.Base):
     path = Column('Path', String)
     added_on = Column('AddedOn', DateTime)
     # TODO related to learning_points table
-    learning_points = Column("LearningPoints", ARRAY(BIGINT, dimensions=1))
+    learning_points = Column('LearningPoints', ARRAY(BIGINT, dimensions=1))
 
     #     ID             int64 `schema: "-"`
     #     Title          string

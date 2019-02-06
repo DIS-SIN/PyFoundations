@@ -17,12 +17,12 @@ class LearningResource(basemodel.Base):
     path = Column('Path', String, unique=True)
     added_on = Column('AddedOn', DateTime)
     # TODO related to learning_points table
-    learning_points = Column("LearningPoints", ARRAY(BIGINT, dimensions=1))
+    learning_points = Column('LearningPoints', ARRAY(BIGINT, dimensions=1))
     # TODO related to knowledge_points table
-    knowledge_points = Column("KnowledgePoints", ARRAY(BIGINT, dimensions=1))
+    knowledge_points = Column('KnowledgePoints', ARRAY(BIGINT, dimensions=1))
     comments = Column('Comments', String)
     # TODO related to tags table
-    tags = Column("Tags", ARRAY(BIGINT, dimensions=1))
+    tags = Column('Tags', ARRAY(BIGINT, dimensions=1))
 
 # ID              int64 `schema: "-"`
 # Author          string

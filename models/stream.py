@@ -10,10 +10,10 @@ class Stream(basemodel.Base):
     __tablename__ = 'streams'
     id = Column('ID', BIGINT, Sequence('streams_seq_id'), primary_key=True)
     name = Column('Name', String)
-    slug = Column("Slug", String)
+    slug = Column('Slug', String)
     # TODO Review relationship
     tags = Column('Tag', relationship('Tag'))
-    tags_id = Column(Integer, ForeignKey("tag.id"))
+    tags_id = Column(Integer, ForeignKey('tag.id'))
 #	ID   int64 `schema: "-"`
 #	Name string
 #	Tags[]*string

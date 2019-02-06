@@ -17,9 +17,9 @@ class User(basemodel.Base):
     learner_profile = Column('LearnerProfile', ARRAY(BIGINT, dimensions=1))
     # TODO related to interests table
     interests = Column('Interests', ARRAY(BIGINT, dimensions=1))
-    created_at = Column("CreatedAt", DateTime,
+    created_at = Column('CreatedAt', DateTime,
                         default=datetime.datetime.utcnow)
-    updated_at = Column("UpdatedAt", DateTime)
+    updated_at = Column('UpdatedAt', DateTime)
 
 #	ID             int64  `schema: "-"`
 #	UserName       string `sql: ",unique"`

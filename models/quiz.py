@@ -13,37 +13,37 @@ class Quiz(basemodel.Base):
     title = Column('Title', String)
     # TODO review relationship
     question = Column('Question', relationship('Question'))
-    question_id = Column(Integer, ForeignKey("question.id"))
+    question_id = Column(Integer, ForeignKey('question.id'))
     tagline = Column('Tagline', String)
     body = Column('Body', String)
     subtitle = Column('SubTitle', String)
     # TODO Review relationship
     image = Column('Image', relationship('Image'))
-    image_id = Column(Integer, ForeignKey("image.id"))
+    image_id = Column(Integer, ForeignKey('image.id'))
     # TODO Review relationship
     video = Column('Video', relationship('Video'))
-    video_id = Column(Integer, ForeignKey("video.id"))
+    video_id = Column(Integer, ForeignKey('video.id'))
     likes = Column('Likes', Integer)
-    published_on = Column("PublishedOn", DateTime)
+    published_on = Column('PublishedOn', DateTime)
 
     # TODO check array
-    edited_on = Column("EditedOn", ARRAY('''''''Edit''''''', dimensions=1))
+    edited_on = Column('EditedOn', ARRAY('''''''Edit''''''', dimensions=1))
 
     # TODO Review relationship
     tags = Column('Tag', relationship('Tag'))
-    tags_id = Column(Integer, ForeignKey("tag.id"))
+    tags_id = Column(Integer, ForeignKey('tag.id'))
 
     # TODO Review Relationship
     learning_points = relationship('LearningPoint')
     learning_points_id = Column(
-        "LearningPointId", ForeignKey("learning_points.id"))
+        'LearningPointId', ForeignKey('learning_points.id'))
     # TODO Review array
-    digital_standards = Column("DigitalStandards", ARRAY(String, dimensions=1))
+    digital_standards = Column('DigitalStandards', ARRAY(String, dimensions=1))
 
     # TODO Review relationship
     banner_image = Column('BannerImage', relationship('Image'))
-    banner_image_id = Column(Integer, ForeignKey("banner_image.id"))
-    slug = Column("Slug", String)
+    banner_image_id = Column(Integer, ForeignKey('banner_image.id'))
+    slug = Column('Slug', String)
     #    ID               int64
     #    Title            string
     #    Questions[]*Question
