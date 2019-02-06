@@ -38,6 +38,19 @@ The following is a short list of the Views, Blocks, Elements, and Modifiers we w
 * /add_rating_target (needs new name, profile desires, goals, plan, objectives)
 * /add_first_experience
 
+### General Data Structure
+
+* STREAM
+    * PRACTICE
+        * EXPERIENCE
+            * LEARNING POINT
+            * KNOWLEDGE POINT
+
+* LEARNER PROFILE
+    * EXPERIENCE (n)
+
+TODO: What is the actual breakdown
+
 ### Blocks
 
 * Page Head Block

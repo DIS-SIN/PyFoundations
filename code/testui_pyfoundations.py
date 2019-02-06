@@ -32,6 +32,10 @@ def render_search():
     if request.method == 'GET' or request.method == 'POST':
         return jsonify( api_handle_pyfoundations_puttest( request  ) )
 
+@bp.route('/api/test/learningpoint', methods = ('GET','POST'))
+def render_test_learningpoint():
+    if request.method == 'GET' or request.method == 'POST':
+        return jsonify( api_handle_pyfoundations_learningpointtest( request  ) )
 
 ######################################################################
 #  Setup pyfoundations and define helper function
@@ -47,7 +51,76 @@ def get_pyfoundations_db_json(answerfile):
 
 # setup some pyfoundations answers
 pyfoundations_db = get_pyfoundations_db_json('pyfoundations-en')
-    
+
+
+def api_handle_pyfoundations_learningpointtest(request):
+#    __tablename__ = "learning_points"
+#    id = Column("ID",BIGINT, Sequence("learning_points_seq_id"), primary_key = True)
+#    name = Column("Name", String)
+#    description = Column("String", String)
+#    slug = Column("Slug", String)
+#    tags = Column("Tags", ARRAY(BIGINT, dimensions = 1))
+#    difficulty = Column("Difficulty", Integer)
+    #debug
+    if app_set_debug_mode >= 1: 
+        print(f"-- bb -- > api_handle_pyfoundations_learningpointtest > enter > {request}")
+
+    return_val = {
+        "learningpoints": [
+            {
+                "id": 1,
+                "name": "Coding", 
+                "description": "The Basics of Coding",
+                "slug": "this-is-a-slug",
+                "tags": [
+                    {
+                        "id": 1,
+                        "tagname": "Python",
+                        "datetime": "2019-02-06T21:10:18+00:00" # RFC3339
+                    },
+                    {
+                        "id": 2,
+                        "tagname": "Go",
+                        "datetime": "2019-03-06T21:10:18+00:00" # RFC3339
+                    },
+                    {
+                        "id": 3,
+                        "tagname": "React",
+                        "datetime": "2019-04-06T21:10:18+00:00" # RFC3339
+                    }
+                ],
+                "difficulty": 5
+            },
+            {
+                "id": 2,
+                "name": "Not Coding", 
+                "description": "The Basics of Not Coding",
+                "slug": "this-is-a-slug",
+                "tags": [
+                    {
+                        "id": 4,
+                        "tagname": "Nython",
+                        "datetime": "2019-02-16T21:10:18+00:00" # RFC3339
+                    },
+                    {
+                        "id": 5,
+                        "tagname": "No",
+                        "datetime": "2019-03-17T21:10:18+00:00" # RFC3339
+                    },
+                    {
+                        "id": 6,
+                        "tagname": "UnReact",
+                        "datetime": "2019-04-18T21:10:18+00:00" # RFC3339
+                    }
+                ],
+                "difficulty": 10
+            }            
+        ] 
+    }
+
+    return return_val
+
+
 # the api return as json response, this can be used for whatever application you like
 def api_handle_pyfoundations_gettest(request):
     #debug
@@ -76,7 +149,7 @@ def api_handle_pyfoundations_puttest(request):
         text = "pyfoundations is waiting for your input"
  
     q = pyfoundations_db['bbjsonfield']
-    return_value = text + " " + q
+    return_value = text + " " + q 
 
     pyfoundations_answer = {"pyfoundations_answer": return_value}
     return pyfoundations_answer

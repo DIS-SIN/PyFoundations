@@ -18,13 +18,13 @@ class AjaxTest extends React.Component {
     }
 
     componentDidMount() {
-        fetch("/pyfoundations/api/gettest")
+        fetch("/pyfoundations/api/test/learningpoint") // pyfoundations/api/gettest
             .then(res => res.json())
             .then(
                 (result) => {
                     this.setState({
                         isLoaded: true,
-                        items: result.items
+                        learningpoints: result.learningpoints
                     });
                 },
                 // Note: it's important to handle errors here
@@ -39,22 +39,56 @@ class AjaxTest extends React.Component {
             )
     }
 
+    /*
+
+            return (
+                <ul>
+                    {items.map(item => (
+                        <li key={item.id}>
+                            {item.name} {item.description} {item.slug} {item.difficulty} 
+                        </li>
+                    ))}
+                </ul>
+            );
+    */ 
     render() {
-        const { error, isLoaded, items } = this.state;
+        const { error, isLoaded, learningpoints } = this.state;
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
             return <div>Loading...</div>;
         } else {
-            return (
-                <ul>
-                    {items.map(item => (
-                        <li key={item.name}>
-                            {item.name} {item.price}
-                        </li>
-                    ))}
-                </ul>
-            );
+            // id name description slug tags{id tag datetime} difficulty
+
+            const data = learningpoints.slice(0);
+            const learningPointItem = data.map((learningpoint, index) => (
+                <div key={index}>
+                    Guts: 
+                    {learningpoint.name} 
+                    {learningpoint.description} 
+                    {learningpoint.slug} 
+                    {learningpoint.difficulty}  
+                    <br />
+                    <div className="learningPointItem">
+                        <ul>
+                            {learningpoint.tags.map((tag, index) => (
+                                <React.Fragment key={index}>
+                                    <li>
+                                        LPID: {tag.id}
+                                    </li>
+                                    <li>
+                                        Name: {tag.tagname}
+                                    </li>
+                                    <li>
+                                        Time: {tag.datetime}
+                                    </li>
+                                </React.Fragment>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            ))
+            return learningPointItem;
         }
     }
 }
