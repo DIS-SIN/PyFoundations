@@ -2,6 +2,7 @@
 import React from "react";
 import Table from "./Table";
 import Form from "./Form";
+import Clock from "./Clock";
 
 import Api from "./Api";
 
@@ -34,7 +35,12 @@ class App extends React.Component {
       */ 
     ]
   };
-  
+
+
+  // Correct Syntax, if you want to use state and props together, pass as fxn
+  //this.setState((state, props) => ({  
+  //  counter: state.counter + props.increment
+  //}));
   removeTableContent = index => {
     const { tableContent } = this.state;
     
@@ -56,6 +62,7 @@ class App extends React.Component {
       <div className="container">
         <HeaderGreeting />
         <HeaderTagLine />
+        <Clock />
         <Table 
           tableContentData={tableContent}
           removeTableContent={this.removeTableContent}
