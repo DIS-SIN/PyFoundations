@@ -5,8 +5,8 @@ import Form from "./Form";
 import Clock from "./Clock";
 import Toggle from "./Toggle";
 import LoginControl from "./LoginControl";
-
-import Api from "./Api";
+import AjaxTest from "./AjaxTest";
+import ApiTest from "./ApiTest";
 
 const HeaderGreeting = () => {
   return (
@@ -56,7 +56,7 @@ class App extends React.Component {
   handleSubmit = tableContentItem => {
     this.setState({tableContent: [...this.state.tableContent, tableContentItem]});
   }
-
+  
   render () {
     const { tableContent } = this.state;
 
@@ -76,7 +76,8 @@ class App extends React.Component {
         <Form 
           handleSubmit={this.handleSubmit}
         />
-        <Api />
+        <AjaxTest />
+        <ApiTest />
       </div>
     );
   }

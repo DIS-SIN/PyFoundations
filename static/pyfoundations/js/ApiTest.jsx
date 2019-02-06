@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class Api extends Component {
+class ApiTest extends Component {
     state = {
         data: []
     };
@@ -33,4 +33,4 @@ class Api extends Component {
     }
 }
 
-export default Api;
+export default ApiTest;

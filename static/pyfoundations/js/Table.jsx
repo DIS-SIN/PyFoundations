@@ -26,7 +26,7 @@ const TableBody = props => {
     return <tbody>{rows}</tbody>;
 }
 
-class Table extends Component {
+class Table extends React.Component {
     render() {
         const { tableContentData, removeTableContent } = this.props;
 
