@@ -2,7 +2,11 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const config = {
-    entry:  __dirname + '/js/index.jsx',
+    entry: [
+        '@babel/polyfill',
+        'whatwg-fetch',
+        __dirname + '/js/index.jsx'
+    ],
     output: {
         path: __dirname + '/dist',
         filename: 'bundle.js',
