@@ -1,10 +1,12 @@
 from sqlalchemy import Column, Integer, String, DateTime, Sequence, Boolean
 from sqlalchemy.dialects.postgresql import ARRAY, BIGINT
+import basemodel
 
 # LearningResource is an element of the learning architecture
 
 
-class LearningResource:
+class LearningResource(basemodel.Base):
+    __tablename__ = 'learning_resources'
     id = Column('ID', Integer, Sequence(
         'learning_resources_seq_id'), primary_key=True)
     author = Column('Author', String)
