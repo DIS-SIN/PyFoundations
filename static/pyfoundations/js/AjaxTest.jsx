@@ -43,6 +43,7 @@ class AjaxTest extends React.Component {
                     });
                 }
             )
+        // end fetch
     }
 
     handleSubmit = async e => {
@@ -129,37 +130,5 @@ class AjaxTest extends React.Component {
         }
     }
 }
-
-/*
-    handleSubmit = async e => {
-        e.preventDefault();
-        const response = await fetch('/api/puttest', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ post: this.state.post }),
-        });
-        const body = await response.text();
-        this.setState({ responseToPost: body });
-    };
-    render() {
-        return (
-            <form onSubmit={this.handleSubmit}>
-                <p>{this.state.response}</p>
-                <p>
-                    <strong>Post to Server:</strong>
-                </p>
-                <input
-                    type="text"
-                    value={this.state.post}
-                    onChange={e => this.setState({ post: e.target.value })}
-                />
-                <button type="submit">Submit</button>
-                <p>{this.state.responseToPost}</p>
-            </form>
-        );
-    }
-*/
 
 export default AjaxTest;

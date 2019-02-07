@@ -52,7 +52,6 @@ def get_pyfoundations_db_json(answerfile):
 # setup some pyfoundations answers
 pyfoundations_db = get_pyfoundations_db_json('pyfoundations-en')
 
-
 def api_handle_pyfoundations_learningpointtest(request):
 #    __tablename__ = "learning_points"
 #    id = Column("ID",BIGINT, Sequence("learning_points_seq_id"), primary_key = True)
@@ -149,6 +148,8 @@ def api_handle_pyfoundations_puttest(request):
     
     #For POST
     #text = request.form.get('pyfoundations_ask', False)
+
+    # For POST JSON
     data = request.data
     dataDict = json.loads(data)
     try:
