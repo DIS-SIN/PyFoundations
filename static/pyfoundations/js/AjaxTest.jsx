@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+
+// maybe import higher up?
 import Promise from 'promise-polyfill';
 import "whatwg-fetch";
 
@@ -39,18 +41,6 @@ class AjaxTest extends React.Component {
             )
     }
 
-    /*
-
-            return (
-                <ul>
-                    {items.map(item => (
-                        <li key={item.id}>
-                            {item.name} {item.description} {item.slug} {item.difficulty} 
-                        </li>
-                    ))}
-                </ul>
-            );
-    */ 
     render() {
         const { error, isLoaded, learningpoints } = this.state;
         if (error) {
@@ -63,28 +53,19 @@ class AjaxTest extends React.Component {
             const data = learningpoints.slice(0);
             const learningPointItem = data.map((learningpoint, index) => (
                 <div key={index}>
-                    Guts: 
-                    {learningpoint.name} 
-                    {learningpoint.description} 
-                    {learningpoint.slug} 
-                    {learningpoint.difficulty}  
-                    <br />
+                    <h3>{learningpoint.name}</h3>
+                    <p>
+                        <small>{learningpoint.description} ({learningpoint.slug})</small>
+                    </p>
+                    <p>
+                        <strong>{learningpoint.difficulty}</strong>  
+                    </p>
                     <div className="learningPointItem">
-                        <ul>
-                            {learningpoint.tags.map((tag, index) => (
-                                <React.Fragment key={index}>
-                                    <li>
-                                        LPID: {tag.id}
-                                    </li>
-                                    <li>
-                                        Name: {tag.tagname}
-                                    </li>
-                                    <li>
-                                        Time: {tag.datetime}
-                                    </li>
-                                </React.Fragment>
-                            ))}
-                        </ul>
+                        {learningpoint.tags.map((tag, index) => (
+                            <React.Fragment key={index}>
+                                <small><strong>{tag.tagname}</strong> ({tag.id}@{tag.datetime})</small> 
+                            </React.Fragment>
+                        ))}
                     </div>
                 </div>
             ))
