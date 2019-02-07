@@ -53,14 +53,14 @@ class AjaxTest extends React.Component {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ 
+            body: JSON.stringify({
                 post: this.state.post,
-                pyfoundations_ask: this.state.post 
+                pyfoundations_ask: this.state.post
             }),
         });
         const body = await response.json();//response.text();
-        this.setState({ 
-            responseToPost: body 
+        this.setState({
+            responseToPost: body
         });
     }
 
@@ -91,11 +91,11 @@ class AjaxTest extends React.Component {
                     <div className="responseToPostDetails">
                         <small>Server Response:</small>
                         <pre>{JSON.stringify(responseToPost, null, 2)}</pre>
-                    </div>                    
+                    </div>
                     <div className="responseDetails">
                         <small>Inital Fetch Response:</small>
                         <pre>{JSON.stringify(response, null, 2)}</pre>
-                    </div>                  
+                    </div>
 
                 </form>
             )
@@ -109,12 +109,12 @@ class AjaxTest extends React.Component {
                         <small>{learningpoint.description} ({learningpoint.slug})</small>
                     </p>
                     <p>
-                        <strong>{learningpoint.difficulty}</strong>  
+                        <strong>{learningpoint.difficulty}</strong>
                     </p>
                     <div className="learningPointItem">
                         {learningpoint.tags.map((tag, index) => (
                             <React.Fragment key={index}>
-                                <small><strong>{tag.tagname}</strong> ({tag.id}@{tag.datetime})</small> 
+                                <small><strong>{tag.tagname}</strong> ({tag.id}@{tag.datetime})</small>
                             </React.Fragment>
                         ))}
                     </div>
