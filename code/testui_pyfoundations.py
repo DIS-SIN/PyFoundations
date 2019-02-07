@@ -20,14 +20,14 @@ def render_home():
         return render_template('pyfoundations/react-index.tmpl.html', pyfoundationsanswer="home!")
 
 # api requests, returns json
-@bp.route('/api/gettest', methods = ('GET', 'POST'))
+@bp.route('/api/test/gettest', methods = ('GET', 'POST'))
 def serve_api_request():
     if request.method == 'GET' or request.method == 'POST':
         return jsonify( api_handle_pyfoundations_gettest( request  ) )
     
 # route and render the results (we're subbing back to the index with extra data)
 # might want to consider changing this to a template on its own down the road
-@bp.route('/api/puttest', methods = ('GET', 'POST'))
+@bp.route('/api/test/puttest', methods = ('GET', 'POST'))
 def render_search():
     if request.method == 'GET' or request.method == 'POST':
         return jsonify( api_handle_pyfoundations_puttest( request  ) )
@@ -144,15 +144,28 @@ def api_handle_pyfoundations_puttest(request):
     if app_set_debug_mode >= 1: 
         print(f"-- bb -- > api_handle_pyfoundations_puttest > enter > {request}")
 
-    text = request.args.get('pyfoundations_ask', False)
-    if not text:
+    # For GET
+    #text = request.args.get('pyfoundations_ask', False)
+    
+    #For POST
+    #text = request.form.get('pyfoundations_ask', False)
+    data = request.data
+    dataDict = json.loads(data)
+    try:
+        text = dataDict['pyfoundations_ask']
+    except KeyError:
         text = "pyfoundations is waiting for your input"
  
     q = pyfoundations_db['bbjsonfield']
-    return_value = text + " " + q 
+    return_val = {
+        "items": [
+            { "id": 1, "name": text,  "price": "$2" },
+            { "id": 2, "name": "Peaches", "price": "$5" },
+            { "id": 3, "name": q, "price": "$9"}
+        ] 
+    }
 
-    pyfoundations_answer = {"pyfoundations_answer": return_value}
-    return pyfoundations_answer
+    return return_val
     
 # annnd run it
 #if __name__ == '__main__':

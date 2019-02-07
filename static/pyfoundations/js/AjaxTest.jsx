@@ -15,7 +15,10 @@ class AjaxTest extends React.Component {
         this.state = {
             error: null,
             isLoaded: false,
-            items: []
+            learningpoints: [],
+            post: "",
+            response: "",
+            responseToPost: ""
         };
     }
 
@@ -26,6 +29,7 @@ class AjaxTest extends React.Component {
                 (result) => {
                     this.setState({
                         isLoaded: true,
+                        response: result,
                         learningpoints: result.learningpoints
                     });
                 },
@@ -41,8 +45,26 @@ class AjaxTest extends React.Component {
             )
     }
 
+    handleSubmit = async e => {
+        e.preventDefault();
+        const response = await fetch('/pyfoundations/api/test/puttest', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ 
+                post: this.state.post,
+                pyfoundations_ask: this.state.post 
+            }),
+        });
+        const body = await response.json();//response.text();
+        this.setState({ 
+            responseToPost: body 
+        });
+    }
+
     render() {
-        const { error, isLoaded, learningpoints } = this.state;
+        const { error, isLoaded, learningpoints, post, response, responseToPost } = this.state;
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
@@ -50,7 +72,35 @@ class AjaxTest extends React.Component {
         } else {
             // id name description slug tags{id tag datetime} difficulty
 
+            const learningPointReturnFragment = (
+                <form className="reqResDetails" onSubmit={this.handleSubmit}>
+                    <p>
+                        <strong>Post to Server:</strong>
+                    </p>
+                    <input
+                        type="text"
+                        value={post}
+                        onChange={e => this.setState({ post: e.target.value })}
+                    />
+                    <button type="submit">Submit</button>
+                    <div className="requestDetails">
+                        <small>Request to Server:</small>
+                        <pre>{JSON.stringify(post, null, 2)}</pre>
+                    </div>
+                    <div className="responseToPostDetails">
+                        <small>Server Response:</small>
+                        <pre>{JSON.stringify(responseToPost, null, 2)}</pre>
+                    </div>                    
+                    <div className="responseDetails">
+                        <small>Inital Fetch Response:</small>
+                        <pre>{JSON.stringify(response, null, 2)}</pre>
+                    </div>                  
+
+                </form>
+            )
+
             const data = learningpoints.slice(0);
+
             const learningPointItem = data.map((learningpoint, index) => (
                 <div key={index}>
                     <h3>{learningpoint.name}</h3>
@@ -69,7 +119,13 @@ class AjaxTest extends React.Component {
                     </div>
                 </div>
             ))
-            return learningPointItem;
+
+            const returnFragment = (
+                <div className="learningPoint">
+                    {learningPointReturnFragment} {learningPointItem}
+                </div>
+            )
+            return returnFragment;
         }
     }
 }
