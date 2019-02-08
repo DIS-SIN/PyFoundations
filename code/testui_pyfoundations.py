@@ -1,5 +1,5 @@
 from flask import (Blueprint, render_template,
-                   render_template_string, request, redirect, Markup, jsonify)
+                   render_template_string, request, redirect, url_for, Markup, jsonify)
 import json
 import urllib
 import requests
@@ -10,7 +10,7 @@ app_set_debug_mode = 1  # 0=none,1=entry,2=entry/exit,3=all
 #  Application routing and web end
 ######################################################################
 
-bp = Blueprint('pyfoundations', __name__, url_prefix='/pyfoundations')
+bp = Blueprint('pyfoundations', __name__, url_prefix='/')
 
 # route/render the home page
 
@@ -20,9 +20,6 @@ def render_home():
     if request.method == 'GET':
         return render_template('pyfoundations/react-index.tmpl.html',
                                pyfoundationsanswer="home!")
-
-# api requests, returns json
-
 
 @bp.route('/api/test/gettest', methods=('GET', 'POST'))
 def serve_api_request():

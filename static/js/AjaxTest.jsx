@@ -24,7 +24,7 @@ class AjaxTest extends React.Component {
 
     // this fires when the component loads
     componentDidMount() {
-        fetch("/pyfoundations/api/test/learningpoint") // pyfoundations/api/gettest
+        fetch("/api/test/learningpoint") // pyfoundations/api/gettest
             .then(res => res.json())
             .then(
                 (result) => {
@@ -49,7 +49,7 @@ class AjaxTest extends React.Component {
 
     handleSubmit = async e => {
         e.preventDefault();
-        const response = await fetch('/pyfoundations/api/test/puttest', {
+        const response = await fetch('/api/test/puttest', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

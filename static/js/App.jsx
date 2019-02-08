@@ -7,6 +7,7 @@ import Toggle from "./Toggle";
 import LoginControl from "./LoginControl";
 import AjaxTest from "./AjaxTest";
 import ApiTest from "./ApiTest";
+import AppIntl from "./AppIntl";
 
 const HeaderGreeting = () => {
   return (
@@ -34,7 +35,7 @@ class App extends React.Component {
         "fieldName": "Javascript",
         "fieldValue":".js"
       },
-      */ 
+      */
     ]
   };
 
@@ -45,35 +46,36 @@ class App extends React.Component {
   //}));
   removeTableContent = index => {
     const { tableContent } = this.state;
-    
+
     this.setState({
       tableContent: tableContent.filter((tableContent, i) => {
-            return i !== index;
-        })
+        return i !== index;
+      })
     });
   }
 
   handleSubmit = tableContentItem => {
-    this.setState({tableContent: [...this.state.tableContent, tableContentItem]});
+    this.setState({ tableContent: [...this.state.tableContent, tableContentItem] });
   }
-  
-  render () {
+
+  render() {
     const { tableContent } = this.state;
 
     return (
       <div className="container">
+        <AppIntl />
         <HeaderGreeting />
         <HeaderTagLine />
         <LoginControl />
         <Clock />
         <Toggle />
         <Toggle />
-        <Table 
+        <Table
           tableContentData={tableContent}
           removeTableContent={this.removeTableContent}
         />
         <FormHeader />
-        <Form 
+        <Form
           handleSubmit={this.handleSubmit}
         />
         <AjaxTest />
