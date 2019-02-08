@@ -22,6 +22,7 @@ class AjaxTest extends React.Component {
         };
     }
 
+    // this fires when the component loads
     componentDidMount() {
         fetch("/pyfoundations/api/test/learningpoint") // pyfoundations/api/gettest
             .then(res => res.json())
