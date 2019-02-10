@@ -1,0 +1,11 @@
+{
+    "title": "Bienvenue à réagir en utilisant react-i18next",
+    "description": {
+        "part1": "Pour commencer, éditez src/App.js et enregistrez-le pour le recharger.",
+        "part2": "Changez de langue entre l'anglais et l'allemand en utilisant les boutons ci-dessus."
+    },
+    "greetings": {
+        "guest": "Bonjour! Veuillez vous connecter",
+        "user": "Bonjour, bon retour!"
+    }
+}

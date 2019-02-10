@@ -1,17 +1,23 @@
-// index.jsx
+// index.jsx - pull in required resources to allow webpack to bundle
+require('./../sass/pyfoundations.css.scss');
+// core react+redux
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import { I18nextProvider } from "react-i18next";
-import i18n from "./i18n";
-
+import { Provider } from "react-redux";
+// our app
 import App from "./App";
-//import AppIntl from "./AppIntl";
+// i18n considerations
+import { loadLiterals } from "./store/literals";
+import store from "./store";
+import loadLang from "./i18n";
+const lang = loadLang();
+store.dispatch(loadLiterals(lang))
+//console.log(store);
 
-require('./../sass/pyfoundations.css.scss');
-
-//ReactDOM.render(<App />, document.getElementById("root"));
-// append app to dom
+// render with redux store enabled
 ReactDOM.render(
-    <App />,
+    <Provider store={store}>
+        <App />
+    </Provider>,
     document.getElementById("root")
 );

@@ -17,12 +17,12 @@ let strings = new LocalizedStrings({
     }
 });
 
-const GuestGreeting = (props) => { 
+const GuestGreeting = (props) => {
     return (
         <h1>{strings.welcome} {strings.unknownmessage}</h1>
     );
 }
-const UserGreeting = (props) => { 
+const UserGreeting = (props) => {
     return (
         <h1>{strings.welcome} {strings.knownmessage}</h1>
     );
@@ -31,8 +31,7 @@ const UserGreeting = (props) => {
 class Greeting extends React.Component {
     constructor(props) {
         super(props);
-        //this.state = { currentLang: "en" };
-    }    
+    }
 
     toggleCanadianOfficialLanguage = () => {
         if (strings.getLanguage() == "en") {
@@ -45,9 +44,9 @@ class Greeting extends React.Component {
     }
 
     render() {
-        const { isLoggedIn }  = this.props;
+        const { isLoggedIn } = this.props;
         //const { currentLang } = this.state;
-        let greetingFragment = null; 
+        let greetingFragment = null;
         if (isLoggedIn) {
             greetingFragment = <UserGreeting />;
         } else {

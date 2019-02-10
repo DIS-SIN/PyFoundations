@@ -9,6 +9,22 @@ import AjaxTest from "./AjaxTest";
 import ApiTest from "./ApiTest";
 import AppIntl from "./AppIntl";
 
+// connect the state from redux
+import { connect } from "react-redux";
+const mapStateToProps = state => {
+  return {
+    literals: state.literals
+  };
+};
+
+const IntlComponentA = props => {
+  return (
+    <div>
+      {props.literals.title}
+    </div>
+  )
+};
+
 const HeaderGreeting = () => {
   return (
     <h1> Hello... React!</h1>
@@ -28,19 +44,16 @@ const FormHeader = () => {
 }
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   state = {
-    tableContent: [
-      /*
-      {
-        "fieldName": "Javascript",
-        "fieldValue":".js"
-      },
-      */
-    ]
+    tableContent: [ /* { "fieldName": "Javascript", "fieldValue":".js" }, */]
   };
 
 
-  // Correct Syntax, if you want to use state and props together, pass as fxn
+  // Also Correct Syntax, if you want to use state and props together, pass as fxn
   //this.setState((state, props) => ({  
   //  counter: state.counter + props.increment
   //}));
@@ -60,9 +73,12 @@ class App extends React.Component {
 
   render() {
     const { tableContent } = this.state;
-
+    const { literals } = this.props;
+    //console.log(this.props.literals.title)
+    //console.log(literals);
     return (
       <div className="container">
+        <IntlComponentA literals={literals} />
         <AppIntl />
         <HeaderGreeting />
         <HeaderTagLine />
@@ -85,4 +101,5 @@ class App extends React.Component {
   }
 }
 
-export default App;
+// redux connect state//
+export default connect(mapStateToProps)(App);

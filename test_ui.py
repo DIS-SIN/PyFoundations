@@ -14,7 +14,10 @@ def create_app():
     # we're setting the static path to "" so that the i18n lib can find the
     # hardcoded path of locales it's looking for. Probably want to refactor this
     # by catching incoming ajax requests to the locales folder
-    app = Flask(__name__, static_url_path='')
+    #app = Flask(__name__, static_url_path='')
+
+    # HACK-FIX: Dropped i18n and i18next. Buggy, unreliable.
+    app = Flask(__name__)
     app.register_blueprint(testui_pyfoundations.bp)
     app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 

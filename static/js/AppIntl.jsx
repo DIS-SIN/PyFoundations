@@ -1,61 +1,54 @@
 import React, { Component, Suspense } from 'react';
 import { useTranslation, withTranslation, Trans } from 'react-i18next';
 
-// use hoc for class based components
-class LegacyWelcomeClass extends Component {
-    render() {
-        const { t, i18n } = this.props;
-        return <h2>{t('title')}</h2>;
-    }
-}
-const Welcome = withTranslation()(LegacyWelcomeClass);
+import { loadLiterals } from "./store/literals";
+import store from "./store";
+import loadLang from "./i18n";
 
-// Component using the Trans component
-function MyComponent() {
-    return (
-        <Trans i18nKey="description.part1">
-            To get started, edit <code>src/App.js</code> and save to reload.
-        </Trans>
-    );
-}
-
-// page uses the hook
-function Page() {
-    const { t, i18n } = useTranslation();
-
-    const changeLanguage = lng => {
-        i18n.changeLanguage(lng);
+// redux state
+import { connect } from "react-redux";
+const mapStateToProps = state => {
+    return {
+        literals: state.literals
     };
+};
 
-    return (
-        <div className="App">
-            <Suspense fallback={<Loader />}>
-                <div className="App-header">
-                    <Welcome />
-                    <button onClick={() => changeLanguage('fr')}>fr</button>
-                    <button onClick={() => changeLanguage('en')}>en</button>
-                </div>
-                <div className="App-intro">
-                    <MyComponent />
-                </div>
-                <div>{t('description.part2')}</div>
-            </Suspense>
+// hook to change language, fires a state change
+const changeLanguage = lng => {
+    const lang = loadLang(lng);
+    store.dispatch(loadLiterals(lang));
+};
+
+const MyComponent = props => (
+    <p>
+        {props.literals.description.part1}
+    </p>
+);
+
+const Page = props => (
+    <div className="AppIntl">
+        <div className="App-header">
+            <button onClick={() => changeLanguage('fr')}>Français</button>
+            <button onClick={() => changeLanguage('en')}>English</button>
         </div>
-    );
-}
-
-// loading component for suspence fallback
-const Loader = () => (
-    <div className="App">
-        <div>loading...</div>
+        <div className="App-intro">
+            <MyComponent literals={props.literals} />
+        </div>
+        <div>{props.literals.description.part2}</div>
     </div>
 );
 
-// here app catches the suspense from page in case translations are not yet loaded
-export default function AppIntl() {
-    return (
-        <Suspense fallback={<Loader />}>
-            <Page />
-        </Suspense>
-    );
+class AppIntl extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        const { literals } = this.props;
+        return (
+            <Page literals={literals} />
+        );
+    }
 }
+
+// connect redux state
+export default connect(mapStateToProps)(AppIntl);
