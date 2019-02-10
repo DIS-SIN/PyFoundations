@@ -1,5 +1,13 @@
 import React, { Component } from "react"
 
+// redux state
+import { connect } from "react-redux";
+const mapStateToProps = state => {
+    return {
+        literals: state.literals
+    };
+};
+
 class Toggle extends React.Component {
     constructor(props) {
         super(props);
@@ -18,12 +26,22 @@ class Toggle extends React.Component {
     }
 
     render() {
+        const { literals } = this.props;
+
+        let buttonfragement = null;
+        if (this.state.isToggleOn) {
+            buttonfragement = <span>{literals.toggle.on}</span>;
+        } else {
+            buttonfragement = <span>{literals.toggle.off}</span>;
+        }
+
         return (
             <button onClick={this.handleClick}>
-                {this.state.isToggleOn ? 'ON' : 'OFF'}
+                {buttonfragement}
             </button>
         );
     }
 }
 
-export default Toggle;
+// connect redux state
+export default connect(mapStateToProps)(Toggle);

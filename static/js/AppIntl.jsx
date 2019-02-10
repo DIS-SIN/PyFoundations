@@ -21,7 +21,7 @@ const changeLanguage = lng => {
 
 const MyComponent = props => (
     <p>
-        {props.literals.description.part1}
+        {props.literals.appintl.description.part1}
     </p>
 );
 
@@ -34,7 +34,7 @@ const Page = props => (
         <div className="App-intro">
             <MyComponent literals={props.literals} />
         </div>
-        <div>{props.literals.description.part2}</div>
+        <div>{props.literals.appintl.description.part2}</div>
     </div>
 );
 

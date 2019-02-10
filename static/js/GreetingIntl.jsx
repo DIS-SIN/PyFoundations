@@ -10,13 +10,13 @@ const mapStateToProps = state => {
 
 const GuestGreeting = props => (
     <h1>
-        {props.literals.greetings.guest}
+        {props.literals.greetingintl.guest}
     </h1>
 );
 
 const UserGreeting = props => (
     <h1>
-        {props.literals.greetings.user}
+        {props.literals.greetingintl.user}
     </h1>
 );
 

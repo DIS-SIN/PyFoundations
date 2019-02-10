@@ -1,11 +1,50 @@
 {
-    "title": "Bienvenue à réagir en utilisant react-i18next",
-    "description": {
-        "part1": "Pour commencer, éditez src/App.js et enregistrez-le pour le recharger.",
-        "part2": "Changez de langue entre l'anglais et l'allemand en utilisant les boutons ci-dessus."
+    "app": {
+        "title": "Bienvenue à réagir en utilisant react-i18next",
+        "headergreeting": "Bonjour... React!",
+        "headertagline": "Un table du react (facile)",
+        "formheader": "Nouveau entree"
     },
-    "greetings": {
+    "appintl": {
+        "description": {
+            "part1": "Pour commencer, éditez src/App.js et enregistrez-le pour le recharger.",
+            "part2": "Changez de langue entre l'anglais et l'allemand en utilisant les boutons ci-dessus."
+        }
+    },
+    "greetingintl": {
         "guest": "Bonjour! Veuillez vous connecter",
         "user": "Bonjour, bon retour!"
+    },
+    "clock": {
+        "clockheader": "Horlage"
+    },
+    "form": {
+        "fieldname": "Chose 1",
+        "fieldvalue": "Chose 2",
+        "submit": "Provir"
+    },
+    "ajaxtest": {
+        "error": "Error",
+        "loading": "Trouver",
+        "post": "Post a Servir",
+        "request": "Demande a Servir",
+        "response": "Servir Rappelle",
+        "fetch": "Rappele du fetch"
+    },
+    "apitest": {
+        "header": "Test d'API"
+    },
+    "logincontrol": {
+        "login": "Entree",
+        "logout": "Aurevoir"
+    },
+    "table": {
+        "fieldname": "Premier Col",
+        "fieldvalue": "2me Col",
+        "action": "Modifier"
+    },
+    "toggle": {
+        "on": "OUI",
+        "off": "NON"
     }
 }

@@ -20,26 +20,26 @@ const mapStateToProps = state => {
 const IntlComponentA = props => {
   return (
     <div>
-      {props.literals.title}
+      {props.literals.app.title}
     </div>
   )
 };
 
-const HeaderGreeting = () => {
+const HeaderGreeting = props => {
   return (
-    <h1> Hello... React!</h1>
+    <h1>{props.literals.app.headergreeting}</h1>
   );
 }
 
-const HeaderTagLine = () => {
+const HeaderTagLine = props => {
   return (
-    <p>Basic Table Example in React</p>
+    <p>{props.literals.app.headertagline}</p>
   );
 }
 
-const FormHeader = () => {
+const FormHeader = props => {
   return (
-    <h3>Add Entry to Form</h3>
+    <h3>{props.literals.app.formheader}</h3>
   );
 }
 
@@ -76,12 +76,15 @@ class App extends React.Component {
     const { literals } = this.props;
     //console.log(this.props.literals.title)
     //console.log(literals);
+
+    // note: for local functions you gotta pass around the literals
+    // but things you include will use the connect to, well, connect
     return (
       <div className="container">
         <IntlComponentA literals={literals} />
+        <HeaderGreeting literals={literals} />
+        <HeaderTagLine literals={literals} />
         <AppIntl />
-        <HeaderGreeting />
-        <HeaderTagLine />
         <LoginControl />
         <Clock />
         <Toggle />
@@ -90,7 +93,7 @@ class App extends React.Component {
           tableContentData={tableContent}
           removeTableContent={this.removeTableContent}
         />
-        <FormHeader />
+        <FormHeader literals={literals} />
         <Form
           handleSubmit={this.handleSubmit}
         />

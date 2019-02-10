@@ -4,6 +4,15 @@ import React, { Component } from "react";
 import Promise from 'promise-polyfill';
 import "whatwg-fetch";
 
+// redux state
+import { connect } from "react-redux";
+const mapStateToProps = state => {
+    return {
+        literals: state.literals
+    };
+};
+
+
 // To add to window
 if (!window.Promise) {
     window.Promise = Promise;
@@ -67,34 +76,35 @@ class AjaxTest extends React.Component {
 
     render() {
         const { error, isLoaded, learningpoints, post, response, responseToPost } = this.state;
+        const { literals } = this.props;
         if (error) {
-            return <div>Error: {error.message}</div>;
+            return <div>{literals.ajaxtest.error} {error.message}</div>;
         } else if (!isLoaded) {
-            return <div>Loading...</div>;
+            return <div>{literals.ajaxtest.loading}...</div>;
         } else {
             // id name description slug tags{id tag datetime} difficulty
 
             const learningPointReturnFragment = (
                 <form className="reqResDetails" onSubmit={this.handleSubmit}>
                     <p>
-                        <strong>Post to Server:</strong>
+                        <strong>{literals.ajaxtest.post}:</strong>
                     </p>
                     <input
                         type="text"
                         value={post}
                         onChange={e => this.setState({ post: e.target.value })}
                     />
-                    <button type="submit">Submit</button>
+                    <button type="submit">{literals.form.submit}</button>
                     <div className="requestDetails">
-                        <small>Request to Server:</small>
+                        <small>{literals.ajaxtest.request}:</small>
                         <pre>{JSON.stringify(post, null, 2)}</pre>
                     </div>
                     <div className="responseToPostDetails">
-                        <small>Server Response:</small>
+                        <small>{literals.ajaxtest.response}:</small>
                         <pre>{JSON.stringify(responseToPost, null, 2)}</pre>
                     </div>
                     <div className="responseDetails">
-                        <small>Inital Fetch Response:</small>
+                        <small>{literals.ajaxtest.fetch}:</small>
                         <pre>{JSON.stringify(response, null, 2)}</pre>
                     </div>
 
@@ -132,4 +142,5 @@ class AjaxTest extends React.Component {
     }
 }
 
-export default AjaxTest;
+
+export default connect(mapStateToProps)(AjaxTest);

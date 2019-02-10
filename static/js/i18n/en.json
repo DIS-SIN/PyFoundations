@@ -1,11 +1,50 @@
 {
-    "title": "Welcome to react using react-i18next",
-    "description": {
-        "part1": "To get started, edit src/App.js and save to reload.",
-        "part2": "Switch language between english and german using buttons above."
+    "app": {
+        "title": "Welcome to react using react-i18next",
+        "headergreeting": "Hello... React!",
+        "headertagline": "Basic Table Example in React",
+        "formheader": "Add Entry to Form"
     },
-    "greetings": {
+    "appintl": {
+        "description": {
+            "part1": "To get started, edit src/App.js and save to reload.",
+            "part2": "Switch language between english and german using buttons above."
+        }
+    },
+    "greetingintl": {
         "guest": "Hello! Please Sign In",
         "user": "Hello! Welcome Back"
+    },
+    "clock": {
+        "clockheader": "Clock"
+    },
+    "form": {
+        "fieldname": "Thing 1",
+        "fieldvalue": "Thing 2",
+        "submit": "Submit"
+    },
+    "ajaxtest": {
+        "error": "Error",
+        "loading": "Loading",
+        "post": "Post to Server",
+        "request": "Request to Server",
+        "response": "Server Response",
+        "fetch": "Inital Fetch Response"
+    },
+    "apitest": {
+        "header": "API Test"
+    },
+    "logincontrol": {
+        "login": "Login",
+        "logout": "Logout"
+    },
+    "table": {
+        "fieldname": "First Col",
+        "fieldvalue": "Second Col",
+        "action": "Action"
+    },
+    "toggle": {
+        "on": "ON",
+        "off": "OFF"
     }
 }

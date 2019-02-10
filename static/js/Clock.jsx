@@ -1,24 +1,32 @@
 import React, { Component } from "react";
 
-const ClockHeader = () => {
+// redux state
+import { connect } from "react-redux";
+const mapStateToProps = state => {
+    return {
+        literals: state.literals
+    };
+};
+
+const ClockHeader = props => {
     return (
-        <small>Clock:</small>
+        <small>{props.literals.clock.clockheader}</small>
     );
 }
 
-const ClockBody = (props) => { 
+const ClockBody = props => {
     return (
         <small>{props.date.toLocaleTimeString()}.</small>
     );
 }
 
-const ClockWidget = (props) => {
+const ClockWidget = props => {
     return (
         <div id="widget__clock">
-            <ClockHeader />
-            <ClockBody date={props.date}/>
+            <ClockHeader literals={props.literals} />
+            <ClockBody date={props.date} />
         </div>
-    );    
+    );
 }
 
 class Clock extends React.Component {
@@ -48,11 +56,12 @@ class Clock extends React.Component {
 
     render() {
         const { date } = this.state;
-
-        return(
-            <ClockWidget date={date}/>
-        ); 
+        const { literals } = this.props;
+        return (
+            <ClockWidget literals={literals} date={date} />
+        );
     }
 }
 
-export default Clock;
+// connect redux state
+export default connect(mapStateToProps)(Clock);

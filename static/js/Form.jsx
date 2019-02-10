@@ -1,5 +1,13 @@
 import React, { Component } from "react";
 
+// redux state
+import { connect } from "react-redux";
+const mapStateToProps = state => {
+    return {
+        literals: state.literals
+    };
+};
+
 class Form extends React.Component {
     constructor(props) {
         super(props);
@@ -13,13 +21,13 @@ class Form extends React.Component {
     }
 
     handleChange = event => {
-        const {name, value} = event.target;
-    
+        const { name, value } = event.target;
+
         this.setState({
-            [name] : value
+            [name]: value
         });
-    }   
-    
+    }
+
     onFormSubmit = (event) => {
         event.preventDefault();
 
@@ -29,27 +37,28 @@ class Form extends React.Component {
 
     render() {
         const { fieldName, fieldValue } = this.state;
-
+        const { literals } = this.props;
         return (
             <form onSubmit={this.onFormSubmit}>
-                <label>FieldName</label>
-                <input 
-                    type="text" 
-                    name="fieldName" 
-                    value={fieldName} 
+                <label>{literals.form.fieldname}</label>
+                <input
+                    type="text"
+                    name="fieldName"
+                    value={fieldName}
                     onChange={this.handleChange} />
-                <label>FieldValue</label>
-                <input 
-                    type="text" 
-                    name="fieldValue" 
-                    value={fieldValue} 
-                    onChange={this.handleChange}/>
+                <label>{literals.form.fieldvalue}</label>
+                <input
+                    type="text"
+                    name="fieldValue"
+                    value={fieldValue}
+                    onChange={this.handleChange} />
                 <button type="submit">
-                    Submit
+                    {literals.form.submit}
                 </button>
-            </form>            
+            </form>
         );
     }
 }
 
-export default Form;
+// connect redux state
+export default connect(mapStateToProps)(Form);

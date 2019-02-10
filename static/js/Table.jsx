@@ -1,18 +1,27 @@
 import React, { Component } from "react";
 
-const TableHeader = () => {
+// redux state
+import { connect } from "react-redux";
+const mapStateToProps = state => {
+    return {
+        literals: state.literals
+    };
+};
+
+
+const TableHeader = props => {
     return (
         <thead>
             <tr>
-                <th>FieldName</th>
-                <th>FieldValue</th>
-                <th>Action</th>
+                <th>{props.literals.table.fieldname}</th>
+                <th>{props.literals.table.fieldvalue}</th>
+                <th>{props.literals.table.action}</th>
             </tr>
         </thead>
     );
 }
 
-const TableBody = props => { 
+const TableBody = props => {
     const rows = props.tableContentData.map((row, index) => {
         return (
             <tr key={index}>
@@ -27,19 +36,23 @@ const TableBody = props => {
 }
 
 class Table extends React.Component {
+    constructor(props) {
+        super(props);
+    }
     render() {
-        const { tableContentData, removeTableContent } = this.props;
+        const { literals, tableContentData, removeTableContent } = this.props;
 
-        return(
+        return (
             <table>
-                <TableHeader />
-                <TableBody 
+                <TableHeader literals={literals} />
+                <TableBody
                     tableContentData={tableContentData}
                     removeTableContent={removeTableContent}
                 />
             </table>
-        ); 
+        );
     }
 }
 
-export default Table;
+// connect redux state
+export default connect(mapStateToProps)(Table);

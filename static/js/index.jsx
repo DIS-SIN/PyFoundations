@@ -8,7 +8,7 @@ import { Provider } from "react-redux";
 import App from "./App";
 // i18n considerations
 import { loadLiterals } from "./store/literals";
-import store from "./store";
+import store from "./store"; // from store/index.js
 import loadLang from "./i18n";
 const lang = loadLang();
 store.dispatch(loadLiterals(lang))
