@@ -1,3 +1,5 @@
+const path = require('path');
+const glob = require('glob');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
@@ -44,7 +46,12 @@ const config = {
                 use: [
                     MiniCssExtractPlugin.loader,
                     { loader: 'css-loader', options: { url: false, sourceMap: true } },
-                    { loader: 'sass-loader', options: { sourceMap: true } }
+                    {
+                        loader: 'sass-loader', options: {
+                            sourceMap: true,
+                            includePaths: glob.sync('node_modules').map((d) => path.join(__dirname, d)),
+                        }
+                    }
                 ],
             },
             {
@@ -57,7 +64,7 @@ const config = {
     plugins: [
         new MiniCssExtractPlugin({
             filename: "styles.css"
-        }) 
+        })
     ]
 };
 

@@ -1,0 +1,36 @@
+// ./react-button-overrides.scss
+
+@import "~@material/card/mixins";
+
+.card-alternate {
+  @include mdc-card-fill-color(lightblue);
+}
+
+.mdc-card {
+  height: 350px;
+  width: 350px;
+}
+
+.card-header {
+  margin: 1.25rem 0;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+}
+
+  .card-header h2,
+  .card-header h3 {
+    margin: 0;
+  }
+
+.card-icon {
+  padding-right: 8px;
+}
+
+.mdc-card__media {
+  background-image: url(https://via.placeholder.com/100x100)
+}
+
+.card-body {
+  padding: 16px;
+}

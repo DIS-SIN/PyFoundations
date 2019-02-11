@@ -1,7 +1,10 @@
 import React, { Component } from "react";
+import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
 
 // redux state
 import { connect } from "react-redux";
+import MUICard from "./MUICard";
 const mapStateToProps = state => {
     return {
         literals: state.literals
@@ -24,15 +27,22 @@ const TableHeader = props => {
 const TableBody = props => {
     const rows = props.tableContentData.map((row, index) => {
         return (
-            <tr key={index}>
-                <td>{row.fieldName}</td>
-                <td>{row.fieldValue}</td>
-                <td><button onClick={() => props.removeTableContent(index)}>Delete</button></td>
-            </tr>
+            <Grid key={index} item xs={12} sm={6} lg={4} xl={3}>
+                <MUICard
+                    fieldname={row.fieldName}
+                    fieldvalue={row.fieldValue}
+                    index={index}
+                    removeTableContent={props.removeTableContent}
+                />
+            </Grid>
         );
     });
 
-    return <tbody>{rows}</tbody>;
+    return (
+        <Grid container spacing={24} style={{ padding: 24 }}>
+            {rows}
+        </Grid>
+    );
 }
 
 class Table extends React.Component {
@@ -41,15 +51,15 @@ class Table extends React.Component {
     }
     render() {
         const { literals, tableContentData, removeTableContent } = this.props;
+        //<TableHeader literals={literals} />
 
         return (
-            <table>
-                <TableHeader literals={literals} />
+            <React.Fragment>
                 <TableBody
                     tableContentData={tableContentData}
                     removeTableContent={removeTableContent}
                 />
-            </table>
+            </React.Fragment>
         );
     }
 }

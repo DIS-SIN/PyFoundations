@@ -8,8 +8,28 @@ import LoginControl from "./LoginControl";
 import AjaxTest from "./AjaxTest";
 import ApiTest from "./ApiTest";
 import AppIntl from "./AppIntl";
+// material-ui
+import NavBar from "./NavBar";
+import MUIButton from "./MUIButton";
+import { Typography } from "@material-ui/core";
+
+import Paper from '@material-ui/core/Paper';
+// MDC Libs
+//import MDCTest from "./MDCTest";
+//import MDCCard from "./MDCCard";
+//<MDCTest />
+//<MDCCard />
+
+//import CssBaseline from '@material-ui/core/CssBaseline';
 
 // connect the state from redux
+import PaperSheet from "./PaperSheet";
+import GuttersGrid from "./GuttersGrid";
+import PrimarySearchAppBar from "./PrimarySearchAppBar";
+import SimpleBottomNav from "./SimpleBottomNav";
+import Signup from "./Signup";
+
+
 import { connect } from "react-redux";
 const mapStateToProps = state => {
   return {
@@ -33,13 +53,17 @@ const HeaderGreeting = props => {
 
 const HeaderTagLine = props => {
   return (
-    <p>{props.literals.app.headertagline}</p>
+    <Typography component="p">
+      {props.literals.app.headertagline}
+    </Typography>
   );
 }
 
 const FormHeader = props => {
   return (
-    <h3>{props.literals.app.formheader}</h3>
+    <Typography component="h3" variant="h3" gutterBottom>
+      {props.literals.app.formheader}
+    </Typography>
   );
 }
 
@@ -80,29 +104,44 @@ class App extends React.Component {
     // note: for local functions you gotta pass around the literals
     // but things you include will use the connect to, well, connect
     return (
-      <div className="container">
+      <div>
+        <PrimarySearchAppBar />
+        <Signup literals={literals} />
+      </div>
+    );
+  }
+}
+/*
+
+<PrimarySearchAppBar />
+        <GuttersGrid />
+        <SimpleBottomNav />
+
+<NavBar />
+        <FormHeader literals={literals} />
+        <Form
+          handleSubmit={this.handleSubmit}
+        />
+        <Table
+          tableContentData={tableContent}
+          removeTableContent={this.removeTableContent}
+        />
+
         <IntlComponentA literals={literals} />
         <HeaderGreeting literals={literals} />
         <HeaderTagLine literals={literals} />
         <AppIntl />
         <LoginControl />
+
+        <MUIButton />
+
         <Clock />
         <Toggle />
         <Toggle />
-        <Table
-          tableContentData={tableContent}
-          removeTableContent={this.removeTableContent}
-        />
-        <FormHeader literals={literals} />
-        <Form
-          handleSubmit={this.handleSubmit}
-        />
         <AjaxTest />
         <ApiTest />
-      </div>
-    );
-  }
-}
+
+*/
 
 // redux connect state//
 export default connect(mapStateToProps)(App);
