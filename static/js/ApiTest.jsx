@@ -9,7 +9,7 @@ const mapStateToProps = state => {
     };
 };
 
-class ApiTest extends Component {
+class ApiTest extends React.Component {
     constructor(props) {
         super(props);
 

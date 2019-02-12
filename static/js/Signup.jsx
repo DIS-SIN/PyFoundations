@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import withStyles from '@material-ui/core/styles/withStyles';
 //import { withRouter } from 'react-router-dom'
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -171,7 +172,7 @@ const FormHeader = props => {
     );
 }
 
-class Signup extends Component {
+class Signup extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -434,6 +435,10 @@ class Signup extends Component {
                             </Grid>
                         </Grid>
                         <Grid spacing={24} alignItems="center" justify="center" container className={classes.grid}>
+                            <Grid item xs={12}>
+                                <Link to='/home'>Digital Open Learning</Link>
+                                <Link to='/reactshowcase'>React Showcase</Link>
+                            </Grid>
                             <Grid item xs={12}>
 
                                 <Paper className={classes.paper} elevation={1}>

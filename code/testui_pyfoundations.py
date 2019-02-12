@@ -15,11 +15,19 @@ bp = Blueprint('pyfoundations', __name__, url_prefix='/')
 # route/render the home page
 
 
-@bp.route('/home', methods=('GET', 'POST'))
+@bp.route('/app', methods=('GET', 'POST'))
 def render_home():
     if request.method == 'GET':
         return render_template('pyfoundations/react-index.tmpl.html',
                                pyfoundationsanswer="home!")
+
+
+@bp.route('/showcase', methods=('GET', 'POST'))
+def render_showcase():
+    if request.method == 'GET':
+        return render_template('pyfoundations/react-showcase.tmpl.html',
+                               pyfoundationsanswer="home!")
+
 
 @bp.route('/api/test/gettest', methods=('GET', 'POST'))
 def serve_api_request():

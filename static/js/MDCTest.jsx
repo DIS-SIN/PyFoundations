@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Button from '@material/react-button';
 
-class MDCTest extends Component {
+class MDCTest extends React.Component {
     render() {
         return (
             <div>

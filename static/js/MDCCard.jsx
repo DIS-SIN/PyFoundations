@@ -8,7 +8,7 @@ import Card, {
 } from "@material/react-card";
 
 
-class MDCCard extends Component {
+class MDCCard extends React.Component {
     render() {
         return (
             <Card
