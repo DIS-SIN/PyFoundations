@@ -119,7 +119,7 @@ class AppReactDOL extends React.Component {
         <CssBaseline />
         <div>
           <Link to='/home'>Digital Open Learning</Link>
-          <Link to='/reactshowcase'>React Showcase</Link>
+          <Link to='/showcase'>React Showcase</Link>
         </div>
         <SimpleBottomNav />
         <Fab color="secondary" aria-label="Add" className={classes.fabButton}>

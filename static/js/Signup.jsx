@@ -437,7 +437,7 @@ class Signup extends React.Component {
                         <Grid spacing={24} alignItems="center" justify="center" container className={classes.grid}>
                             <Grid item xs={12}>
                                 <Link to='/home'>Digital Open Learning</Link>
-                                <Link to='/reactshowcase'>React Showcase</Link>
+                                <Link to='/showcase'>React Showcase</Link>
                             </Grid>
                             <Grid item xs={12}>
 

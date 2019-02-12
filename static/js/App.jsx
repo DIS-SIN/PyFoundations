@@ -36,7 +36,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path='/' component={AppReactDOL} />
           <Route exact path='/home' component={AppReactDOL} />
-          <Route exact path='/reactshowcase' component={AppReactShowcase} />
+          <Route exact path='/showcase' component={AppReactShowcase} />
           <Route component={NoMatch} />
         </Switch>
       </Layout>
