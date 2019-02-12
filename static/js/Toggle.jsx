@@ -1,4 +1,7 @@
 import React, { Component } from "react"
+import Button from '@material-ui/core/Button';
+import ToggleOffIcon from '@material-ui/icons/ToggleOff'
+import ToggleOnIcon from '@material-ui/icons/ToggleOn'
 
 // redux state
 import { connect } from "react-redux";
@@ -30,15 +33,25 @@ class Toggle extends React.Component {
 
         let buttonfragement = null;
         if (this.state.isToggleOn) {
-            buttonfragement = <span>{literals.toggle.on}</span>;
+            buttonfragement = (
+                <React.Fragment>
+                    <ToggleOnIcon /> <span>{literals.toggle.on}</span>
+                </React.Fragment>
+            );
         } else {
-            buttonfragement = <span>{literals.toggle.off}</span>;
+            buttonfragement = (
+                <React.Fragment>
+                    <ToggleOffIcon /> <span>{literals.toggle.off}</span>
+                </React.Fragment>
+            );
         }
 
         return (
-            <button onClick={this.handleClick}>
+            <Button
+                variant="contained" color="primary"
+                onClick={this.handleClick}>
                 {buttonfragement}
-            </button>
+            </Button>
         );
     }
 }

@@ -7,6 +7,11 @@ import loadLang from "./i18n";
 
 // redux state
 import { connect } from "react-redux";
+import Button from '@material-ui/core/Button';
+import LanguageIcon from '@material-ui/icons/Language';
+import DeleteIcon from '@material-ui/icons/Delete';
+import Typography from '@material-ui/core/Typography';
+
 const mapStateToProps = state => {
     return {
         literals: state.literals
@@ -20,21 +25,33 @@ const changeLanguage = lng => {
 };
 
 const MyComponent = props => (
-    <p>
+    <Typography component="p">
         {props.literals.appintl.description.part1}
-    </p>
+    </Typography>
 );
 
 const Page = props => (
     <div className="AppIntl">
         <div className="App-header">
-            <button onClick={() => changeLanguage('fr')}>Français</button>
-            <button onClick={() => changeLanguage('en')}>English</button>
+            <Button
+                variant="contained" color="primary"
+                onClick={() => changeLanguage('fr')}>
+                <LanguageIcon /> Français
+            </Button>
+            <Button
+                variant="contained" color="primary"
+                onClick={() => changeLanguage('en')}>
+                <LanguageIcon /> English
+            </Button>
         </div>
         <div className="App-intro">
             <MyComponent literals={props.literals} />
         </div>
-        <div>{props.literals.appintl.description.part2}</div>
+        <div>
+            <Typography component="p">
+                {props.literals.appintl.description.part2}
+            </Typography>
+        </div>
     </div>
 );
 

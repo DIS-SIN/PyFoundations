@@ -3,6 +3,7 @@
 //require('./../sass/react-pyfoundations.scss');
 require('./../sass/react-mui-pf.scss');
 
+//import 'typeface-roboto';
 
 // core react+redux
 import React, { Component } from "react";
@@ -20,6 +21,7 @@ store.dispatch(loadLiterals(lang))
 //console.log(store);
 
 // render with redux store enabled
+
 ReactDOM.render(
     <Provider store={store}>
         <CssBaseline />

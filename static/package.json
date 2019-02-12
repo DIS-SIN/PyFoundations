@@ -65,6 +65,7 @@
     "@types/react-dom": "^16.8.0",
     "core-js": "^2.6.3",
     "numeral": "^2.0.6",
+    "typeface-roboto": "0.0.54",
     "typescript": "^3.3.3"
   }
 }

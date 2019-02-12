@@ -11,25 +11,21 @@ import AppIntl from "./AppIntl";
 // material-ui
 import NavBar from "./NavBar";
 import MUIButton from "./MUIButton";
-import { Typography } from "@material-ui/core";
-
-import Paper from '@material-ui/core/Paper';
-// MDC Libs
-//import MDCTest from "./MDCTest";
-//import MDCCard from "./MDCCard";
-//<MDCTest />
-//<MDCCard />
-
-//import CssBaseline from '@material-ui/core/CssBaseline';
-
-// connect the state from redux
 import PaperSheet from "./PaperSheet";
 import GuttersGrid from "./GuttersGrid";
+import Paper from '@material-ui/core/Paper';
+
+import Typography from "@material-ui/core/Typography";
+
+//import CssBaseline from '@material-ui/core/CssBaseline';
+import withStyles from '@material-ui/core/styles/withStyles';
 import PrimarySearchAppBar from "./PrimarySearchAppBar";
 import SimpleBottomNav from "./SimpleBottomNav";
 import Signup from "./Signup";
+import AddIcon from '@material-ui/icons/Add';
+import Fab from '@material-ui/core/Fab';
 
-
+// connect the state from redux
 import { connect } from "react-redux";
 const mapStateToProps = state => {
   return {
@@ -37,6 +33,7 @@ const mapStateToProps = state => {
   };
 };
 
+/*
 const IntlComponentA = props => {
   return (
     <div>
@@ -66,6 +63,18 @@ const FormHeader = props => {
     </Typography>
   );
 }
+*/
+
+const styles = theme => ({
+  fabButton: {
+    position: 'fixed',
+    zIndex: 1,
+    bottom: 70,
+    left: 'auto',
+    right: 15,
+    margin: '0 auto',
+  },
+})
 
 class App extends React.Component {
   constructor(props) {
@@ -95,9 +104,14 @@ class App extends React.Component {
     this.setState({ tableContent: [...this.state.tableContent, tableContentItem] });
   }
 
+  componentDidMount() {
+    const elem = document.getElementById("initloader");
+    elem.parentNode.removeChild(elem);
+  }
+
   render() {
     const { tableContent } = this.state;
-    const { literals } = this.props;
+    const { literals, classes } = this.props;
     //console.log(this.props.literals.title)
     //console.log(literals);
 
@@ -107,6 +121,10 @@ class App extends React.Component {
       <div>
         <PrimarySearchAppBar />
         <Signup literals={literals} />
+        <SimpleBottomNav />
+        <Fab color="secondary" aria-label="Add" className={classes.fabButton}>
+          <AddIcon />
+        </Fab>
       </div>
     );
   }
@@ -144,4 +162,6 @@ class App extends React.Component {
 */
 
 // redux connect state//
-export default connect(mapStateToProps)(App);
+//export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(withStyles(styles)(App));
+

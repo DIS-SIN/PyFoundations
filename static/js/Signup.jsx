@@ -20,7 +20,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import DoneIcon from '@material-ui/icons/Done';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Fade from '@material-ui/core/Fade';
-import SimpleBottomNav from './SimpleBottomNav';
 import AppIntl from './AppIntl';
 import LoginControl from './LoginControl';
 import MUIButton from './MUIButton';
@@ -30,7 +29,6 @@ import AjaxTest from './AjaxTest';
 import ApiTest from './ApiTest';
 import PaperSheet from './PaperSheet';
 //import Back from './common/Back';
-
 //const backgroundShape = require('../images/shape.svg');
 
 //const logo = require('../images/logo.svg');
@@ -48,12 +46,20 @@ const styles = theme => ({
         backgroundPosition: '0 400px',
         marginTop: 20,
         padding: 20,
-        paddingBottom: 500,
+        paddingBottom: 500
+    },
+    fabButton: {
+        position: 'fixed',
+        zIndex: 1,
+        bottom: 70,
+        left: 'auto',
+        right: 20,
+        margin: '0 auto',
     },
     paper: {
         ...theme.mixins.gutters(),
         paddingTop: theme.spacing.unit * 2,
-        paddingBottom: theme.spacing.unit * 2,
+        paddingBottom: theme.spacing.unit * 2
     },
     grid: {
         margin: `0 ${theme.spacing.unit * 2}px`
@@ -118,6 +124,7 @@ const styles = theme => ({
 import { connect } from "react-redux";
 import Table from './Table';
 import Form from './Form';
+import NavBar from './NavBar';
 const mapStateToProps = state => {
     return {
         literals: state.literals
@@ -134,15 +141,17 @@ const getSteps = () => {
 
 const IntlComponentA = props => {
     return (
-        <div>
+        <Typography variant="h5" gutterBottom>
             {props.literals.app.title}
-        </div>
+        </Typography>
     )
 };
 
 const HeaderGreeting = props => {
     return (
-        <h1>{props.literals.app.headergreeting}</h1>
+        <Typography variant="h5" gutterBottom>
+            {props.literals.app.headergreeting}
+        </Typography>
     );
 }
 
@@ -156,7 +165,7 @@ const HeaderTagLine = props => {
 
 const FormHeader = props => {
     return (
-        <Typography component="h3" variant="h3" gutterBottom>
+        <Typography variant="h5" gutterBottom>
             {props.literals.app.formheader}
         </Typography>
     );
@@ -424,46 +433,54 @@ class Signup extends Component {
                                 </div>
                             </Grid>
                         </Grid>
+                        <Grid spacing={24} alignItems="center" justify="center" container className={classes.grid}>
+                            <Grid item xs={12}>
 
+                                <Paper className={classes.paper} elevation={1}>
+                                    <NavBar />
+                                    <div>
+                                        <AppIntl />
+                                        <LoginControl />
+                                    </div>
+                                    <div>
+                                        <Clock />
+                                    </div>
+                                    <div>
+                                        <IntlComponentA literals={literals} />
+                                        <HeaderGreeting literals={literals} />
+                                        <HeaderTagLine literals={literals} />
+                                    </div>
+                                    <div>
+                                        <Toggle />
+                                        <Toggle />
+                                    </div>
+                                    <div>
+                                        <FormHeader literals={literals} />
+                                        <Form
+                                            handleSubmit={this.handleSubmit}
+                                        />
+                                        <Table
+                                            tableContentData={tableContent}
+                                            removeTableContent={this.removeTableContent}
+                                        />
+                                    </div>
+                                    <div>
+                                        <AjaxTest />
+                                        <ApiTest />
+                                    </div>
 
-                        <Paper className={classes.paper} elevation={1}>
-                            <AppIntl />
-                            <LoginControl />
-
-                            <MUIButton />
-
-                            <Clock />
-                            <Toggle />
-                            <Toggle />
-
-                            <FormHeader literals={literals} />
-                            <Form
-                                handleSubmit={this.handleSubmit}
-                            />
-                            <Table
-                                tableContentData={tableContent}
-                                removeTableContent={this.removeTableContent}
-                            />
-
-                            <IntlComponentA literals={literals} />
-                            <HeaderGreeting literals={literals} />
-                            <HeaderTagLine literals={literals} />
-
-                            <AjaxTest />
-                            <ApiTest />
-                            <SimpleBottomNav />
-                        </Paper>
-
-
-
+                                </Paper>
+                            </Grid>
+                        </Grid>
                     </Grid>
+
                 </div>
             </React.Fragment>
         )
     }
 }
 /*
-
+<MUIButton />
 */
 //export default withRouter(withStyles(styles)(Signup))
 export default connect(mapStateToProps)(withStyles(styles)(Signup));

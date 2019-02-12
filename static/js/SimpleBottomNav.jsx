@@ -9,9 +9,12 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 
 const styles = {
     root: {
-        width: 500,
-        marginBottom: 20
-    },
+        bottom: 0,
+        marginBottom: 0,
+        width: '100%',
+        //        width: 500,
+        position: 'fixed',
+    }
 };
 
 class SimpleBottomNavigation extends React.Component {
@@ -28,19 +31,23 @@ class SimpleBottomNavigation extends React.Component {
         const { value } = this.state;
 
         return (
-            <BottomNavigation
-                value={value}
-                onChange={this.handleChange}
-                showLabels
-                className={classes.root}
-                elevation={1}
-            >
-                <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-                <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-                <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
-                <BottomNavigationAction label="Another One" icon={<LocationOnIcon />} />
-                <BottomNavigationAction label="And Another" icon={<LocationOnIcon />} />
-            </BottomNavigation>
+            <React.Fragment>
+                <BottomNavigation
+                    color="primary"
+                    value={value}
+                    onChange={this.handleChange}
+                    showLabels
+                    className={classes.root}
+                    elevation={1}
+                >
+                    <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
+                    <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
+                    <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
+                    <BottomNavigationAction label="Another One" icon={<LocationOnIcon />} />
+                    <BottomNavigationAction label="And Another" icon={<LocationOnIcon />} />
+                </BottomNavigation>
+            </React.Fragment>
+
         );
     }
 }

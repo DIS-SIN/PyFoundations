@@ -6,7 +6,14 @@ import { TextField, Button, SvgIcon } from "@material-ui/core";
 
 //If your environment doesn't support tree-shaking, the recommended way to import the icons is the following:
 import DoneIcon from '@material-ui/icons/Done';
+
 import { withStyles } from '@material-ui/core/styles';
+
+import PropTypes from 'prop-types';
+import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
 
 const styles = theme => ({
     root: {
@@ -15,6 +22,13 @@ const styles = theme => ({
     icon: {
         margin: theme.spacing.unit,
         fontSize: 32,
+    },
+    container: {
+        display: 'flex',
+        flexWrap: 'wrap',
+    },
+    formControl: {
+        margin: theme.spacing.unit,
     },
 });
 
@@ -62,9 +76,6 @@ class Form extends React.Component {
             margin="normal"
             onChange={this.onSearchInputChange}
         />
-    */
-        return (
-            <form onSubmit={this.onFormSubmit}>
                 <label>{literals.form.fieldname}</label>
                 <TextField style={{ padding: 24 }}
                     placeholder="Name"
@@ -74,14 +85,44 @@ class Form extends React.Component {
                     name="fieldName"
                     value={fieldName} />
                 <label>{literals.form.fieldvalue}</label>
-                <TextField style={{ padding: 24 }}
+
+                        <TextField style={{ padding: 24 }}
                     placeholder="Value"
                     margin="normal"
                     onChange={this.handleChange}
                     type="text"
                     name="fieldValue"
                     value={fieldValue} />
-                <Button color="primary" type="submit">
+
+
+    */
+        return (
+            <form onSubmit={this.onFormSubmit}>
+                <FormControl className={classes.formControl}>
+                    <InputLabel htmlFor="component-helper-name">{literals.form.fieldname}</InputLabel>
+                    <Input
+                        id="component-helper-name"
+                        name="fieldName"
+                        value={fieldName}
+                        onChange={this.handleChange}
+                        aria-describedby="component-helper-name-text"
+                    />
+                    <FormHelperText id="component-helper-name-text">First col for test</FormHelperText>
+                </FormControl>
+
+                <FormControl className={classes.formControl}>
+                    <InputLabel htmlFor="component-helper-value">{literals.form.fieldvalue}</InputLabel>
+                    <Input
+                        id="component-helper-value"
+                        name="fieldValue"
+                        value={fieldValue}
+                        onChange={this.handleChange}
+                        aria-describedby="component-helper-value-text"
+                    />
+                    <FormHelperText id="component-helper-value-text">Second col for test</FormHelperText>
+                </FormControl>
+
+                <Button variant="contained" color="primary" type="submit">
                     <DoneIcon />
                     {literals.form.submit}
                 </Button>
@@ -91,4 +132,10 @@ class Form extends React.Component {
 }
 
 // connect redux state
-export default connect(mapStateToProps)(Form);
+//export default connect(mapStateToProps)(Form);
+
+Form.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default connect(mapStateToProps)(withStyles(styles)(Form));

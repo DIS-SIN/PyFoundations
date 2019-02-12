@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import GreetingIntl from "./GreetingIntl";
+import Button from '@material-ui/core/Button'
+import ExitToAppIcon from '@material-ui/icons/ExitToApp'
+import LockIcon from '@material-ui/icons/Lock'
 
 // redux state
 import { connect } from "react-redux";
@@ -9,19 +12,25 @@ const mapStateToProps = state => {
   };
 };
 
-const LoginButton = props => {
-  return (
+/*
     <button onClick={props.onClick}>
       {props.literals.logincontrol.login}
     </button>
+
+    */
+const LoginButton = props => {
+  return (
+    <Button variant="contained" color="primary" onClick={props.onClick}>
+      <LockIcon /> {props.literals.logincontrol.login}
+    </Button>
   );
 }
 
 const LogoutButton = props => {
   return (
-    <button onClick={props.onClick}>
-      {props.literals.logincontrol.logout}
-    </button>
+    <Button variant="contained" color="primary" onClick={props.onClick}>
+      <ExitToAppIcon /> {props.literals.logincontrol.logout}
+    </Button>
   );
 }
 

@@ -39,7 +39,7 @@ const TableBody = props => {
     });
 
     return (
-        <Grid container spacing={24} style={{ padding: 24 }}>
+        <Grid container align="stretch" spacing={24} style={{ padding: 24 }}>
             {rows}
         </Grid>
     );

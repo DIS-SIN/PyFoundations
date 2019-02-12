@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Typography from '@material-ui/core/Typography'
+
 // redux state connection
 import { connect } from "react-redux";
 const mapStateToProps = state => {
@@ -9,15 +11,15 @@ const mapStateToProps = state => {
 };
 
 const GuestGreeting = props => (
-    <h1>
+    <Typography variant="h5" gutterBottom>
         {props.literals.greetingintl.guest}
-    </h1>
+    </Typography>
 );
 
 const UserGreeting = props => (
-    <h1>
+    <Typography variant="h5" gutterBottom>
         {props.literals.greetingintl.user}
-    </h1>
+    </Typography>
 );
 
 class GreetingIntl extends React.Component {

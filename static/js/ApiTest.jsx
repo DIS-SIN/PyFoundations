@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Typography from "@material-ui/core/Typography";
 
 // redux state
 import { connect } from "react-redux";
@@ -41,7 +42,14 @@ class ApiTest extends Component {
         });
 
         return (
-            <div className="container__api"><span>{literals.apitest.header}</span><ul>{result}</ul></div>
+            <React.Fragment>
+                <Typography component="div" variant="h6">
+                    {literals.apitest.header}
+                </Typography>
+                <Typography component="ul">
+                    {result}
+                </Typography>
+            </React.Fragment>
         );
     }
 }

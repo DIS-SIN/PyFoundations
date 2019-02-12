@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import Chip from '@material-ui/core/Chip';
+import QueryBuilderIcon from '@material-ui/icons/QueryBuilder';
+import Typography from "@material-ui/core/Typography";
 
 // redux state
 import { connect } from "react-redux";
@@ -10,17 +13,29 @@ const mapStateToProps = state => {
 
 const ClockHeader = props => {
     return (
-        <small>{props.literals.clock.clockheader}</small>
+        <Typography variant="overline" gutterBottom>
+            {props.literals.clock.clockheader}
+        </Typography>
     );
 }
 
+//<small>{props.date.toLocaleTimeString()}.</small>
 const ClockBody = props => {
     return (
-        <small>{props.date.toLocaleTimeString()}.</small>
+        <Chip
+            icon={<QueryBuilderIcon />}
+            label={props.date.toLocaleTimeString()}
+            color="primary"
+        />
     );
 }
 
 const ClockWidget = props => {
+    /*
+        clickable
+    className={classes.chip}
+    
+    */
     return (
         <div id="widget__clock">
             <ClockHeader literals={props.literals} />
@@ -28,6 +43,8 @@ const ClockWidget = props => {
         </div>
     );
 }
+
+
 
 class Clock extends React.Component {
     constructor(props) {

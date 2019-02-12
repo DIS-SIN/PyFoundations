@@ -19,8 +19,8 @@
         "clockheader": "Horlage"
     },
     "form": {
-        "fieldname": "Chose 1",
-        "fieldvalue": "Chose 2",
+        "fieldname": "Input Mots Col 1",
+        "fieldvalue": "Input Mots Col 2",
         "submit": "Provir"
     },
     "ajaxtest": {

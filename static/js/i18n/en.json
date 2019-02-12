@@ -19,8 +19,8 @@
         "clockheader": "Clock"
     },
     "form": {
-        "fieldname": "Thing 1",
-        "fieldvalue": "Thing 2",
+        "fieldname": "Text Input Col 1",
+        "fieldvalue": "Text Input Col 2",
         "submit": "Submit"
     },
     "ajaxtest": {
