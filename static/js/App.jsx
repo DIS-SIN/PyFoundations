@@ -6,6 +6,8 @@ import AppReactShowcase from './AppReactShowcase';
 // connect the state from redux
 import { connect } from "react-redux";
 import Layout from './Layout';
+import DOLLayout from './DOLLayout';
+import DashboardExample from './DashboardExample';
 const mapStateToProps = state => {
   return {
     literals: state.literals
@@ -34,8 +36,14 @@ class App extends React.Component {
     return (
       <Layout>
         <Switch>
-          <Route exact path='/' component={AppReactDOL} />
-          <Route exact path='/home' component={AppReactDOL} />
+          <Route exact path='/' component={DOLLayout} />
+          <Route exact path='/home' component={DOLLayout} />
+          <Route exact path='/explore' component={DOLLayout} />
+          <Route exact path='/share' component={DOLLayout} />
+          <Route exact path='/about' component={DOLLayout} />
+          <Route exact path='/profile' component={DOLLayout} />
+          <Route exact path='/logout' component={DOLLayout} />
+          <Route exact path='/dashboard' component={DashboardExample} />
           <Route exact path='/showcase' component={AppReactShowcase} />
           <Route component={NoMatch} />
         </Switch>

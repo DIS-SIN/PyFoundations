@@ -25,7 +25,7 @@ import SimpleBottomNav from "./SimpleBottomNav";
 import Signup from "./Signup";
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
-
+import DOLHeader from "./DOLHeader";
 // connect the state from redux
 import { connect } from "react-redux";
 const mapStateToProps = state => {
@@ -117,11 +117,7 @@ class AppReactDOL extends React.Component {
     return (
       <div>
         <CssBaseline />
-        <div>
-          <Link to='/home'>Digital Open Learning</Link>
-          <Link to='/showcase'>React Showcase</Link>
-        </div>
-        <SimpleBottomNav />
+        <DOLHeader />
         <Fab color="secondary" aria-label="Add" className={classes.fabButton}>
           <AddIcon />
         </Fab>
