@@ -14,9 +14,9 @@ class Layout extends React.Component {
         const { literals } = this.props;
 
         return (
-            <div>
+            <React.Fragment>
                 {this.props.children}
-            </div>
+            </React.Fragment>
         );
     }
 }

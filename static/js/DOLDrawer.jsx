@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
+import Grid from '@material-ui/core/Grid';
+import Chip from '@material-ui/core/Chip';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
@@ -9,9 +11,88 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
+import LabelIcon from '@material-ui/icons/Label';
 import MailIcon from '@material-ui/icons/Mail';
+import ArchiveIcon from '@material-ui/icons/Archive';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import { Typography } from '@material-ui/core';
+
+
+const learningarchitecture = {
+    "loach_structure": {
+        "children": [
+            "PRACTICES",
+            "SKILLS",
+            "LEARNING POINTS",
+            "SUB-LEARNING POINTS"
+        ],
+        "streams": [
+            {
+                "stream": "Digital Government"
+            },
+            {
+                "stream": "Digital Literacy"
+            },
+            {
+                "stream": "Design"
+            },
+            {
+                "stream": "Leadership"
+            },
+            {
+                "stream": "Disruptive Technology"
+            },
+            {
+                "stream": "Data Analysis"
+            },
+            {
+                "stream": "AI / Machine Learning"
+            },
+            {
+                "stream": "DevOps"
+            },
+            {
+                "stream": "Development"
+            }
+        ],
+        "architecture": [
+            {
+                "practice": "Inclusive design"
+            },
+            {
+                "practice": "Design thinking"
+            },
+            {
+                "practice": "Service design"
+            },
+            {
+                "practice": "Circular design"
+            },
+            {
+                "practice": "Design research"
+            },
+            {
+                "practice": "Content strategy"
+            },
+            {
+                "practice": "Information architecture"
+            },
+            {
+                "practice": "Content design"
+            },
+            {
+                "practice": "Visual design"
+            },
+            {
+                "practice": "Interaction design"
+            },
+            {
+                "practice": "Usability testing"
+            }
+        ]
+    }
+};
 
 const styles = {
     list: {
@@ -38,47 +119,111 @@ class DOLDrawer extends React.Component {
 
     render() {
         const { classes } = this.props;
+        //learningarchitecture.loach_structure.streams[].stream
+        /*
+                const sideList = (
+                    <div className={classes.list}>
+                        <List>
+                            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+                                <ListItem button key={text}>
+                                    <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                                    <ListItemText primary={text} />
+                                </ListItem>
+                            ))}
+                        </List>
+                        <Divider />
+                        <List>
+                            {['All mail', 'Trash', 'Spam'].map((text, index) => (
+                                <ListItem button key={text}>
+                                    <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                                    <ListItemText primary={text} />
+                                </ListItem>
+                            ))}
+                        </List>
+                    </div>
+                );
+        
+                const fullList = (
+                    <div className={classes.fullList}>
+                        <List>
+                            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+                                <ListItem button key={text}>
+                                    <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                                    <ListItemText primary={text} />
+                                </ListItem>
+                            ))}
+                        </List>
+                        <Divider />
+                        <List>
+                            {['All mail', 'Trash', 'Spam'].map((text, index) => (
+                                <ListItem button key={text}>
+                                    <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                                    <ListItemText primary={text} />
+                                </ListItem>
+                            ))}
+                        </List>
+                    </div>
+                );
+        */
 
-        const sideList = (
-            <div className={classes.list}>
-                <List>
-                    {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
-                </List>
-                <Divider />
-                <List>
-                    {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
-                </List>
-            </div>
-        );
+        //const data = learningpoints.slice(0);
+        const practices = learningarchitecture.loach_structure.architecture.slice(0);
+        const streams = learningarchitecture.loach_structure.streams.slice(0);
 
-        const fullList = (
+        //<small><strong>{tag.tagname}</strong> ({tag.id}@{tag.datetime})</small>
+
+        const learningArchStreamItems = streams.map((learningarch, index) => (
+            <ListItem button key={index} >
+                <ListItemIcon>
+                    <Chip
+                        icon={<ArchiveIcon />}
+                        label="Stream"
+                        color="primary"
+                    />
+                </ListItemIcon>
+                <ListItemText primary={learningarch.stream} />
+            </ListItem >
+        ));
+        const learningArchPracticeItems = practices.map((learningarch, index) => (
+            <ListItem button key={index} >
+                <ListItemIcon>
+                    <Chip
+                        icon={<InboxIcon />}
+                        label="Practice"
+                        color="primary"
+                    />
+                </ListItemIcon>
+                <ListItemText primary={learningarch.practice} />
+            </ListItem >
+        ));
+
+
+        /**
+         *             
+                        {learningpoint.tags.map((tag, index) => (
+                            <React.Fragment key={index}>
+                                <Chip
+                                    icon={<LabelIcon />}
+                                    label={tag.tagname + " @" + tag.id + " " + tag.datetime}
+                                    color="primary"
+                                />
+                            </React.Fragment>
+                        ))}=
+                    
+         */
+
+        const learnList = (
             <div className={classes.fullList}>
-                <List>
-                    {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
-                </List>
-                <Divider />
-                <List>
-                    {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
+                <List>{/** learningarchitecture.loach_structure.streams[].stream */}
+                    <Typography component={ListItem} variant="h6">
+                        STREAMS
+                    </Typography>
+                    {learningArchStreamItems}
+                    <Divider />
+                    <Typography component={ListItem} variant="h6">
+                        PRACTICES
+                    </Typography>
+                    {learningArchPracticeItems}
                 </List>
             </div>
         );
@@ -133,7 +278,7 @@ class DOLDrawer extends React.Component {
                         onClick={this.toggleDrawer('left', false)}
                         onKeyDown={this.toggleDrawer('left', false)}
                     >
-                        {sideList}
+                        {learnList}
                     </div>
                 </Drawer>
             </React.Fragment>

@@ -1,32 +1,18 @@
-/**
- * Digital Academy Foundations
-Foundations presents the digital transformation of the Canadian government and its services in human terms because digital transformation is fundamentally cultural. The focus of the foundational learning offerings are designed to build awareness of possibilities, increase confidence and capacity of government employees who are navigating the impacts of digital on their world. Additionally, digital foundations piques the interest to learn more through curated and personalized learning opportunities.
-
-Outcomes:
-Public servants (learners) engage in new ways of thinking about themselves, their work and the role of government in providing better services to citizens;
-Learners improve their knowledge and skills through easy to consume, timely and relevant content related to digital in government
-Learners improve their understanding of digital through connections to deeper learning activities
- */
-import React, { Component } from "react";
-
-// redux state
-import { connect } from "react-redux";
+import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import SimpleCard from "./SimpleCard";
-import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
-
 import classNames from 'classnames';
+import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
+import CameraIcon from '@material-ui/icons/PhotoCamera';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Grid from '@material-ui/core/Grid';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import DOLSignInDialog from "./DOLSignInDialog";
+import Grid from '@material-ui/core/Grid';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
     appBar: {
@@ -78,42 +64,42 @@ const styles = theme => ({
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
+function AlbumExample(props) {
+    const { classes } = props;
 
-const mapStateToProps = state => {
-    return {
-        literals: state.literals
-    };
-};
-
-class DOLPageHome extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        const { literals, location, classes } = this.props;
-        return (
-            <React.Fragment>
-                <CssBaseline />
+    return (
+        <React.Fragment>
+            <CssBaseline />
+            <AppBar position="static" className={classes.appBar}>
+                <Toolbar>
+                    <CameraIcon className={classes.icon} />
+                    <Typography variant="h6" color="inherit" noWrap>
+                        Album layout
+                    </Typography>
+                </Toolbar>
+            </AppBar>
+            <main>
                 {/* Hero unit */}
                 <div className={classes.heroUnit}>
                     <div className={classes.heroContent}>
                         <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                            Digital Open Learing
+                            Album layout
                         </Typography>
                         <Typography variant="h6" align="center" color="textSecondary" paragraph>
-                            <HelpOutlineIcon /> <strong>Let's get you started with Digital</strong>. DOL will
-                            help <strong>build awareness</strong> of possibilities, <strong>increase confidence</strong> and <strong>capacity</strong> of government employees
-                            in their <strong>digital skills</strong>. Explore below to find curated and <strong>personalized learning opportunities</strong>.
+                            Something short and leading about the collection below—its contents, the creator, etc.
+                            Make it short and sweet, but not too short so folks don&apos;t simply skip over it
+                            entirely.
                         </Typography>
                         <div className={classes.heroButtons}>
                             <Grid container spacing={16} justify="center">
                                 <Grid item>
-                                    <DOLSignInDialog />
+                                    <Button variant="contained" color="primary">
+                                        Main call to action
+                                    </Button>
                                 </Grid>
                                 <Grid item>
                                     <Button variant="outlined" color="primary">
-                                        EXPLORE DIGITAL OPEN LEARNING
+                                        Secondary action
                                     </Button>
                                 </Grid>
                             </Grid>
@@ -121,6 +107,7 @@ class DOLPageHome extends React.Component {
                     </div>
                 </div>
                 <div className={classNames(classes.layout, classes.cardGrid)}>
+                    {/* End hero unit */}
                     <Grid container spacing={40}>
                         {cards.map(card => (
                             <Grid item key={card} sm={6} md={4} lg={3}>
@@ -151,15 +138,49 @@ class DOLPageHome extends React.Component {
                         ))}
                     </Grid>
                 </div>
-            </React.Fragment>
-        );
-    }
+            </main>
+            {/* Footer */}
+            <footer className={classes.footer}>
+                <Grid container spacing={16} justify="center">
+                    <Grid item xs={12} sm={12} md={4}>
+                        <Typography variant="h6" align="left" gutterBottom>
+                            DIGITAL ACADEMY
+                        </Typography>
+                        <Typography variant="subtitle1" align="left" gutterBottom>
+                            The Digital Academy's mission is to provide cutting-edge skills to the Canadian Public Service.
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={4}>
+                        <Typography variant="h6" align="center" gutterBottom>
+                            CONNECT
+                        </Typography>
+                        <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
+                            <Button size="small" color="primary" target="_blank" href="https://github.com/DIS-SIN">CSPS</Button>
+                            <Button size="small" color="primary" target="_blank" href="https://github.com/DIS-SIN">GCCampus</Button>
+                            <Button size="small" color="primary" target="_blank" href="https://github.com/DIS-SIN">GitHub</Button>
+                            <Button size="small" color="primary" target="_blank" href="https://github.com/DIS-SIN">Message</Button>
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={4}>
+                        <Typography variant="h6" align="center" gutterBottom>
+                            SOCIAL MEDIA
+                        </Typography>
+                        <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
+                            <Button size="small" color="primary" target="_blank" href="https://github.com/DIS-SIN">GCcollab</Button>
+                            <Button size="small" color="primary" target="_blank" href="https://github.com/DIS-SIN">Twitter</Button>
+                            <Button size="small" color="primary" target="_blank" href="https://github.com/DIS-SIN">LinkedIn</Button>
+                            <Button size="small" color="primary" target="_blank" href="https://github.com/DIS-SIN">Medium</Button>
+                        </Typography>
+                    </Grid>
+                </Grid>
+            </footer>
+            {/* End footer */}
+        </React.Fragment>
+    );
 }
 
-DOLPageHome.propTypes = {
+AlbumExample.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-// connect redux state
-export default connect(mapStateToProps)(withStyles(styles)(DOLPageHome));
-
+export default withStyles(styles)(AlbumExample);

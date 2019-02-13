@@ -29,6 +29,13 @@ def render_showcase():
                                pyfoundationsanswer="home!")
 
 
+@bp.route('/easteregg', methods=('GET', 'POST'))
+def render_easteregg():
+    if request.method == 'GET':
+        return render_template('pyfoundations/easter-egg.html',
+                               pyfoundationsanswer="home!")
+
+
 @bp.route('/api/test/gettest', methods=('GET', 'POST'))
 def serve_api_request():
     if request.method == 'GET' or request.method == 'POST':
@@ -36,6 +43,12 @@ def serve_api_request():
 
 # route and render the results (we're subbing back to the index with extra data)
 # might want to consider changing this to a template on its own down the road
+
+
+@bp.route('/api/test/signin', methods=('GET', 'POST'))
+def render_signin():
+    if request.method == 'GET' or request.method == 'POST':
+        return jsonify(api_handle_pyfoundations_signintest(request))
 
 
 @bp.route('/api/test/puttest', methods=('GET', 'POST'))
@@ -187,6 +200,36 @@ def api_handle_pyfoundations_puttest(request):
             {"id": 2, "name": "Peaches", "price": "$5"},
             {"id": 3, "name": q, "price": "$9"}
         ]
+    }
+
+    return return_val
+
+
+def api_handle_pyfoundations_signintest(request):
+    # debug
+    if app_set_debug_mode >= 1:
+        print(
+            f"-- bb -- > api_handle_pyfoundations_signintest > enter > {request}")
+
+    # For GET
+    # text = request.args.get('pyfoundations_ask', False)
+
+    # For POST
+    # text = request.form.get('pyfoundations_ask', False)
+
+    # For POST JSON
+    data = request.data
+    dataDict = json.loads(data)
+    try:
+        text = dataDict['signin']
+    except KeyError:
+        text = "pyfoundations is waiting for your input"
+
+    return_val = {
+        "signin_result": [
+            {"user": "testuser-hc", "signin_state": "true",  "api_return": "success"}
+        ],
+        "payload": dataDict
     }
 
     return return_val

@@ -8,6 +8,9 @@ import { connect } from "react-redux";
 import Layout from './Layout';
 import DOLLayout from './DOLLayout';
 import DashboardExample from './DashboardExample';
+import AlbumExample from './AlbumExample';
+import SignupExample from './SignupExample';
+import PricingExample from './PricingExample';
 const mapStateToProps = state => {
   return {
     literals: state.literals
@@ -30,8 +33,6 @@ class App extends React.Component {
     elem.parentNode.removeChild(elem);
   }
 
-
-
   render() {
     return (
       <Layout>
@@ -43,8 +44,12 @@ class App extends React.Component {
           <Route exact path='/about' component={DOLLayout} />
           <Route exact path='/profile' component={DOLLayout} />
           <Route exact path='/logout' component={DOLLayout} />
+          {/* Example Routes to Show Material UI Templates*/}
           <Route exact path='/dashboard' component={DashboardExample} />
           <Route exact path='/showcase' component={AppReactShowcase} />
+          <Route exact path='/album' component={AlbumExample} />
+          <Route exact path='/signin' component={SignupExample} />
+          <Route exact path='/pricing' component={PricingExample} />
           <Route component={NoMatch} />
         </Switch>
       </Layout>

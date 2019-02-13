@@ -63,7 +63,7 @@ const styles = theme => ({
         marginLeft: 0,
         width: '100%',
         [theme.breakpoints.up('sm')]: {
-            marginLeft: theme.spacing.unit * 3,
+            marginLeft: theme.spacing.unit * 4,
             width: 'auto',
         },
     },
@@ -152,6 +152,15 @@ class DOLHeader extends React.Component {
                 <MenuItem component={Link} to="/showcase" onClick={this.handleMenuClose}>
                     <SettingsIcon /> Showcase Example
                 </MenuItem>
+                <MenuItem component={Link} to="/album" onClick={this.handleMenuClose}>
+                    <SettingsIcon /> Album Example
+                </MenuItem>
+                <MenuItem component={Link} to="/signin" onClick={this.handleMenuClose}>
+                    <SettingsIcon /> SignIn Example
+                </MenuItem>
+                <MenuItem component={Link} to="/pricing" onClick={this.handleMenuClose}>
+                    <SettingsIcon /> Pricing Example
+                </MenuItem>
                 <MenuItem component={Link} to="/logout" onClick={this.handleMenuClose}>
                     <LockIcon /> Logout
                 </MenuItem>
@@ -211,14 +220,17 @@ class DOLHeader extends React.Component {
             </Menu>
         );
 
+        /**<Typography component={Link} to="/home" className={classes.title} variant="h6" color="inherit" noWrap>
+                        </Typography>
+                         */
         return (
             <div className={classes.root}>
                 <AppBar position="fixed">
                     <Toolbar>
                         <DOLDrawer />
-                        <Typography className={classes.title} variant="h6" color="inherit" noWrap>
+                        <Button color="inherit" component={Link} to="/home">
                             Digital Open Learning
-                        </Typography>
+                        </Button>
                         <div className={classes.search}>
                             <div className={classes.searchIcon}>
                                 <SearchIcon />

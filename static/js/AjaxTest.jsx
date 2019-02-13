@@ -51,6 +51,19 @@ const styles = theme => ({
     formControl: {
         margin: theme.spacing.unit,
     },
+    layout: {
+        width: 'auto',
+        marginLeft: theme.spacing.unit * 3,
+        marginRight: theme.spacing.unit * 3,
+        [theme.breakpoints.up(1100 + theme.spacing.unit * 3 * 2)]: {
+            width: 1100,
+            marginLeft: 'auto',
+            marginRight: 'auto',
+        },
+    },
+    cardGrid: {
+        padding: `${theme.spacing.unit * 8}px 0`,
+    },
 });
 
 class AjaxTest extends React.Component {
@@ -181,49 +194,39 @@ class AjaxTest extends React.Component {
             //<small><strong>{tag.tagname}</strong> ({tag.id}@{tag.datetime})</small>
 
             const learningPointItem = data.map((learningpoint, index) => (
-                <Grid item xs={6} key={index}>
-                    <Card>
-                        <CardMedia style={{ height: 0, paddingTop: '56.25%' }}
-                            image="/static/images/weasel.jpg"
-                            title="Card Media"
+                <Grid item xs={12} key={index}>
+                    <Typography gutterBottom variant="headline" component="h2">
+                        {learningpoint.name}
+                        <Chip
+                            icon={<LabelIcon />}
+                            label={learningpoint.difficulty}
+                            color="primary"
                         />
-                        <CardContent>
-                            <Typography gutterBottom variant="headline" component="h2">
-                                {learningpoint.name}
-                                <Chip
-                                    icon={<LabelIcon />}
-                                    label={learningpoint.difficulty}
-                                    color="primary"
-                                />
-                            </Typography>
-                            <Typography component="p">
-                                {learningpoint.description} ({learningpoint.slug})
-                            </Typography>
-                        </CardContent>
-                        <CardActions>
-                            {learningpoint.tags.map((tag, index) => (
-                                <React.Fragment key={index}>
-                                    <Chip
-                                        icon={<LabelIcon />}
-                                        label={tag.tagname + " @" + tag.id + " " + tag.datetime}
-                                        color="primary"
-                                    />
-                                </React.Fragment>
-                            ))}
-                        </CardActions>
-                    </Card>
+                    </Typography>
+                    <Typography component="p">
+                        {learningpoint.description} ({learningpoint.slug})
+                    </Typography>
+                    {learningpoint.tags.map((tag, index) => (
+                        <React.Fragment key={index}>
+                            <Chip
+                                icon={<LabelIcon />}
+                                label={tag.tagname + " @" + tag.id + " " + tag.datetime}
+                                color="primary"
+                            />
+                        </React.Fragment>
+                    ))}
                 </Grid>
             ))
 
 
 
             const returnFragment = (
-                <div className="learningPoint">
+                <React.Fragment>
                     {learningPointReturnFragment}
                     <Grid spacing={24} alignItems="center" justify="center" container>
                         {learningPointItem}
                     </Grid>
-                </div>
+                </React.Fragment>
             )
             return returnFragment;
         }
