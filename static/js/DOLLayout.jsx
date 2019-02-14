@@ -5,12 +5,15 @@ import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import DOLHeader from "./DOLHeader";
 import DOLFooter from "./DOLFooter";
-import DOLPageAbout from "./DOLPageAbout";
-import DOLPageHome from "./DOLPageHome";
 import { Switch, Route } from 'react-router-dom'
-import DOLPageStub from "./DOLPageStub";
 import { withStyles } from '@material-ui/core/styles';
 import FullScreenDialogExample from "./FullScreenDialogExample";
+import DOLPageStub from "./DOLPageStub";
+import DOLPageHome from "./DOLPageHome";
+import DOLPageExplore from "./DOLPageExplore";
+import DOLPageShare from "./DOLPageShare";
+import DOLPageAbout from "./DOLPageAbout";
+import DOLPageUserProfile from "./DOLPageUserProfile";
 
 
 const mapStateToProps = state => {
@@ -44,10 +47,10 @@ class DOLLayout extends React.Component {
                 <Switch>
                     <Route exact path='/' component={DOLPageStub} />
                     <Route exact path='/home' component={DOLPageHome} />
-                    <Route exact path='/explore' component={DOLPageStub} />
+                    <Route exact path='/explore' component={DOLPageExplore} />
                     <Route exact path='/share' component={DOLPageStub} />
                     <Route exact path='/about' component={DOLPageAbout} />
-                    <Route exact path='/profile' component={DOLPageStub} />
+                    <Route exact path='/profile' component={DOLPageUserProfile} />
                     <Route exact path='/logout' component={DOLPageStub} />
                 </Switch>
                 <FullScreenDialogExample />

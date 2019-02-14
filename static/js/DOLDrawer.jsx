@@ -19,80 +19,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { Typography } from '@material-ui/core';
 
 
-const learningarchitecture = {
-    "loach_structure": {
-        "children": [
-            "PRACTICES",
-            "SKILLS",
-            "LEARNING POINTS",
-            "SUB-LEARNING POINTS"
-        ],
-        "streams": [
-            {
-                "stream": "Digital Government"
-            },
-            {
-                "stream": "Digital Literacy"
-            },
-            {
-                "stream": "Design"
-            },
-            {
-                "stream": "Leadership"
-            },
-            {
-                "stream": "Disruptive Technology"
-            },
-            {
-                "stream": "Data Analysis"
-            },
-            {
-                "stream": "AI / Machine Learning"
-            },
-            {
-                "stream": "DevOps"
-            },
-            {
-                "stream": "Development"
-            }
-        ],
-        "architecture": [
-            {
-                "practice": "Inclusive design"
-            },
-            {
-                "practice": "Design thinking"
-            },
-            {
-                "practice": "Service design"
-            },
-            {
-                "practice": "Circular design"
-            },
-            {
-                "practice": "Design research"
-            },
-            {
-                "practice": "Content strategy"
-            },
-            {
-                "practice": "Information architecture"
-            },
-            {
-                "practice": "Content design"
-            },
-            {
-                "practice": "Visual design"
-            },
-            {
-                "practice": "Interaction design"
-            },
-            {
-                "practice": "Usability testing"
-            }
-        ]
-    }
-};
+import { LearningArchitecture } from './LearningArchitecture'
 
 const styles = {
     list: {
@@ -118,6 +45,8 @@ class DOLDrawer extends React.Component {
     };
 
     render() {
+        //console.log(LearningArchitecture);
+        const la = LearningArchitecture();
         const { classes } = this.props;
         //learningarchitecture.loach_structure.streams[].stream
         /*
@@ -167,8 +96,8 @@ class DOLDrawer extends React.Component {
         */
 
         //const data = learningpoints.slice(0);
-        const practices = learningarchitecture.loach_structure.architecture.slice(0);
-        const streams = learningarchitecture.loach_structure.streams.slice(0);
+        const practices = la.loach_structure.architecture.slice(0);
+        const streams = la.loach_structure.streams.slice(0);
 
         //<small><strong>{tag.tagname}</strong> ({tag.id}@{tag.datetime})</small>
 
