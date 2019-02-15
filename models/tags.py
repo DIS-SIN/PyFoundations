@@ -20,8 +20,8 @@ class Tag(Base):
     # Function for specifying which fields should be
     # read when serialising into JSON
     def __json__(self):
-        return ["tag", "added_timestamp"]
+        return ["tag", "added_timestamp", "id"]
 
     def __to_json__(self):
-        return {"tag": self.tag, "added_timestamp": self.added_timestamp}
+        return {"tag": self.tag, "added_timestamp": self.added_timestamp, "id": self.id}
 

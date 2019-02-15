@@ -32,7 +32,7 @@ class LearningPoint(Base):
     # Function for specifying which fields should be
     # read when serialising into JSON
     def __json__(self):
-        return ["name", "description", "slug", "difficulty", "tags"]
+        return ["name", "description", "slug", "difficulty", "tags", "id"]
 
 
 keywords = Table(
