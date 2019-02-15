@@ -33,12 +33,9 @@ json_en = AlchemyEncoder
 @bp.route("/", methods=("GET",))
 def all_tags():
     db_return = get_all_of_model(Tag)
-
     return_tags = []
-
     for tag in db_return:
         return_tags.append(tag.__to_json__())
-
     return jsonify(return_tags)
 
 
@@ -47,7 +44,7 @@ def view(id):
     db_return = get_models_by_id(Tag, id)
     if len(db_return) == 1:
         return jsonify(db_return[0].__to_json__())
-    return {"api_result": "Failure"}
+    return api_failure()
 
 
 @bp.route("/", methods=("POST",))
@@ -59,8 +56,8 @@ def update():
         # added_timestamp = auto set by db
         new_tag = Tag(tag=request_data["tag"])
         insert_model(new_tag)
-        return {"api_result": "Success"}
-    return {"api_result": "Failure"}
+        return api_success()
+    return api_failure()
 
 
 @bp.route("/<int:id>", methods=("PUT",))
@@ -69,11 +66,19 @@ def update_post(id):
     if request_data is not None:
         update_val = {Tag.tag: request_data["tag"]}
         update_model_by_id(Tag, id, update_val)
-        return {"api_result": "Success"}
-    return {"api_result": "Failure"}
+        return api_success()
+    return api_failure()
 
 
 @bp.route("/<int:id>", methods=("DELETE",))
 def delete(id):
     delete_model_by_id(Tag, id)
-    return {"api_result": "Success"}
+    return api_success()
+
+
+def api_success():
+    return jsonify({"api_result": "Success"})
+
+
+def api_failure():
+    return jsonify({"api_result": "Failure"})
