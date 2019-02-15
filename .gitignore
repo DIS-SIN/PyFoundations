@@ -12,3 +12,17 @@ _site
 .ipynb_checkpoints
 .vscode
 **/__pycache__/
+dist/
+node_modules/
+npm-debug.log
+/test/js
+/test/browsertest/js
+/test/fixtures/temp-cache-fixture
+/benchmark/js
+/benchmark/fixtures
+/examples/**/dist
+/coverage
+.idea
+.vscode
+.eslintcache
+package-lock.json
