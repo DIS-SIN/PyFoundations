@@ -17,6 +17,7 @@ from code.database.middleware import (
     delete_model_by_id,
     get_all_of_model,
 )
+
 from models.tags import Tag
 from models.learning_point import LearningPoint
 from code.json_encoder import AlchemyEncoder
@@ -46,7 +47,7 @@ def view(id):
     db_return = get_models_by_id(Tag, id)
     if len(db_return) == 1:
         return jsonify(db_return[0].__to_json__())
-    return redirect(url_for("index"))
+    return {"api_result": "Failure"}
 
 
 @bp.route("/", methods=("POST",))
@@ -58,7 +59,8 @@ def update():
         # added_timestamp = auto set by db
         new_tag = Tag(tag=request_data["tag"])
         insert_model(new_tag)
-    return redirect(url_for("index"))
+        return {"api_result": "Success"}
+    return {"api_result": "Failure"}
 
 
 @bp.route("/<int:id>", methods=("PUT",))
@@ -67,10 +69,11 @@ def update_post(id):
     if request_data is not None:
         update_val = {Tag.tag: request_data["tag"]}
         update_model_by_id(Tag, id, update_val)
-    return redirect(url_for("index"))
+        return {"api_result": "Success"}
+    return {"api_result": "Failure"}
 
 
 @bp.route("/<int:id>", methods=("DELETE",))
 def delete(id):
     delete_model_by_id(Tag, id)
-    return redirect(url_for("index"))
+    return {"api_result": "Success"}
