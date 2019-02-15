@@ -10,3 +10,17 @@ _site
 /*.gz
 /*.map
 .ipynb_checkpoints
+dist/
+node_modules/
+npm-debug.log
+/test/js
+/test/browsertest/js
+/test/fixtures/temp-cache-fixture
+/benchmark/js
+/benchmark/fixtures
+/examples/**/dist
+/coverage
+.idea
+.vscode
+.eslintcache
+package-lock.json
