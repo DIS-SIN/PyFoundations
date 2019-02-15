@@ -25,5 +25,3 @@ class Tag(Base):
     def __to_json__(self):
         return {"tag": self.tag, "added_timestamp": self.added_timestamp}
 
-    def __set_fields_from_json__(self, json):
-        
