@@ -103,7 +103,7 @@ class DOLPageUserProfile extends React.Component {
                     {/*<Header />*/}
 
                     <Grid container spacing={16} >
-                        <Grid item xs={4}>
+                        <Grid item xs={12} sm={4}>
                             <Avatar alt="Learner Avatar" src="https://via.placeholder.com/500/333333" className={classes.avatar} >
                                 LN
                             </Avatar>
@@ -114,7 +114,7 @@ class DOLPageUserProfile extends React.Component {
                                     src="https://cc-media-foxit.fichub.com/image/fox-it-mondofox/e8c0f288-781d-4d0b-98ad-fd169782b53b/scene-sottacqua-per-i-sequel-di-avatar-maxw-654.jpg"
                                 />*/}
                         </Grid>
-                        <Grid item xs={8}>
+                        <Grid item xs={12} sm={8}>
 
                             <Grid container spacing={16} alignItems="center">
                                 <Grid item>
@@ -193,14 +193,14 @@ class DOLPageUserProfile extends React.Component {
                     </Grid>
                 </div>
             </React.Fragment>
-                );
-            }
-        }
-        
+        );
+    }
+}
+
 DOLPageUserProfile.propTypes = {
-                    classes: PropTypes.object.isRequired,
-            };
-            
-            // connect redux state
-            export default connect(mapStateToProps)(withStyles(styles)(DOLPageUserProfile));
-            
+    classes: PropTypes.object.isRequired,
+};
+
+// connect redux state
+export default connect(mapStateToProps)(withStyles(styles)(DOLPageUserProfile));
+
