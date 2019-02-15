@@ -1,0 +1,51 @@
+<div>
+    <div>
+        <div>
+            <div>
+               <span>
+                    pyfoundations is listening in English 
+                    <small>[Note: This is a note]</small>
+                </span>
+            </div>
+            <div>
+                <ul>
+                    <li>
+                        <a href="#">
+                            <small>
+                                Enable Translate
+                            </small>
+                        </a>
+                    </li> 
+                    <li>
+                        <a href="#">
+                            <small>
+                                Disable Translate
+                            </small>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <form id="pyfoundationsfrm" method="get" action="{{url_for('pyfoundations.render_search')}}">
+        <div>
+            <input type="hidden" id="recognition_language" name="recognition_language" value="en-US" />
+            <input type="hidden" id="recognition_lang_tlxd" name="recognition_lang_tlxd" value="disabled" />
+            <input 
+                type="text" 
+                name="pyfoundations_ask" 
+                id="transcript" 
+                placeholder="{{pyfoundationsanswer}}" 
+                value="{{pyfoundationsanswer}}" 
+            />            
+        </div>
+    </form>
+    <ul>
+        <li><a href="#">Say Question!</a></li>
+        <li><a href="#">Send Text!</a></li>
+        <li><a href="#">Clear Search</a></li>
+        <li><a href="#">pyfoundations, Read!</a></li> 
+        <li><a href="#">pyfoundations, Shh!</a></li> 
+        <li><a href="#">Help</a></li>
+    </ul>
+</div>

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>You're Awesome!</title>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+    <style>
+        /* General styles "flattery through imitation" of itsthisforthat.com/â€Ž y'all rock and you know it */
+        /* Reset default browser CSS. Based on work by Eric Meyer: http://meyerweb.com/eric/tools/css/reset/index.html*/
+        /*-------------------------------------------------------------- */
+        html,
+        body,
+        div,
+        span,
+        applet,
+        object,
+        iframe,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        blockquote,
+        pre,
+        a,
+        abbr,
+        acronym,
+        address,
+        big,
+        cite,
+        code,
+        del,
+        dfn,
+        em,
+        font,
+        img,
+        ins,
+        kbd,
+        q,
+        s,
+        samp,
+        small,
+        strike,
+        strong,
+        sub,
+        sup,
+        tt,
+        var,
+        b,
+        u,
+        i,
+        center,
+        dl,
+        dt,
+        dd,
+        ol,
+        ul,
+        li,
+        fieldset,
+        form,
+        label,
+        legend,
+        table,
+        caption,
+        tbody,
+        tfoot,
+        thead,
+        tr,
+        th,
+        td {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            vertical-align: baseline;
+            background: transparent;
+        }
+
+        body {
+            line-height: 1;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-weight: normal;
+            clear: both;
+        }
+
+        ol,
+        ul {
+            list-style: none;
+        }
+
+        blockquote {
+            quotes: none;
+        }
+
+        blockquote:before,
+        blockquote:after {
+            content: '';
+            content: none;
+        }
+
+        del {
+            text-decoration: line-through;
+        }
+
+        /* tables still need 'cellspacing="0"' in the markup */
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        a img {
+            border: none;
+        }
+
+        body {
+            /*background: #ffe77a url(dna.jpg) repeat top left;*/
+            background: #555555;
+            font-family: 'Open Sans', 'Sue Ellen Francisco', cursive;
+            font-size: 11px;
+            text-transform: uppercase;
+            text-align: center;
+            text-shadow: 1px 1px rgba(0, 0, 0, .25);
+        }
+
+        .thinbar {
+            background: #333;
+            height: 10px;
+        }
+
+        .thickbar {
+            height: 22px;
+            line-height: 20px;
+            color: #7ca7b3;
+            padding: 5px 20px;
+            text-align: left;
+            text-shadow: 1px 1px rgba(0, 0, 0, .1);
+        }
+
+        #main {
+            background: #eeeeee;
+            padding: 10px 20px 20px;
+        }
+
+        #why {
+            background: transparent;
+            color: #eb583b;
+            font-size: 20px;
+            display: inline;
+            padding: 4px 10px 0;
+            line-height: 60px;
+        }
+
+        #because {
+            color: rgb(131, 37, 37);
+            font-size: 30px;
+            padding-bottom: 30px;
+            padding-top: 30px;
+        }
+
+        #thing1,
+        #thing2,
+        #thing3 {
+            color: #6c0Fa3;
+            font-weight: bold;
+            font-size: 42px;
+            padding-bottom: 15px;
+            cursor: pointer;
+        }
+
+        #next,
+        #all,
+        #shtap,
+        #plus,
+        #minus {
+            float: right;
+            background: #eb583b;
+            border: 3px solid #333;
+            padding: 10px;
+            color: #fff;
+            font-size: 20px;
+            line-height: 55px;
+            padding: 0 8px;
+            text-decoration: none;
+        }
+
+        #infopanel {
+            font-size: 30px;
+            line-height: 45px;
+        }
+
+        #reason_count,
+        #possible_count {
+            color: white;
+        }
+
+        #milli {
+            color: black;
+        }
+    </style>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+</head>
+
+<body>
+    <div class="thickbar"></div>
+    <div class="thinbar"></div>
+    <div id="main">
+        <div id="why">
+            Why are you <strong>AWESOME?</strong>
+        </div>
+        <div id="because">- It's your: -</div>
+        <div id="thing1"></div>
+        <div id="thing2"></div>
+        <div id="thing3"></div>
+        <a href="#" id="next">Next Reason!</a>
+        <a href="#" id="all">All!</a>
+        <a href="#" id="plus" style="display:none;">-</a>
+        <a href="#" id="minus" style="display:none;">+</a>
+        <a href="#" id="shtap" style="display:none;">That'll do.</a>
+        <div style="clear:both"></div>
+    </div>
+    <div class="thinbar"></div>
+    <div class="thickbar">
+        <div id="infopanel">
+            Reasons so far ::
+            <span id="reason_count"></span> / <span id="possible_count"></span>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var _thing1 = [
+                "remarkable", "special", "singular", "exceptional",
+                "noteworthy", "notable", "extraordinary", "unequaled", "unparalleled",
+                "unmatched", "unsurpassed", "unrivaled", "peerless", "nonpareil",
+                "Unimitablly", "Flawless",
+                "Unerringly", "Unendingly", "Highly sought after", "Unterminated",
+                "Irreplaceable", "Uniquely", "Especially", "Astonishing",
+                "astounding", "awesome", "awe-inspiring",
+                "sensational", "remarkable", "spectacular", "stupendous", "phenomenal",
+                "extraordinary", "incredible",
+                "exemplar", "archetypal", "spot on",
+                "advantageous", "advisable", "wise", "sensible", "recommendable",
+                "helpful", "useful", "beneficial", "worthwhile", "pro-skill"
+            ];
+
+            var _thing2 = [
+                "ideal", "model",
+                "without fault", "faultless", "flawless",
+                "quintessential", "exemplary", "best", "ultimate",
+                "beyond compare",
+                "Unstoppable", "Effervescent",
+                "Competent", "Successful", "Sharing", "Helping",
+                "Honorable",
+                "without equal", "second to none",
+                "unsurpassed", "unsurpassable", "faultless", "flawless",
+                "as good as new", "pristine", "impeccable", "immaculate", "superb",
+                "optimum", "prime", "optimal", "excellent",
+                "faultless", "as sound as a bell",
+                "precise", "accurate", "fearless",
+                "right", "true", "definite", "ideal", "just right",
+                "appropriate", "apt", "made to order",
+                "tailor-made", "absolute", "complete", "total", "real",
+                "downright", "utter", "sheer",
+                "veritable", "in every respect",
+                "dependable", "good", "well-founded", "authentic", "valid", "genuine",
+                "sound", "true", "trustworthy", "steadfast",
+                "dedicated", "truthful", "honest",
+                "safe", "fail-safe", "reputable", "responsible", "established"
+            ];
+
+            var _thing3 = [
+                "Brain", "Respect", "Honesty", "Determination", "Grit", "Drive",
+                "Enthusiasm", "Skills", "Flair", "Panache", "Never giving up",
+                "Individual Growth", "resolution", "resolve", "willpower",
+                "strength of character", "single-mindedness", "purposefulness",
+                "perseverance", "persistence",
+                "tenacity", "open-mindedness",
+                "spirit", "courage", "character",
+                "pluck", "grit", "ideas", "facilitation",
+                "arrangement", "coordination", "organization", "assistantance",
+                "helping", "supporting"
+            ];
+
+            var _reasons = 0;
+            var _combinations = _thing1.length * _thing2.length * _thing3.length;
+
+            $("#possible_count").html(_combinations);
+
+            // shuffle it around to keep it fresh
+            var shuffle = function (array) {
+                var currentIndex = array.length, temporaryValue, randomIndex;
+                // While there remain elements to shuffle...
+                while (0 !== currentIndex) {
+                    // Pick a remaining element...
+                    randomIndex = Math.floor(Math.random() * currentIndex);
+                    currentIndex -= 1;
+                    // And swap it with the current element.
+                    temporaryValue = array[currentIndex];
+                    array[currentIndex] = array[randomIndex];
+                    array[randomIndex] = temporaryValue;
+                }
+                return array;
+            };
+
+            // get a random entry from the lists
+            var randomEntry = function (a) {
+                return a[Math.floor(Math.random() * a.length)];
+            };
+
+            // spin it!
+            var _allTimer = null;
+            var _allTimerDefaultRate = 500;
+            var _allTimerMinRate = 10;
+            var _allTimerInterval = 100;
+            var _allTimerRate = _allTimerDefaultRate;
+            var startAll = function () {
+                clearTimeout(_allTimer);
+                _allTimer = setTimeout(function () {
+                    render();
+                    startAll();
+                },
+                    _allTimerRate
+                );
+                return false;
+            };
+            var stopAll = function () {
+                clearTimeout(_allTimer);
+                _allTimerRate = _allTimerDefaultRate;
+                return false;
+            };
+            var increaseCycle = function () {
+                _allTimerRate += _allTimerInterval;
+            };
+            var decreaseCycle = function () {
+                if (_allTimerRate - _allTimerInterval >= _allTimerMinRate) {
+                    _allTimerRate -= _allTimerInterval;
+                } else {
+                    _allTimerRate = _allTimerMinRate;
+                }
+            };
+
+            // render the entry to page
+            var render = function () {
+                _reasons++;
+                $("#reason_count").html(_reasons);
+                $('#thing1').text(randomEntry(_thing1));
+                $('#thing2').text(randomEntry(_thing2));
+                $('#thing3').text(randomEntry(_thing3) + '!');
+                return false;
+            };
+
+            // initialize
+            var initit = function () {
+                // initial load
+                // shuffle fo reals
+                shuffle(_thing1);
+                shuffle(_thing2);
+                shuffle(_thing3);
+
+                $("#thing1").on("click", render);
+                $("#thing2").on("click", render);
+                $("#thing3").on("click", render);
+                $("#next").on("click", render);
+                $("#plus").on("click", increaseCycle);
+                $("#minus").on("click", decreaseCycle);
+
+                $("#all").on("click", function () {
+                    $("#shtap").show();
+                    $("#plus").show();
+                    $("#minus").show();
+                    $("#all").hide();
+                    startAll();
+                });
+
+                $("#shtap").on("click", function () {
+                    $("#all").show();
+                    $("#shtap").hide();
+                    $("#plus").hide();
+                    $("#minus").hide();
+                    stopAll();
+                });
+
+                render();
+            }
+
+            // start it up
+            initit();
+        });
+    </script>
+</body>
+
+</html>

@@ -56,7 +56,6 @@ def get_pyfoundations_db_json(answerfile):
 
 # setup some pyfoundations answers
 pyfoundations_db = get_pyfoundations_db_json('pyfoundations-en')
-
 # the api return as json response, this can be used for whatever application you like
 
 
