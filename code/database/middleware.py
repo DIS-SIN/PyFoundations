@@ -7,9 +7,7 @@ from models.basemodel import Base
 
 def set_global_sessionmaker():
     if "db_sessionmaker" not in g and "db_engine" not in g:
-        g.db_engine = create_engine(
-            current_app.config["DATABASE"], echo=True
-        )  # , echo=True
+        g.db_engine = create_engine(current_app.config["SQLALCHEMY_DATABASE_URI"])
         Base.metadata.bind = g.db_engine
         g.db_sessionmaker = sessionmaker(bind=g.db_engine)
 
