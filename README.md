@@ -1,4 +1,4 @@
-# dol: Foundations Python Port
+# DOL: Foundations Python Port
 
 In order to have a larger pool of available developers, and to ensure continuity, we are porting the MVP of Foundations written in Go, over to a Python/Flask app (that the team is more versed in)
 
