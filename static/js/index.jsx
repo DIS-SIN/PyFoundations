@@ -1,6 +1,6 @@
 // index.jsx - pull in required resources to allow webpack to bundle
-//require('./../sass/pyfoundations.css.scss');
-//require('./../sass/react-pyfoundations.scss');
+//require('./../sass/dol.css.scss');
+//require('./../sass/react-dol.scss');
 require('./../sass/react-mui-pf.scss');
 
 //import 'typeface-roboto';

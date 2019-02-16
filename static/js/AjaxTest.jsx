@@ -81,7 +81,7 @@ class AjaxTest extends React.Component {
 
     // this fires when the component loads
     componentDidMount() {
-        fetch("/api/test/learningpoint") // pyfoundations/api/gettest
+        fetch("/api/test/learningpoint") // dol/api/gettest
             .then(res => res.json())
             .then(
                 (result) => {
@@ -113,7 +113,7 @@ class AjaxTest extends React.Component {
             },
             body: JSON.stringify({
                 post: this.state.post,
-                pyfoundations_ask: this.state.post
+                dol_ask: this.state.post
             }),
         });
         const body = await response.json();//response.text();

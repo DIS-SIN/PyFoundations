@@ -1,5 +1,5 @@
 from flask import Flask, redirect, url_for, jsonify
-from code import pyfoundations
+from code import dol
 from models import models
 from code.blueprint.api import (
     learning_point_bp,
@@ -19,7 +19,7 @@ def create_app():
         SQLALCHEMY_TRACK_MODIFICATIONS=False,
     )
 
-    app.register_blueprint(pyfoundations.bp)
+    app.register_blueprint(dol.bp)
     app.register_blueprint(learning_point_bp.bp)
     app.register_blueprint(learning_resource_bp.bp)
     app.register_blueprint(user_bp.bp)

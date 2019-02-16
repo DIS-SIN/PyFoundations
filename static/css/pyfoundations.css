@@ -43,11 +43,11 @@ h1 span {
     }
 }
 
-.pyfoundationstitle {
+.doltitle {
     font-size: 0.4em;
 }
 @media screen and (max-width: 768px) {
-    .pyfoundationstitle {
+    .doltitle {
         font-size: 0.4em;
     }
 }
@@ -96,7 +96,7 @@ h1 span {
     height: 100%;
 }
 
-#pyfoundations_spoken {
+#dol_spoken {
     display: none;
 }
 
