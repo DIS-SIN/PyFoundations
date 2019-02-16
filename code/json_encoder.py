@@ -6,10 +6,9 @@ class AlchemyEncoder(json.JSONEncoder):
     def default(self, obj):  # pylint: disable=E0202
         if isinstance(obj.__class__, DeclarativeMeta):
             # an SQLAlchemy class
-            valid_fields = obj.__json__() if hasattr(obj, "__json__") else dir(obj)
             fields = {}
             for field in [
-                x for x in valid_fields if not x.startswith("_") and x != "metadata"
+                x for x in dir(obj) if not x.startswith("_") and x != "metadata"
             ]:
                 data = obj.__getattribute__(field)
                 try:
