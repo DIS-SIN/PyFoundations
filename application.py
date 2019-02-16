@@ -1,11 +1,13 @@
 from flask import Flask, redirect, url_for, jsonify
-import os
 from code import pyfoundations
+from models import models
 from code.blueprint.api import (
-    learning_points_bp,
-    tags_bp,
-    learning_resources_bp,
-    users_bp,
+    learning_point_bp,
+    learning_resource_bp,
+    user_bp,
+    experience_bp,
+    episode_bp,
+    stream_bp,
 )
 
 
@@ -13,14 +15,17 @@ def create_app():
     app = Flask(__name__)
 
     app.config.from_mapping(
-        DATABASE="postgresql+psycopg2://postgres:password@localhost:5432/foundationstest"
+        SQLALCHEMY_DATABASE_URI="postgresql+psycopg2://postgres:password@localhost:5432/dol",
+        SQLALCHEMY_TRACK_MODIFICATIONS=False,
     )
 
     app.register_blueprint(pyfoundations.bp)
-    app.register_blueprint(learning_points_bp.bp)
-    app.register_blueprint(tags_bp.bp)
-    app.register_blueprint(learning_resources_bp.bp)
-    app.register_blueprint(users_bp.bp)
+    app.register_blueprint(learning_point_bp.bp)
+    app.register_blueprint(learning_resource_bp.bp)
+    app.register_blueprint(user_bp.bp)
+    app.register_blueprint(episode_bp.bp)
+    app.register_blueprint(experience_bp.bp)
+    app.register_blueprint(stream_bp.bp)
 
     @app.route("/")
     def index():
@@ -36,6 +41,8 @@ def create_app():
             }
         }
         return jsonify(ret_val)
+
+    models.db.init_app(app)
 
     return app
 
