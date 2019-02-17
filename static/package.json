@@ -1,7 +1,7 @@
 {
-  "name": "pyfoundations",
+  "name": "dol",
   "version": "1.0.0",
-  "description": "Foundations in Python, Flask, npm, webpack, react",
+  "description": "DOL in Python, Flask, npm, webpack, react",
   "main": "index.jsx",
   "scripts": {
     "build": "webpack -p --progress --config webpack.config.js",

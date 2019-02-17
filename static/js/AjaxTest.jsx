@@ -81,14 +81,14 @@ class AjaxTest extends React.Component {
 
     // this fires when the component loads
     componentDidMount() {
-        fetch("/api/test/learningpoint") // dol/api/gettest
+        fetch("/api/test/learning_point") // dol/api/gettest // /api/learning_point
             .then(res => res.json())
             .then(
                 (result) => {
+                    //console.log(result);
                     this.setState({
                         isLoaded: true,
-                        response: result,
-                        learningpoints: result.learningpoints
+                        apireturn: result
                     });
                 },
                 // Note: it's important to handle errors here
@@ -106,24 +106,24 @@ class AjaxTest extends React.Component {
 
     handleSubmit = async e => {
         e.preventDefault();
-        const response = await fetch('/api/test/puttest', {
+        const response = await fetch('/api/test/learning_point', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                post: this.state.post,
-                dol_ask: this.state.post
+                tag: this.state.post
             }),
         });
         const body = await response.json();//response.text();
         this.setState({
             responseToPost: body
         });
+        alert(JSON.stringify(body));
     }
 
     render() {
-        const { error, isLoaded, learningpoints, post, response, responseToPost } = this.state;
+        const { error, isLoaded, apireturn, post, response, responseToPost } = this.state;
         const { literals, classes } = this.props;
         if (error) {
             return <div>{literals.ajaxtest.error} {error.message}</div>;
@@ -138,7 +138,7 @@ class AjaxTest extends React.Component {
                                         onChange={e => this.setState({ post: e.target.value })}
                                     />
              */
-            const learningPointReturnFragment = (
+            const ajaxTestReturnFragment = (
                 <React.Fragment>
                     <form className="reqResDetails" onSubmit={this.handleSubmit}>
                         <Typography variant="h6" gutterBottom>
@@ -182,18 +182,19 @@ class AjaxTest extends React.Component {
                                 {literals.ajaxtest.fetch}:
                             </Typography>
                             <Typography component="div">
-                                <pre>{JSON.stringify(response, null, 2)}</pre>
+                                <pre>{JSON.stringify(apireturn, null, 2)}</pre>
                             </Typography>
                         </div>
                     </div>
                 </React.Fragment>
             )
 
-            const data = learningpoints.slice(0);
 
             //<small><strong>{tag.tagname}</strong> ({tag.id}@{tag.datetime})</small>
 
-            const learningPointItem = data.map((learningpoint, index) => (
+            const learningpoints = apireturn.slice(0)[0].api_data;
+            //console.log(learningpoints);
+            const learningPointItem = learningpoints.map((learningpoint, index) => (
                 <Grid item xs={12} key={index}>
                     <Typography gutterBottom variant="headline" component="h2">
                         {learningpoint.name}
@@ -210,7 +211,7 @@ class AjaxTest extends React.Component {
                         <React.Fragment key={index}>
                             <Chip
                                 icon={<LabelIcon />}
-                                label={tag.tagname + " @" + tag.id + " " + tag.datetime}
+                                label={tag.tag + " @" + tag.added_timestamp}
                                 color="primary"
                             />
                         </React.Fragment>
@@ -218,11 +219,24 @@ class AjaxTest extends React.Component {
                 </Grid>
             ))
 
+            /*
+            const tags = apireturn.slice(0);
+            const tagItem = tags.map((tag, index) => (
+                <Grid item xs={12} key={index}>
+                    <React.Fragment key={index}>
+                        <Chip
+                            icon={<LabelIcon />}
+                            label={tag.tag + " @" + tag.added_timestamp}
+                            color="primary"
+                        />
+                    </React.Fragment>
+                </Grid>
+            ))*/
 
-
+            //  {learningPointItem}
             const returnFragment = (
                 <React.Fragment>
-                    {learningPointReturnFragment}
+                    {ajaxTestReturnFragment}
                     <Grid spacing={24} alignItems="center" justify="center" container>
                         {learningPointItem}
                     </Grid>

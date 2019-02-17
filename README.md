@@ -9,7 +9,7 @@ In order to have a larger pool of available developers, and to ensure continuity
 
 # General Development Information
 
-dol is build in Python, Flask, and uses jQuery and JSON to handle the front end work. The backend is a lightweight db which stores the answers to our questions. 
+DOL is build in Python, Flask, and uses jQuery and JSON to handle the front end work. The backend is a lightweight db which stores the answers to our questions. 
 
 This project helped us learn how to work better as a team using github, and gave us more practice in division of labor and each developer working on different parts in parallel.
 

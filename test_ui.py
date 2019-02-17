@@ -1,6 +1,17 @@
-from flask import Flask, redirect, url_for
+from flask import Flask, redirect, url_for, jsonify
+from models import models
+from code.blueprint.api import (
+    learning_point_bp,
+    learning_resource_bp,
+    user_bp,
+    experience_bp,
+    episode_bp,
+    stream_bp,
+)
 import os
-from code import testui_dol
+#from code import testui_dol
+from code import dol
+
 
 # ULTRABASIC TEMPLATE RENDERER
 # So the UI guy can build somewhat useable templates
@@ -18,13 +29,26 @@ def create_app():
 
     # HACK-FIX: Dropped i18n and i18next. Buggy, unreliable.
     app = Flask(__name__)
-    app.register_blueprint(testui_dol.bp)
-    app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 0
+    app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
-    @app.route("/")
+    app.config.from_mapping(
+        SQLALCHEMY_DATABASE_URI="postgresql+psycopg2://postgres:password@localhost:5432/dol",
+        SQLALCHEMY_TRACK_MODIFICATIONS=False,
+    )
+
+    app.register_blueprint(dol.bp)
+    app.register_blueprint(learning_point_bp.bp)
+    app.register_blueprint(learning_resource_bp.bp)
+    app.register_blueprint(user_bp.bp)
+    app.register_blueprint(episode_bp.bp)
+    app.register_blueprint(experience_bp.bp)
+    app.register_blueprint(stream_bp.bp)
+
+    @app.route('/')
     def index():
-        return redirect(url_for("dol.render_home"))
+        return redirect(url_for('dol.render_home'))
 
+    models.db.init_app(app)
     return app
 
 
