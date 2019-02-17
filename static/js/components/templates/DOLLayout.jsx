@@ -1,19 +1,23 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
-
+import { Switch, Route } from 'react-router-dom'
 // redux state
 import { connect } from "react-redux";
-import DOLHeader from "./DOLHeader";
-import DOLFooter from "./DOLFooter";
-import { Switch, Route } from 'react-router-dom'
+
 import { withStyles } from '@material-ui/core/styles';
-import FullScreenDialogExample from "./FullScreenDialogExample";
-import DOLPageStub from "./DOLPageStub";
-import DOLPageHome from "./DOLPageHome";
-import DOLPageExplore from "./DOLPageExplore";
-import DOLPageShare from "./DOLPageShare";
-import DOLPageAbout from "./DOLPageAbout";
-import DOLPageUserProfile from "./DOLPageUserProfile";
+
+import DOLPageStub from "../views/DOLPageStub";
+import DOLPageHome from "../views/DOLPageHome";
+import DOLPageExplore from "../views/DOLPageExplore";
+import DOLPageShare from "../views/DOLPageShare";
+import DOLPageSearch from "../views/DOLPageSearch";
+import DOLPageAbout from "../views/DOLPageAbout";
+import DOLPageLearningStreams from "../views/DOLPageLearningStreams";
+import DOLPageUserProfile from "../views/DOLPageUserProfile";
+
+import DOLHeader from "../organisms/DOLHeader";
+import DOLFooter from "../organisms/DOLFooter";
+import PrimaryActionPanel from "../organisms/DOLPrimaryActionPanel";
 
 
 const mapStateToProps = state => {
@@ -53,7 +57,7 @@ class DOLLayout extends React.Component {
                     <Route exact path='/profile' component={DOLPageUserProfile} />
                     <Route exact path='/logout' component={DOLPageStub} />
                 </Switch>
-                <FullScreenDialogExample />
+                <PrimaryActionPanel />
                 {/*</main>*/}
                 <DOLFooter />
             </React.Fragment>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import GreetingIntl from "./GreetingIntl";
+import GreetingIntl from "../components/molecules/GreetingIntl";
 import Button from '@material-ui/core/Button'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import LockIcon from '@material-ui/icons/Lock'
@@ -12,12 +12,6 @@ const mapStateToProps = state => {
   };
 };
 
-/*
-    <button onClick={props.onClick}>
-      {props.literals.logincontrol.login}
-    </button>
-
-    */
 const LoginButton = props => {
   return (
     <Button variant="contained" color="primary" onClick={props.onClick}>

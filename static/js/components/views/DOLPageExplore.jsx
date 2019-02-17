@@ -1,24 +1,14 @@
-/**
- * Digital Academy Foundations
-Foundations presents the digital transformation of the Canadian government and its services in human terms because digital transformation is fundamentally cultural. The focus of the foundational learning offerings are designed to build awareness of possibilities, increase confidence and capacity of government employees who are navigating the impacts of digital on their world. Additionally, digital foundations piques the interest to learn more through curated and personalized learning opportunities.
-
-Outcomes:
-Public servants (learners) engage in new ways of thinking about themselves, their work and the role of government in providing better services to citizens;
-Learners improve their knowledge and skills through easy to consume, timely and relevant content related to digital in government
-Learners improve their understanding of digital through connections to deeper learning activities
- */
 import React, { Component } from "react";
 
 // redux state
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
-import { withStyles, withTheme } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import SimpleCard from "./SimpleCard";
-import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
-
 import classNames from 'classnames';
+
+import { withStyles, withTheme } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -26,9 +16,11 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import DOLSignInDialog from "./DOLSignInDialog";
 
-import { LearningArchitecture } from './LearningArchitecture'
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
+
+import DOLSignInDialog from "../organisms/DOLSignInDialog";
+import { LearningArchitecture } from '../atoms/LearningArchitecture'
 
 const styles = theme => ({
     appBar: {
@@ -63,6 +55,7 @@ const styles = theme => ({
     },
     cardGrid: {
         padding: `${theme.spacing.unit * 8}px 0`,
+        paddingTop: 16,
     },
     card: {
         height: '100%',
@@ -79,10 +72,15 @@ const styles = theme => ({
         backgroundColor: theme.palette.background.paper,
         padding: theme.spacing.unit * 6,
     },
+    segment: {
+        flexGrow: 1,
+        marginBottom: 16,
+        marginTop: 16,
+    }
 });
 
-const cards = LearningArchitecture().loach_structure.streams;
-
+const streams = LearningArchitecture().loach_structure.streams;
+const practices = LearningArchitecture().loach_structure.architecture; // note just design for now
 
 const mapStateToProps = state => {
     return {
@@ -90,7 +88,7 @@ const mapStateToProps = state => {
     };
 };
 
-class DOLPageHome extends React.Component {
+class DOLPageExplore extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -104,12 +102,11 @@ class DOLPageHome extends React.Component {
                 <div className={classes.heroUnit}>
                     <div className={classes.heroContent}>
                         <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                            Digital Open Learing
+                            Explore
                         </Typography>
                         <Typography variant="h6" align="center" color="textSecondary" paragraph>
-                            <HelpOutlineIcon /> <strong>Let's get you started with Digital</strong>. DOL will
-                            help <strong>build awareness</strong> of possibilities, <strong>increase confidence</strong> and <strong>capacity</strong> of government employees
-                            in their <strong>digital skills</strong>. Explore below to find curated and <strong>personalized learning opportunities</strong>.
+                            <HelpOutlineIcon /> <strong>Learn what you want</strong>. The catalogue below has <strong>streams</strong> which bundle up groups of <strong>practices</strong>. Each practice
+                            has <strong>learning points</strong> which you can explore.
                         </Typography>
                         <div className={classes.heroButtons}>
                             <Grid container spacing={16} justify="center">
@@ -118,7 +115,7 @@ class DOLPageHome extends React.Component {
                                 </Grid>
                                 <Grid item>
                                     <Button variant="outlined" color="secondary">
-                                        EXPLORE DIGITAL OPEN LEARNING
+                                        Your Learner Profile
                                     </Button>
                                 </Grid>
                             </Grid>
@@ -126,8 +123,15 @@ class DOLPageHome extends React.Component {
                     </div>
                 </div>
                 <div className={classNames(classes.layout, classes.cardGrid)}>
+                    <AppBar className={classNames(classes.segment)} position="static" color="default">
+                        <Toolbar>
+                            <Typography justify="center" variant="h5" component="div">
+                                Streams
+                            </Typography>
+                        </Toolbar>
+                    </AppBar>
                     <Grid container spacing={40}>
-                        {cards.map((item, index) => (
+                        {streams.map((item, index) => (
                             <Grid item key={index} sm={6} md={4}>
                                 <Card className={classes.card}>
                                     <CardMedia
@@ -155,16 +159,54 @@ class DOLPageHome extends React.Component {
                             </Grid>
                         ))}
                     </Grid>
+                    <AppBar className={classes.segment} position="static" color="default">
+                        <Toolbar>
+                            <Typography justify="center" variant="h5" component="div">
+                                Practices
+                            </Typography>
+                        </Toolbar>
+                    </AppBar>
+                    <Grid container spacing={40}>
+                        {practices.map((item, index) => (
+                            <Grid item key={index} sm={4} md={3}>
+                                <Card className={classes.card}>
+                                    <CardMedia
+                                        className={classes.cardMedia}
+                                        image="http://placeimg.com/640/360/tech"
+                                        //"https://loremflickr.com/640/360"//"https://via.placeholder.com/500/f5f5f5"// eslint-disable-line max-len
+                                        title="Image title"
+                                    />
+                                    <CardContent className={classes.cardContent}>
+                                        <Typography gutterBottom variant="h5" component="h2">
+                                            {item.practice}
+                                        </Typography>
+                                        <Typography>
+                                            {item.practice}
+                                        </Typography>
+                                    </CardContent>
+                                    <CardActions>
+                                        <Button size="small" color="primary">
+                                            EXPLORE
+                                        </Button>
+                                        <Button size="small" color="primary">
+                                            ADD TO PROFILE
+                                        </Button>
+                                    </CardActions>
+                                </Card>
+                            </Grid>
+                        ))}
+                    </Grid>
+
                 </div>
             </React.Fragment>
         );
     }
 }
 
-DOLPageHome.propTypes = {
+DOLPageExplore.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
 // connect redux state
-export default connect(mapStateToProps)(withStyles(styles)(DOLPageHome));
+export default connect(mapStateToProps)(withStyles(styles)(DOLPageExplore));
 

@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
-import withStyles from '@material-ui/core/styles/withStyles';
 import { withRouter, Link } from 'react-router-dom';
+
+import withStyles from '@material-ui/core/styles/withStyles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import Slider from '@material-ui/lab/Slider';
 import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
-import SimpleLineChart from './SimpleLineChart';
+
+import Slider from '@material-ui/lab/Slider';
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
+
+import SimpleLineChart from '../components/molecules/SimpleLineChart';
 import Loading from './Loading';
 
 //import Topbar from './Topbar';

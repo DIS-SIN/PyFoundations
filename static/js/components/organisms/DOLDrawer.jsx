@@ -19,7 +19,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { Typography } from '@material-ui/core';
 
 
-import { LearningArchitecture } from './LearningArchitecture'
+import { LearningArchitecture } from '../atoms/LearningArchitecture'
 
 const styles = {
     list: {

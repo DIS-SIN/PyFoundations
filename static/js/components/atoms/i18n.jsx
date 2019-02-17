@@ -1,5 +1,5 @@
-import en from "./i18n/en.json";
-import fr from "./i18n/fr.json";
+import en from "../../i18n/en.json";
+import fr from "../../i18n/fr.json";
 
 // set up our supported languages
 const langs = {

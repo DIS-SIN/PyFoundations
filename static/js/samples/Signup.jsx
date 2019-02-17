@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from "react-redux";
 import withStyles from '@material-ui/core/styles/withStyles';
 //import { withRouter } from 'react-router-dom'
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -21,17 +22,18 @@ import ListItemText from '@material-ui/core/ListItemText';
 import DoneIcon from '@material-ui/icons/Done';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Fade from '@material-ui/core/Fade';
+
+import Table from '../components/molecules/Table';
+import NavBar from '../components/molecules/NavBar';
+import Clock from '../components/atoms/Clock';
+import Toggle from '../components/atoms/Toggle';
+
+import Form from './Form';
 import AppIntl from './AppIntl';
 import LoginControl from './LoginControl';
-import MUIButton from './MUIButton';
-import Clock from './Clock';
-import Toggle from './Toggle';
 import AjaxTest from './AjaxTest';
 import ApiTest from './ApiTest';
-import PaperSheet from './PaperSheet';
-//import Back from './common/Back';
 //const backgroundShape = require('../images/shape.svg');
-
 //const logo = require('../images/logo.svg');
 
 const numeral = require('numeral');
@@ -121,11 +123,6 @@ const styles = theme => ({
     }
 })
 
-
-import { connect } from "react-redux";
-import Table from './Table';
-import Form from './Form';
-import NavBar from './NavBar';
 const mapStateToProps = state => {
     return {
         literals: state.literals
@@ -484,9 +481,7 @@ class Signup extends React.Component {
         )
     }
 }
-/*
-<MUIButton />
-*/
+
 //export default withRouter(withStyles(styles)(Signup))
 export default connect(mapStateToProps)(withStyles(styles)(Signup));
 // redux connect state//

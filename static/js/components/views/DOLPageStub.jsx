@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-
 // redux state
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
+
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -49,5 +49,3 @@ DOLPageStub.propTypes = {
 
 // connect redux state
 export default connect(mapStateToProps)(withStyles(styles)(DOLPageStub));
-
-

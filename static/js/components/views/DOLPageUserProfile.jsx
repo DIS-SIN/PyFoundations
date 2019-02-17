@@ -1,28 +1,17 @@
-/**
- * Digital Academy Foundations
-Foundations presents the digital transformation of the Canadian government and its services in human terms because digital transformation is fundamentally cultural. The focus of the foundational learning offerings are designed to build awareness of possibilities, increase confidence and capacity of government employees who are navigating the impacts of digital on their world. Additionally, digital foundations piques the interest to learn more through curated and personalized learning opportunities.
-
-Outcomes:
-Public servants (learners) engage in new ways of thinking about themselves, their work and the role of government in providing better services to citizens;
-Learners improve their knowledge and skills through easy to consume, timely and relevant content related to digital in government
-Learners improve their understanding of digital through connections to deeper learning activities
- */
 import React, { Component } from "react";
-
 // redux state
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
+
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import SettingsIcon from '@material-ui/icons/Settings';
-
-import classNames from 'classnames';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Avatar from '@material-ui/core/Avatar';
-import ProgressBarLinear from "./ProgressBarLinear";
+
+import ProgressBarLinear from "../atoms/ProgressBarLinear";
 
 const styles = theme => ({
     layout: {
@@ -203,4 +192,3 @@ DOLPageUserProfile.propTypes = {
 
 // connect redux state
 export default connect(mapStateToProps)(withStyles(styles)(DOLPageUserProfile));
-

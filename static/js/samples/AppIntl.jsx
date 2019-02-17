@@ -1,9 +1,7 @@
 import React, { Component, Suspense } from 'react';
-import { useTranslation, withTranslation, Trans } from 'react-i18next';
-
-import { loadLiterals } from "./store/literals";
-import store from "./store";
-import loadLang from "./i18n";
+import { loadLiterals } from "../store/literals";
+import store from "../store";
+import loadLang from "../components/atoms/i18n";
 
 // redux state
 import { connect } from "react-redux";

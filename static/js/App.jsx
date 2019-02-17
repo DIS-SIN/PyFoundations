@@ -1,16 +1,16 @@
 import React from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom'
-import AppReactDOL from './AppReactDOL';
-import AppReactShowcase from './AppReactShowcase';
 
 // connect the state from redux
 import { connect } from "react-redux";
-import Layout from './Layout';
-import DOLLayout from './DOLLayout';
-import DashboardExample from './DashboardExample';
-import AlbumExample from './AlbumExample';
-import SignupExample from './SignupExample';
-import PricingExample from './PricingExample';
+import Layout from './components/atoms/Layout';
+import DOLLayout from './components/templates/DOLLayout';
+
+import AppReactShowcase from './samples/AppReactShowcase';
+import DashboardExample from './samples/DashboardExample';
+import AlbumExample from './samples/AlbumExample';
+import SignupExample from './samples/SignupExample';
+import PricingExample from './samples/PricingExample';
 const mapStateToProps = state => {
   return {
     literals: state.literals

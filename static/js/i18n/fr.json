@@ -1,6 +1,6 @@
 {
     "app": {
-        "title": "Bienvenue à réagir en utilisant react-i18next",
+        "title": "Bienvenue à React",
         "headergreeting": "Bonjour... React!",
         "headertagline": "Un table du react (facile)",
         "formheader": "Nouveau entree"

@@ -15,7 +15,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
-import AjaxTest from './AjaxTest';
+import AjaxTest from '../../samples/AjaxTest';
 import classNames from 'classnames';
 
 const styles = theme => ({
@@ -52,7 +52,7 @@ function Transition(props) {
     return <Slide direction="up" {...props} />;
 }
 
-class FullScreenDialogExample extends React.Component {
+class PrimaryActionPanel extends React.Component {
     state = {
         open: false,
     };
@@ -115,8 +115,8 @@ class FullScreenDialogExample extends React.Component {
                     </List>
 
  */
-FullScreenDialogExample.propTypes = {
+PrimaryActionPanel.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(FullScreenDialogExample);
+export default withStyles(styles)(PrimaryActionPanel);

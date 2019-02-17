@@ -38,7 +38,7 @@ const ClockWidget = props => {
     */
     return (
         <div id="widget__clock">
-            <ClockHeader literals={props.literals} />
+            {/*<ClockHeader literals={props.literals} />*/}
             <ClockBody date={props.date} />
         </div>
     );
