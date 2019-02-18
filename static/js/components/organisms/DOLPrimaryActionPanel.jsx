@@ -52,7 +52,7 @@ function Transition(props) {
     return <Slide direction="up" {...props} />;
 }
 
-class PrimaryActionPanel extends React.Component {
+class DOLPrimaryActionPanel extends React.Component {
     state = {
         open: false,
     };
@@ -115,8 +115,8 @@ class PrimaryActionPanel extends React.Component {
                     </List>
 
  */
-PrimaryActionPanel.propTypes = {
+DOLPrimaryActionPanel.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(PrimaryActionPanel);
+export default withStyles(styles)(DOLPrimaryActionPanel);

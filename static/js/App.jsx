@@ -11,6 +11,10 @@ import DashboardExample from './samples/DashboardExample';
 import AlbumExample from './samples/AlbumExample';
 import SignupExample from './samples/SignupExample';
 import PricingExample from './samples/PricingExample';
+import DOLPageStub from './components/views/DOLPageStub';
+import DOLHeader from './components/organisms/DOLHeader';
+import DOLPrimaryActionPanel from './components/organisms/DOLPrimaryActionPanel';
+import DOLFooter from './components/organisms/DOLFooter';
 const mapStateToProps = state => {
   return {
     literals: state.literals
@@ -18,9 +22,12 @@ const mapStateToProps = state => {
 };
 
 const NoMatch = ({ location }) => (
-  <div>
-    <h3>No match for <code>{location.pathname}</code></h3>
-  </div>
+  <React.Fragment>
+    <DOLHeader />
+    <DOLPageStub location={location} />
+    <DOLPrimaryActionPanel />
+    <DOLFooter />
+  </React.Fragment>
 )
 
 class App extends React.Component {

@@ -11,7 +11,10 @@ import Grid from '@material-ui/core/Grid';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Avatar from '@material-ui/core/Avatar';
 
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
+
 import ProgressBarLinear from "../atoms/ProgressBarLinear";
+import HeroHeader from "../molecules/HeroHeader";
 
 const styles = theme => ({
     layout: {
@@ -59,38 +62,25 @@ class DOLPageUserProfile extends React.Component {
     render() {
         const { literals, location, classes } = this.props;
         const progressMain = 80;
+
+        const link_group_hero = [
+            { "href": "/profile/goals", "title": "SET GOALS" },
+            { "href": "/profile/update", "title": "UPDATE LEARNER PROFILE" },
+        ];
+
         return (
             <React.Fragment>
                 <CssBaseline />
-                {/* Hero unit */}
-                <div className={classes.heroUnit}>
-                    <div className={classes.heroContent}>
-                        <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                            Profile
-                        </Typography>
-                        <Typography variant="h6" align="center" color="textSecondary" component="div">
-                            Let's <strong>track how far</strong> you've come and <strong>what you now</strong> know!
+                <HeroHeader
+                    title="Profile"
+                    icon={<HelpOutlineIcon />}
+                    text={<React.Fragment key="herotext">
+                        Let's <strong>track how far</strong> you've come and <strong>what you now</strong> know!
                             <ProgressBarLinear completed={progressMain} />
-                        </Typography>
-                        <div className={classes.heroButtons}>
-                            <Grid container spacing={16} justify="center">
-                                <Grid item>
-                                    <Button variant="contained" color="primary">
-                                        SET GOALS!
-                                    </Button>
-                                </Grid>
-                                <Grid item>
-                                    <Button variant="outlined" color="primary">
-                                        UPDATE LEARNER PROFILE
-                                    </Button>
-                                </Grid>
-                            </Grid>
-                        </div>
-                    </div>
-                </div>
+                    </React.Fragment>}
+                    links={link_group_hero}
+                />
                 <div className={classNames(classes.layout)}>
-                    {/*<Header />*/}
-
                     <Grid container spacing={16} >
                         <Grid item xs={12} sm={4}>
                             <Avatar alt="Learner Avatar" src="https://via.placeholder.com/500/333333" className={classes.avatar} >
@@ -101,7 +91,7 @@ class DOLPageUserProfile extends React.Component {
                                     medium={!upSm}
                                     style={{ margin: 'auto' }}
                                     src="https://cc-media-foxit.fichub.com/image/fox-it-mondofox/e8c0f288-781d-4d0b-98ad-fd169782b53b/scene-sottacqua-per-i-sequel-di-avatar-maxw-654.jpg"
-                                />*/}
+                            />*/}
                         </Grid>
                         <Grid item xs={12} sm={8}>
 

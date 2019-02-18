@@ -1,12 +1,10 @@
 import React, { Component } from "react";
-
-// redux state
-import { connect } from "react-redux";
+import { connect } from "react-redux"; // redux state
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import GridLinkGroup from "../molecules/GridLinkGroup";
+import GridTextGroup from "../molecules/GridTextGroup";
 
 const styles = theme => ({
     root: {
@@ -33,41 +31,27 @@ class DOLFooter extends React.Component {
 
     render() {
         const { literals, location, classes } = this.props;
+
+        const links_group_connect = [
+            { "href": "https://github.com/DIS-SIN", "title": "CSPS" },
+            { "href": "https://github.com/DIS-SIN", "title": "GCCampus" },
+            { "href": "https://github.com/DIS-SIN", "title": "GitHub" },
+            { "href": "https://github.com/DIS-SIN", "title": "Message" },
+        ];
+        const links_group_socialmedia = [
+            { "href": "https://github.com/DIS-SIN", "title": "GCCollab" },
+            { "href": "https://github.com/DIS-SIN", "title": "Twitter" },
+            { "href": "https://github.com/DIS-SIN", "title": "LinkedIn" },
+            { "href": "https://github.com/DIS-SIN", "title": "Medium" },
+        ];
         return (
             <React.Fragment>
                 {/* Footer */}
                 <footer className={classes.footer}>
                     <Grid container spacing={16} justify="center">
-                        <Grid item xs={12} sm={12} md={4}>
-                            <Typography variant="h6" align="left" gutterBottom>
-                                DIGITAL ACADEMY
-                        </Typography>
-                            <Typography variant="subtitle1" align="left" gutterBottom>
-                                The Digital Academy's mission is to provide cutting-edge skills to the Canadian Public Service.
-                        </Typography>
-                        </Grid>
-                        <Grid item xs={12} sm={6} md={4}>
-                            <Typography variant="h6" align="center" gutterBottom>
-                                CONNECT
-                            </Typography>
-                            <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                                <Button size="small" color="primary" target="_blank" href="https://github.com/DIS-SIN">CSPS</Button>
-                                <Button size="small" color="primary" target="_blank" href="https://github.com/DIS-SIN">GCCampus</Button>
-                                <Button size="small" color="primary" target="_blank" href="https://github.com/DIS-SIN">GitHub</Button>
-                                <Button size="small" color="primary" target="_blank" href="https://github.com/DIS-SIN">Message</Button>
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={12} sm={6} md={4}>
-                            <Typography variant="h6" align="center" gutterBottom>
-                                SOCIAL MEDIA
-                            </Typography>
-                            <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                                <Button size="small" color="primary" target="_blank" href="https://github.com/DIS-SIN">GCcollab</Button>
-                                <Button size="small" color="primary" target="_blank" href="https://github.com/DIS-SIN">Twitter</Button>
-                                <Button size="small" color="primary" target="_blank" href="https://github.com/DIS-SIN">LinkedIn</Button>
-                                <Button size="small" color="primary" target="_blank" href="https://github.com/DIS-SIN">Medium</Button>
-                            </Typography>
-                        </Grid>
+                        <GridTextGroup title="DIGITAL ACADEMY" text="The Digital Academy's mission is to provide cutting-edge skills to the Canadian Public Service." />
+                        <GridLinkGroup title="CONNECT" links={links_group_connect} />
+                        <GridLinkGroup title="SOCIAL MEDIA" links={links_group_socialmedia} />
                     </Grid>
                 </footer>
                 {/* End footer */}

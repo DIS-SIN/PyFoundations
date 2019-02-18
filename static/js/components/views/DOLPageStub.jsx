@@ -1,20 +1,18 @@
 import React, { Component } from "react";
-// redux state
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 
-import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
+import { withStyles, withTheme } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
+
+import HeroHeader from "../molecules/HeroHeader";
 
 const styles = theme => ({
-    root: {
-        ...theme.mixins.gutters(),
-        paddingTop: theme.spacing.unit * 2,
-        paddingBottom: theme.spacing.unit * 2,
-        marginTop: 100,
-    },
+
 });
+
 const mapStateToProps = state => {
     return {
         literals: state.literals
@@ -28,16 +26,19 @@ class DOLPageStub extends React.Component {
 
     render() {
         const { literals, location, classes } = this.props;
+
+        const link_group_hero = [
+            { "href": "/home", "title": "Home" },
+        ];
         return (
             <React.Fragment>
-                <Paper className={classes.root} elevation={1}>
-                    <Typography variant="h5" component="h3">
-                        DOL Page Stub
-                    </Typography>
-                    <Typography component="p">
-                        Route: {location.pathname}
-                    </Typography>
-                </Paper>
+                <CssBaseline />
+                <HeroHeader
+                    title="DOL Page Stub"
+                    icon={<HelpOutlineIcon />}
+                    text={<React.Fragment key="herotext"><strong>Route:</strong> {location.pathname}</React.Fragment>}
+                    links={link_group_hero}
+                />
             </React.Fragment>
         );
     }

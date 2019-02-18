@@ -21,6 +21,7 @@ import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 
 import DOLSignInDialog from "../organisms/DOLSignInDialog";
 import { LearningArchitecture } from '../atoms/LearningArchitecture'
+import HeroHeader from "../molecules/HeroHeader";
 
 const styles = theme => ({
     appBar: {
@@ -95,33 +96,22 @@ class DOLPageExplore extends React.Component {
 
     render() {
         const { literals, location, classes } = this.props;
+        const link_group_hero = [
+            { "href": "/profile", "title": "LEARNER PROFILE" },
+        ];
         return (
             <React.Fragment>
                 <CssBaseline />
-                {/* Hero unit */}
-                <div className={classes.heroUnit}>
-                    <div className={classes.heroContent}>
-                        <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                            Explore
-                        </Typography>
-                        <Typography variant="h6" align="center" color="textSecondary" paragraph>
-                            <HelpOutlineIcon /> <strong>Learn what you want</strong>. The catalogue below has <strong>streams</strong> which bundle up groups of <strong>practices</strong>. Each practice
+                <HeroHeader
+                    signin={<Grid key="signindialog" item><DOLSignInDialog /></Grid>}
+                    title="Explore"
+                    icon={<HelpOutlineIcon />}
+                    text={<React.Fragment key="herotext">
+                        <strong>Learn what you want</strong>. The catalogue below has <strong>streams</strong> which bundle up groups of <strong>practices</strong>. Each practice
                             has <strong>learning points</strong> which you can explore.
-                        </Typography>
-                        <div className={classes.heroButtons}>
-                            <Grid container spacing={16} justify="center">
-                                <Grid item>
-                                    <DOLSignInDialog />
-                                </Grid>
-                                <Grid item>
-                                    <Button variant="outlined" color="secondary">
-                                        Your Learner Profile
-                                    </Button>
-                                </Grid>
-                            </Grid>
-                        </div>
-                    </div>
-                </div>
+                    </React.Fragment>}
+                    links={link_group_hero}
+                />
                 <div className={classNames(classes.layout, classes.cardGrid)}>
                     <AppBar className={classNames(classes.segment)} position="static" color="default">
                         <Toolbar>

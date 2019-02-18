@@ -12,7 +12,6 @@ import Menu from '@material-ui/core/Menu';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import SettingsIcon from '@material-ui/icons/Settings';
 import MailIcon from '@material-ui/icons/Mail';
@@ -27,6 +26,11 @@ import { Link } from 'react-router-dom';
 
 // connect the state from redux
 import { connect } from "react-redux";
+import HeaderMenuItem from '../atoms/HeaderMenuItem';
+import HeaderMenuItemMobile from '../atoms/HeaderMenuItemMobile';
+import HeaderLogoItem from '../atoms/HeaderLogoItem';
+import HeaderSearchControl from '../molecules/HeaderSearchControl';
+import HeaderMenuItemDesktop from '../atoms/HeaderMenuItemDesktop';
 const mapStateToProps = state => {
     return {
         literals: state.literals
@@ -146,24 +150,48 @@ class DOLHeader extends React.Component {
                 open={isMenuOpen}
                 onClose={this.handleMenuClose}
             >
-                <MenuItem component={Link} to="/dashboard" onClick={this.handleMenuClose}>
-                    <SettingsIcon /> Dashboard Example
-                </MenuItem>
-                <MenuItem component={Link} to="/showcase" onClick={this.handleMenuClose}>
-                    <SettingsIcon /> Showcase Example
-                </MenuItem>
-                <MenuItem component={Link} to="/album" onClick={this.handleMenuClose}>
-                    <SettingsIcon /> Album Example
-                </MenuItem>
-                <MenuItem component={Link} to="/signin" onClick={this.handleMenuClose}>
-                    <SettingsIcon /> SignIn Example
-                </MenuItem>
-                <MenuItem component={Link} to="/pricing" onClick={this.handleMenuClose}>
-                    <SettingsIcon /> Pricing Example
-                </MenuItem>
-                <MenuItem component={Link} to="/logout" onClick={this.handleMenuClose}>
-                    <LockIcon /> Logout
-                </MenuItem>
+                <HeaderMenuItem
+                    href="/dashboard"
+                    icon={<SettingsIcon />}
+                    text="Dashboard Example"
+                    action={this.handleMenuClose}
+                />
+                <HeaderMenuItem
+                    href="/showcase"
+                    icon={<SettingsIcon />}
+                    text="Showcase Example"
+                    action={this.handleMenuClose}
+                />
+                <HeaderMenuItem
+                    href="/album"
+                    icon={<SettingsIcon />}
+                    text="Album Example"
+                    action={this.handleMenuClose}
+                />
+                <HeaderMenuItem
+                    href="/signin"
+                    icon={<SettingsIcon />}
+                    text="SignIn Example"
+                    action={this.handleMenuClose}
+                />
+                <HeaderMenuItem
+                    href="/pricing"
+                    icon={<SettingsIcon />}
+                    text="Pricing Example"
+                    action={this.handleMenuClose}
+                />
+                <HeaderMenuItem
+                    href="/settings"
+                    icon={<SettingsIcon />}
+                    text="Settings"
+                    action={this.handleMenuClose}
+                />
+                <HeaderMenuItem
+                    href="/logout"
+                    icon={<LockIcon />}
+                    text="Logout"
+                    action={this.handleMenuClose}
+                />
             </Menu>
         );
 
@@ -175,88 +203,74 @@ class DOLHeader extends React.Component {
                 open={isMobileMenuOpen}
                 onClose={this.handleMenuClose}
             >
-                <MenuItem component={Link} to="/explore" onClick={this.handleMobileMenuClose}>
-                    <IconButton color="inherit">
-                        <Badge badgeContent={4} color="secondary">
-                            <ImageSearchIcon />
-                        </Badge>
-                    </IconButton>
-                    <p>Explore</p>
-                </MenuItem>
-                <MenuItem component={Link} to="/share" onClick={this.handleMobileMenuClose}>
-                    <IconButton color="inherit">
-                        <Badge badgeContent={4} color="secondary">
-                            <AddCommentIcon />
-                        </Badge>
-                    </IconButton>
-                    <p>Share</p>
-                </MenuItem>
-                <MenuItem component={Link} to="/about" onClick={this.handleMobileMenuClose}>
-                    <IconButton color="inherit">
-                        <Badge badgeContent={11} color="secondary">
-                            <HelpOutlineIcon />
-                        </Badge>
-                    </IconButton>
-                    <p>About</p>
-                </MenuItem>
-                <MenuItem component={Link} to="/profile" onClick={this.handleMobileMenuClose}>
-                    <IconButton color="inherit">
-                        <AccountCircle />
-                    </IconButton>
-                    <p>Profile</p>
-                </MenuItem>
-                <MenuItem component={Link} to="/settings" onClick={this.handleMobileMenuClose}>
-                    <IconButton color="inherit">
-                        <SettingsIcon />
-                    </IconButton>
-                    <p>Settings</p>
-                </MenuItem>
-                <MenuItem component={Link} to="/logout" onClick={this.handleMobileMenuClose}>
-                    <IconButton color="inherit">
-                        <LockIcon />
-                    </IconButton>
-                    <p>Logout</p>
-                </MenuItem>
+                <HeaderMenuItemMobile
+                    href="/explore"
+                    icon={<ImageSearchIcon />}
+                    text="Explore"
+                    action={this.handleMobileMenuClose}
+                />
+                <HeaderMenuItemMobile
+                    href="/share"
+                    icon={<AddCommentIcon />}
+                    text="Share"
+                    action={this.handleMobileMenuClose}
+                />
+                <HeaderMenuItemMobile
+                    href="/about"
+                    icon={<HelpOutlineIcon />}
+                    text="About"
+                    action={this.handleMobileMenuClose}
+                />
+                <HeaderMenuItemMobile
+                    href="/profile"
+                    icon={<AccountCircle />}
+                    text="Profile"
+                    action={this.handleMobileMenuClose}
+                />
+                <HeaderMenuItemMobile
+                    href="/settings"
+                    icon={<SettingsIcon />}
+                    text="Settings"
+                    action={this.handleMobileMenuClose}
+                />
+                <HeaderMenuItemMobile
+                    href="/logout"
+                    icon={<LockIcon />}
+                    text="Logout"
+                    action={this.handleMobileMenuClose}
+                />
             </Menu>
         );
 
-        /**<Typography component={Link} to="/home" className={classes.title} variant="h6" color="inherit" noWrap>
-                        </Typography>
-                         */
         return (
             <div className={classes.root}>
                 <AppBar position="fixed">
                     <Toolbar>
                         <DOLDrawer />
-                        <Button color="inherit" component={Link} to="/home">
-                            Digital Open Learning
-                        </Button>
-                        <div className={classes.search}>
-                            <div className={classes.searchIcon}>
-                                <SearchIcon />
-                            </div>
-                            <InputBase
-                                placeholder="Search..."
-                                classes={{
-                                    root: classes.inputRoot,
-                                    input: classes.inputInput,
-                                }}
-                            />
-                        </div>
+                        <HeaderLogoItem text="DOL" href="/home" />
+                        <HeaderSearchControl />
                         <div className={classes.grow} />
                         <div className={classes.sectionDesktop}>
-                            <Button color="inherit" component={Link} to="/explore">
-                                <ImageSearchIcon /> Explore
-                            </Button>
-                            <Button color="inherit" component={Link} to="/share">
-                                <AddCommentIcon /> Share
-                            </Button>
-                            <Button color="inherit" component={Link} to="/about">
-                                <HelpOutlineIcon /> About
-                            </Button>
-                            <Button color="inherit" component={Link} to="/profile">
-                                <AccountCircle /> Profile
-                            </Button>
+                            <HeaderMenuItemDesktop
+                                href="/explore"
+                                icon={<ImageSearchIcon />}
+                                text="Explore"
+                            />
+                            <HeaderMenuItemDesktop
+                                href="/share"
+                                icon={<AddCommentIcon />}
+                                text="Share"
+                            />
+                            <HeaderMenuItemDesktop
+                                href="/about"
+                                icon={<HelpOutlineIcon />}
+                                text="About"
+                            />
+                            <HeaderMenuItemDesktop
+                                href="/profile"
+                                icon={<AccountCircle />}
+                                text="Profile"
+                            />
                             <IconButton color="inherit">
                                 <Badge badgeContent={17} color="secondary">
                                     <NotificationsIcon />
@@ -277,7 +291,6 @@ class DOLHeader extends React.Component {
                             </IconButton>
                         </div>
                     </Toolbar>
-
                 </AppBar>
                 {renderMenu}
                 {renderMobileMenu}

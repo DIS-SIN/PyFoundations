@@ -17,7 +17,7 @@ import DOLPageUserProfile from "../views/DOLPageUserProfile";
 
 import DOLHeader from "../organisms/DOLHeader";
 import DOLFooter from "../organisms/DOLFooter";
-import PrimaryActionPanel from "../organisms/DOLPrimaryActionPanel";
+import DOLPrimaryActionPanel from "../organisms/DOLPrimaryActionPanel";
 
 
 const mapStateToProps = state => {
@@ -49,15 +49,17 @@ class DOLLayout extends React.Component {
                 <DOLHeader />
                 {/*<main>*/}
                 <Switch>
-                    <Route exact path='/' component={DOLPageStub} />
+                    <Route exact path='/' component={DOLPageHome} />
                     <Route exact path='/home' component={DOLPageHome} />
                     <Route exact path='/explore' component={DOLPageExplore} />
-                    <Route exact path='/share' component={DOLPageStub} />
+                    <Route exact path='/streams' component={DOLPageLearningStreams} />
+                    <Route exact path='/share' component={DOLPageShare} />
                     <Route exact path='/about' component={DOLPageAbout} />
                     <Route exact path='/profile' component={DOLPageUserProfile} />
+                    <Route exact path='/search' component={DOLPageSearch} />
                     <Route exact path='/logout' component={DOLPageStub} />
                 </Switch>
-                <PrimaryActionPanel />
+                <DOLPrimaryActionPanel />
                 {/*</main>*/}
                 <DOLFooter />
             </React.Fragment>
