@@ -13,9 +13,10 @@ def view_one(model, id):
     # If we get one, continue, otherwise return a failure message
     if len(db_return) == 1:
         return jsonify(
-            json_en.default(json_en, db_return[0]), {"api_return": "success"}
+            [{"api_data": json_en.default(
+                json_en, db_return[0]), "api_return": "success"}]
         )
-    return jsonify({"api_return": "failure"})
+    return jsonify([{"api_return": "failure", "api_data": {}}])
 
 
 def view_all(model):
@@ -27,4 +28,4 @@ def view_all(model):
 
     for obj in db_return:
         return_obj.append(json_en.default(json_en, obj))
-    return jsonify(return_obj, {"api_return": "success"})
+    return jsonify([{"api_return": "success", "api_data": return_obj}])
