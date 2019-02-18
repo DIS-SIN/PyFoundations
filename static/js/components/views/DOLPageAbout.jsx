@@ -60,6 +60,10 @@ class DOLPageAbout extends React.Component {
             { "href": "/share", "title": "PARTICIPATE" },
             { "href": "/explore", "title": "BROWSE" },
         ];
+        const link_group_explorecard = [
+            { "href": "/streams", "title": "STREAMS" },
+            { "href": "/practices", "title": "PRACTICES" },
+        ];
         return (
             <React.Fragment>
                 <CssBaseline />
@@ -69,7 +73,7 @@ class DOLPageAbout extends React.Component {
                     text={<React.Fragment key="herotext"><strong>Digtal Open Learning is an idea.</strong> To make sense of <strong>Digital in a Human way</strong>.
                             Digital transformation isn't about technology alone. It's cultural and human.
                             Let's <strong>build awareness</strong> of possibilities, <strong>increase confidence</strong> and <strong>capacity</strong> of government employees
-                            together.Explore below to find curated and < strong > personalized learning opportunities</strong></React.Fragment>}
+                            together.Explore below to find curated and <strong>personalized learning opportunities</strong></React.Fragment>}
                     links={link_group_hero}
                 />
                 <div className={classNames(classes.layout, classes.cardGrid)}>
@@ -83,6 +87,11 @@ class DOLPageAbout extends React.Component {
                             title="What to Expect"
                             text={listfragment}
                             links={link_group_expectcard}
+                        />
+                        <GridInfoCard
+                            title="Explore DOL"
+                            text="DOL has a curated catalogue of Digital Learning Resources. Explore them furhter by Stream, Practice, and more. When you find something you want to know more about, add it to your profile so you can track your learning."
+                            links={link_group_explorecard}
                         />
                     </Grid>
                 </div>

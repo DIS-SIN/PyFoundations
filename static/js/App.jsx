@@ -46,7 +46,11 @@ class App extends React.Component {
         <Switch>
           <Route exact path='/' component={DOLLayout} />
           <Route exact path='/home' component={DOLLayout} />
+
           <Route exact path='/explore' component={DOLLayout} />
+          <Route exact path='/streams' component={DOLLayout} />
+          <Route exact path='/practices' component={DOLLayout} />
+
           <Route exact path='/share' component={DOLLayout} />
           <Route exact path='/about' component={DOLLayout} />
           <Route exact path='/profile' component={DOLLayout} />

@@ -32,7 +32,7 @@ const styles = theme => ({
     },
 });
 
-const cards = LearningArchitecture().loach_structure.streams;
+const streams = LearningArchitecture().loach_structure.streams;
 
 const mapStateToProps = state => {
     return {
@@ -49,7 +49,7 @@ class DOLPageHome extends React.Component {
         const { literals, location, classes } = this.props;
 
         const link_group_stream = [
-            { "href": "/explore", "title": "EXPLORE" },
+            { "href": "/exmplore/stream", "title": "EXPLORE" },
             { "href": "/profile/add/stream", "title": "ADD TO PROFILE" },
         ];
         const link_group_hero = [
@@ -69,10 +69,11 @@ class DOLPageHome extends React.Component {
                 />
                 <div className={classNames(classes.layout, classes.cardGrid)}>
                     <Grid container spacing={40}>
-                        {cards.map((item, index) => (
+                        {streams.map((item, index) => (
                             <GridInfoCard
                                 key={index}
                                 title={item.stream}
+                                cover={item.cover}
                                 text={item.description}
                                 links={link_group_stream}
                             />

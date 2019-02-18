@@ -22,6 +22,8 @@ import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import DOLSignInDialog from "../organisms/DOLSignInDialog";
 import { LearningArchitecture } from '../atoms/LearningArchitecture'
 import HeroHeader from "../molecules/HeroHeader";
+import DOLStreams from "../organisms/DOLStreams";
+import DOLPractices from "../organisms/DOLPractices";
 
 const styles = theme => ({
     appBar: {
@@ -113,82 +115,10 @@ class DOLPageExplore extends React.Component {
                     links={link_group_hero}
                 />
                 <div className={classNames(classes.layout, classes.cardGrid)}>
-                    <AppBar className={classNames(classes.segment)} position="static" color="default">
-                        <Toolbar>
-                            <Typography justify="center" variant="h5" component="div">
-                                Streams
-                            </Typography>
-                        </Toolbar>
-                    </AppBar>
-                    <Grid container spacing={40}>
-                        {streams.map((item, index) => (
-                            <Grid item key={index} sm={6} md={4}>
-                                <Card className={classes.card}>
-                                    <CardMedia
-                                        className={classes.cardMedia}
-                                        image={item.cover} // eslint-disable-line max-len
-                                        title="Image title"
-                                    />
-                                    <CardContent className={classes.cardContent}>
-                                        <Typography gutterBottom variant="h5" component="h2">
-                                            {item.stream}
-                                        </Typography>
-                                        <Typography>
-                                            {item.description}
-                                        </Typography>
-                                    </CardContent>
-                                    <CardActions>
-                                        <Button size="small" color="primary">
-                                            EXPLORE
-                                        </Button>
-                                        <Button size="small" color="primary">
-                                            ADD TO PROFILE
-                                        </Button>
-                                    </CardActions>
-                                </Card>
-                            </Grid>
-                        ))}
-                    </Grid>
-                    <AppBar className={classes.segment} position="static" color="default">
-                        <Toolbar>
-                            <Typography justify="center" variant="h5" component="div">
-                                Practices
-                            </Typography>
-                        </Toolbar>
-                    </AppBar>
-                    <Grid container spacing={40}>
-                        {practices.map((item, index) => (
-                            <Grid item key={index} sm={4} md={3}>
-                                <Card className={classes.card}>
-                                    <CardMedia
-                                        className={classes.cardMedia}
-                                        image="http://placeimg.com/640/360/tech"
-                                        //"https://loremflickr.com/640/360"//"https://via.placeholder.com/500/f5f5f5"// eslint-disable-line max-len
-                                        title="Image title"
-                                    />
-                                    <CardContent className={classes.cardContent}>
-                                        <Typography gutterBottom variant="h5" component="h2">
-                                            {item.practice}
-                                        </Typography>
-                                        <Typography>
-                                            {item.practice}
-                                        </Typography>
-                                    </CardContent>
-                                    <CardActions>
-                                        <Button size="small" color="primary">
-                                            EXPLORE
-                                        </Button>
-                                        <Button size="small" color="primary">
-                                            ADD TO PROFILE
-                                        </Button>
-                                    </CardActions>
-                                </Card>
-                            </Grid>
-                        ))}
-                    </Grid>
-
+                    <DOLStreams />
+                    <DOLPractices />
                 </div>
-            </React.Fragment>
+            </React.Fragment >
         );
     }
 }

@@ -86,12 +86,6 @@ class DOLPageUserProfile extends React.Component {
                             <Avatar alt="Learner Avatar" src="https://via.placeholder.com/500/333333" className={classes.avatar} >
                                 LN
                             </Avatar>
-                            {/*<Avatar
-                                    ultraLarge={upSm}
-                                    medium={!upSm}
-                                    style={{ margin: 'auto' }}
-                                    src="https://cc-media-foxit.fichub.com/image/fox-it-mondofox/e8c0f288-781d-4d0b-98ad-fd169782b53b/scene-sottacqua-per-i-sequel-di-avatar-maxw-654.jpg"
-                            />*/}
                         </Grid>
                         <Grid item xs={12} sm={8}>
 

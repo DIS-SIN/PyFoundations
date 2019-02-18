@@ -13,6 +13,7 @@ import DOLPageShare from "../views/DOLPageShare";
 import DOLPageSearch from "../views/DOLPageSearch";
 import DOLPageAbout from "../views/DOLPageAbout";
 import DOLPageLearningStreams from "../views/DOLPageLearningStreams";
+import DOLPageLearningPractices from "../views/DOLPageLearningPractices";
 import DOLPageUserProfile from "../views/DOLPageUserProfile";
 
 import DOLHeader from "../organisms/DOLHeader";
@@ -51,8 +52,11 @@ class DOLLayout extends React.Component {
                 <Switch>
                     <Route exact path='/' component={DOLPageHome} />
                     <Route exact path='/home' component={DOLPageHome} />
+
                     <Route exact path='/explore' component={DOLPageExplore} />
                     <Route exact path='/streams' component={DOLPageLearningStreams} />
+                    <Route exact path='/practices' component={DOLPageLearningPractices} />
+
                     <Route exact path='/share' component={DOLPageShare} />
                     <Route exact path='/about' component={DOLPageAbout} />
                     <Route exact path='/profile' component={DOLPageUserProfile} />
