@@ -204,7 +204,6 @@ class AjaxTest extends React.Component {
                             <Typography gutterBottom variant="headline" component="h2">
                                 {apiitem.occurred_at}
                             </Typography>
-                            {console.log(apiitem.tags)}
                             {(
                                 apiitem.tags == null ? (
                                     <React.Fragment key={index}>
