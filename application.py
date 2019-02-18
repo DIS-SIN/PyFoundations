@@ -25,6 +25,7 @@ def create_app():
         SQLALCHEMY_DATABASE_URI="postgresql+psycopg2://postgres:password@localhost:5432/dol",
         SQLALCHEMY_TRACK_MODIFICATIONS=False,
     )
+    app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
     app.register_blueprint(dol.bp)
 

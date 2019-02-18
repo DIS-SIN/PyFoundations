@@ -81,7 +81,7 @@ class AjaxTest extends React.Component {
 
     // this fires when the component loads
     componentDidMount() {
-        fetch("/api/learning_point") // dol/api/gettest // /api/learning_point
+        fetch("/api/experience") // dol/api/gettest // /api/learning_point
             .then(res => res.json())
             .then(
                 (result) => {
@@ -106,7 +106,7 @@ class AjaxTest extends React.Component {
 
     handleSubmit = async e => {
         e.preventDefault();
-        const response = await fetch('/api/learning_point', {
+        const response = await fetch('/api/experience', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -181,11 +181,70 @@ class AjaxTest extends React.Component {
                 </React.Fragment>
             )
 
-            const learningpoints_api_state = apireturn.slice(0)[0].api_return;
+            //[{ "api_data": [], "api_return": "success" }]
+            const api_state = apireturn.slice(0)[0].api_return;
+            const api_content = apireturn.slice(0)[0].api_data;
+
+            let learningPointItem = "";
+
+            if (api_state === "success") {
+                if (api_content.length === 0) {
+                    //alert("N O D A T A, API OK " + api_content.length);
+                    learningPointItem = (
+                        <Grid item xs={12}>
+                            <Typography gutterBottom variant="headline" component="h2">
+                                No Records Found
+                            </Typography>
+                        </Grid>
+                    );
+                } else {
+                    //alert("S U C C E S S " + api_content.length);
+                    learningPointItem = api_content.map((apiitem, index) => (
+                        <Grid item xs={12} key={index}>
+                            <Typography gutterBottom variant="headline" component="h2">
+                                {apiitem.occurred_at}
+                            </Typography>
+                            {console.log(apiitem.tags)}
+                            {(
+                                apiitem.tags == null ? (
+                                    <React.Fragment key={index}>
+                                        <Typography gutterBottom variant="headline" component="div">
+                                            Add Tag...
+                                        </Typography>
+                                    </React.Fragment>
+                                ) : (
+                                        apiitem.tags.map((tag, index) => (
+                                            <React.Fragment key={index}>
+                                                <Chip
+                                                    icon={<LabelIcon />}
+                                                    label={tag}
+                                                    color="primary"
+                                                />
+                                            </React.Fragment>
+                                        ))
+                                    )
+                            )}
+                        </Grid >
+                    ))
+                }
+            } else {
+                learningPointItem = (
+                    <Grid item xs={12}>
+                        <Typography gutterBottom variant="headline" component="h2">
+                            API Failed
+                        </Typography>
+                    </Grid>
+                );
+            }
+
+
+            {/*
             if (learningpoints_api_state === "success") {
+                alert(apireturn.api_data.length);
+
                 const learningpoints = apireturn.slice(0)[0].api_data;
-                if (learningpoints === "undefined") {
-                    const learningPointItem = (
+                if (apireturn.api_data.length == 0) {
+                    learningPointItem = (
                         <Grid item xs={12} key={index}>
                             <Typography gutterBottom variant="headline" component="h2">
                                 No Records Found
@@ -193,7 +252,7 @@ class AjaxTest extends React.Component {
                         </Grid>
                     );
                 } else {
-                    const learningPointItem = learningpoints.map((learningpoint, index) => (
+                    learningPointItem = learningpoints.map((learningpoint, index) => (
                         <Grid item xs={12} key={index}>
                             <Typography gutterBottom variant="headline" component="h2">
                                 {learningpoint.name}
@@ -219,7 +278,7 @@ class AjaxTest extends React.Component {
                     ))
                 }
             } else {
-                const learningPointItem = (
+                learningPointItem = (
                     <Grid item xs={12} key={index}>
                         <Typography gutterBottom variant="headline" component="h2">
                             API Failure
@@ -227,28 +286,15 @@ class AjaxTest extends React.Component {
                     </Grid>
                 );
             }
-
-            /*
-            const tags = apireturn.slice(0);
-            const tagItem = tags.map((tag, index) => (
-                <Grid item xs={12} key={index}>
-                    <React.Fragment key={index}>
-                        <Chip
-                            icon={<LabelIcon />}
-                            label={tag.tag + " @" + tag.added_timestamp}
-                            color="primary"
-                        />
-                    </React.Fragment>
-                </Grid>
-            ))*/
+        */}
 
             //  {learningPointItem}
             const returnFragment = (
                 <React.Fragment>
-                    {ajaxTestReturnFragment}
                     <Grid spacing={24} alignItems="center" justify="center" container>
                         {learningPointItem}
                     </Grid>
+                    {ajaxTestReturnFragment}
                 </React.Fragment>
             )
             return returnFragment;
