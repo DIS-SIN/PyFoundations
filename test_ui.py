@@ -12,22 +12,10 @@ import os
 #from code import testui_dol
 from code import dol
 
-
-# ULTRABASIC TEMPLATE RENDERER
-# So the UI guy can build somewhat useable templates
-# from the get go. Easier to integrate afterwards
-
 app_set_debug_mode = 0  # 0=none,1=entry,2=entry/exit,3=all
 
 
 def create_app():
-    # HACK:
-    # we're setting the static path to "" so that the i18n lib can find the
-    # hardcoded path of locales it's looking for. Probably want to refactor this
-    # by catching incoming ajax requests to the locales folder
-    # app = Flask(__name__, static_url_path='')
-
-    # HACK-FIX: Dropped i18n and i18next. Buggy, unreliable.
     app = Flask(__name__)
     app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 

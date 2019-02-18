@@ -112,16 +112,6 @@ class DOLSignInDialog extends React.Component {
         this.setState({ open: false });
     };
 
-    /**
-     *                         <TextField
-                            autoFocus
-                            margin="dense"
-                            id="name"
-                            label="Email Address"
-                            type="email"
-                            fullWidth
-                        />
-     */
     render() {
         const { classes } = this.props;
         const { email, password } = this.state;

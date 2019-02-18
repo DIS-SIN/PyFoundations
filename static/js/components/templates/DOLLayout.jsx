@@ -50,7 +50,7 @@ class DOLLayout extends React.Component {
                 <DOLHeader />
                 {/*<main>*/}
                 <Switch>
-                    <Route exact path='/' component={DOLPageHome} />
+                    <Route exact path='/' component={DOLPageStub} />
                     <Route exact path='/home' component={DOLPageHome} />
 
                     <Route exact path='/explore' component={DOLPageExplore} />

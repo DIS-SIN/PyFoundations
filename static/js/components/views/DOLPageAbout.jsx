@@ -11,6 +11,7 @@ import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 
 import HeroHeader from "../molecules/HeroHeader";
 import GridInfoCard from "../molecules/GridInfoCard";
+import DOLSignInDialog from "../organisms/DOLSignInDialog";
 
 const styles = theme => ({
     layout: {
@@ -68,6 +69,8 @@ class DOLPageAbout extends React.Component {
             <React.Fragment>
                 <CssBaseline />
                 <HeroHeader
+                    signin={<Grid key="signindialog" item><DOLSignInDialog /></Grid>}
+
                     title="About"
                     icon={<HelpOutlineIcon />}
                     text={<React.Fragment key="herotext"><strong>Digtal Open Learning is an idea.</strong> To make sense of <strong>Digital in a Human way</strong>.
