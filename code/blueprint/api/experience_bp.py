@@ -1,21 +1,18 @@
-from flask import Blueprint
+from flask_restful import Resource
 from models.models import Experience
-
-
-bp = Blueprint("api.experience", __name__, url_prefix="/api/experience/")
 
 model = Experience
 
 
-@bp.route("/<int:id>", methods=("GET",))
-def view_one(id):
-    from .blueprint_factory import view_one
+class ExperienceResource(Resource):
+    def get(self, id):
+        from .blueprint_factory import view_one
 
-    return view_one(model, id)
+        return view_one(model, id)
 
 
-@bp.route("/", methods=("GET",))
-def view_all():
-    from .blueprint_factory import view_all
+class AllExperienceResource(Resource):
+    def get(self):
+        from .blueprint_factory import view_all
 
-    return view_all(model)
+        return view_all(model)
