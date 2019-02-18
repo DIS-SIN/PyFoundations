@@ -39,7 +39,8 @@ def create_app():
     api.add_resource(LearningPointResource, "/api/learning_point/<int:id>")
     api.add_resource(AllLearningPointResource, "/api/learning_point/")
 
-    api.add_resource(LearningResourceResource, "/api/learning_resource/<int:id>")
+    api.add_resource(LearningResourceResource,
+                     "/api/learning_resource/<int:id>")
     api.add_resource(AllLearningResourceResource, "/api/learning_resource/")
 
     api.add_resource(StreamResource, "/api/stream/<int:id>")
@@ -47,6 +48,10 @@ def create_app():
 
     api.add_resource(UserResource, "/api/user/<int:id>")
     api.add_resource(AllUserResource, "/api/user/")
+
+    @app.route('/')
+    def index():
+        return redirect(url_for('dol.render_home'))
 
     @app.route("/about")
     def about():
