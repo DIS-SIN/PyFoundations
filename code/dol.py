@@ -2,7 +2,7 @@ from flask import (Blueprint, render_template,
                    render_template_string, request, redirect, url_for, Markup, jsonify)
 import json
 import urllib
-import requests
+
 # debug enable for logging
 app_set_debug_mode = 1  # 0=none,1=entry,2=entry/exit,3=all
 

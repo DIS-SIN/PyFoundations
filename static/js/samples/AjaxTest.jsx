@@ -81,7 +81,7 @@ class AjaxTest extends React.Component {
 
     // this fires when the component loads
     componentDidMount() {
-        fetch("/api/test/learning_point") // dol/api/gettest // /api/learning_point
+        fetch("/api/learning_point") // dol/api/gettest // /api/learning_point
             .then(res => res.json())
             .then(
                 (result) => {
@@ -106,7 +106,7 @@ class AjaxTest extends React.Component {
 
     handleSubmit = async e => {
         e.preventDefault();
-        const response = await fetch('/api/test/learning_point', {
+        const response = await fetch('/api/learning_point', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -130,14 +130,6 @@ class AjaxTest extends React.Component {
         } else if (!isLoaded) {
             return <div>{literals.ajaxtest.loading}...</div>;
         } else {
-            // id name description slug tags{id tag datetime} difficulty
-            /**
-             *                         <input
-                                        type="text"
-                                        value={post}
-                                        onChange={e => this.setState({ post: e.target.value })}
-                                    />
-             */
             const ajaxTestReturnFragment = (
                 <React.Fragment>
                     <form className="reqResDetails" onSubmit={this.handleSubmit}>
@@ -189,35 +181,52 @@ class AjaxTest extends React.Component {
                 </React.Fragment>
             )
 
-
-            //<small><strong>{tag.tagname}</strong> ({tag.id}@{tag.datetime})</small>
-
-            const learningpoints = apireturn.slice(0)[0].api_data;
-            //console.log(learningpoints);
-            const learningPointItem = learningpoints.map((learningpoint, index) => (
-                <Grid item xs={12} key={index}>
-                    <Typography gutterBottom variant="headline" component="h2">
-                        {learningpoint.name}
-                        <Chip
-                            icon={<LabelIcon />}
-                            label={learningpoint.difficulty}
-                            color="primary"
-                        />
-                    </Typography>
-                    <Typography component="p">
-                        {learningpoint.description} ({learningpoint.slug})
-                    </Typography>
-                    {learningpoint.tags.map((tag, index) => (
-                        <React.Fragment key={index}>
-                            <Chip
-                                icon={<LabelIcon />}
-                                label={tag.tag + " @" + tag.added_timestamp}
-                                color="primary"
-                            />
-                        </React.Fragment>
-                    ))}
-                </Grid>
-            ))
+            const learningpoints_api_state = apireturn.slice(0)[0].api_return;
+            if (learningpoints_api_state === "success") {
+                const learningpoints = apireturn.slice(0)[0].api_data;
+                if (learningpoints === "undefined") {
+                    const learningPointItem = (
+                        <Grid item xs={12} key={index}>
+                            <Typography gutterBottom variant="headline" component="h2">
+                                No Records Found
+                            </Typography>
+                        </Grid>
+                    );
+                } else {
+                    const learningPointItem = learningpoints.map((learningpoint, index) => (
+                        <Grid item xs={12} key={index}>
+                            <Typography gutterBottom variant="headline" component="h2">
+                                {learningpoint.name}
+                                <Chip
+                                    icon={<LabelIcon />}
+                                    label={learningpoint.difficulty}
+                                    color="primary"
+                                />
+                            </Typography>
+                            <Typography component="p">
+                                {learningpoint.description} ({learningpoint.slug})
+                            </Typography>
+                            {learningpoint.tags.map((tag, index) => (
+                                <React.Fragment key={index}>
+                                    <Chip
+                                        icon={<LabelIcon />}
+                                        label={tag.tag + " @" + tag.added_timestamp}
+                                        color="primary"
+                                    />
+                                </React.Fragment>
+                            ))}
+                        </Grid>
+                    ))
+                }
+            } else {
+                const learningPointItem = (
+                    <Grid item xs={12} key={index}>
+                        <Typography gutterBottom variant="headline" component="h2">
+                            API Failure
+                        </Typography>
+                    </Grid>
+                );
+            }
 
             /*
             const tags = apireturn.slice(0);
