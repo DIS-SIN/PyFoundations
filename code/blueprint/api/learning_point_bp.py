@@ -1,55 +1,23 @@
 from flask_restful import Resource
 from models.models import LearningPoint
+from .resource_factory import view_one, view_all, insert_one, update_one, delete_one
 
 model = LearningPoint
+json_object_name = "learning_point"
 
 
 class LearningPointResource(Resource):
-    def get(self, id):
-        from .blueprint_factory import view_one
+    def get(self, id=None):
+        if id is not None:
+            return view_one(model, id)
+        else:
+            return view_all(model)
 
-        return view_one(model, id)
+    def post(self):
+        return insert_one(model, json_object_name)
 
+    def put(self, id):
+        return update_one(model, id, json_object_name)
 
-class AllLearningPointResource(Resource):
-    def get(self):
-        from .blueprint_factory import view_all
-
-        return view_all(model)
-
-
-# @bp.route("/", methods=("POST",))
-# def update():
-#     request_data = request.get_json()
-#     if request_data is not None:
-#         # Do the json 'serialising'
-#         # id = auto incremented by DB
-#         # added_timestamp = auto set by db
-#         learning_point = LearningPoint()
-#         for field in dir(learning_point):
-#             setattr(learning_point, field, request_data[field])
-#
-#         update_model_by_id(LearningPoint, id, learning_point)
-#     return "Add Learning Point"
-#
-#
-# @bp.route("/<int:id>", methods=("PUT",))
-# def update_point(id):
-#     request_data = request.get_json()
-#     if request_data is not None:
-#         # Do the json 'serialising'
-#         # id = auto incremented by DB
-#         # added_timestamp = auto set by db
-#         learning_point = LearningPoint()
-#         for field in dir(learning_point):
-#             setattr(learning_point, field, request_data[field])
-#
-#         insert_model(learning_point)
-#     return "Update Learning Point"
-#
-#
-# @bp.route("/<int:id>", methods=("DELETE",))
-# def delete(id):
-#     return "Delete Learning Point"
-#
-
+    def delete(self, id):
+        return delete_one(model, json_object_name)
