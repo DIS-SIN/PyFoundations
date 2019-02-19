@@ -2,20 +2,12 @@ from flask import Flask, redirect, url_for, jsonify
 from flask_restful import Api
 from code import dol
 from models import models
-
-
-from code.blueprint.api.episode_bp import EpisodeResource, AllEpisodeResource
-from code.blueprint.api.experience_bp import ExperienceResource, AllExperienceResource
-from code.blueprint.api.learning_point_bp import (
-    LearningPointResource,
-    AllLearningPointResource,
-)
-from code.blueprint.api.learning_resource_bp import (
-    LearningResourceResource,
-    AllLearningResourceResource,
-)
-from code.blueprint.api.stream_bp import StreamResource, AllStreamResource
-from code.blueprint.api.user_bp import UserResource, AllUserResource
+from code.blueprint.api.user_bp import UserResource
+from code.blueprint.api.stream_bp import StreamResource
+from code.blueprint.api.episode_bp import EpisodeResource
+from code.blueprint.api.experience_bp import ExperienceResource
+from code.blueprint.api.learning_point_bp import LearningPointResource
+from code.blueprint.api.learning_resource_bp import LearningResourceResource
 
 
 def create_app():
@@ -29,24 +21,22 @@ def create_app():
     app.register_blueprint(dol.bp)
 
     api = Api(app)
+    api.add_resource(UserResource, "/api/user/", "/api/user/<int:id>")
+    api.add_resource(StreamResource, "/api/stream/", "/api/stream/<int:id>")
+    api.add_resource(EpisodeResource, "/api/episode/", "/api/episode/<int:id>")
+    api.add_resource(ExperienceResource, "/api/experience/", "/api/experience/<int:id>")
+    api.add_resource(
+        LearningPointResource, "/api/learning_point/", "/api/learning_point/<int:id>"
+    )
+    api.add_resource(
+        LearningResourceResource,
+        "/api/learning_resource/",
+        "/api/learning_resource/<int:id>",
+    )
 
-    api.add_resource(EpisodeResource, "/api/episode/<int:id>")
-    api.add_resource(AllEpisodeResource, "/api/episode/")
-
-    api.add_resource(ExperienceResource, "/api/experience/<int:id>")
-    api.add_resource(AllExperienceResource, "/api/experience/")
-
-    api.add_resource(LearningPointResource, "/api/learning_point/<int:id>")
-    api.add_resource(AllLearningPointResource, "/api/learning_point/")
-
-    api.add_resource(LearningResourceResource, "/api/learning_resource/<int:id>")
-    api.add_resource(AllLearningResourceResource, "/api/learning_resource/")
-
-    api.add_resource(StreamResource, "/api/stream/<int:id>")
-    api.add_resource(AllStreamResource, "/api/stream/")
-
-    api.add_resource(UserResource, "/api/user/<int:id>")
-    api.add_resource(AllUserResource, "/api/user/")
+    @app.route("/")
+    def index():
+        return redirect(url_for("dol.render_home"))
 
     @app.route("/about")
     def about():
