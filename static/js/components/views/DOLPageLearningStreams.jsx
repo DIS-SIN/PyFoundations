@@ -10,6 +10,7 @@ import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 
 import HeroHeader from "../molecules/HeroHeader";
 import DOLStreams from "../organisms/DOLStreams";
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 
 const styles = theme => ({
@@ -43,16 +44,16 @@ class DOLPageLearningStreams extends React.Component {
         const { literals, location, classes } = this.props;
 
         const link_group_hero = [
-            { "href": "/explore", "title": "Explore" },
+            { "href": "/explore", "title": literals.common.explore },
         ];
         return (
             <React.Fragment>
                 <CssBaseline />
                 <HeroHeader
-                    title="Streams"
+                    title={literals.pages.streams.hero.title}
                     icon={<HelpOutlineIcon />}
                     text={<React.Fragment key="herotext">
-                        <strong>Learing Stream</strong>. The top level hierarchy of <strong>Digital Open Learning</strong>.
+                        {ReactHtmlParser(literals.pages.streams.hero.title)}
                     </React.Fragment>}
                     links={link_group_hero}
                 />

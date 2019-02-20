@@ -15,6 +15,7 @@ import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 
 import ProgressBarLinear from "../atoms/ProgressBarLinear";
 import HeroHeader from "../molecules/HeroHeader";
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 const styles = theme => ({
     layout: {
@@ -68,27 +69,27 @@ class DOLPageUserProfile extends React.Component {
         const progressMain = 80;
 
         const link_group_hero = [
-            { "href": "/profile/goals", "title": "SET GOALS" },
-            { "href": "/profile/update", "title": "UPDATE LEARNER PROFILE" },
+            { "href": "/profile/goals", "title": literals.pages.profile.hero.setgoals },
+            { "href": "/profile/update", "title": literals.pages.profile.hero.updateprofile },
         ];
 
         return (
             <React.Fragment>
                 <CssBaseline />
                 <HeroHeader
-                    title="Profile"
+                    title={literals.pages.profile.hero.title}
                     icon={<HelpOutlineIcon />}
                     text={<React.Fragment key="herotext">
-                        Let's <strong>track how far</strong> you've come and <strong>what you now</strong> know!
-                            <ProgressBarLinear completed={progressMain} />
+                        {ReactHtmlParser(literals.pages.profile.hero.text)}
+                        <ProgressBarLinear completed={progressMain} />
                     </React.Fragment>}
                     links={link_group_hero}
                 />
                 <div className={classNames(classes.layout)}>
                     <Grid container spacing={16} >
                         <Grid item xs={12} sm={4}>
-                            <Avatar alt="Learner Avatar" src="https://via.placeholder.com/500/333333" className={classes.avatar} >
-                                LN
+                            <Avatar alt="Avatar" src="https://via.placeholder.com/500/333333" className={classes.avatar} >
+                                EW
                             </Avatar>
                         </Grid>
                         <Grid item xs={12} sm={8}>
@@ -96,13 +97,13 @@ class DOLPageUserProfile extends React.Component {
                             <Grid container spacing={16} alignItems="center">
                                 <Grid item>
                                     <Typography component="h1" variant="h4">
-                                        Learner Name
+                                        Elle Weasela
                                     </Typography>
                                 </Grid>
                                 <Grid item>
                                     <div className={classes.settings}>
                                         <Button className={classes.editButton} variant="outlined" >
-                                            Edit Profile
+                                            {literals.pages.profile.editprofile}
                                         </Button>
                                     </div>
                                 </Grid>
@@ -111,19 +112,19 @@ class DOLPageUserProfile extends React.Component {
                             <Grid container spacing={40}>
                                 <Grid item>
                                     <Typography variant="subtitle1">
-                                        <b>4</b> Streams
+                                        <b>4</b> {literals.common.streams}
                                     </Typography>
                                     <ProgressBarLinear completed={progressMain} />
                                 </Grid>
                                 <Grid item>
                                     <Typography variant="subtitle1">
-                                        <b>22</b> Practices
+                                        <b>22</b> {literals.common.practices}
                                     </Typography>
                                     <ProgressBarLinear completed={progressMain} />
                                 </Grid>
                                 <Grid item>
                                     <Typography variant="subtitle1">
-                                        <b>260</b> Experiences
+                                        <b>260</b> {literals.common.experiences}
                                     </Typography>
                                     <ProgressBarLinear completed={progressMain} />
                                 </Grid>
@@ -136,10 +137,10 @@ class DOLPageUserProfile extends React.Component {
                                     </Typography>
                                 </Grid>
                                 <Grid item>
-                                    <Typography variant="subtitle1">Department, Team</Typography>
+                                    <Typography variant="subtitle1">CSPS, DIS/DAT</Typography>
                                 </Grid>
                                 <Grid item>
-                                    <Typography variant="subtitle1">Location, Information</Typography>
+                                    <Typography variant="subtitle1">Ottawa, ON</Typography>
                                 </Grid>
                             </Grid>
                         </Grid>

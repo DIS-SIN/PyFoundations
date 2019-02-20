@@ -1,8 +1,47 @@
 {
+    "common": {
+        "english": "English",
+        "french": "Français",
+        "dol": "DOL",
+        "aon": "AON",
+        "dolfull": "DIGITAL OPEN LEARNING",
+        "aonfull": "APPRENTISSAGE OUVERT NUMÉRIQUE",
+        "logout": "Déconnexion",
+        "explore": "Explorer",
+        "share": "Partager",
+        "about": "À propos",
+        "profile": "Profil",
+        "learnerprofile": "Profil d'apprentissage",
+        "settings": "Réglages",
+        "signin": "Connexion",
+        "search": "Chercher",
+        "addto": "AJOUTER À",
+        "edit": "MODIFIER",
+        "delete": "EFFACER",
+        "remove": "RETIRER",
+        "streams": "RUISSEAUX",
+        "practices": "PRATIQUES",
+        "experiences": "EXPÉRIENCES",
+        "cancel": "Annuler",
+        "home": "Accueil",
+        "save": "Enregistrer"
+    },
     "organisms": {
+        "signin": {
+            "rememberme": "Souviens-toi de moi",
+            "password": "Mot de passe",
+            "email": "Adresse électronique",
+            "username": "Nom d'utilisateur",
+            "text": "Entrer les informations d'identification de connexion",
+            "title": "Connexion",
+            "description": "<strong> L’apprentissage en ligne numérique est plus qu’un catalogue. </ strong> En vous connectant, vous pouvez créer un <strong> programme personnalisé </ strong> de <strong> connaissances et points d'apprentissage numériques </ strong>."
+        },
+        "primaryactionpanel": {
+            "title": "Ajouter une expérience"
+        },
         "header": {
             "samples": {
-                "dashboard": "Ex: tableau de bordd",
+                "dashboard": "Ex: Tableau de bord",
                 "showcase": "Ex: Vitrine",
                 "album": "Ex: Album",
                 "signin": "Ex: Connexion",
@@ -31,7 +70,7 @@
         "stub": {
             "hero": {
                 "title": "Arrive Bientôt",
-                "text": "Cette page est <strong>en construction</strong>, revenez bientôt!",
+                "text": "<h5>Cette page est <strong>en construction</strong></h5><p>Revenez bientôt!<p>",
                 "route": "Route",
                 "home": "Accueil"
             }
@@ -42,6 +81,43 @@
                 "text": "<h5>Nous ne pouvons trouver cette page Web</h5><p>Nous sommes désolés que vous ayez abouti ici. Il arrive parfois qu'une page ait été déplacée ou supprimée. Heureusement, nous pouvons vous aider à trouver ce que vous cherchez. Que faire?</p>",
                 "home": "Accueil"
             }
+        },
+        "home": {
+            "hero": {
+                "title": "Apprentissage Ouvert Numérique",
+                "text": "<strong> Commençons avec Numérique </ strong>. AON aidera <strong> à mieux faire connaître </ strong> les possibilités, <strong> à renforcer la confiance </ strong> et la <strong> capacité </ strong> des employés de l'État dans leurs <strong> compétences numériques </ strong>. Explorez ci-dessous pour trouver des <strong> opportunités d'apprentissage organisées et personnalisées </ strong>."
+            },
+            "body": {}
+        },
+        "streams": {
+            "hero": {
+                "title": "RUISSEAUX",
+                "text": "<strong>Learing Stream</strong>. The top level hierarchy of <strong>Digital Open Learning</strong>."
+            },
+            "body": {}
+        },
+        "practices": {
+            "hero": {
+                "title": "LES PRATIQUES",
+                "text": "<strong>Learing Practice</strong>. The second level hierarchy of <strong>Digital Open Learning</strong>."
+            },
+            "body": {}
+        },
+        "explore": {
+            "hero": {
+                "title": "EXPLORER",
+                "text": "<strong> Découvrez ce que vous souhaitez </ strong>. Le catalogue ci-dessous contient des <strong> flux </ strong> regroupant des groupes de <strong> pratiques </ strong>. Chaque pratique comporte des <strong> points d'apprentissage </ strong> que vous pouvez explorer."
+            },
+            "body": {}
+        },
+        "profile": {
+            "hero": {
+                "title": "Profil",
+                "text": "<strong> surveillons jusqu'où </ strong> vous êtes venu et <strong> ce que vous savez </ strong> maintenant!",
+                "setgoals": "FIXER DES OBJECTIFS",
+                "updateprofile": "METTRE À JOUR LE PROFIL"
+            },
+            "editprofile": "EDITER LE PROFIL"
         },
         "about": {
             "hero": {

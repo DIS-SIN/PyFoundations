@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -13,6 +12,7 @@ import HeroHeader from "../molecules/HeroHeader";
 import GridInfoCard from "../molecules/GridInfoCard";
 import DOLSignInDialog from "../organisms/DOLSignInDialog";
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import { connect } from "react-redux";
 
 const styles = theme => ({
     layout: {

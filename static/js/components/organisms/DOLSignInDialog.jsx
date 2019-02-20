@@ -19,9 +19,16 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import { connect } from "react-redux";
 
+const mapStateToProps = state => {
+    return {
+        literals: state.literals
+    };
+};
 // To add to window
 if (!window.Promise) {
     window.Promise = Promise;
@@ -113,24 +120,23 @@ class DOLSignInDialog extends React.Component {
     };
 
     render() {
-        const { classes } = this.props;
+        const { classes, literals } = this.props;
         const { email, password } = this.state;
 
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>
-                    SIGN IN
+                    {literals.common.signin}
                 </Button>
                 <Dialog
                     open={this.state.open}
                     onClose={this.handleClose}
                     aria-labelledby="form-dialog-title"
                 >
-                    <DialogTitle id="form-dialog-title">Digital Online Learning - Sign In</DialogTitle>
+                    <DialogTitle id="form-dialog-title">{literals.organisms.signin.title}</DialogTitle>
                     <DialogContent>
                         <DialogContentText>
-                            <strong>Digital Online Learning is more than a catalog.</strong> By signing in you can create a <strong>personalized</strong> treasure trove of <strong>digital knowledge and learning points</strong>.
-                            If you just want to browse, that works too. All the knowledge collected by the keen learners in DOL are available to you.
+                            {ReactHtmlParser(literals.organisms.signin.description)}
                         </DialogContentText>
                         <main className={classes.main}>
                             <CssBaseline />
@@ -139,11 +145,11 @@ class DOLSignInDialog extends React.Component {
                                     <LockOutlinedIcon />
                                 </Avatar>
                                 <Typography component="h1" variant="h5">
-                                    Enter Sign In Credentials
+                                    {literals.organisms.signin.text}
                                 </Typography>
                                 <form className={classes.form} onSubmit={this.handleSubmit}>
                                     <FormControl margin="normal" required fullWidth>
-                                        <InputLabel htmlFor="email">Email Address</InputLabel>
+                                        <InputLabel htmlFor="email">{literals.organisms.signin.email}</InputLabel>
                                         <Input
                                             id="email" name="email"
                                             autoComplete="email"
@@ -152,7 +158,7 @@ class DOLSignInDialog extends React.Component {
                                             onChange={this.onChange} />
                                     </FormControl>
                                     <FormControl margin="normal" required fullWidth>
-                                        <InputLabel htmlFor="password">Password</InputLabel>
+                                        <InputLabel htmlFor="password">{literals.organisms.signin.password}</InputLabel>
                                         <Input
                                             id="password" name="password"
                                             type="password"
@@ -162,7 +168,7 @@ class DOLSignInDialog extends React.Component {
                                     </FormControl>
                                     <FormControlLabel
                                         control={<Checkbox value="remember" color="primary" />}
-                                        label="Remember me"
+                                        label={literals.organisms.signin.rememberme}
                                     />
                                     <Button
                                         type="submit"
@@ -171,7 +177,7 @@ class DOLSignInDialog extends React.Component {
                                         color="primary"
                                         className={classes.submit}
                                     >
-                                        Sign in
+                                        {literals.common.signin}
                                     </Button>
                                 </form>
                             </Paper>
@@ -179,7 +185,7 @@ class DOLSignInDialog extends React.Component {
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={this.handleClose} color="primary">
-                            Cancel
+                            {literals.common.cancel}
                         </Button>
                     </DialogActions>
                 </Dialog>
@@ -193,4 +199,5 @@ DOLSignInDialog.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(DOLSignInDialog);
+
+export default connect(mapStateToProps)(withStyles(styles)(DOLSignInDialog));

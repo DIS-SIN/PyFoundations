@@ -36,8 +36,8 @@ class LangSelectMenuItem extends React.Component {
 
         const unlanged_pathname = location.pathname.replace('/' + lang, '')
         const link_group_hero = [
-            { "href": "/en" + unlanged_pathname, "title": "English", "lang": "en" },
-            { "href": "/fr" + unlanged_pathname, "title": "Français", "lang": "fr" },
+            { "href": "/en" + unlanged_pathname, "title": literals.common.english, "lang": "en" },
+            { "href": "/fr" + unlanged_pathname, "title": literals.common.french, "lang": "fr" },
         ];
         // WARN: Brittle, there's a better way to do this
         const link = (lang == 'fr') ? link_group_hero[0] : link_group_hero[1]

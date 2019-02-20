@@ -16,6 +16,7 @@ import GridInfoCard from "../molecules/GridInfoCard";
 import HeroHeader from "../molecules/HeroHeader";
 import DOLSignInDialog from "../organisms/DOLSignInDialog";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 const styles = theme => ({
     layout: {
@@ -59,11 +60,11 @@ class DOLPageHome extends React.Component {
         const { literals, location, classes } = this.props;
 
         const link_group_stream = [
-            { "href": "/explore/stream", "title": "EXPLORE" },
-            { "href": "/profile/add/stream", "title": "ADD TO PROFILE" },
+            { "href": "/explore/stream", "title": literals.common.explore },
+            { "href": "/profile/add/stream", "title": literals.common.addto + " " + literals.common.profile },
         ];
         const link_group_hero = [
-            { "href": "/explore", "title": "EXPLORE" },
+            { "href": "/explore", "title": literals.common.explore },
         ];
 
         return (
@@ -71,11 +72,11 @@ class DOLPageHome extends React.Component {
                 <CssBaseline />
                 <HeroHeader
                     signin={<Grid key="signindialog" item><DOLSignInDialog /></Grid>}
-                    title="Digital Open Learing"
+                    title={literals.pages.home.hero.title}
                     icon={<HelpOutlineIcon />}
-                    text={<React.Fragment key="herotext"><strong>Let's get you started with Digital</strong>. DOL will
-                            help <strong>build awareness</strong> of possibilities, <strong>increase confidence</strong> and <strong>capacity</strong> of government employees
-                            in their <strong>digital skills</strong>. Explore below to find curated and <strong>personalized learning opportunities</strong></React.Fragment>}
+                    text={<React.Fragment key="herotext">
+                        {ReactHtmlParser(literals.pages.home.hero.text)}
+                    </React.Fragment>}
                     links={link_group_hero}
                 />
                 <div className={classNames(classes.layout)}>

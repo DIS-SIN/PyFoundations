@@ -7,6 +7,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 
 import HeroHeader from "../molecules/HeroHeader";
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 const styles = theme => ({
 
@@ -27,15 +28,18 @@ class DOLPageSearch extends React.Component {
         const { literals, location, classes } = this.props;
 
         const link_group_hero = [
-            { "href": "/home", "title": "Home" },
+            { "href": "/home", "title": literals.common.home },
         ];
         return (
             <React.Fragment>
                 <CssBaseline />
                 <HeroHeader
-                    title="DOL Page Stub"
+                    title={literals.pages.stub.hero.title}
                     icon={<HelpOutlineIcon />}
-                    text={<React.Fragment key="herotext"><strong>Route:</strong> {location.pathname}</React.Fragment>}
+                    text={<React.Fragment key="herotext">
+                        <strong>{location.pathname}</strong>
+                        {ReactHtmlParser(literals.pages.stub.hero.text)}
+                    </React.Fragment>}
                     links={link_group_hero}
                 />
             </React.Fragment>

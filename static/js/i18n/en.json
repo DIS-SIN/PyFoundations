@@ -1,5 +1,44 @@
 {
+    "common": {
+        "english": "English",
+        "french": "Français",
+        "dol": "DOL",
+        "aon": "AON",
+        "dolfull": "DIGITAL OPEN LEARNING",
+        "aonfull": "APPRENTISSAGE OUVERT NUMÉRIQUE",
+        "logout": "Logout",
+        "explore": "Explore",
+        "share": "Share",
+        "about": "About",
+        "profile": "Profile",
+        "learnerprofile": "Learner Profile",
+        "settings": "Settings",
+        "signin": "Sign In",
+        "search": "Search",
+        "addto": "ADD TO",
+        "edit": "EDIT",
+        "delete": "DELETE",
+        "remove": "REMOVE",
+        "streams": "STREAMS",
+        "practices": "PRACTICES",
+        "experiences": "EXPERIENCES",
+        "cancel": "Cancel",
+        "home": "Home",
+        "save": "Save"
+    },
     "organisms": {
+        "signin": {
+            "rememberme": "Remember me",
+            "password": "Password",
+            "email": "Email Address",
+            "username": "Username",
+            "text": "Enter Sign In Credentials",
+            "title": "Sign In",
+            "description": "<strong>Digital Online Learning is more than a catalog.</strong> By signing in you can create a <strong>personalized</strong> treasure trove of <strong>digital knowledge and learning points</strong>."
+        },
+        "primaryactionpanel": {
+            "title": "Add Experience"
+        },
         "header": {
             "samples": {
                 "dashboard": "Ex: Dashboard",
@@ -31,7 +70,7 @@
         "stub": {
             "hero": {
                 "title": "Coming Soon",
-                "text": "Page is <strong>currently under construction</strong>, check back soon!",
+                "text": "<h5>Page is <strong>currently under construction</strong></h5><p>Check back soon!</p>",
                 "route": "Route",
                 "home": "Home"
             }
@@ -42,6 +81,43 @@
                 "text": "<h5>We couldn't find that Web page</h5><p>We're sorry you ended up here. Sometimes a page gets moved or deleted, but hopefully we can help you find what you're looking for. What next?</p>",
                 "home": "Home"
             }
+        },
+        "home": {
+            "hero": {
+                "title": "Digital Open Learing",
+                "text": "<strong>Let's get you started with Digital</strong>. DOL will help <strong>build awareness</strong> of possibilities, <strong>increase confidence</strong> and <strong>capacity</strong> of government employees in their <strong>digital skills</strong>. Explore below to find curated and <strong>personalized learning opportunities</strong>"
+            },
+            "body": {}
+        },
+        "streams": {
+            "hero": {
+                "title": "STREAMS",
+                "text": "<strong>Learing Stream</strong>. The top level hierarchy of <strong>Digital Open Learning</strong>."
+            },
+            "body": {}
+        },
+        "practices": {
+            "hero": {
+                "title": "PRACTICES",
+                "text": "<strong>Learing Practice</strong>. The second level hierarchy of <strong>Digital Open Learning</strong>."
+            },
+            "body": {}
+        },
+        "explore": {
+            "hero": {
+                "title": "EXPLORE",
+                "text": "<strong>Learn what you want</strong>. The catalogue below has <strong>streams</strong> which bundle up groups of <strong>practices</strong>. Each practice has <strong>learning points</strong> which you can explore."
+            },
+            "body": {}
+        },
+        "profile": {
+            "hero": {
+                "title": "Profile",
+                "text": "Let's <strong>track how far</strong> you've come and <strong>what you now</strong> know!",
+                "setgoals": "SET GOALS",
+                "updateprofile": "UPDATE LEARNER PROFILE"
+            },
+            "editprofile": "EDIT PROFILE"
         },
         "about": {
             "hero": {

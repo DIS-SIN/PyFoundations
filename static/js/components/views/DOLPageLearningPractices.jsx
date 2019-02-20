@@ -10,6 +10,7 @@ import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 
 import HeroHeader from "../molecules/HeroHeader";
 import DOLPractices from "../organisms/DOLPractices";
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 const styles = theme => ({
     layout: {
@@ -43,16 +44,16 @@ class DOLPageLearningPractices extends React.Component {
         const { literals, location, classes } = this.props;
 
         const link_group_hero = [
-            { "href": "/explore", "title": "Explore" },
+            { "href": "/explore", "title": literals.common.explore },
         ];
         return (
             <React.Fragment>
                 <CssBaseline />
                 <HeroHeader
-                    title="Practices"
+                    title={literals.pages.practices.hero.title}
                     icon={<HelpOutlineIcon />}
                     text={<React.Fragment key="herotext">
-                        <strong>Learing Practice</strong>. The second level hierarchy of <strong>Digital Open Learning</strong>.
+                        {ReactHtmlParser(literals.pages.practices.hero.text)}
                     </React.Fragment>}
                     links={link_group_hero}
                 />

@@ -25,6 +25,7 @@ import HeroHeader from "../molecules/HeroHeader";
 import DOLStreams from "../organisms/DOLStreams";
 import DOLPractices from "../organisms/DOLPractices";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 const styles = theme => ({
     appBar: {
@@ -107,7 +108,7 @@ class DOLPageExplore extends React.Component {
     render() {
         const { literals, location, classes } = this.props;
         const link_group_hero = [
-            { "href": "/profile", "title": "LEARNER PROFILE" },
+            { "href": "/profile", "title": literals.common.learnerprofile },
         ];
 
         return (
@@ -115,11 +116,10 @@ class DOLPageExplore extends React.Component {
                 <CssBaseline />
                 <HeroHeader
                     signin={<Grid key="signindialog" item><DOLSignInDialog /></Grid>}
-                    title="Explore"
+                    title={literals.pages.explore.hero.title}
                     icon={<HelpOutlineIcon />}
                     text={<React.Fragment key="herotext">
-                        <strong>Learn what you want</strong>. The catalogue below has <strong>streams</strong> which bundle up groups of <strong>practices</strong>. Each practice
-                            has <strong>learning points</strong> which you can explore.
+                        {ReactHtmlParser(literals.pages.explore.hero.text)}
                     </React.Fragment>}
                     links={link_group_hero}
                 />

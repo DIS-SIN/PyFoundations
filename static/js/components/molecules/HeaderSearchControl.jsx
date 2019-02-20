@@ -6,6 +6,13 @@ import { withStyles } from '@material-ui/core/styles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
+import { connect } from "react-redux";
+
+const mapStateToProps = state => {
+    return {
+        literals: state.literals
+    };
+};
 
 const styles = theme => ({
     root: {
@@ -59,7 +66,7 @@ class HeaderSearchControl extends React.Component {
     }
 
     render() {
-        const { classes, action, href, icon, text } = this.props;
+        const { classes, action, href, icon, text, literals } = this.props;
 
         return (
             <React.Fragment>
@@ -68,7 +75,7 @@ class HeaderSearchControl extends React.Component {
                         <SearchIcon />
                     </div>
                     <InputBase
-                        placeholder="Search..."
+                        placeholder={literals.common.search + "..."}
                         classes={{
                             root: classes.inputRoot,
                             input: classes.inputInput,
@@ -84,5 +91,5 @@ HeaderSearchControl.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(HeaderSearchControl);
+export default connect(mapStateToProps)(withStyles(styles)(HeaderSearchControl));
 //export default HeaderSearchControl;

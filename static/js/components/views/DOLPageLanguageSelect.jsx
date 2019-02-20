@@ -70,8 +70,8 @@ class DOLPageLanguageSelect extends React.Component {
         const { literals, location, classes } = this.props;
 
         const link_group_hero = [
-            { "href": "/en/home", "title": "English", "lang": "en" },
-            { "href": "/fr/home", "title": "Français", "lang": "fr" },
+            { "href": "/en/home", "title": literals.common.english, "lang": "en" },
+            { "href": "/fr/home", "title": literals.common.french, "lang": "fr" },
         ];
 
         return (
@@ -83,8 +83,8 @@ class DOLPageLanguageSelect extends React.Component {
                 >
                     <DialogTitle id="form-dialog-title">
                         <Grid container spacing={16} justify="center">
-                            <Grid item>DIGITAL OPEN LEARNING</Grid>
-                            <Grid item>APPRENTISSAGE OUVERT NUMÉRIQUE</Grid>
+                            <Grid item>{literals.common.dolfull}</Grid>
+                            <Grid item>{literals.common.aonfull}</Grid>
                         </Grid>
                     </DialogTitle>
                     <DialogContent>

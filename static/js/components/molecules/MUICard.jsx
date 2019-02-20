@@ -19,7 +19,7 @@ class MUICard extends React.Component {
                 <Card >
                     <CardMedia style={{ height: 0, paddingTop: '56.25%' }}
                         image="/static/images/weasel.jpg"
-                        title="Title"
+                        title={fieldname}
                     />
                     <CardContent>
                         <Typography gutterBottom variant="headline" component="h2">

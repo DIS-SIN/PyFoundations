@@ -13,9 +13,14 @@ import ArchiveIcon from '@material-ui/icons/Archive';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Typography } from '@material-ui/core';
-
-
+import { connect } from "react-redux";
 import { LearningArchitecture } from '../atoms/LearningArchitecture'
+
+const mapStateToProps = state => {
+    return {
+        literals: state.literals
+    };
+};
 
 const styles = {
     list: {
@@ -42,7 +47,7 @@ class DOLDrawer extends React.Component {
 
     render() {
         const la = LearningArchitecture();
-        const { classes } = this.props;
+        const { classes, literals } = this.props;
 
         const practices = la.loach_structure.architecture.slice(0);
         const streams = la.loach_structure.streams.slice(0);
@@ -52,7 +57,7 @@ class DOLDrawer extends React.Component {
                 <ListItemIcon>
                     <Chip
                         icon={<ArchiveIcon />}
-                        label="Stream"
+                        label={literals.common.streams}
                         color="primary"
                     />
                 </ListItemIcon>
@@ -64,7 +69,7 @@ class DOLDrawer extends React.Component {
                 <ListItemIcon>
                     <Chip
                         icon={<InboxIcon />}
-                        label="Practice"
+                        label={literals.common.practices}
                         color="primary"
                     />
                 </ListItemIcon>
@@ -76,12 +81,12 @@ class DOLDrawer extends React.Component {
             <div className={classes.fullList}>
                 <List>{/** learningarchitecture.loach_structure.streams[].stream */}
                     <Typography component={ListItem} variant="h6">
-                        STREAMS
+                        {literals.common.streams}
                     </Typography>
                     {learningArchStreamItems}
                     <Divider />
                     <Typography component={ListItem} variant="h6">
-                        PRACTICES
+                        {literals.common.practices}
                     </Typography>
                     {learningArchPracticeItems}
                 </List>
@@ -112,4 +117,4 @@ DOLDrawer.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(DOLDrawer);
+export default connect(mapStateToProps)(withStyles(styles)(DOLDrawer));

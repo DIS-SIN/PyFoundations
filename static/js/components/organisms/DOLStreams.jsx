@@ -59,15 +59,15 @@ class DOLStreams extends React.Component {
 
         const streams = LearningArchitecture().loach_structure.streams;
         const link_group_stream = [
-            { "href": "/explore/stream", "title": "EXPLORE" },
-            { "href": "/profile/add/stream", "title": "ADD TO PROFILE" },
+            { "href": "/explore/stream", "title": literals.common.explore },
+            { "href": "/profile/add/stream", "title": literals.common.addto + " " + literals.common.profile },
         ];
         return (
             <React.Fragment>
                 <AppBar className={classNames(classes.segment)} position="static" color="default">
                     <Toolbar>
                         <Typography justify="center" variant="h5" component="div">
-                            Streams
+                            {literals.common.streams}
                         </Typography>
                     </Toolbar>
                 </AppBar>

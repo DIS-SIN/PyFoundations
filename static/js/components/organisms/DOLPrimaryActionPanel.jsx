@@ -13,6 +13,15 @@ import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
 import AjaxTest from '../../samples/AjaxTest';
 import classNames from 'classnames';
+import literals from '../../store/literals';
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import { connect } from "react-redux";
+
+const mapStateToProps = state => {
+    return {
+        literals: state.literals
+    };
+};
 
 const styles = theme => ({
     appBar: {
@@ -62,7 +71,7 @@ class DOLPrimaryActionPanel extends React.Component {
     };
 
     render() {
-        const { classes } = this.props;
+        const { classes, literals } = this.props;
         return (
             <div>
                 <Fab color="secondary" aria-label="Add" onClick={this.handleClickOpen} className={classes.fabButton}>
@@ -80,10 +89,10 @@ class DOLPrimaryActionPanel extends React.Component {
                                 <CloseIcon />
                             </IconButton>
                             <Typography variant="h6" color="inherit" className={classes.flex}>
-                                Add Experience
+                                {literals.organisms.primaryactionpanel.title}
                             </Typography>
                             <Button color="inherit" onClick={this.handleClose}>
-                                SAVE
+                                {literals.common.save}
                             </Button>
                         </Toolbar>
                     </AppBar>
@@ -100,4 +109,5 @@ DOLPrimaryActionPanel.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(DOLPrimaryActionPanel);
+
+export default connect(mapStateToProps)(withStyles(styles)(DOLPrimaryActionPanel));

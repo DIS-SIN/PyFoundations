@@ -59,15 +59,15 @@ class DOLPractices extends React.Component {
 
         const practices = LearningArchitecture().loach_structure.architecture; // note just design for now
         const link_group_practice = [
-            { "href": "/explore/practice", "title": "EXPLORE" },
-            { "href": "/profile/add/practice", "title": "ADD TO PROFILE" },
+            { "href": "/explore/practice", "title": literals.common.explore },
+            { "href": "/profile/add/practice", "title": literals.common.addto + " " + literals.common.profile },
         ];
         return (
             <React.Fragment>
                 <AppBar className={classNames(classes.segment)} position="static" color="default">
                     <Toolbar>
                         <Typography justify="center" variant="h5" component="div">
-                            Practices
+                            {literals.common.practices}
                         </Typography>
                     </Toolbar>
                 </AppBar>
