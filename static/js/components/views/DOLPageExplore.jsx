@@ -24,6 +24,7 @@ import { LearningArchitecture } from '../atoms/LearningArchitecture'
 import HeroHeader from "../molecules/HeroHeader";
 import DOLStreams from "../organisms/DOLStreams";
 import DOLPractices from "../organisms/DOLPractices";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 const styles = theme => ({
     appBar: {
@@ -59,6 +60,10 @@ const styles = theme => ({
     cardGrid: {
         padding: `${theme.spacing.unit * 8}px 0`,
         paddingTop: 16,
+        backgroundColor: theme.palette.background.paper,
+        margin: 0,
+        paddingLeft: theme.spacing.unit * 3,
+        paddingRight: theme.spacing.unit * 3,
     },
     card: {
         height: '100%',
@@ -101,6 +106,7 @@ class DOLPageExplore extends React.Component {
         const link_group_hero = [
             { "href": "/profile", "title": "LEARNER PROFILE" },
         ];
+
         return (
             <React.Fragment>
                 <CssBaseline />
@@ -118,7 +124,7 @@ class DOLPageExplore extends React.Component {
                     <DOLStreams />
                     <DOLPractices />
                 </div>
-            </React.Fragment >
+            </React.Fragment>
         );
     }
 }

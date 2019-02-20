@@ -25,9 +25,9 @@ store.dispatch(loadLiterals(lang))
 // render with redux store enabled
 ReactDOM.render(
     <Provider store={store}>
-        <HashRouter>
-            <App />
-        </HashRouter>
+
+        <App />
+
     </Provider>,
     document.getElementById("root")
 );

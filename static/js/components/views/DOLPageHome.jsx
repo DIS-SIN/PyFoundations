@@ -15,6 +15,7 @@ import { LearningArchitecture } from '../atoms/LearningArchitecture'
 import GridInfoCard from "../molecules/GridInfoCard";
 import HeroHeader from "../molecules/HeroHeader";
 import DOLSignInDialog from "../organisms/DOLSignInDialog";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 const styles = theme => ({
     layout: {
@@ -29,6 +30,10 @@ const styles = theme => ({
     },
     cardGrid: {
         padding: `${theme.spacing.unit * 8}px 0`,
+        backgroundColor: theme.palette.background.paper,
+        margin: 0,
+        paddingLeft: theme.spacing.unit * 3,
+        paddingRight: theme.spacing.unit * 3,
     },
 });
 
@@ -49,12 +54,13 @@ class DOLPageHome extends React.Component {
         const { literals, location, classes } = this.props;
 
         const link_group_stream = [
-            { "href": "/exmplore/stream", "title": "EXPLORE" },
+            { "href": "/explore/stream", "title": "EXPLORE" },
             { "href": "/profile/add/stream", "title": "ADD TO PROFILE" },
         ];
         const link_group_hero = [
             { "href": "/explore", "title": "EXPLORE" },
         ];
+
         return (
             <React.Fragment>
                 <CssBaseline />

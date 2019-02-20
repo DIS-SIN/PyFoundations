@@ -34,9 +34,15 @@ class DOLPageStub extends React.Component {
             <React.Fragment>
                 <CssBaseline />
                 <HeroHeader
-                    title="DOL Page Stub"
+                    title="404"
                     icon={<HelpOutlineIcon />}
-                    text={<React.Fragment key="herotext"><strong>Route:</strong> {location.pathname}</React.Fragment>}
+                    text={<React.Fragment key="herotext">
+                        <strong>{location.pathname}</strong>
+                        <h5>We couldn't find that Web page</h5>
+                        <p>We're sorry you ended up here. Sometimes a page gets moved or deleted, but hopefully we can help you find what you're looking for. What next?</p>
+                        <h5>Nous ne pouvons trouver cette page Web</h5>
+                        <p>Nous sommes désolés que vous ayez abouti ici. Il arrive parfois qu'une page ait été déplacée ou supprimée. Heureusement, nous pouvons vous aider à trouver ce que vous cherchez. Que faire?</p>
+                    </React.Fragment>}
                     links={link_group_hero}
                 />
             </React.Fragment>

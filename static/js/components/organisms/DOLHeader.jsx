@@ -151,43 +151,43 @@ class DOLHeader extends React.Component {
                 onClose={this.handleMenuClose}
             >
                 <HeaderMenuItem
-                    href="/dashboard"
+                    href="/samples/dashboard"
                     icon={<SettingsIcon />}
                     text="Dashboard Example"
                     action={this.handleMenuClose}
                 />
                 <HeaderMenuItem
-                    href="/showcase"
+                    href="/samples/showcase"
                     icon={<SettingsIcon />}
                     text="Showcase Example"
                     action={this.handleMenuClose}
                 />
                 <HeaderMenuItem
-                    href="/album"
+                    href="/samples/album"
                     icon={<SettingsIcon />}
                     text="Album Example"
                     action={this.handleMenuClose}
                 />
                 <HeaderMenuItem
-                    href="/signin"
+                    href="/samples/signin"
                     icon={<SettingsIcon />}
                     text="SignIn Example"
                     action={this.handleMenuClose}
                 />
                 <HeaderMenuItem
-                    href="/pricing"
+                    href="/samples/pricing"
                     icon={<SettingsIcon />}
                     text="Pricing Example"
                     action={this.handleMenuClose}
                 />
                 <HeaderMenuItem
-                    href="/settings"
+                    href="/samples/settings"
                     icon={<SettingsIcon />}
                     text="Settings"
                     action={this.handleMenuClose}
                 />
                 <HeaderMenuItem
-                    href="/logout"
+                    href="/samples/logout"
                     icon={<LockIcon />}
                     text="Logout"
                     action={this.handleMenuClose}

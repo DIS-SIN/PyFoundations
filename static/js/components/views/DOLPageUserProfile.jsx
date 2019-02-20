@@ -19,13 +19,17 @@ import HeroHeader from "../molecules/HeroHeader";
 const styles = theme => ({
     layout: {
         width: 'auto',
-        marginLeft: theme.spacing.unit * 3,
-        marginRight: theme.spacing.unit * 3,
+        //marginLeft: theme.spacing.unit * 3,
+        //marginRight: theme.spacing.unit * 3,
         [theme.breakpoints.up(1100 + theme.spacing.unit * 3 * 2)]: {
             width: 1100,
             marginLeft: 'auto',
             marginRight: 'auto',
         },
+        backgroundColor: theme.palette.background.paper,
+        margin: 0,
+        paddingLeft: theme.spacing.unit * 3,
+        paddingRight: theme.spacing.unit * 3,
     },
     avatar: {
         margin: 'auto',

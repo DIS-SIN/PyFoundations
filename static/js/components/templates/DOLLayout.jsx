@@ -1,33 +1,18 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
-import { Switch, Route } from 'react-router-dom'
-// redux state
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom'
 import { connect } from "react-redux";
-
 import { withStyles } from '@material-ui/core/styles';
-
-import DOLPageStub from "../views/DOLPageStub";
-import DOLPageHome from "../views/DOLPageHome";
-import DOLPageExplore from "../views/DOLPageExplore";
-import DOLPageShare from "../views/DOLPageShare";
-import DOLPageSearch from "../views/DOLPageSearch";
-import DOLPageAbout from "../views/DOLPageAbout";
-import DOLPageLearningStreams from "../views/DOLPageLearningStreams";
-import DOLPageLearningPractices from "../views/DOLPageLearningPractices";
-import DOLPageUserProfile from "../views/DOLPageUserProfile";
-
+import CssBaseline from '@material-ui/core/CssBaseline';
 import DOLHeader from "../organisms/DOLHeader";
 import DOLFooter from "../organisms/DOLFooter";
 import DOLPrimaryActionPanel from "../organisms/DOLPrimaryActionPanel";
-
 
 const mapStateToProps = state => {
     return {
         literals: state.literals
     };
 };
-
-
 
 const styles = theme => ({
     fabButton: {
@@ -43,28 +28,14 @@ const styles = theme => ({
 class DOLLayout extends React.Component {
 
     render() {
-        const { literals, classes } = this.props;
+        const { literals, classes, match, content } = this.props;
 
         return (
             <React.Fragment>
                 <DOLHeader />
-                {/*<main>*/}
-                <Switch>
-                    <Route exact path='/' component={DOLPageStub} />
-                    <Route exact path='/home' component={DOLPageHome} />
-
-                    <Route exact path='/explore' component={DOLPageExplore} />
-                    <Route exact path='/streams' component={DOLPageLearningStreams} />
-                    <Route exact path='/practices' component={DOLPageLearningPractices} />
-
-                    <Route exact path='/share' component={DOLPageShare} />
-                    <Route exact path='/about' component={DOLPageAbout} />
-                    <Route exact path='/profile' component={DOLPageUserProfile} />
-                    <Route exact path='/search' component={DOLPageSearch} />
-                    <Route exact path='/logout' component={DOLPageStub} />
-                </Switch>
+                <CssBaseline />
+                {content}
                 <DOLPrimaryActionPanel />
-                {/*</main>*/}
                 <DOLFooter />
             </React.Fragment>
         );
@@ -76,6 +47,6 @@ DOLLayout.propTypes = {
 };
 
 // connect redux state
-export default connect(mapStateToProps)(withStyles(styles)(DOLLayout));
-
+//export default connect(mapStateToProps)(withStyles(styles)(DOLLayout));
+export default withRouter(connect(mapStateToProps)(withStyles(styles)(DOLLayout)));
 
