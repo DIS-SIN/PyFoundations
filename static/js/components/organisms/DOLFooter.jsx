@@ -49,9 +49,9 @@ class DOLFooter extends React.Component {
                 {/* Footer */}
                 <footer className={classes.footer}>
                     <Grid container spacing={16} justify="center">
-                        <GridTextGroup title="DIGITAL ACADEMY" text={literals.app.language + " | The Digital Academy's mission is to provide cutting-edge skills to the Canadian Public Service."} />
-                        <GridLinkGroup title="CONNECT" links={links_group_connect} />
-                        <GridLinkGroup title="SOCIAL MEDIA" links={links_group_socialmedia} />
+                        <GridTextGroup title={literals.organisms.footer.desctitle} text={literals.organisms.footer.description} />
+                        <GridLinkGroup title={literals.organisms.footer.connect} links={links_group_connect} />
+                        <GridLinkGroup title={literals.organisms.footer.socialmedia} links={links_group_socialmedia} />
                     </Grid>
                 </footer>
                 {/* End footer */}

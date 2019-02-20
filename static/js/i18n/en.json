@@ -1,5 +1,28 @@
 {
+    "organisms": {
+        "footer": {
+            "desctitle": "Digital Academy",
+            "connect": "CONNECT",
+            "socialmedia": "SOCIAL MEDIA",
+            "description": "The Digital Academy's mission is to provide cutting-edge skills to the Canadian Public Service."
+        }
+    },
     "pages": {
+        "stub": {
+            "hero": {
+                "title": "Coming Soon",
+                "text": "Page is <strong>currently under construction</strong>, check back soon!",
+                "route": "Route",
+                "home": "Home"
+            }
+        },
+        "e404": {
+            "hero": {
+                "title": "404",
+                "text": "<h5>We couldn't find that Web page</h5><p>We're sorry you ended up here. Sometimes a page gets moved or deleted, but hopefully we can help you find what you're looking for. What next?</p>",
+                "home": "Home"
+            }
+        },
         "about": {
             "hero": {
                 "title": "About",

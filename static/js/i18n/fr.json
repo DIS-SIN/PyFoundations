@@ -1,5 +1,28 @@
 {
+    "organisms": {
+        "footer": {
+            "desctitle": "Académie Numérique",
+            "connect": "RELIER",
+            "socialmedia": "DES MÉDIAS SOCIAUX",
+            "description": "La Digital Academy a pour mission de fournir des compétences de pointe à la fonction publique canadienne."
+        }
+    },
     "pages": {
+        "stub": {
+            "hero": {
+                "title": "Arrive Bientôt",
+                "text": "Cette page est <strong>en construction</strong>, revenez bientôt!",
+                "route": "Route",
+                "home": "Accueil"
+            }
+        },
+        "e404": {
+            "hero": {
+                "title": "404",
+                "text": "<h5>Nous ne pouvons trouver cette page Web</h5><p>Nous sommes désolés que vous ayez abouti ici. Il arrive parfois qu'une page ait été déplacée ou supprimée. Heureusement, nous pouvons vous aider à trouver ce que vous cherchez. Que faire?</p>",
+                "home": "Accueil"
+            }
+        },
         "about": {
             "hero": {
                 "title": "À propos de AON",

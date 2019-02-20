@@ -8,6 +8,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 
 import HeroHeader from "../molecules/HeroHeader";
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 const styles = theme => ({
 
@@ -28,20 +29,17 @@ class DOLPageStub extends React.Component {
         const { literals, location, classes } = this.props;
 
         const link_group_hero = [
-            { "href": "/home", "title": "Home" },
+            { "href": "/home", "title": literals.pages.e404.hero.home },
         ];
         return (
             <React.Fragment>
                 <CssBaseline />
                 <HeroHeader
-                    title="404"
+                    title={literals.pages.e404.hero.title}
                     icon={<HelpOutlineIcon />}
                     text={<React.Fragment key="herotext">
                         <strong>{location.pathname}</strong>
-                        <h5>We couldn't find that Web page</h5>
-                        <p>We're sorry you ended up here. Sometimes a page gets moved or deleted, but hopefully we can help you find what you're looking for. What next?</p>
-                        <h5>Nous ne pouvons trouver cette page Web</h5>
-                        <p>Nous sommes désolés que vous ayez abouti ici. Il arrive parfois qu'une page ait été déplacée ou supprimée. Heureusement, nous pouvons vous aider à trouver ce que vous cherchez. Que faire?</p>
+                        {ReactHtmlParser(literals.pages.e404.hero.text)}
                     </React.Fragment>}
                     links={link_group_hero}
                 />
