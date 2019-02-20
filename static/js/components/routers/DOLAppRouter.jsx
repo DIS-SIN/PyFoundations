@@ -37,7 +37,7 @@ class DOLAppRouter extends React.Component {
         ]
         const LanguifiedRoute = ({ match, location }) => (
             <Switch>
-                {console.log('LanguifiedRoute: ' + match.url + "|" + match.path + "|" + match.params.route)}
+                {/*console.log('LanguifiedRoute: ' + match.url + "|" + match.path + "|" + match.params.route)*/}
                 {langroutes.map(({ path, Component }) => (
                     <Route key={path} exact path={path}>
                         <DOLLayout content={<Component location={location} />} />
@@ -52,7 +52,7 @@ class DOLAppRouter extends React.Component {
         return (
             <React.Fragment>
                 <Switch>
-                    {console.log('DOLAppRouter: ' + match.path + "|" + match.url)}
+                    {/*console.log('DOLAppRouter: ' + match.path + "|" + match.url)*/}
                     <Route path='/:route*' component={LanguifiedRoute} />
                 </Switch>
             </React.Fragment>

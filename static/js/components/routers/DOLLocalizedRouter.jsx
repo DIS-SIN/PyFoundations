@@ -32,10 +32,10 @@ class DOLLocalizedRouter extends React.Component {
         const LanguageSelect = ({ match }) => (
             <Switch>
                 {changeLanguage(match.params.lang)}
-                {console.log('LanguageSelect: ' + match.params.lang + "|" + match.url)}
+                {/*console.log('LanguageSelect: ' + match.params.lang + "|" + match.url)*/}
                 <Route path="/:route*">
                     <React.Fragment>
-                        {console.log('-- route: ' + match.url)}
+                        {/*console.log('-- route: ' + match.url)*/}
                         <Route path='/:route*' component={DOLAppRouter} />
                     </React.Fragment>
                 </Route>
@@ -44,8 +44,8 @@ class DOLLocalizedRouter extends React.Component {
         )
         const NoLangRoute = ({ match }) => (
             <Switch>
-                {console.log('NoLangRoute: ' + match.url)}
-                {console.log('Redirect To: ' + '/en' + match.path)}
+                {/*console.log('NoLangRoute: ' + match.url)*/}
+                {/*console.log('Redirect To: ' + '/en' + match.path)*/}
                 <Redirect to={'/' + ((lang == 'en' || lang == 'fr') ? lang : 'en') + '/' + match.params.route} />
                 <Route component={DOL404} />
             </Switch>
@@ -54,7 +54,7 @@ class DOLLocalizedRouter extends React.Component {
         return (
             <React.Fragment>
                 <Switch>
-                    {console.log('DOLLocalizedRouter: ' + match.path + "|" + match.url)}
+                    {/*console.log('DOLLocalizedRouter: ' + match.path + "|" + match.url)*/}
                     <Route path='/:lang(en|fr)/:route*' component={LanguageSelect} />
                     <Route path='/samples/:route*' component={DOLSamplesRouter} />
                     <Route path='/:route*' component={NoLangRoute} />

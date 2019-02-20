@@ -1,4 +1,38 @@
 {
+    "pages": {
+        "about": {
+            "hero": {
+                "title": "À propos de AON",
+                "text": "<strong>APPRENTISSAGE OUVERT NUMÉRIQUE</strong> est une idée. Donner un sens au <strong>numérique de manière humaine</strong>. La transformation numérique ne concerne pas que la technologie. C'est culturel et humain. Développons la <strong>conscience des possibilités</strong>, <strong>augmentons la confiance</strong> et la <strong>capacité des employés</strong> du gouvernement ensemble.Explorez ci-dessous pour trouver des opportunités d'apprentissage organisées et personnalisées",
+                "start": "Commencer",
+                "tour": "Donne moi le tour"
+            },
+            "body": {
+                "dolcard": {
+                    "title": "APPRENTISSAGE OUVERT NUMÉRIQUE",
+                    "text": "AON présente la transformation numérique du gouvernement canadien et de ses services en termes humains, car la transformation numérique est fondamentalement culturelle. Les offres d’apprentissage d’apprentissage de base visent à sensibiliser l’opinion publique aux possibilités, à accroître la confiance et la capacité des employés de l’État qui gèrent les impacts du numérique sur leur monde. De plus, les fondations numériques suscitent l’intérêt d’apprendre davantage grâce à des possibilités d’apprentissage organisées et personnalisées.",
+                    "explore": "EXPLORER AON",
+                    "share": "PARTAGER Connaissance"
+                },
+                "expectcard": {
+                    "title": "Quoi attendre",
+                    "text": {
+                        "li1": "Les fonctionnaires (apprenants) adoptent de nouvelles façons de penser à eux-mêmes, à leur travail et au rôle du gouvernement dans la fourniture de meilleurs services aux citoyens;",
+                        "li2": "Les apprenants améliorent leurs connaissances et leurs compétences grâce à un contenu facile à utiliser, opportun et pertinent lié au numérique au sein du gouvernement",
+                        "li3": "Les apprenants améliorent leur compréhension du numérique en se connectant à des activités d'apprentissage plus approfondies"
+                    },
+                    "participate": "PARTICIPER",
+                    "browse": "FEUILLETER"
+                },
+                "explorecard": {
+                    "title": "EXPLORER AON",
+                    "text": "AON dispose d'un catalogue de ressources d'apprentissage numériques. Explorez-les de plus près par Stream, Practice, etc. Lorsque vous trouvez quelque chose que vous voulez en savoir plus, ajoutez-le à votre profil pour pouvoir suivre votre apprentissage.",
+                    "streams": "RUISSEAUX",
+                    "practices": "LES PRATIQUES"
+                }
+            }
+        }
+    },
     "app": {
         "language": "Français",
         "title": "Bienvenue à React",

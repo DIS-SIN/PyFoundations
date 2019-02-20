@@ -1,4 +1,38 @@
 {
+    "pages": {
+        "about": {
+            "hero": {
+                "title": "About",
+                "text": "<strong>Digtal Open Learning is an idea.</strong> To make sense of <strong>Digital in a Human way</strong>. Digital transformation isn't about technology alone. It's cultural and human. Let's <strong>build awareness</strong> of possibilities, <strong>increase confidence</strong> and <strong>capacity</strong> of government employees together. Explore below to find curated and <strong>personalized learning opportunities</strong>",
+                "start": "Get STARTED",
+                "tour": "Give me the tour"
+            },
+            "body": {
+                "dolcard": {
+                    "title": "Digital Open Learning",
+                    "text": "DOL presents the digital transformation of the Canadian government and its services in human terms because digital transformation is fundamentally cultural. The focus of the foundational learning offerings are designed to build awareness of possibilities, increase confidence and capacity of government employees who are navigating the impacts of digital on their world. Additionally, digital foundations piques the interest to learn more through curated and personalized learning opportunities.",
+                    "explore": "EXPLORE DOL",
+                    "share": "SHARE Knowledge"
+                },
+                "expectcard": {
+                    "title": "What to Expect",
+                    "text": {
+                        "li1": "Public servants (learners) engage in new ways of thinking about themselves, their work and the role of government in providing better services to citizens;",
+                        "li2": "Learners improve their knowledge and skills through easy to consume, timely and relevant content related to digital in government",
+                        "li3": "Learners improve their understanding of digital through connections to deeper learning activities"
+                    },
+                    "participate": "PARTICIPATE",
+                    "browse": "BROWSE"
+                },
+                "explorecard": {
+                    "title": "Explore DOL",
+                    "text": "DOL has a curated catalogue of Digital Learning Resources. Explore them furhter by Stream, Practice, and more. When you find something you want to know more about, add it to your profile so you can track your learning.",
+                    "streams": "STREAMS",
+                    "practices": "PRACTICES"
+                }
+            }
+        }
+    },
     "app": {
         "language": "English",
         "title": "Welcome to React!",

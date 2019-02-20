@@ -20,7 +20,7 @@ class DOLSamplesRouter extends React.Component {
         const { literals, classes, match } = this.props;
         const SampleSelect = ({ match }) => (
             <Switch>
-                {console.log('SampleSelect: ' + match.url)}
+                {/*console.log('SampleSelect: ' + match.url)*/}
                 <Route exact path={'/:sampledir/dashboard'} component={DashboardExample} />
                 <Route exact path={'/:sampledir/showcase'} component={AppReactShowcase} />
                 <Route exact path={'/:sampledir/album'} component={AlbumExample} />
@@ -33,7 +33,7 @@ class DOLSamplesRouter extends React.Component {
         return (
             <React.Fragment>
                 <Switch>
-                    {console.log('DOLSamplesRouter: ' + match.path + "|" + match.url)}
+                    {/*console.log('DOLSamplesRouter: ' + match.path + "|" + match.url)*/}
                     <Route path='/samples/:route*' component={SampleSelect} />
                 </Switch>
             </React.Fragment>

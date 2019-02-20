@@ -21,7 +21,7 @@ class DOLRootRouter extends React.Component {
         return (
             <Layout>
                 <Switch>
-                    {console.log("Root Router Start")}
+                    {/*console.log("Root Router Start")*/}
                     <Route exact path='/' component={DOLPageLanguageSelect} />
                     <Route path='/*' component={DOLLocalizedRouter} />
                     <Route component={DOL404} />
@@ -32,5 +32,3 @@ class DOLRootRouter extends React.Component {
 }
 
 export default withRouter(connect(mapStateToProps)(DOLRootRouter));
-//export default connect(mapStateToProps)(DOLRootRouter);
-
