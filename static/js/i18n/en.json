@@ -1,5 +1,25 @@
 {
     "organisms": {
+        "header": {
+            "samples": {
+                "dashboard": "Ex: Dashboard",
+                "showcase": "Ex: Showcase",
+                "album": "Ex: Album",
+                "signin": "Ex: Sign In",
+                "pricing": "Ex: Pricing"
+            },
+            "menu": {
+                "logo": "DOL",
+                "logout": "Logout",
+                "explore": "Explore",
+                "share": "Share",
+                "about": "About",
+                "profile": "Profile",
+                "settings": "Settings",
+                "signin": "Sign In",
+                "search": "Search"
+            }
+        },
         "footer": {
             "desctitle": "Digital Academy",
             "connect": "CONNECT",

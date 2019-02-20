@@ -1,5 +1,25 @@
 {
     "organisms": {
+        "header": {
+            "samples": {
+                "dashboard": "Ex: tableau de bordd",
+                "showcase": "Ex: Vitrine",
+                "album": "Ex: Album",
+                "signin": "Ex: Connexion",
+                "pricing": "Ex: Tarification"
+            },
+            "menu": {
+                "logo": "AON",
+                "logout": "Déconnexion",
+                "explore": "Explorer",
+                "share": "Partager",
+                "about": "À propos",
+                "profile": "Profil",
+                "settings": "Réglages",
+                "signin": "Connexion",
+                "search": "Chercher"
+            }
+        },
         "footer": {
             "desctitle": "Académie Numérique",
             "connect": "RELIER",

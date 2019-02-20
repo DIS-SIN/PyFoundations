@@ -158,44 +158,44 @@ class DOLHeader extends React.Component {
                 <HeaderMenuItem
                     href="/samples/dashboard"
                     icon={<SettingsIcon />}
-                    text="Dashboard Example"
+                    text={literals.organisms.header.samples.dashboard}
                     action={this.handleMenuClose}
                 />
                 <HeaderMenuItem
                     href="/samples/showcase"
                     icon={<SettingsIcon />}
-                    text="Showcase Example"
+                    text={literals.organisms.header.samples.showcase}
                     action={this.handleMenuClose}
                 />
                 <HeaderMenuItem
                     href="/samples/album"
                     icon={<SettingsIcon />}
-                    text="Album Example"
+                    text={literals.organisms.header.samples.album}
                     action={this.handleMenuClose}
                 />
                 <HeaderMenuItem
                     href="/samples/signin"
                     icon={<SettingsIcon />}
-                    text="SignIn Example"
+                    text={literals.organisms.header.samples.signin}
                     action={this.handleMenuClose}
                 />
                 <HeaderMenuItem
                     href="/samples/pricing"
                     icon={<SettingsIcon />}
-                    text="Pricing Example"
+                    text={literals.organisms.header.samples.pricing}
                     action={this.handleMenuClose}
                 />
                 <LangSelectMenuItem location={location} />
                 <HeaderMenuItem
-                    href="/samples/settings"
+                    href="/settings"
                     icon={<SettingsIcon />}
-                    text="Settings"
+                    text={literals.organisms.header.menu.settings}
                     action={this.handleMenuClose}
                 />
                 <HeaderMenuItem
-                    href="/samples/logout"
+                    href="/logout"
                     icon={<LockIcon />}
-                    text="Logout"
+                    text={literals.organisms.header.menu.logout}
                     action={this.handleMenuClose}
                 />
             </Menu>
@@ -212,38 +212,38 @@ class DOLHeader extends React.Component {
                 <HeaderMenuItemMobile
                     href="/explore"
                     icon={<ImageSearchIcon />}
-                    text="Explore"
+                    text={literals.organisms.header.menu.explore}
                     action={this.handleMobileMenuClose}
                 />
                 <HeaderMenuItemMobile
                     href="/share"
                     icon={<AddCommentIcon />}
-                    text="Share"
+                    text={literals.organisms.header.menu.share}
                     action={this.handleMobileMenuClose}
                 />
                 <HeaderMenuItemMobile
                     href="/about"
                     icon={<HelpOutlineIcon />}
-                    text="About"
+                    text={literals.organisms.header.menu.about}
                     action={this.handleMobileMenuClose}
                 />
                 <HeaderMenuItemMobile
                     href="/profile"
                     icon={<AccountCircle />}
-                    text="Profile"
+                    text={literals.organisms.header.menu.profile}
                     action={this.handleMobileMenuClose}
                 />
                 <LangSelectMenuItemMobile location={location} />
                 <HeaderMenuItemMobile
                     href="/settings"
                     icon={<SettingsIcon />}
-                    text="Settings"
+                    text={literals.organisms.header.menu.settings}
                     action={this.handleMobileMenuClose}
                 />
                 <HeaderMenuItemMobile
                     href="/logout"
                     icon={<LockIcon />}
-                    text="Logout"
+                    text={literals.organisms.header.menu.logout}
                     action={this.handleMobileMenuClose}
                 />
             </Menu>
@@ -254,29 +254,29 @@ class DOLHeader extends React.Component {
                 <AppBar position="fixed">
                     <Toolbar>
                         <DOLDrawer />
-                        <HeaderLogoItem text="DOL" href="/home" />
+                        <HeaderLogoItem text={literals.organisms.header.menu.logo} href="/home" />
                         <HeaderSearchControl />
                         <div className={classes.grow} />
                         <div className={classes.sectionDesktop}>
                             <HeaderMenuItemDesktop
                                 href="/explore"
                                 icon={<ImageSearchIcon />}
-                                text="Explore"
+                                text={literals.organisms.header.menu.explore}
                             />
                             <HeaderMenuItemDesktop
                                 href="/share"
                                 icon={<AddCommentIcon />}
-                                text="Share"
+                                text={literals.organisms.header.menu.share}
                             />
                             <HeaderMenuItemDesktop
                                 href="/about"
                                 icon={<HelpOutlineIcon />}
-                                text="About"
+                                text={literals.organisms.header.menu.about}
                             />
                             <HeaderMenuItemDesktop
                                 href="/profile"
                                 icon={<AccountCircle />}
-                                text="Profile"
+                                text={literals.organisms.header.menu.profile}
                             />
                             <LangSelectMenuItemDesktop location={location} />
                             <IconButton color="inherit">
