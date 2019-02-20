@@ -10,6 +10,25 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { Link } from 'react-router-dom';
 
+import loadLangPack from "../atoms/i18n";
+import { loadLiterals } from "../../store/literals";
+import { loadLang } from "../../store/lang";
+import store from "../../store";
+
+
+const mapStateToProps = state => {
+    return {
+        literals: state.literals,
+        lang: state.lang
+    };
+};
+
+const changeLanguage = lng => {
+    const langpack = loadLangPack(lng);
+    store.dispatch(loadLiterals(langpack));
+    store.dispatch(loadLang(lng));
+};
+
 const styles = theme => ({
     main: {
         width: 'auto',
@@ -37,12 +56,6 @@ const styles = theme => ({
     },
 });
 
-const mapStateToProps = state => {
-    return {
-        literals: state.literals
-    };
-};
-
 class DOLPageLanguageSelect extends React.Component {
     constructor(props) {
         super(props);
@@ -56,8 +69,8 @@ class DOLPageLanguageSelect extends React.Component {
         const { literals, location, classes } = this.props;
 
         const link_group_hero = [
-            { "href": "/en/home", "title": "English" },
-            { "href": "/fr/home", "title": "Français" },
+            { "href": "/en/home", "title": "English", "lang": "en" },
+            { "href": "/fr/home", "title": "Français", "lang": "fr" },
         ];
 
         return (
@@ -80,7 +93,9 @@ class DOLPageLanguageSelect extends React.Component {
                                     <Button
                                         component={Link}
                                         variant="contained" color="secondary"
-                                        to={link.href}>
+                                        to={link.href}
+                                        onClick={() => changeLanguage(link.lang)}
+                                    >
                                         {link.title}
                                     </Button>
                                 </Grid>

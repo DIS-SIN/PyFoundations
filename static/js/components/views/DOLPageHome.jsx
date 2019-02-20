@@ -20,15 +20,20 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 const styles = theme => ({
     layout: {
         width: 'auto',
-        marginLeft: theme.spacing.unit * 3,
-        marginRight: theme.spacing.unit * 3,
+        marginLeft: 0,//theme.spacing.unit * 3,
+        marginRight: 0,//theme.spacing.unit * 3,
         [theme.breakpoints.up(1100 + theme.spacing.unit * 3 * 2)]: {
             width: 1100,
             marginLeft: 'auto',
             marginRight: 'auto',
         },
+        backgroundColor: theme.palette.background.paper,
+        paddingLeft: theme.spacing.unit * 3,
+        paddingRight: theme.spacing.unit * 3,
     },
     cardGrid: {
+        marginLeft: 0,//theme.spacing.unit * 3,
+        marginRight: 0,//theme.spacing.unit * 3,
         padding: `${theme.spacing.unit * 8}px 0`,
         backgroundColor: theme.palette.background.paper,
         margin: 0,
@@ -73,7 +78,7 @@ class DOLPageHome extends React.Component {
                             in their <strong>digital skills</strong>. Explore below to find curated and <strong>personalized learning opportunities</strong></React.Fragment>}
                     links={link_group_hero}
                 />
-                <div className={classNames(classes.layout, classes.cardGrid)}>
+                <div className={classNames(classes.layout)}>
                     <Grid container spacing={40}>
                         {streams.map((item, index) => (
                             <GridInfoCard

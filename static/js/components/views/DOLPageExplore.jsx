@@ -49,13 +49,16 @@ const styles = theme => ({
     },
     layout: {
         width: 'auto',
-        marginLeft: theme.spacing.unit * 3,
-        marginRight: theme.spacing.unit * 3,
+        marginLeft: 0,//theme.spacing.unit * 3,
+        marginRight: 0,//theme.spacing.unit * 3,
         [theme.breakpoints.up(1100 + theme.spacing.unit * 3 * 2)]: {
             width: 1100,
             marginLeft: 'auto',
             marginRight: 'auto',
         },
+        backgroundColor: theme.palette.background.paper,
+        paddingLeft: theme.spacing.unit * 3,
+        paddingRight: theme.spacing.unit * 3,
     },
     cardGrid: {
         padding: `${theme.spacing.unit * 8}px 0`,
@@ -120,7 +123,7 @@ class DOLPageExplore extends React.Component {
                     </React.Fragment>}
                     links={link_group_hero}
                 />
-                <div className={classNames(classes.layout, classes.cardGrid)}>
+                <div className={classNames(classes.layout)}>
                     <DOLStreams />
                     <DOLPractices />
                 </div>

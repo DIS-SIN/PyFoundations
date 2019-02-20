@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
+import { connect } from "react-redux";
+
+const mapStateToProps = state => {
+    return {
+        literals: state.literals
+    };
+};
 
 class HeaderLogoItem extends React.Component {
     constructor(props) {
@@ -8,7 +15,7 @@ class HeaderLogoItem extends React.Component {
     }
 
     render() {
-        const { href, text } = this.props;
+        const { href, text, literals } = this.props;
 
         return (
             <React.Fragment>
@@ -20,4 +27,5 @@ class HeaderLogoItem extends React.Component {
     }
 }
 
-export default HeaderLogoItem;
+
+export default connect(mapStateToProps)(HeaderLogoItem);

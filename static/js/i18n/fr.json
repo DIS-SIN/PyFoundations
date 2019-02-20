@@ -1,5 +1,6 @@
 {
     "app": {
+        "language": "Français",
         "title": "Bienvenue à React",
         "headergreeting": "Bonjour... React!",
         "headertagline": "Un table du react (facile)",
@@ -8,7 +9,7 @@
     "appintl": {
         "description": {
             "part1": "Pour commencer, éditez src/App.js et enregistrez-le pour le recharger.",
-            "part2": "Changez de langue entre l'anglais et l'allemand en utilisant les boutons ci-dessus."
+            "part2": "Changez de langue entre l'anglais et francais en utilisant les boutons ci-dessus."
         }
     },
     "greetingintl": {

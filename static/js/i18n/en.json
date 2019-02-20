@@ -1,5 +1,6 @@
 {
     "app": {
+        "language": "English",
         "title": "Welcome to React!",
         "headergreeting": "Hello... React!",
         "headertagline": "Basic Table Example in React",

@@ -5,20 +5,33 @@ import { connect } from "react-redux";
 import DOLSamplesRouter from "./DOLSamplesRouter";
 import DOL404 from "../templates/DOL404";
 import DOLAppRouter from "./DOLAppRouter";
+import loadLangPack from "../atoms/i18n";
+import { loadLiterals } from "../../store/literals";
+import { loadLang } from "../../store/lang";
+import store from "../../store";
+
 
 const mapStateToProps = state => {
     return {
-        literals: state.literals
+        literals: state.literals,
+        lang: state.lang
     };
+};
+
+const changeLanguage = lng => {
+    const langpack = loadLangPack(lng);
+    store.dispatch(loadLiterals(langpack));
+    store.dispatch(loadLang(lng));
 };
 
 class DOLLocalizedRouter extends React.Component {
 
     render() {
-        const { literals, classes, match } = this.props;
+        const { literals, classes, match, lang } = this.props;
 
         const LanguageSelect = ({ match }) => (
             <Switch>
+                {changeLanguage(match.params.lang)}
                 {console.log('LanguageSelect: ' + match.params.lang + "|" + match.url)}
                 <Route path="/:route*">
                     <React.Fragment>
@@ -33,7 +46,7 @@ class DOLLocalizedRouter extends React.Component {
             <Switch>
                 {console.log('NoLangRoute: ' + match.url)}
                 {console.log('Redirect To: ' + '/en' + match.path)}
-                <Redirect to={'/en/' + match.params.route} />
+                <Redirect to={'/' + ((lang == 'en' || lang == 'fr') ? lang : 'en') + '/' + match.params.route} />
                 <Route component={DOL404} />
             </Switch>
         )
@@ -50,7 +63,9 @@ class DOLLocalizedRouter extends React.Component {
         );
     }
 }
-
+DOLLocalizedRouter.defaultProps = {
+    lang: 'en'
+};
 // connect redux state
 export default withRouter(connect(mapStateToProps)(DOLLocalizedRouter));
 
