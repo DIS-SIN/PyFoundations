@@ -14,6 +14,7 @@ import loadLangPack from "../atoms/i18n";
 import { loadLiterals } from "../../store/literals";
 import { loadLang } from "../../store/lang";
 import store from "../../store";
+import LanguageIcon from '@material-ui/icons/Language';
 
 
 const mapStateToProps = state => {
@@ -96,7 +97,7 @@ class DOLPageLanguageSelect extends React.Component {
                                         to={link.href}
                                         onClick={() => changeLanguage(link.lang)}
                                     >
-                                        {link.title}
+                                        <LanguageIcon /> {link.title}
                                     </Button>
                                 </Grid>
                             ))}

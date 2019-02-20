@@ -26,11 +26,16 @@ import { Link } from 'react-router-dom';
 
 // connect the state from redux
 import { connect } from "react-redux";
-import HeaderMenuItem from '../atoms/HeaderMenuItem';
-import HeaderMenuItemMobile from '../atoms/HeaderMenuItemMobile';
 import HeaderLogoItem from '../atoms/HeaderLogoItem';
 import HeaderSearchControl from '../molecules/HeaderSearchControl';
+
+import HeaderMenuItem from '../atoms/HeaderMenuItem';
+import HeaderMenuItemMobile from '../atoms/HeaderMenuItemMobile';
 import HeaderMenuItemDesktop from '../atoms/HeaderMenuItemDesktop';
+
+import LangSelectMenuItemDesktop from '../atoms/LangSelectMenuItemDesktop';
+import LangSelectMenuItemMobile from '../atoms/LangSelectMenuItemMobile';
+import LangSelectMenuItem from '../atoms/LangSelectMenuItem';
 const mapStateToProps = state => {
     return {
         literals: state.literals
@@ -138,7 +143,7 @@ class DOLHeader extends React.Component {
 
     render() {
         const { anchorEl, mobileMoreAnchorEl } = this.state;
-        const { literals, classes } = this.props;
+        const { literals, classes, location } = this.props;
         const isMenuOpen = Boolean(anchorEl);
         const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -180,6 +185,7 @@ class DOLHeader extends React.Component {
                     text="Pricing Example"
                     action={this.handleMenuClose}
                 />
+                <LangSelectMenuItem location={location} />
                 <HeaderMenuItem
                     href="/samples/settings"
                     icon={<SettingsIcon />}
@@ -227,6 +233,7 @@ class DOLHeader extends React.Component {
                     text="Profile"
                     action={this.handleMobileMenuClose}
                 />
+                <LangSelectMenuItemMobile location={location} />
                 <HeaderMenuItemMobile
                     href="/settings"
                     icon={<SettingsIcon />}
@@ -271,6 +278,7 @@ class DOLHeader extends React.Component {
                                 icon={<AccountCircle />}
                                 text="Profile"
                             />
+                            <LangSelectMenuItemDesktop location={location} />
                             <IconButton color="inherit">
                                 <Badge badgeContent={17} color="secondary">
                                     <NotificationsIcon />

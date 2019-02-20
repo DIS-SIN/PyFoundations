@@ -28,11 +28,11 @@ const styles = theme => ({
 class DOLLayout extends React.Component {
 
     render() {
-        const { literals, classes, match, content } = this.props;
+        const { literals, classes, match, content, location } = this.props;
 
         return (
             <React.Fragment>
-                <DOLHeader />
+                <DOLHeader location={location} />
                 <CssBaseline />
                 {content}
                 <DOLPrimaryActionPanel />
