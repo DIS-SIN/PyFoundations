@@ -5,10 +5,10 @@ import DOLLayout from "../templates/DOLLayout";
 import DOL404 from "../templates/DOL404";
 
 import DOLPageExplore from "../views/DOLPageExplore";
-import DOLPageLearningStreams from "../views/DOLPageLearningStreams";
-import DOLPageLearningPractices from "../views/DOLPageLearningPractices";
-import DOLPageEpisodes from "../views/DOLPageEpisodes";
-import DOLPageExperiences from "../views/DOLPageExperiences";
+import DOLPageExploreStreams from "../views/DOLPageExploreStreams";
+import DOLPageExplorePractices from "../views/DOLPageExplorePractices";
+import DOLPageExploreEpisodes from "../views/DOLPageExploreEpisodes";
+import DOLPageExploreExperiences from "../views/DOLPageExploreExperiences";
 
 const mapStateToProps = state => {
     return {
@@ -23,10 +23,10 @@ class DOLExploreRouter extends React.Component {
 
         const langroutes = [
             { path: '/:lang/explore', name: 'Explore', Component: DOLPageExplore },
-            { path: '/:lang/explore/streams', name: 'Streams', Component: DOLPageLearningStreams },
-            { path: '/:lang/explore/practices', name: 'Practices', Component: DOLPageLearningPractices },
-            { path: '/:lang/explore/experiences', name: 'Experiences', Component: DOLPageExperiences },
-            { path: '/:lang/explore/episodes', name: 'Episodes', Component: DOLPageEpisodes },
+            { path: '/:lang/explore/streams', name: 'Streams', Component: DOLPageExploreStreams },
+            { path: '/:lang/explore/practices', name: 'Practices', Component: DOLPageExplorePractices },
+            { path: '/:lang/explore/experiences', name: 'Experiences', Component: DOLPageExploreExperiences },
+            { path: '/:lang/explore/episodes', name: 'Episodes', Component: DOLPageExploreEpisodes },
         ]
 
         const LanguifiedRoute = ({ match, location }) => (

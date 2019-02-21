@@ -9,8 +9,9 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 
 import HeroHeader from "../molecules/HeroHeader";
-import DOLPractices from "../organisms/DOLPractices";
+import DOLStreams from "../organisms/DOLStreams";
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+
 
 const styles = theme => ({
     layout: {
@@ -28,14 +29,13 @@ const styles = theme => ({
         paddingTop: 16,
     },
 });
-
 const mapStateToProps = state => {
     return {
         literals: state.literals
     };
 };
 
-class DOLPageLearningPractices extends React.Component {
+class DOLPageExploreStreams extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -50,24 +50,24 @@ class DOLPageLearningPractices extends React.Component {
             <React.Fragment>
                 <CssBaseline />
                 <HeroHeader
-                    title={literals.pages.practices.hero.title}
+                    title={literals.pages.streams.hero.title}
                     icon={<HelpOutlineIcon />}
                     text={<React.Fragment key="herotext">
-                        {ReactHtmlParser(literals.pages.practices.hero.text)}
+                        {ReactHtmlParser(literals.pages.streams.hero.text)}
                     </React.Fragment>}
                     links={link_group_hero}
                 />
                 <div className={classNames(classes.layout, classes.cardGrid)}>
-                    <DOLPractices />
+                    <DOLStreams />
                 </div>
             </React.Fragment >
         );
     }
 }
 
-DOLPageLearningPractices.propTypes = {
+DOLPageExploreStreams.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
 // connect redux state
-export default connect(mapStateToProps)(withStyles(styles)(DOLPageLearningPractices));
+export default connect(mapStateToProps)(withStyles(styles)(DOLPageExploreStreams));

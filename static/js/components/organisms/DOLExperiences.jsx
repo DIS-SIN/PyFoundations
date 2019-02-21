@@ -65,7 +65,7 @@ const styles = theme => ({
     },
 });
 
-class DOLPageExperiences extends React.Component {
+class DOLExperiences extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -202,20 +202,9 @@ class DOLPageExperiences extends React.Component {
             //  {apiDataItem}
             const returnFragment = (
                 <React.Fragment>
-                    <CssBaseline />
-                    <HeroHeader
-                        title={literals.pages.experiences.hero.title}
-                        icon={<HelpOutlineIcon />}
-                        text={<React.Fragment key="herotext">
-                            {ReactHtmlParser(literals.pages.experiences.hero.text)}
-                        </React.Fragment>}
-                        links={link_group_hero}
-                    />
-                    <div className={classNames(classes.layout, classes.cardGrid)}>
-                        <Grid spacing={24} alignItems="center" justify="center" container>
-                            {apiDataItem}
-                        </Grid>
-                    </div>
+                    <Grid spacing={24} alignItems="center" justify="center" container>
+                        {apiDataItem}
+                    </Grid>
                 </React.Fragment>
             )
             return returnFragment;
@@ -223,11 +212,11 @@ class DOLPageExperiences extends React.Component {
     }
 }
 
-DOLPageExperiences.propTypes = {
+DOLExperiences.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default connect(mapStateToProps)(withStyles(styles)(DOLPageExperiences));
+export default connect(mapStateToProps)(withStyles(styles)(DOLExperiences));
 
 /**
  *

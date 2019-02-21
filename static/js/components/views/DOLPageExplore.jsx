@@ -110,6 +110,8 @@ class DOLPageExplore extends React.Component {
             { "href": "/profile", "title": literals.common.learnerprofile },
             { "href": "/explore/experiences", "title": literals.common.experiences },
             { "href": "/explore/episodes", "title": literals.common.episodes },
+            { "href": "/explore/streams", "title": literals.common.streams },
+            { "href": "/explore/practices", "title": literals.common.practices },
         ];
 
         return (

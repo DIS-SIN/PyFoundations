@@ -113,6 +113,13 @@
             },
             "body": {}
         },
+        "episodes": {
+            "hero": {
+                "title": "EPISODES",
+                "text": "<strong>Episodes</strong>. The bundles of quickly consumable content <strong>are here for you to browse</strong>"
+            },
+            "body": {}
+        },
         "explore": {
             "hero": {
                 "title": "EXPLORE",
