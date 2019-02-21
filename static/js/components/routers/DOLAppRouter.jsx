@@ -3,13 +3,8 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom'
 import { connect } from "react-redux";
 import DOLPageStub from "../views/DOLPageStub";
 import DOLPageHome from "../views/DOLPageHome";
-import DOLPageExplore from "../views/DOLPageExplore";
-import DOLPageShare from "../views/DOLPageShare";
 import DOLPageSearch from "../views/DOLPageSearch";
 import DOLPageAbout from "../views/DOLPageAbout";
-import DOLPageLearningStreams from "../views/DOLPageLearningStreams";
-import DOLPageLearningPractices from "../views/DOLPageLearningPractices";
-import DOLPageUserProfile from "../views/DOLPageUserProfile";
 import DOLLayout from "../templates/DOLLayout";
 import DOL404 from "../templates/DOL404";
 import DOLProfileRouter from "./DOLProfileRouter";

@@ -14,51 +14,7 @@ const mapStateToProps = state => {
 };
 
 class DOLSettingsRouter extends React.Component {
-    /**
-     
-    # PYDOL (Digital Open Learning, Python)
-    ## Main Routes
-    /app#/en/home
-    /app#/en/about
-    
-    ## Profile
-    /app#/en/profile
-    /app#/en/profile/update
-    /app#/en/profile/edit
-    
-    ## Find Content
-    /app#/en/explore
-    /app#/en/explore/streams
-    /app#/en/explore/practices
-    /app#/en/explore/experiences
-    /app#/en/explore/episodes
-    /app#/en/search
-    
-    ## Add Content
-    /app#/en/share
-    /app#/en/share/episode
-    /app#/en/share/experience
-    /app#/en/share/experience/(read|watch|listen|participate|study|do)
-    
-    ## View Single Content Item
-    /app#/en/view/episode
-    /app#/en/view/experience
-    /app#/en/view/stream
-    /app#/en/view/practice
-    
-    ## Edit Content
-    /app#/en/modify/episode
-    /app#/en/modify/experience
-    /app#/en/modify/stream
-    /app#/en/modify/practice
-    
-    ## Administration
-    /app#/en/login
-    /app#/en/logout
-    /app#/en/settings
-    
-     
-     */
+
     render() {
         const { literals, classes, match } = this.props;
 

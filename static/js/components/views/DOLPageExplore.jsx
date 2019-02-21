@@ -24,7 +24,6 @@ import { LearningArchitecture } from '../atoms/LearningArchitecture'
 import HeroHeader from "../molecules/HeroHeader";
 import DOLStreams from "../organisms/DOLStreams";
 import DOLPractices from "../organisms/DOLPractices";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 const styles = theme => ({

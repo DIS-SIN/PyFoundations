@@ -10,7 +10,6 @@ import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 
 import HeroHeader from "../molecules/HeroHeader";
 import GridInfoCard from "../molecules/GridInfoCard";
-import DOLSignInDialog from "../organisms/DOLSignInDialog";
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import { connect } from "react-redux";
 

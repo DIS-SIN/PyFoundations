@@ -13,7 +13,6 @@ import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
 import AjaxTest from '../../samples/AjaxTest';
 import classNames from 'classnames';
-import literals from '../../store/literals';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import { connect } from "react-redux";
 

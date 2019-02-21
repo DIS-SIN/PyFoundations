@@ -12,10 +12,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 
 import { LearningArchitecture } from '../atoms/LearningArchitecture'
-import GridInfoCard from "../molecules/GridInfoCard";
 import HeroHeader from "../molecules/HeroHeader";
 import DOLSignInDialog from "../organisms/DOLSignInDialog";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import DOLStreams from "../organisms/DOLStreams";
 
