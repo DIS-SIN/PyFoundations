@@ -20,4 +20,4 @@ class ExperienceResource(Resource):
         return update_one(model, id, json_object_name)
 
     def delete(self, id):
-        return delete_one(model, json_object_name)
+        return delete_one(model, id)

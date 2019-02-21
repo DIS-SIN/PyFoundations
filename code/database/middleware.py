@@ -57,9 +57,11 @@ def insert_model(model):
 
 
 def update_model_by_id(model, id, update_val):
-    session = get_db_session()
-    session.query(model).filter(model.id == id).update(update_val)
     db_status = True
+    session = get_db_session()
+    # if .update() returns 1, good request, keep status True
+    # if .update() returns 0/2, bad request, set status False
+    db_status = 1 == session.query(model).filter(model.id == id).update(update_val)
     try:
         session.commit()
     except Exception:
