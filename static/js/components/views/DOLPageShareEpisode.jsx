@@ -20,7 +20,7 @@ const mapStateToProps = state => {
     };
 };
 
-class DOLPageShare extends React.Component {
+class DOLPageShareEpisode extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -30,8 +30,6 @@ class DOLPageShare extends React.Component {
 
         const link_group_hero = [
             { "href": "/home", "title": literals.common.home },
-            { "href": "/share/experience", "title": literals.common.share + " " + literals.common.experience },
-            { "href": "/share/episode", "title": literals.common.share + " " + literals.common.episode },
         ];
         return (
             <React.Fragment>
@@ -50,9 +48,9 @@ class DOLPageShare extends React.Component {
     }
 }
 
-DOLPageShare.propTypes = {
+DOLPageShareEpisode.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
 // connect redux state
-export default connect(mapStateToProps)(withStyles(styles)(DOLPageShare));
+export default connect(mapStateToProps)(withStyles(styles)(DOLPageShareEpisode));

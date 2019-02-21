@@ -1,20 +1,12 @@
 import React, { Component } from "react";
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom'
 import { connect } from "react-redux";
-import DOLPageStub from "../views/DOLPageStub";
-import DOLPageHome from "../views/DOLPageHome";
-import DOLPageExplore from "../views/DOLPageExplore";
-import DOLPageShare from "../views/DOLPageShare";
-import DOLPageSearch from "../views/DOLPageSearch";
-import DOLPageAbout from "../views/DOLPageAbout";
-import DOLPageLearningStreams from "../views/DOLPageLearningStreams";
-import DOLPageLearningPractices from "../views/DOLPageLearningPractices";
-import DOLPageUserProfile from "../views/DOLPageUserProfile";
 import DOLLayout from "../templates/DOLLayout";
 import DOL404 from "../templates/DOL404";
-import DOLProfileRouter from "./DOLProfileRouter";
-import DOLExploreRouter from "./DOLExploreRouter";
-import DOLShareRouter from "./DOLShareRouter";
+
+import DOLPageShare from "../views/DOLPageShare";
+import DOLPageShareEpisode from "../views/DOLPageShareEpisode";
+import DOLPageShareExperience from "../views/DOLPageShareExperience";
 
 const mapStateToProps = state => {
     return {
@@ -22,7 +14,7 @@ const mapStateToProps = state => {
     };
 };
 
-class DOLAppRouter extends React.Component {
+class DOLShareRouter extends React.Component {
     /**
      
     # PYDOL (Digital Open Learning, Python)
@@ -71,29 +63,17 @@ class DOLAppRouter extends React.Component {
     render() {
         const { literals, classes, match } = this.props;
 
-        const routers = [
-            { path: '/:lang/profile', name: 'Profile', Component: DOLProfileRouter },
-            { path: '/:lang/explore', name: 'Explore', Component: DOLExploreRouter },
-            { path: '/:lang/share', name: 'Share', Component: DOLShareRouter },
-        ]
         const langroutes = [
-            { path: '/:lang/home', name: 'Home', Component: DOLPageHome },
-            { path: '/:lang/about', name: 'About', Component: DOLPageAbout },
-            { path: '/:lang/search', name: 'Search', Component: DOLPageSearch },
-            { path: '/:lang/settings', name: 'Settings', Component: DOLPageStub },
-            { path: '/:lang/login', name: 'Login', Component: DOLPageStub },
-            { path: '/:lang/logout', name: 'Logout', Component: DOLPageStub },
+            { path: '/:lang/share', name: 'Share', Component: DOLPageShare },
+            { path: '/:lang/share/experience', name: 'Share Experience', Component: DOLPageShareExperience },
+            { path: '/:lang/share/episode', name: 'Share Episode', Component: DOLPageShareEpisode },
         ]
+
         const LanguifiedRoute = ({ match, location }) => (
             <Switch>
                 {langroutes.map(({ path, Component }) => (
                     <Route key={path} exact path={path}>
                         <DOLLayout content={<Component location={location} />} />
-                    </Route>
-                ))}
-                {routers.map(({ path, Component }) => (
-                    <Route key={path} path={path}>
-                        <Component location={location} />
                     </Route>
                 ))}
                 <Route>
@@ -113,6 +93,4 @@ class DOLAppRouter extends React.Component {
 }
 
 // connect redux state
-export default withRouter(connect(mapStateToProps)(DOLAppRouter));
-
-
+export default withRouter(connect(mapStateToProps)(DOLShareRouter));

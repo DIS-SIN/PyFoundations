@@ -15,16 +15,19 @@
         "settings": "Réglages",
         "signin": "Connexion",
         "search": "Chercher",
-        "addto": "AJOUTER À",
-        "edit": "MODIFIER",
-        "delete": "EFFACER",
-        "remove": "RETIRER",
-        "streams": "RUISSEAUX",
-        "practices": "PRATIQUES",
-        "experiences": "EXPÉRIENCES",
+        "addto": "Ajouter à",
+        "edit": "Modifier",
+        "delete": "Effacer",
+        "remove": "Retirer",
+        "streams": "Ruisseaux",
+        "practices": "Pratiques",
+        "experience": "Expérience",
+        "experiences": "Expériences",
         "cancel": "Annuler",
         "home": "Accueil",
-        "save": "Enregistrer"
+        "save": "Enregistrer",
+        "episode": "Épisode",
+        "episodes": "Épisodes"
     },
     "organisms": {
         "signin": {
