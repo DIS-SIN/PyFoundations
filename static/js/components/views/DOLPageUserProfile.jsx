@@ -16,6 +16,7 @@ import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import ProgressBarLinear from "../atoms/ProgressBarLinear";
 import HeroHeader from "../molecules/HeroHeader";
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import { Link } from 'react-router-dom';
 
 const styles = theme => ({
     layout: {
@@ -69,7 +70,7 @@ class DOLPageUserProfile extends React.Component {
         const progressMain = 80;
 
         const link_group_hero = [
-            { "href": "/profile/goals", "title": literals.pages.profile.hero.setgoals },
+            { "href": "/profile/update", "title": literals.pages.profile.hero.setgoals },
             { "href": "/profile/update", "title": literals.pages.profile.hero.updateprofile },
         ];
 
@@ -102,7 +103,7 @@ class DOLPageUserProfile extends React.Component {
                                 </Grid>
                                 <Grid item>
                                     <div className={classes.settings}>
-                                        <Button className={classes.editButton} variant="outlined" >
+                                        <Button component={Link} to="/profile/edit" className={classes.editButton} variant="outlined" >
                                             {literals.pages.profile.editprofile}
                                         </Button>
                                     </div>

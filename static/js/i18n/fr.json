@@ -63,7 +63,7 @@
             "desctitle": "Académie Numérique",
             "connect": "RELIER",
             "socialmedia": "DES MÉDIAS SOCIAUX",
-            "description": "La Digital Academy a pour mission de fournir des compétences de pointe à la fonction publique canadienne."
+            "description": "Académie Numérique a pour mission de fournir des compétences de pointe à la fonction publique canadienne."
         }
     },
     "pages": {
@@ -92,14 +92,14 @@
         "streams": {
             "hero": {
                 "title": "RUISSEAUX",
-                "text": "<strong>Learing Stream</strong>. The top level hierarchy of <strong>Digital Open Learning</strong>."
+                "text": "<strong> Parcours d'apprentissage </ strong>. Hiérarchie de niveau supérieur de <strong>Apprentissage Ouvert Numérique</ strong>."
             },
             "body": {}
         },
         "practices": {
             "hero": {
                 "title": "LES PRATIQUES",
-                "text": "<strong>Learing Practice</strong>. The second level hierarchy of <strong>Digital Open Learning</strong>."
+                "text": "<strong> Pratique d'apprentissage </ strong>. La hiérarchie de second niveau de <strong>Apprentissage Ouvert Numérique</ strong>."
             },
             "body": {}
         },
