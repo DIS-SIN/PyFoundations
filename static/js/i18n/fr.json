@@ -101,8 +101,15 @@
         },
         "practices": {
             "hero": {
-                "title": "LES PRATIQUES",
+                "title": "PRATIQUES",
                 "text": "<strong> Pratique d'apprentissage </ strong>. La hiérarchie de second niveau de <strong>Apprentissage Ouvert Numérique</ strong>."
+            },
+            "body": {}
+        },
+        "experiences": {
+            "hero": {
+                "title": "ÉXPERIENCES",
+                "text": "<strong> Expérience </ strong>. Ce que les autres apprenants considèrent comme <strong> un excellent contenu </ strong>."
             },
             "body": {}
         },

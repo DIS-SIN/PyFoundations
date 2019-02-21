@@ -108,6 +108,8 @@ class DOLPageExplore extends React.Component {
         const { literals, location, classes } = this.props;
         const link_group_hero = [
             { "href": "/profile", "title": literals.common.learnerprofile },
+            { "href": "/explore/experiences", "title": literals.common.experiences },
+            { "href": "/explore/episodes", "title": literals.common.episodes },
         ];
 
         return (

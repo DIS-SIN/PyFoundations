@@ -106,6 +106,13 @@
             },
             "body": {}
         },
+        "experiences": {
+            "hero": {
+                "title": "EXPERIENCES",
+                "text": "<strong>Experience</strong>. What other learners think <strong>is great content</strong>."
+            },
+            "body": {}
+        },
         "explore": {
             "hero": {
                 "title": "EXPLORE",

@@ -104,6 +104,12 @@ class AjaxTest extends React.Component {
         // end fetch
     }
 
+    componentWillUnmount() {
+        this.setState = (state, callback) => {
+            return;
+        };
+    }
+
     handleSubmit = async e => {
         e.preventDefault();
         const response = await fetch('/api/experience', {
