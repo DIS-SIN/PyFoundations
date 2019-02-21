@@ -5,6 +5,7 @@ from models import models
 from code.blueprint.api.user_bp import UserResource
 from code.blueprint.api.stream_bp import StreamResource
 from code.blueprint.api.episode_bp import EpisodeResource
+from code.blueprint.api.practice_bp import PracticeResource
 from code.blueprint.api.experience_bp import ExperienceResource
 from code.blueprint.api.learning_point_bp import LearningPointResource
 from code.blueprint.api.learning_resource_bp import LearningResourceResource
@@ -24,9 +25,10 @@ def create_app():
     api.add_resource(UserResource, "/api/user/", "/api/user/<int:id>")
     api.add_resource(StreamResource, "/api/stream/", "/api/stream/<int:id>")
     api.add_resource(EpisodeResource, "/api/episode/", "/api/episode/<int:id>")
+    api.add_resource(PracticeResource, "/api/practice/", "/api/practice/<int:id>")
     api.add_resource(ExperienceResource, "/api/experience/", "/api/experience/<int:id>")
     api.add_resource(
-        LearningPointResource, "/api/learning_point/", "/api/learning_point/<int:id>"
+        LearningPointResource, "/api/learning_point/", "/api/learning_point?<int:id>"
     )
     api.add_resource(
         LearningResourceResource,
