@@ -71,7 +71,7 @@ def insert_one(model, object_name):
 
 
 def __can_delete__():
-    """Returns whether or not the user for the current session has permission to delete an object
+    """Returns whether or not the requirements to delete have been met
     """
     return False  # TODO Real value
 
