@@ -23,10 +23,12 @@ const styles = theme => ({
             marginLeft: 'auto',
             marginRight: 'auto',
         },
+        backgroundColor: theme.palette.background.paper,
     },
     cardGrid: {
         padding: `${theme.spacing.unit * 8}px 0`,
         paddingTop: 16,
+        backgroundColor: theme.palette.background.paper,
     },
 });
 const mapStateToProps = state => {
