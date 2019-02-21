@@ -17,10 +17,12 @@ import HeroHeader from "../molecules/HeroHeader";
 import DOLSignInDialog from "../organisms/DOLSignInDialog";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import DOLStreams from "../organisms/DOLStreams";
 
 const styles = theme => ({
     layout: {
         width: 'auto',
+        marginTop: 0,
         marginLeft: 0,//theme.spacing.unit * 3,
         marginRight: 0,//theme.spacing.unit * 3,
         [theme.breakpoints.up(1100 + theme.spacing.unit * 3 * 2)]: {
@@ -80,6 +82,8 @@ class DOLPageHome extends React.Component {
                     links={link_group_hero}
                 />
                 <div className={classNames(classes.layout)}>
+                    <DOLStreams />
+                    {/*
                     <Grid container spacing={40}>
                         {streams.map((item, index) => (
                             <GridInfoCard
@@ -90,7 +94,7 @@ class DOLPageHome extends React.Component {
                                 links={link_group_stream}
                             />
                         ))}
-                    </Grid>
+                        </Grid>*/}
                 </div>
             </React.Fragment>
         );

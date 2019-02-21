@@ -15,6 +15,9 @@ import DOL404 from "../templates/DOL404";
 import DOLProfileRouter from "./DOLProfileRouter";
 import DOLExploreRouter from "./DOLExploreRouter";
 import DOLShareRouter from "./DOLShareRouter";
+import DOLSettingsRouter from "./DOLSettingsRouter";
+import DOLModifyRouter from "./DOLModifyRouter";
+import DOLViewRouter from "./DOLViewRouter";
 
 const mapStateToProps = state => {
     return {
@@ -75,12 +78,14 @@ class DOLAppRouter extends React.Component {
             { path: '/:lang/profile', name: 'Profile', Component: DOLProfileRouter },
             { path: '/:lang/explore', name: 'Explore', Component: DOLExploreRouter },
             { path: '/:lang/share', name: 'Share', Component: DOLShareRouter },
+            { path: '/:lang/settings', name: 'Settings', Component: DOLSettingsRouter },
+            { path: '/:lang/modify', name: 'Modify', Component: DOLModifyRouter },
+            { path: '/:lang/view', name: 'View', Component: DOLViewRouter },
         ]
         const langroutes = [
             { path: '/:lang/home', name: 'Home', Component: DOLPageHome },
             { path: '/:lang/about', name: 'About', Component: DOLPageAbout },
             { path: '/:lang/search', name: 'Search', Component: DOLPageSearch },
-            { path: '/:lang/settings', name: 'Settings', Component: DOLPageStub },
             { path: '/:lang/login', name: 'Login', Component: DOLPageStub },
             { path: '/:lang/logout', name: 'Logout', Component: DOLPageStub },
         ]

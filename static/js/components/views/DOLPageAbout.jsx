@@ -63,8 +63,8 @@ class DOLPageAbout extends React.Component {
             { "href": "/explore", "title": literals.pages.about.body.expectcard.browse },
         ];
         const link_group_explorecard = [
-            { "href": "/streams", "title": literals.pages.about.body.explorecard.streams },
-            { "href": "/practices", "title": literals.pages.about.body.explorecard.practices },
+            { "href": "/explore/streams", "title": literals.pages.about.body.explorecard.streams },
+            { "href": "/explore/practices", "title": literals.pages.about.body.explorecard.practices },
         ];
         return (
             <React.Fragment>

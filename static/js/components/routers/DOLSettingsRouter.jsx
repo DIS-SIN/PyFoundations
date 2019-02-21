@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom'
 import { connect } from "react-redux";
-import DOLPageUserProfile from "../views/DOLPageUserProfile";
 import DOLLayout from "../templates/DOLLayout";
 import DOL404 from "../templates/DOL404";
-import DOLPageUserProfileUpdate from "../views/DOLPageUserProfileUpdate";
-import DOLPageUserProfileEdit from "../views/DOLPageUserProfileEdit";
+
+import DOLPageSettings from "../views/DOLPageSettings";
+import DOLPageSettingsEdit from "../views/DOLPageSettingsEdit";
 
 const mapStateToProps = state => {
     return {
@@ -13,7 +13,7 @@ const mapStateToProps = state => {
     };
 };
 
-class DOLProfileRouter extends React.Component {
+class DOLSettingsRouter extends React.Component {
     /**
      
     # PYDOL (Digital Open Learning, Python)
@@ -63,11 +63,10 @@ class DOLProfileRouter extends React.Component {
         const { literals, classes, match } = this.props;
 
         const langroutes = [
-            { path: '/:lang/profile', name: 'Profile', Component: DOLPageUserProfile },
-            { path: '/:lang/profile/update', name: 'Update Profile', Component: DOLPageUserProfileUpdate },
-            { path: '/:lang/profile/edit', name: 'Edit Profile', Component: DOLPageUserProfileEdit },
-            { path: '/:lang/profile/add/stream', name: 'Add Stream to Profile', Component: DOLPageUserProfileEdit },
+            { path: '/:lang/settings', name: 'Settings', Component: DOLPageSettings },
+            { path: '/:lang/settings/edit', name: 'Edit Settings', Component: DOLPageSettingsEdit },
         ]
+
         const LanguifiedRoute = ({ match, location }) => (
             <Switch>
                 {langroutes.map(({ path, Component }) => (
@@ -92,4 +91,4 @@ class DOLProfileRouter extends React.Component {
 }
 
 // connect redux state
-export default withRouter(connect(mapStateToProps)(DOLProfileRouter));
+export default withRouter(connect(mapStateToProps)(DOLSettingsRouter));

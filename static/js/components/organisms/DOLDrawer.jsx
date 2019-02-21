@@ -15,6 +15,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { Typography } from '@material-ui/core';
 import { connect } from "react-redux";
 import { LearningArchitecture } from '../atoms/LearningArchitecture'
+import { Link } from 'react-router-dom';
 
 const mapStateToProps = state => {
     return {
@@ -53,7 +54,7 @@ class DOLDrawer extends React.Component {
         const streams = la.loach_structure.streams.slice(0);
 
         const learningArchStreamItems = streams.map((learningarch, index) => (
-            <ListItem button key={index} >
+            <ListItem button component={Link} to="/view/stream" key={index} >
                 <ListItemIcon>
                     <Chip
                         icon={<ArchiveIcon />}
@@ -65,7 +66,7 @@ class DOLDrawer extends React.Component {
             </ListItem >
         ));
         const learningArchPracticeItems = practices.map((learningarch, index) => (
-            <ListItem button key={index} >
+            <ListItem button component={Link} to="/view/practice" key={index} >
                 <ListItemIcon>
                     <Chip
                         icon={<InboxIcon />}

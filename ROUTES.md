@@ -35,8 +35,6 @@ Mapping out what the MVP does
 ## Edit Content
 /app#/en/modify/episode
 /app#/en/modify/experience
-/app#/en/modify/stream
-/app#/en/modify/practice
 
 ## Administration
 /app#/en/login
