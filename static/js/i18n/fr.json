@@ -27,7 +27,9 @@
         "home": "Accueil",
         "save": "Enregistrer",
         "episode": "Épisode",
-        "episodes": "Épisodes"
+        "episodes": "Épisodes",
+        "tag": "Mot clés",
+        "tags": "Mots clés"
     },
     "organisms": {
         "signin": {

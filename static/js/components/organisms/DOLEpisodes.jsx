@@ -1,20 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import ReactMarkdown from "react-markdown"
 import Promise from 'promise-polyfill';
 import "whatwg-fetch";
-import Chip from '@material-ui/core/Chip';
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import PropTypes from 'prop-types';
 import { withStyles, withTheme } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import LabelIcon from '@material-ui/icons/Label';
-import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
-import HeroHeader from "../molecules/HeroHeader";
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
-import classNames from 'classnames';
-import AjaxTest from "../../samples/AjaxTest";
-
+import LinearProgress from '@material-ui/core/LinearProgress';
+import GridInfoCard from "../molecules/GridInfoCard";
 const mapStateToProps = state => {
     return {
         literals: state.literals
@@ -62,6 +56,10 @@ const styles = theme => ({
         margin: 0,
         paddingLeft: theme.spacing.unit * 3,
         paddingRight: theme.spacing.unit * 3,
+    },
+    progress: {
+        margin: theme.spacing.unit * 2,
+        flexGrow: 1,
     },
 });
 
@@ -111,9 +109,12 @@ class DOLEpisodes extends React.Component {
         const { literals, location, classes } = this.props;
 
         const link_group_hero = [
-            { "href": "/home", "title": literals.pages.stub.hero.home },
+            { "href": "/explore", "title": literals.common.explore },
         ];
-
+        const link_group_episode = [
+            { "href": "/view/episode", "title": literals.common.episode },
+            { "href": "/profile/add/episode", "title": literals.common.addto + " " + literals.common.profile },
+        ];
         if (error) {
             return (
                 <Grid item xs={12}>
@@ -128,6 +129,9 @@ class DOLEpisodes extends React.Component {
                     <Typography gutterBottom variant="headline" component="h2">
                         {literals.ajaxtest.loading}...
                     </Typography>
+                    <div className={classes.progress}>
+                        <LinearProgress color="secondary" />
+                    </div>
                 </Grid>
             );
         } else {
@@ -147,40 +151,20 @@ class DOLEpisodes extends React.Component {
                         </Grid>
                     );
                 } else {
+
                     //alert("S U C C E S S " + api_content.length);
                     apiDataItem = api_content.map((apiitem, index) => (
-                        <Grid item xs={12} key={index}>
-                            <Typography gutterBottom variant="headline" component="h2">
-                                {apiitem.published_on}
-                            </Typography>
-                            <Typography gutterBottom variant="headline" component="div">
-                                {apiitem.body}
-                            </Typography>
-                            {/*
-                            {(
-                                apiitem.tags == null ? (
-                                    <React.Fragment key={index}>
-                                        <Typography gutterBottom variant="headline" component="div">
-                                            Add Tag...
-                                        </Typography>
-                                    </React.Fragment>
-                                ) : (
-                                        apiitem.tags.map((tag, index) => (
-                                            <React.Fragment key={index}>
-                                                <Typography gutterBottom variant="headline" component="div">
-                                                <Chip
-                                                    icon={<LabelIcon />}
-                                                    label="Ajax Item"
-                                                    color="primary"
-                                                />
+                        <GridInfoCard
+                            key={index}
+                            title={apiitem.published_on}
+                            cover="http://placeimg.com/640/360/tech"
+                            text={<ReactMarkdown source={apiitem.body} />}
+                            links={link_group_episode}
+                            xs={6}
+                            sm={6}
+                            md={6}
+                        />
 
-                                                </Typography>
-                                            </React.Fragment>
-                                        ))
-                                    )
-                            )}
-                                        */}
-                        </Grid >
                     ))
                 }
             } else {

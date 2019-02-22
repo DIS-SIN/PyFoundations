@@ -36,7 +36,7 @@ class GridInfoCard extends React.Component {
     }
 
     render() {
-        const { title, text, cover, links, classes } = this.props;
+        const { title, text, cover, links, classes, xs, sm, md } = this.props;
 
         const linksFragment = this.props.links.map((link, index) => (
             <Button key={index}
@@ -53,7 +53,7 @@ class GridInfoCard extends React.Component {
 
         return (
             <React.Fragment>
-                <Grid item xs={12} sm={6} md={4}>
+                <Grid item xs={xs ? xs : 12} sm={sm ? sm : 6} md={md ? md : 4}>
                     <Card className={classes.card}>
                         <CardMedia
                             className={classes.cardMedia}

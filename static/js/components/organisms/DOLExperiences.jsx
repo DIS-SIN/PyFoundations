@@ -7,13 +7,12 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import PropTypes from 'prop-types';
 import { withStyles, withTheme } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import LabelIcon from '@material-ui/icons/Label';
-import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
-import HeroHeader from "../molecules/HeroHeader";
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
-import classNames from 'classnames';
-import AjaxTest from "../../samples/AjaxTest";
+
+import CircularProgress from '@material-ui/core/CircularProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import GridInfoCard from "../molecules/GridInfoCard";
+import ReactMarkdown from "react-markdown"
 
 const mapStateToProps = state => {
     return {
@@ -63,7 +62,43 @@ const styles = theme => ({
         paddingLeft: theme.spacing.unit * 3,
         paddingRight: theme.spacing.unit * 3,
     },
+    progress: {
+        margin: theme.spacing.unit * 2,
+        flexGrow: 1,
+    },
 });
+
+const ApiDataItem = props => (
+    <React.Fragment>
+        <Typography gutterBottom variant="h5" component="div">{props.apiitem.user_name}</Typography>
+        <Typography gutterBottom variant="h4" component="div">{props.apiitem.points}</Typography>
+        <Typography gutterBottom variant="overline" component="div">{props.apiitem.difficulty}</Typography>
+        <Typography gutterBottom variant="subtitle2" component="div">{props.apiitem.occured_at}</Typography>
+        <Typography gutterBottom variant="h6" component="div">{props.literals.common.practices}</Typography>
+        <ApiDataItemChild apiitem={props.apiitem} childnode="practices" childval="Name" />
+        <Typography gutterBottom variant="h6" component="div">{props.literals.common.tags}</Typography>
+        <ApiDataItemChild apiitem={props.apiitem} childnode="tags" childval="tag" />
+    </React.Fragment>
+);
+const ApiDataItemChild = props => (
+    props.apiitem[props.childnode] == null ? (
+        <React.Fragment key={props.index}>
+            <Typography gutterBottom variant="button" component="div">
+                ...
+            </Typography>
+        </React.Fragment>
+    ) : (
+            props.apiitem[props.childnode].map((item, index) => (
+                <React.Fragment key={index}>
+                    <Chip
+                        icon={props.icon ? props.icon : null}
+                        label={item[props.childval] ? item[props.childval] : item}
+                        color="primary"
+                    />
+                </React.Fragment>
+            ))
+        )
+);
 
 class DOLExperiences extends React.Component {
     constructor(props) {
@@ -111,7 +146,11 @@ class DOLExperiences extends React.Component {
         const { literals, location, classes } = this.props;
 
         const link_group_hero = [
-            { "href": "/home", "title": literals.pages.stub.hero.home },
+            { "href": "/explore", "title": literals.common.explore },
+        ];
+        const link_group_experiences = [
+            { "href": "/view/experience", "title": literals.common.experience },
+            { "href": "/profile/add/experience", "title": literals.common.addto + " " + literals.common.profile },
         ];
         /*
         const override = true;
@@ -142,6 +181,9 @@ class DOLExperiences extends React.Component {
                     <Typography gutterBottom variant="headline" component="h2">
                         {literals.ajaxtest.loading}...
                     </Typography>
+                    <div className={classes.progress}>
+                        <LinearProgress color="secondary" />
+                    </div>
                 </Grid>
             );
         } else {
@@ -163,30 +205,14 @@ class DOLExperiences extends React.Component {
                 } else {
                     //alert("S U C C E S S " + api_content.length);
                     apiDataItem = api_content.map((apiitem, index) => (
-                        <Grid item xs={12} key={index}>
-                            <Typography gutterBottom variant="headline" component="h2">
-                                {apiitem.occurred_at}
-                            </Typography>
-                            {(
-                                apiitem.tags == null ? (
-                                    <React.Fragment key={index}>
-                                        <Typography gutterBottom variant="headline" component="div">
-                                            Add Tag...
-                                        </Typography>
-                                    </React.Fragment>
-                                ) : (
-                                        apiitem.tags.map((tag, index) => (
-                                            <React.Fragment key={index}>
-                                                <Chip
-                                                    icon={<LabelIcon />}
-                                                    label={tag}
-                                                    color="primary"
-                                                />
-                                            </React.Fragment>
-                                        ))
-                                    )
-                            )}
-                        </Grid >
+                        <GridInfoCard
+                            key={index}
+                            title={apiitem.stream.Name}
+                            cover="http://placeimg.com/640/360/tech"
+                            text={<ApiDataItem apiitem={apiitem} index={index} literals={literals} />}
+                            links={link_group_experiences}
+                            xs={6} sm={4} md={4}
+                        />
                     ))
                 }
             } else {
@@ -202,7 +228,7 @@ class DOLExperiences extends React.Component {
             //  {apiDataItem}
             const returnFragment = (
                 <React.Fragment>
-                    <Grid spacing={24} alignItems="center" justify="center" container>
+                    <Grid spacing={24} container>
                         {apiDataItem}
                     </Grid>
                 </React.Fragment>
