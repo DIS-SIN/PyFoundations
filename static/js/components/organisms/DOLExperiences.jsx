@@ -152,20 +152,6 @@ class DOLExperiences extends React.Component {
             { "href": "/view/experience", "title": literals.common.experience },
             { "href": "/profile/add/experience", "title": literals.common.addto + " " + literals.common.profile },
         ];
-        /*
-        const override = true;
-
-        if (override) {
-            return (
-                <Grid item xs={12}>
-                    <Typography gutterBottom variant="headline" component="h2">
-                        {literals.common.dol}
-                        <AjaxTest />
-                    </Typography>
-                </Grid>
-            );
-        }
-        */
 
         if (error) {
             return (
@@ -243,58 +229,3 @@ DOLExperiences.propTypes = {
 };
 
 export default connect(mapStateToProps)(withStyles(styles)(DOLExperiences));
-
-/**
- *
- *  {
- *      "comments": null,
-		"depth": null,
-		"difficulty": 1,
-		"id": 1,
-		"learning_resource": null,
-		"learning_resource_id": 1,
-		"occurred_at": "Tue, 29 Jan 2019 19:48:49 GMT",
-		"points": 500,
-		"practices": [{
-			"Description": "",
-			"ID": 0,
-			"Image": null,
-			"Name": "Understanding Technology",
-			"Selected": false,
-			"Skills": null,
-			"Slug": "",
-			"Tags": null
-		}, {
-			"Description": "",
-			"ID": 0,
-			"Image": null,
-			"Name": "Problem Solving",
-			"Selected": false,
-			"Skills": null,
-			"Slug": "",
-			"Tags": null
-		}],
-		"query": null,
-		"query_class": null,
-		"skills": null,
-		"stream": {
-			"Description": "",
-			"Expertise": 0,
-			"ID": 0,
-			"Image": null,
-			"LearningTargets": null,
-			"Name": "Digital Literacy",
-			"Practices": null,
-			"Selected": false,
-			"Slug": "",
-			"Tags": null
-		},
-		"tags": ["Golang", "Files", "Development"],
-		"time": 2,
-		"user_name": "Chris Allison",
-		"validated": null,
-		"value": 2,
-		"verb": "watch"
-	}
- */
-
