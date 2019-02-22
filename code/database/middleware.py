@@ -44,19 +44,45 @@ def get_all_of_model(model):
 def insert_model(model):
     session = get_db_session()
     session.add(model)
-    session.commit()
-    session.close()
+    db_status = True
+    try:
+        session.commit()
+    except Exception:
+        # TODO Logging.log.exception()
+        session.rollback()
+        session.flush()
+        db_status = False
+    session.close
+    return db_status
 
 
 def update_model_by_id(model, id, update_val):
+    db_status = True
     session = get_db_session()
-    session.query(model).filter(model.id == id).update(update_val)
-    session.commit()
+    # if .update() returns 1, good request, keep status True
+    # if .update() returns 0/2, bad request, set status False
+    db_status = 1 == session.query(model).filter(model.id == id).update(update_val)
+    try:
+        session.commit()
+    except Exception:
+        # TODO Logging.log.exception()
+        session.rollback()
+        session.flush()
+        db_status = False
     session.close
+    return db_status
 
 
 def delete_model_by_id(model, id):
     session = get_db_session()
     session.query(model).filter(model.id == id).delete()
-    session.commit()
-    session.close()
+    db_status = True
+    try:
+        session.commit()
+    except Exception:
+        # TODO Logging.log.exception()
+        session.rollback()
+        session.flush()
+        db_status = False
+    session.close
+    return db_status
