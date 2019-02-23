@@ -9,15 +9,20 @@ body {
     background-attachment: fixed;
     background-size:  cover;
     background-color: rgb(62, 66, 85);
+    margin: 0;
+    padding: 0;
 }
 
 div.centercontainer {
     height: 10em;
-    position: relative
+    position: relative;
+    margin: 0;
+    padding: 0;
 }
 
 div.centercontainer .centerthis {
     margin: 0;
+    padding: 0;
     position: absolute;
     top: 50%;
     left: 50%;

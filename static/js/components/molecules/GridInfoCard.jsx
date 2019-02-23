@@ -36,7 +36,12 @@ class GridInfoCard extends React.Component {
     }
 
     render() {
-        const { title, text, cover, links, classes, xs, sm, md } = this.props;
+        const { title, text, cover, links, classes, xs, sm, md, fetchid } = this.props;
+
+        const linktoid = function (href) {
+            let id = fetchid ? "/" + fetchid : "";
+            return href + id;
+        }
 
         const linksFragment = this.props.links.map((link, index) => (
             <Button key={index}
@@ -44,7 +49,7 @@ class GridInfoCard extends React.Component {
                 size="small"
                 variant="outlined"
                 color="default"
-                to={link.href}>
+                to={linktoid(link.href)}>
                 {link.title}
             </Button>
         ));

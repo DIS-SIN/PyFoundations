@@ -56,14 +56,15 @@ const styles = theme => ({
         margin: 0,
         paddingLeft: theme.spacing.unit * 3,
         paddingRight: theme.spacing.unit * 3,
+        margin: 0,
     },
     progress: {
-        margin: theme.spacing.unit * 2,
+        padding: theme.spacing.unit * 2,
         flexGrow: 1,
     },
 });
 
-class DOLEpisodes extends React.Component {
+class DOLEpisode extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -79,7 +80,8 @@ class DOLEpisodes extends React.Component {
     // this fires when the component loads
 
     componentDidMount() {
-        fetch("/api/episode") // dol/api/gettest // /api/learning_point
+        let fetchid = this.props.fetchid;
+        fetch("/api/episode/" + fetchid) // dol/api/gettest // /api/learning_point
             .then(res => res.json())
             .then(
                 (result) => {
@@ -106,18 +108,19 @@ class DOLEpisodes extends React.Component {
 
     render() {
         const { error, isLoaded, apireturn, post, response, responseToPost } = this.state;
-        const { literals, location, classes } = this.props;
+        const { literals, location, classes, fetchid } = this.props;
 
         const link_group_hero = [
             { "href": "/explore", "title": literals.common.explore },
         ];
         const link_group_episode = [
-            { "href": "/view/episode", "title": literals.common.episode },
             { "href": "/profile/add/episode", "title": literals.common.addto + " " + literals.common.profile },
         ];
+
         if (error) {
             return (
                 <Grid item xs={12}>
+                    <h1>FETCH: {fetchid}</h1>
                     <Typography gutterBottom variant="headline" component="h2">
                         {literals.ajaxtest.error} {error.message}
                     </Typography>
@@ -137,7 +140,9 @@ class DOLEpisodes extends React.Component {
         } else {
             const api_state = apireturn.slice(0)[0].api_return;
             const api_content = apireturn.slice(0)[0].api_data;
+            const apiitem = apireturn.slice(0)[0].api_data;
 
+            console.log(api_content);
             let apiDataItem = "";
 
             if (api_state === "success") {
@@ -153,20 +158,21 @@ class DOLEpisodes extends React.Component {
                 } else {
 
                     //alert("S U C C E S S " + api_content.length);
-                    apiDataItem = api_content.map((apiitem, index) => (
+                    //apiDataItem = api_content.map((apiitem, index) => (
+                    apiDataItem = (
                         <GridInfoCard
-                            key={index}
+                            key={apiitem.slug}
                             title={apiitem.title}
                             cover="http://placeimg.com/640/360/tech"
-                            text={<div><div><small>{apiitem.published_on}</small></div><ReactMarkdown source={apiitem.tagline} /></div>}
+                            text={<ReactMarkdown source={apiitem.body} />}
                             links={link_group_episode}
-                            xs={6}
-                            sm={6}
-                            md={6}
-                            fetchid={apiitem.id}
+                            xs={12}
+                            sm={12}
+                            md={12}
+                            fetchid={fetchid}
                         />
-
-                    ))
+                    )
+                    //))
                 }
             } else {
                 apiDataItem = (
@@ -181,7 +187,7 @@ class DOLEpisodes extends React.Component {
             //  {apiDataItem}
             const returnFragment = (
                 <React.Fragment>
-                    <Grid spacing={24} alignItems="center" justify="center" container>
+                    <Grid spacing={0} alignItems="center" justify="center" container>
                         {apiDataItem}
                     </Grid>
                 </React.Fragment>
@@ -191,8 +197,8 @@ class DOLEpisodes extends React.Component {
     }
 }
 
-DOLEpisodes.propTypes = {
+DOLEpisode.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default connect(mapStateToProps)(withStyles(styles)(DOLEpisodes));
+export default connect(mapStateToProps)(withStyles(styles)(DOLEpisode));
