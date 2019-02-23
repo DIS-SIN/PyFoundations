@@ -2,7 +2,7 @@
 
 ## The Pattern Approach
 
-We aim to have maxiumum flexibility for handling the data. We want to be able to provide an API that can bend and not break with the changes in the data model as we learn more about what works for the learners. To meet this objective we are aiming to created a template pattern we can follow to easily and modularly alter the DB.
+We aim to have maxiumum flexibility for handling the data. We want to be able to provide an API that can bend and not break with the changes in the data model as we learn more about what works for the learners. To meet this objective we are aiming to created a template pattern we can follow to easily and modularly alter the DB. 
 
 
 * THINGS: DataTables [UID, RecordType, ...itemVariableProps]
