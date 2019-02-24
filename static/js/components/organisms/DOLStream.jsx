@@ -1,19 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import ReactMarkdown from "react-markdown"
 import Promise from 'promise-polyfill';
 import "whatwg-fetch";
-import Chip from '@material-ui/core/Chip';
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import PropTypes from 'prop-types';
 import { withStyles, withTheme } from '@material-ui/core/styles';
-import LabelIcon from '@material-ui/icons/Label';
-import LearningArchitecture from "../atoms/LearningArchitecture";
-import CircularProgress from '@material-ui/core/CircularProgress';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import GridInfoCard from "../molecules/GridInfoCard";
-import ReactMarkdown from "react-markdown"
-
+import Chip from "@material-ui/core/Chip";
 const mapStateToProps = state => {
     return {
         literals: state.literals
@@ -25,36 +21,7 @@ const mapStateToProps = state => {
 if (!window.Promise) {
     window.Promise = Promise;
 }
-/*
-const styles = theme => ({
-    root: {
-        ...theme.mixins.gutters(),
-        paddingTop: theme.spacing.unit * 2,
-        paddingBottom: theme.spacing.unit * 2,
-        marginTop: 100,
-    },
-    card: {
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-    },
-    cardMedia: {
-        paddingTop: '56.25%', // 16:9
-    },
-    cardContent: {
-        flexGrow: 1,
-    },
-    segment: {
-        flexGrow: 1,
-        marginBottom: 16,
-        marginTop: 16,
-    },
-    footer: {
-        backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing.unit * 6,
-    },
-});
-*/
+
 const styles = theme => ({
     root: {
         color: theme.palette.text.primary,
@@ -90,37 +57,24 @@ const styles = theme => ({
         margin: 0,
         paddingLeft: theme.spacing.unit * 3,
         paddingRight: theme.spacing.unit * 3,
+        margin: 0,
     },
     progress: {
-        margin: theme.spacing.unit * 2,
+        padding: theme.spacing.unit * 2,
         flexGrow: 1,
     },
 });
 
 const ApiDataItem = props => (
     <React.Fragment>
-        <ApiDataItemChildText apiitem={props.apiitem} childnode="learning_targets" childval="learning_targets" />
-        <Typography gutterBottom variant="h6" component="div">{props.literals.common.practices}</Typography>
+        <Typography gutterBottom variant="h5" component="div">{props.apiitem.description}</Typography>
+        <Typography gutterBottom variant="h4" component="div">{props.apiitem.slug}</Typography>
+        <Typography gutterBottom variant="overline" component="div">{props.apiitem.expertise}</Typography>
+        <Typography gutterBottom variant="h6" component="div">{props.literals.common.tags}</Typography>
         <ApiDataItemChild apiitem={props.apiitem} childnode="tags" childval="tag" />
     </React.Fragment>
 );
-const ApiDataItemChildText = props => (
-    props.apiitem[props.childnode] == null ? (
-        <React.Fragment key={props.index}>
-            <Typography gutterBottom variant="button" component="div">
-                ...
-            </Typography>
-        </React.Fragment>
-    ) : (
-            props.apiitem[props.childnode].map((item, index) => (
-                <React.Fragment key={index}>
-                    <Typography gutterBottom variant="body1" component="div">
-                        {item[props.childval] ? item[props.childval] : item}
-                    </Typography>
-                </React.Fragment>
-            ))
-        )
-); const ApiDataItemChild = props => (
+const ApiDataItemChild = props => (
     props.apiitem[props.childnode] == null ? (
         <React.Fragment key={props.index}>
             <Typography gutterBottom variant="button" component="div">
@@ -139,8 +93,7 @@ const ApiDataItemChildText = props => (
             ))
         )
 );
-
-class DOLStreams extends React.Component {
+class DOLStream extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -156,7 +109,8 @@ class DOLStreams extends React.Component {
     // this fires when the component loads
 
     componentDidMount() {
-        fetch("/api/stream") // dol/api/gettest // /api/learning_point
+        let fetchid = this.props.fetchid;
+        fetch("/api/stream/" + fetchid) // dol/api/gettest // /api/learning_point
             .then(res => res.json())
             .then(
                 (result) => {
@@ -183,19 +137,19 @@ class DOLStreams extends React.Component {
 
     render() {
         const { error, isLoaded, apireturn, post, response, responseToPost } = this.state;
-        const { literals, location, classes } = this.props;
+        const { literals, location, classes, fetchid } = this.props;
 
         const link_group_hero = [
             { "href": "/explore", "title": literals.common.explore },
         ];
-        const link_group_streams = [
-            { "href": "/view/stream", "title": literals.common.explore },
+        const link_group_stream = [
             { "href": "/profile/add/stream", "title": literals.common.addto + " " + literals.common.profile },
         ];
 
         if (error) {
             return (
                 <Grid item xs={12}>
+                    <h1>FETCH: {fetchid}</h1>
                     <Typography gutterBottom variant="headline" component="h2">
                         {literals.ajaxtest.error} {error.message}
                     </Typography>
@@ -215,9 +169,10 @@ class DOLStreams extends React.Component {
         } else {
             const api_state = apireturn.slice(0)[0].api_return;
             const api_content = apireturn.slice(0)[0].api_data;
+            const apiitem = apireturn.slice(0)[0].api_data;
 
+            console.log(api_content);
             let apiDataItem = "";
-            const sqlgrn = LearningArchitecture().loach_structure.streams;
 
             if (api_state === "success") {
                 if (api_content.length === 0) {
@@ -227,27 +182,27 @@ class DOLStreams extends React.Component {
                             <Typography gutterBottom variant="headline" component="h2">
                                 No Records Found
                             </Typography>
-                            {sqlgrn.map((sqlitem, index) => (
-                                <pre key={index}>
-                                    INSERT INTO public.streams(id, name, tags, slug, learning_targets, expertise)
-                                    VALUES ({index}, '{sqlitem.stream}', '{JSON.stringify(sqlitem.practices)}', '{sqlitem.cover}', '["{sqlitem.description}"]', 0);
-                                </pre>
-                            ))}
                         </Grid>
                     );
                 } else {
+
                     //alert("S U C C E S S " + api_content.length);
-                    apiDataItem = api_content.map((apiitem, index) => (
+                    //apiDataItem = api_content.map((apiitem, index) => (
+                    //text = {< ReactMarkdown source = { apiitem.body } />}
+                    apiDataItem = (
                         <GridInfoCard
-                            key={index}
+                            key={apiitem.id}
                             title={apiitem.name}
-                            cover={apiitem.slug}//"http://placeimg.com/640/360/tech"
-                            text={<ApiDataItem apiitem={apiitem} index={index} literals={literals} />}
-                            links={link_group_streams}
-                            xs={6} sm={4} md={4}
-                            fetchid={apiitem.id}
+                            cover="http://placeimg.com/640/360/tech"
+                            text={<ApiDataItem apiitem={apiitem} index={apiitem.id} literals={literals} />}
+                            links={link_group_stream}
+                            xs={12}
+                            sm={12}
+                            md={12}
+                            fetchid={fetchid}
                         />
-                    ))
+                    )
+                    //))
                 }
             } else {
                 apiDataItem = (
@@ -262,7 +217,7 @@ class DOLStreams extends React.Component {
             //  {apiDataItem}
             const returnFragment = (
                 <React.Fragment>
-                    <Grid spacing={24} container>
+                    <Grid spacing={0} alignItems="center" justify="center" container>
                         {apiDataItem}
                     </Grid>
                 </React.Fragment>
@@ -272,25 +227,8 @@ class DOLStreams extends React.Component {
     }
 }
 
-DOLStreams.propTypes = {
+DOLStream.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default connect(mapStateToProps)(withStyles(styles)(DOLStreams));
-
-/**
- *                 <Grid container spacing={16}>
-                    <Grid item sm={12}>
-                        <AppBar className={classNames(classes.segment)} position="static" color="default">
-                            <Toolbar>
-                                <Typography justify="center" variant="h5" component="div">
-                                    {literals.common.practices}
-                                </Typography>
-                            </Toolbar>
-                        </AppBar>
-                    </Grid>
- */
-
-
-
-
+export default connect(mapStateToProps)(withStyles(styles)(DOLStream));
