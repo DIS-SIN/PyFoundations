@@ -29,6 +29,16 @@ const styles = theme => ({
         paddingTop: 16,
         backgroundColor: theme.palette.background.paper,
     },
+    bodyUnit: {
+        backgroundColor: theme.palette.background.paper,
+        padding: `${theme.spacing.unit * 2}px`,
+    },
+    bodyContent: {
+        //maxWidth: 900,
+        margin: '0 auto',
+        padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`,
+        paddingTop: 0,
+    },
 });
 
 const mapStateToProps = state => {
@@ -59,8 +69,10 @@ class DOLPageExploreEpisodes extends React.Component {
                     </React.Fragment>}
                     links={link_group_hero}
                 />
-                <div className={classNames(classes.layout, classes.cardGrid)}>
-                    <DOLEpisodes />
+                <div className={classes.bodyUnit}>
+                    <div className={classes.bodyContent}>
+                        <DOLEpisodes />
+                    </div>
                 </div>
             </React.Fragment>
         );

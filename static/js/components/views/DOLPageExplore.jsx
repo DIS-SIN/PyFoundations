@@ -87,7 +87,17 @@ const styles = theme => ({
         flexGrow: 1,
         marginBottom: 16,
         marginTop: 16,
-    }
+    },
+    bodyUnit: {
+        backgroundColor: theme.palette.background.paper,
+        padding: `${theme.spacing.unit * 2}px`,
+    },
+    bodyContent: {
+        //maxWidth: 900,
+        margin: '0 auto',
+        padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`,
+        paddingTop: 0,
+    },
 });
 
 const streams = LearningArchitecture().loach_structure.streams;
@@ -126,9 +136,11 @@ class DOLPageExplore extends React.Component {
                     </React.Fragment>}
                     links={link_group_hero}
                 />
-                <div className={classNames(classes.layout)}>
-                    <DOLStreams />
-                    <DOLPractices />
+                <div className={classes.bodyUnit}>
+                    <div className={classes.bodyContent}>
+                        <DOLStreams />
+                        <DOLPractices />
+                    </div>
                 </div>
             </React.Fragment>
         );

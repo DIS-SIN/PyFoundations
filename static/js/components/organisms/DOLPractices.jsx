@@ -59,14 +59,18 @@ class DOLPractices extends React.Component {
         ];
         return (
             <React.Fragment>
-                <AppBar className={classNames(classes.segment)} position="static" color="default">
-                    <Toolbar>
-                        <Typography justify="center" variant="h5" component="div">
-                            {literals.common.practices}
-                        </Typography>
-                    </Toolbar>
-                </AppBar>
-                <Grid container spacing={40}>
+
+                <Grid container spacing={16}>
+                    <Grid item sm={12}>
+                        <AppBar className={classNames(classes.segment)} position="static" color="default">
+                            <Toolbar>
+                                <Typography justify="center" variant="h5" component="div">
+                                    {literals.common.practices}
+                                </Typography>
+                            </Toolbar>
+                        </AppBar>
+                    </Grid>
+
                     {practices.map((item, index) => (
                         <GridInfoCard
                             key={index}

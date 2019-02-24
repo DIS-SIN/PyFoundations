@@ -10,15 +10,20 @@ import { Link } from 'react-router-dom';
 const styles = theme => ({
     heroUnit: {
         backgroundColor: theme.palette.background.paper,
+        backgroundImage: `url('/static/images/sp-bg-12.jpg')`,
     },
     heroContent: {
         maxWidth: 600,
         margin: '0 auto',
         padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`,
+        color: 'white',
     },
     heroButtons: {
         marginTop: theme.spacing.unit * 4,
     },
+    highContrast: {
+        color: 'white',
+    }
 });
 
 
@@ -45,10 +50,10 @@ class HeroHeader extends React.Component {
             <React.Fragment>
                 <div className={classes.heroUnit}>
                     <div className={classes.heroContent}>
-                        <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+                        <Typography component="h1" variant="h2" align="center" color="inherit" gutterBottom>
                             {title}
                         </Typography>
-                        <Typography variant="h6" align="center" color="textSecondary" component="div">
+                        <Typography variant="h6" align="center" color="inherit" component="div">
                             {icon} {text}
                         </Typography>
                         <div className={classes.heroButtons}>

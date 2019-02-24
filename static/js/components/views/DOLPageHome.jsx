@@ -19,27 +19,42 @@ import DOLStreams from "../organisms/DOLStreams";
 
 const styles = theme => ({
     layout: {
-        width: 'auto',
+        width: '100%',
         marginTop: 0,
         marginLeft: 0,//theme.spacing.unit * 3,
         marginRight: 0,//theme.spacing.unit * 3,
         [theme.breakpoints.up(1100 + theme.spacing.unit * 3 * 2)]: {
             width: 1100,
-            marginLeft: 'auto',
-            marginRight: 'auto',
+            //marginLeft: 'auto',
+            //marginRight: 'auto',
+            marginLeft: 0,
+            marginRight: 0,
+            padding: 0,
         },
         backgroundColor: theme.palette.background.paper,
-        paddingLeft: theme.spacing.unit * 3,
-        paddingRight: theme.spacing.unit * 3,
+        //paddingLeft: theme.spacing.unit * 3,
+        //paddingRight: theme.spacing.unit * 3,\
+        padding: 0,
     },
     cardGrid: {
         marginLeft: 0,//theme.spacing.unit * 3,
         marginRight: 0,//theme.spacing.unit * 3,
-        padding: `${theme.spacing.unit * 8}px 0`,
+        padding: 0,
+        //padding: `${theme.spacing.unit * 8}px 0`,
         backgroundColor: theme.palette.background.paper,
-        margin: 0,
-        paddingLeft: theme.spacing.unit * 3,
-        paddingRight: theme.spacing.unit * 3,
+        //margin: 0,
+        //paddingLeft: theme.spacing.unit * 3,
+        //paddingRight: theme.spacing.unit * 3,
+    },
+    heroUnit: {
+        backgroundColor: theme.palette.background.paper,
+        padding: `${theme.spacing.unit * 2}px`,
+    },
+    heroContent: {
+        //maxWidth: 900,
+        margin: '0 auto',
+        padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`,
+        paddingTop: 0,
     },
 });
 
@@ -79,9 +94,15 @@ class DOLPageHome extends React.Component {
                     </React.Fragment>}
                     links={link_group_hero}
                 />
+                <div className={classes.heroUnit}>
+                    <div className={classes.heroContent}>
+                        <DOLStreams />
+                    </div>
+                </div>
+                {/*
                 <div className={classNames(classes.layout)}>
                     <DOLStreams />
-                    {/*
+                    
                     <Grid container spacing={40}>
                         {streams.map((item, index) => (
                             <GridInfoCard
@@ -92,8 +113,9 @@ class DOLPageHome extends React.Component {
                                 links={link_group_stream}
                             />
                         ))}
-                        </Grid>*/}
+                        </Grid>
                 </div>
+                */}
             </React.Fragment>
         );
     }

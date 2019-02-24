@@ -27,6 +27,16 @@ const styles = theme => ({
     cardGrid: {
         padding: `${theme.spacing.unit * 8}px 0`,
     },
+    heroUnit: {
+        backgroundColor: theme.palette.background.paper,
+        padding: `${theme.spacing.unit * 2}px`,
+    },
+    heroContent: {
+        //maxWidth: 900,
+        margin: '0 auto',
+        padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`,
+        paddingTop: 0,
+    },
 });
 
 const mapStateToProps = state => {
@@ -78,24 +88,27 @@ class DOLPageAbout extends React.Component {
                     </React.Fragment>}
                     links={link_group_hero}
                 />
-                <div className={classNames(classes.layout, classes.cardGrid)}>
-                    <Grid container spacing={40}>
-                        <GridInfoCard
-                            title={literals.pages.about.body.dolcard.title}
-                            text={literals.pages.about.body.dolcard.text}
-                            links={link_group_dolcard}
-                        />
-                        <GridInfoCard
-                            title={literals.pages.about.body.expectcard.title}
-                            text={listfragment}
-                            links={link_group_expectcard}
-                        />
-                        <GridInfoCard
-                            title={literals.pages.about.body.explorecard.title}
-                            text={literals.pages.about.body.explorecard.text}
-                            links={link_group_explorecard}
-                        />
-                    </Grid>
+                {/*<div className={classNames(classes.layout, classes.cardGrid)}>*/}
+                <div className={classes.heroUnit}>
+                    <div className={classes.heroContent}>
+                        <Grid container spacing={8}>
+                            <GridInfoCard
+                                title={literals.pages.about.body.dolcard.title}
+                                text={literals.pages.about.body.dolcard.text}
+                                links={link_group_dolcard}
+                            />
+                            <GridInfoCard
+                                title={literals.pages.about.body.expectcard.title}
+                                text={listfragment}
+                                links={link_group_expectcard}
+                            />
+                            <GridInfoCard
+                                title={literals.pages.about.body.explorecard.title}
+                                text={literals.pages.about.body.explorecard.text}
+                                links={link_group_explorecard}
+                            />
+                        </Grid>
+                    </div>
                 </div>
             </React.Fragment>
         );
