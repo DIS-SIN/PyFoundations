@@ -94,7 +94,7 @@ class DOLViewLayout extends React.Component {
                     >
                         <div className={classes.toolbar} />
                         <List>
-                            {['Add to Profile', 'Rate Episode', 'Related Practices', 'Related Streams'].map((text, index) => (
+                            {['Add to Profile', 'Rate Content', 'Related Content'].map((text, index) => (
                                 <ListItem button key={text}>
                                     <ListItemIcon className={classes.highContrast}>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                                     <ListItemText primary={text} classes={{ primary: classes.highContrast }} />
@@ -103,7 +103,7 @@ class DOLViewLayout extends React.Component {
                         </List>
                         <Divider />
                         <List>
-                            {['Share Episode', 'Find Related'].map((text, index) => (
+                            {['Share Content', 'Comment', 'Like'].map((text, index) => (
                                 <ListItem button key={text}>
                                     <ListItemIcon className={classes.highContrast}>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                                     <ListItemText primary={text} classes={{ primary: classes.highContrast }} />

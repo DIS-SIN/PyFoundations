@@ -1,19 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import ReactMarkdown from "react-markdown"
 import Promise from 'promise-polyfill';
 import "whatwg-fetch";
-import Chip from '@material-ui/core/Chip';
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import PropTypes from 'prop-types';
 import { withStyles, withTheme } from '@material-ui/core/styles';
-import LabelIcon from '@material-ui/icons/Label';
-
-import CircularProgress from '@material-ui/core/CircularProgress';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import GridInfoCard from "../molecules/GridInfoCard";
-import ReactMarkdown from "react-markdown"
-
+import Chip from "@material-ui/core/Chip";
 const mapStateToProps = state => {
     return {
         literals: state.literals
@@ -61,9 +57,10 @@ const styles = theme => ({
         margin: 0,
         paddingLeft: theme.spacing.unit * 3,
         paddingRight: theme.spacing.unit * 3,
+        margin: 0,
     },
     progress: {
-        margin: theme.spacing.unit * 2,
+        padding: theme.spacing.unit * 2,
         flexGrow: 1,
     },
 });
@@ -99,8 +96,7 @@ const ApiDataItemChild = props => (
             ))
         )
 );
-
-class DOLExperiences extends React.Component {
+class DOLExperience extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -116,7 +112,8 @@ class DOLExperiences extends React.Component {
     // this fires when the component loads
 
     componentDidMount() {
-        fetch("/api/experience") // dol/api/gettest // /api/learning_point
+        let fetchid = this.props.fetchid;
+        fetch("/api/experience/" + fetchid) // dol/api/gettest // /api/learning_point
             .then(res => res.json())
             .then(
                 (result) => {
@@ -143,19 +140,19 @@ class DOLExperiences extends React.Component {
 
     render() {
         const { error, isLoaded, apireturn, post, response, responseToPost } = this.state;
-        const { literals, location, classes } = this.props;
+        const { literals, location, classes, fetchid } = this.props;
 
         const link_group_hero = [
             { "href": "/explore", "title": literals.common.explore },
         ];
-        const link_group_experiences = [
-            { "href": "/view/experience", "title": literals.common.experience },
+        const link_group_experience = [
             { "href": "/profile/add/experience", "title": literals.common.addto + " " + literals.common.profile },
         ];
 
         if (error) {
             return (
                 <Grid item xs={12}>
+                    <h1>FETCH: {fetchid}</h1>
                     <Typography gutterBottom variant="headline" component="h2">
                         {literals.ajaxtest.error} {error.message}
                     </Typography>
@@ -175,7 +172,9 @@ class DOLExperiences extends React.Component {
         } else {
             const api_state = apireturn.slice(0)[0].api_return;
             const api_content = apireturn.slice(0)[0].api_data;
+            const apiitem = apireturn.slice(0)[0].api_data;
 
+            console.log(api_content);
             let apiDataItem = "";
 
             if (api_state === "success") {
@@ -189,18 +188,24 @@ class DOLExperiences extends React.Component {
                         </Grid>
                     );
                 } else {
+
                     //alert("S U C C E S S " + api_content.length);
-                    apiDataItem = api_content.map((apiitem, index) => (
+                    //apiDataItem = api_content.map((apiitem, index) => (
+                    //text = {< ReactMarkdown source = { apiitem.body } />}
+                    apiDataItem = (
                         <GridInfoCard
-                            key={index}
-                            title={apiitem.stream.Name}
+                            key={apiitem.id}
+                            title={apiitem.verb}
                             cover="http://placeimg.com/640/360/tech"
-                            text={<ApiDataItem apiitem={apiitem} index={index} literals={literals} />}
-                            links={link_group_experiences}
-                            xs={6} sm={3} md={3}
-                            fetchid={apiitem.id}
+                            text={<ApiDataItem apiitem={apiitem} index={apiitem.id} literals={literals} />}
+                            links={link_group_experience}
+                            xs={12}
+                            sm={12}
+                            md={12}
+                            fetchid={fetchid}
                         />
-                    ))
+                    )
+                    //))
                 }
             } else {
                 apiDataItem = (
@@ -215,7 +220,7 @@ class DOLExperiences extends React.Component {
             //  {apiDataItem}
             const returnFragment = (
                 <React.Fragment>
-                    <Grid spacing={24} container>
+                    <Grid spacing={0} alignItems="center" justify="center" container>
                         {apiDataItem}
                     </Grid>
                 </React.Fragment>
@@ -225,8 +230,8 @@ class DOLExperiences extends React.Component {
     }
 }
 
-DOLExperiences.propTypes = {
+DOLExperience.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default connect(mapStateToProps)(withStyles(styles)(DOLExperiences));
+export default connect(mapStateToProps)(withStyles(styles)(DOLExperience));
