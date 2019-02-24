@@ -33,7 +33,7 @@ class DOLViewRouter extends React.Component {
                 {langroutes.map(({ path, Component }) => (
                     <Route key={path} exact path={path}>
                         <React.Fragment>
-                            {console.log(match.params.id)}
+                            {/*console.log(match.params.id)*/}
                             <DOLViewLayout content={<Component location={location} fetchid={match.params.id} />} />
                         </React.Fragment>
                     </Route>

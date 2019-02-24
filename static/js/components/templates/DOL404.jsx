@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import { withStyles } from '@material-ui/core/styles';
 import DOLPageStub from "../views/DOLPageStub";
+import ScrollToTop from "../atoms/ScrollToTop";
 
 const mapStateToProps = state => {
     return {
@@ -28,6 +29,7 @@ class DOL404 extends React.Component {
 
         return (
             <React.Fragment>
+                <ScrollToTop />
                 <DOLPageStub location={location} />
             </React.Fragment>
         );
