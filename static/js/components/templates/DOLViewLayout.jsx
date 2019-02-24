@@ -58,7 +58,7 @@ const styles = theme => ({
     },
     drawerPaper: {
         width: drawerWidth,
-        backgroundColor: 'rgb(0,140,160)',
+        backgroundColor: '#333333',//'rgb(0,140,160)',
         color: 'white',
     },
     content: {
@@ -94,7 +94,7 @@ class DOLViewLayout extends React.Component {
                     >
                         <div className={classes.toolbar} />
                         <List>
-                            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+                            {['Add to Profile', 'Rate Episode', 'Related Practices', 'Related Streams'].map((text, index) => (
                                 <ListItem button key={text}>
                                     <ListItemIcon className={classes.highContrast}>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                                     <ListItemText primary={text} classes={{ primary: classes.highContrast }} />
@@ -103,7 +103,7 @@ class DOLViewLayout extends React.Component {
                         </List>
                         <Divider />
                         <List>
-                            {['All mail', 'Trash', 'Spam'].map((text, index) => (
+                            {['Share Episode', 'Find Related'].map((text, index) => (
                                 <ListItem button key={text}>
                                     <ListItemIcon className={classes.highContrast}>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                                     <ListItemText primary={text} classes={{ primary: classes.highContrast }} />

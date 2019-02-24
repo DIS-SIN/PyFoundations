@@ -43,7 +43,7 @@ class HeroHeader extends React.Component {
             <Grid key={index} item>
                 <Button
                     component={Link}
-                    variant="contained" color="primary"
+                    variant="contained" color="secondary"
                     to={link.href}>
                     {link.title}
                 </Button>

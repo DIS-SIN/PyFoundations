@@ -125,7 +125,7 @@ class DOLSignInDialog extends React.Component {
 
         return (
             <div>
-                <Button variant="contained" color="primary" onClick={this.handleClickOpen}>
+                <Button variant="contained" color="secondary" onClick={this.handleClickOpen}>
                     {literals.common.signin}
                 </Button>
                 <Dialog

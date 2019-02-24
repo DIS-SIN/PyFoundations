@@ -160,9 +160,9 @@ class DOLEpisodes extends React.Component {
                             cover="http://placeimg.com/640/360/tech"
                             text={<div><div><small>{apiitem.published_on}</small></div><ReactMarkdown source={apiitem.tagline} /></div>}
                             links={link_group_episode}
-                            xs={6}
-                            sm={6}
-                            md={6}
+                            xs={12}
+                            sm={4}
+                            md={4}
                             fetchid={apiitem.id}
                         />
 

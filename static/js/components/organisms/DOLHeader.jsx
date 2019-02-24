@@ -46,7 +46,11 @@ const mapStateToProps = state => {
 const styles = theme => ({
     root: {
         width: '100%',
-        marginBottom: 10
+        marginBottom: 10,
+        backgroundColor: '#232323',
+    },
+    headerAppbarDark: {
+        backgroundColor: '#232323',
     },
     grow: {
         flexGrow: 1,
@@ -251,8 +255,8 @@ class DOLHeader extends React.Component {
 
         return (
             <div className={classes.root}>
-                <AppBar position="fixed">
-                    <Toolbar>
+                <AppBar position="fixed" className={classes.headerAppbarDark}>
+                    <Toolbar className={classes.headerAppbarDark}>
                         <DOLDrawer />
                         <HeaderLogoItem text={literals.organisms.header.menu.logo} href="/home" />
                         <HeaderSearchControl />
