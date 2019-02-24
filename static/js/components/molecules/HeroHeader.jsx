@@ -23,6 +23,10 @@ const styles = theme => ({
     },
     highContrast: {
         color: 'white',
+    },
+    fadeBacker: {
+        backgroundColor: `rgba(0,0,0,0.2)`,
+        padding: `${theme.spacing.unit * 2}px`,
     }
 });
 
@@ -53,7 +57,7 @@ class HeroHeader extends React.Component {
                         <Typography component="h1" variant="h2" align="center" color="inherit" gutterBottom>
                             {title}
                         </Typography>
-                        <Typography variant="h6" align="center" color="inherit" component="div">
+                        <Typography variant="h6" align="center" color="inherit" component="div" className={classes.fadeBacker}>
                             {icon} {text}
                         </Typography>
                         <div className={classes.heroButtons}>
