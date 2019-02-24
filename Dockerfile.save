@@ -14,7 +14,7 @@ RUN pip install -r requirements.txt
 EXPOSE 5054
 
 # Define environment variable
-ENV NAME pyfoundations
+ENV NAME dol
 
 # Run app.py when the container launches
 CM
@@ -59,12 +59,12 @@ CM
 #
 # -- IN GIT BASH: Start the docker magic
 # -- note the period. That's key magic
-# docker build --tag=pyfoundations .
+# docker build --tag=dol .
 #
 # -- note the /tcp, That's key magic
 # -- you are punching a hole through realities and wiring them up
 #
-# docker run -p 5054:5054/tcp pyfoundations
+# docker run -p 5054:5054/tcp dol
 #
 # -- in the real world
 # http://localhost:5054/

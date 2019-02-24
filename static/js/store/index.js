@@ -1,9 +1,11 @@
 import { createStore, combineReducers } from "redux";
 import literals from "./literals.js";
+import lang from "./lang.js";
 
 // mix the reducers together
 const rootReducer = combineReducers({
-    literals//,
+    literals,
+    lang
     // other reducers...
 });
 
