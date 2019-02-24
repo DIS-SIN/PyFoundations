@@ -16,11 +16,22 @@ This project helped us learn how to work better as a team using github, and gave
 # Getting it Running
 
 ```bash
+terminal 1: 
 python application.py
+
+terminal 2:
+cd PyFoundations/static
+npm install
+npm run watch
+```
+
+For production:
+```bash
+npm run build
 ```
 
 ```bash
-localhost:5054/
+http://localhost:5054/
 ```
 
 # See our Charter
