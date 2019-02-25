@@ -9,7 +9,7 @@ for more configuration options see http://flask.pocoo.org/docs/1.0/config/
 """
 ###############################FLASK SETTINGS#############################################
 #Used to switch the app environment between production and development
-ENVIRONMENT="development"
+ENV="development"
 
 #Used to set debugging
 ##THIS SHOULD ONLY BE TURNED ON IN DEVELOPMENT ENVIRONMENTS##

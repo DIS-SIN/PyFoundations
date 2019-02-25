@@ -1,12 +1,12 @@
 from flask_restful import Resource
-from models.models import Experience
+from src.models.models import User
 from .resource_factory import view_one, view_all, insert_one, update_one, delete_one
 
-model = Experience
-json_object_name = "experience"
+model = User
+json_object_name = "user"
 
 
-class ExperienceResource(Resource):
+class UserResource(Resource):
     def get(self, id=None):
         if id is not None:
             return view_one(model, id)

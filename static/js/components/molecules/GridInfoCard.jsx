@@ -40,6 +40,9 @@ class GridInfoCard extends React.Component {
 
         const linktoid = function (href) {
             let id = fetchid ? "/" + fetchid : "";
+            if (fetchid === 0) {
+                id = "/0";
+            }
             return href + id;
         }
 

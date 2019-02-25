@@ -1,12 +1,12 @@
 from flask_restful import Resource
-from models.models import LearningPoint
+from src.models.models import LearningResource
 from .resource_factory import view_one, view_all, insert_one, update_one, delete_one
 
-model = LearningPoint
-json_object_name = "learning_point"
+model = LearningResource
+json_object_name = "learning_resource"
 
 
-class LearningPointResource(Resource):
+class LearningResourceResource(Resource):
     def get(self, id=None):
         if id is not None:
             return view_one(model, id)

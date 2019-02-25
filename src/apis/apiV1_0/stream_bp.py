@@ -1,5 +1,5 @@
 from flask_restful import Resource
-from models.models import Stream
+from src.models.models import Stream
 from .resource_factory import view_one, view_all, insert_one, update_one, delete_one
 
 model = Stream

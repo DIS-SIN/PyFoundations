@@ -9,10 +9,20 @@ import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 
 import HeroHeader from "../molecules/HeroHeader";
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import DOLEpisodes from "../organisms/DOLEpisodes";
+import DOLExperience from "../organisms/DOLExperience";
+import DOLPractice from "../organisms/DOLPractice";
 
 
 const styles = theme => ({
-
+    heroUnit: {
+        backgroundColor: theme.palette.background.paper,
+    },
+    heroContent: {
+        //maxWidth: 900,
+        margin: '0 auto',
+        padding: '0',//`${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`,
+    },
 });
 
 const mapStateToProps = state => {
@@ -27,27 +37,19 @@ class DOLPageViewPractice extends React.Component {
     }
 
     render() {
-        const { literals, location, classes } = this.props;
+        const { literals, location, classes, fetchid } = this.props;
 
         const link_group_hero = [
-            { "href": "/home", "title": literals.pages.stub.hero.home },
+            { "href": "/explore/practices", "title": literals.common.explore },
         ];
         return (
             <React.Fragment>
                 <CssBaseline />
-                <HeroHeader
-                    title={literals.pages.stub.hero.title}
-                    icon={<HelpOutlineIcon />}
-                    text={<React.Fragment key="herotext">
-                        <div>
-                            <strong>{literals.pages.stub.hero.route}</strong> {location.pathname}
-                        </div>
-                        <div>
-                            {ReactHtmlParser(literals.pages.stub.hero.text)}
-                        </div>
-                    </React.Fragment>}
-                    links={link_group_hero}
-                />
+                <div className={classes.heroUnit}>
+                    <div className={classes.heroContent}>
+                        <DOLPractice fetchid={fetchid} />
+                    </div>
+                </div>
             </React.Fragment>
         );
     }

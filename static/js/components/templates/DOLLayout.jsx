@@ -7,6 +7,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import DOLHeader from "../organisms/DOLHeader";
 import DOLFooter from "../organisms/DOLFooter";
 import DOLPrimaryActionPanel from "../organisms/DOLPrimaryActionPanel";
+import ScrollToTop from "../atoms/ScrollToTop";
 
 const mapStateToProps = state => {
     return {
@@ -32,6 +33,7 @@ class DOLLayout extends React.Component {
 
         return (
             <React.Fragment>
+                <ScrollToTop />
                 <DOLHeader location={location} />
                 <CssBaseline />
                 {content}

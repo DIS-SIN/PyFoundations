@@ -21,6 +21,7 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import DOLPageExploreEpisodes from "../views/DOLPageExploreEpisodes";
 import DOLEpisodes from "../organisms/DOLEpisodes";
+import ScrollToTop from "../atoms/ScrollToTop";
 
 const mapStateToProps = state => {
     return {
@@ -78,6 +79,7 @@ class DOLViewLayout extends React.Component {
 
         return (
             <React.Fragment>
+                <ScrollToTop />
                 <div className={classes.root}>
                     <CssBaseline />
                     <AppBar position="fixed" className={classes.appBar}>
