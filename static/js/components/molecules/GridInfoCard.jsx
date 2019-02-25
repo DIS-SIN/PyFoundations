@@ -62,7 +62,7 @@ class GridInfoCard extends React.Component {
         const cardmedia = (
             <CardMedia
                 className={classes.cardMedia}
-                image={cover ? cover : null}
+                image={cover ? cover : coverdefault}
                 title={title}
             />
         );
