@@ -174,7 +174,7 @@ class DOLExperience extends React.Component {
             const api_content = apireturn.slice(0)[0].api_data;
             const apiitem = apireturn.slice(0)[0].api_data;
 
-            console.log(api_content);
+            //console.log(api_content);
             let apiDataItem = "";
 
             if (api_state === "success") {

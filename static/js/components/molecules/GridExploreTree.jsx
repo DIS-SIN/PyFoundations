@@ -21,6 +21,7 @@ const styles = theme => ({
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
+        marginBottom: theme.spacing.unit * 2,
     },
     cardMedia: {
         paddingTop: '56.25%', // 16:9
@@ -30,7 +31,7 @@ const styles = theme => ({
     },
 });
 
-class GridInfoCard extends React.Component {
+class GridExploreTree extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -63,18 +64,13 @@ class GridInfoCard extends React.Component {
             <React.Fragment>
                 <Grid item xs={xs ? xs : 12} sm={sm ? sm : 6} md={md ? md : 4}>
                     <Card className={classes.card}>
-                        <CardMedia
-                            className={classes.cardMedia}
-                            image={cover ? cover : coverdefault}
-                            title={title}
-                        />
                         <CardContent className={classes.cardContent}>
                             <Typography gutterBottom variant="h5" component="h2">
                                 {title}
                             </Typography>
-                            <Typography component="div">
+                            <div className="custom-container">
                                 {text}
-                            </Typography>
+                            </div>
                         </CardContent>
                         <CardActions>
                             {linksFragment}
@@ -86,11 +82,11 @@ class GridInfoCard extends React.Component {
     }
 }
 
-GridInfoCard.propTypes = {
+GridExploreTree.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(GridInfoCard);
+export default withStyles(styles)(GridExploreTree);
 
 
 

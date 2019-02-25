@@ -22,6 +22,7 @@ import ImageSearchIcon from '@material-ui/icons/ImageSearch';
 import LockIcon from '@material-ui/icons/Lock';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import DOLDrawer from './DOLDrawer';
+import DOLExploreDrawer from './DOLExploreDrawer';
 import { Link } from 'react-router-dom';
 
 // connect the state from redux
@@ -257,7 +258,7 @@ class DOLHeader extends React.Component {
             <div className={classes.root}>
                 <AppBar position="fixed" className={classes.headerAppbarDark}>
                     <Toolbar className={classes.headerAppbarDark}>
-                        <DOLDrawer />
+                        <DOLExploreDrawer />
                         <HeaderLogoItem text={literals.organisms.header.menu.logo} href="/home" />
                         <HeaderSearchControl />
                         <div className={classes.grow} />

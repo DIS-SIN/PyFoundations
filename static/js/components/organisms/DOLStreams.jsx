@@ -244,7 +244,7 @@ class DOLStreams extends React.Component {
                             cover={apiitem.slug}//"http://placeimg.com/640/360/tech"
                             text={<ApiDataItem apiitem={apiitem} index={index} literals={literals} />}
                             links={link_group_streams}
-                            xs={6} sm={4} md={4}
+                            xs={12} sm={4} md={4}
                             fetchid={apiitem.id}
                         />
                     ))
@@ -262,7 +262,7 @@ class DOLStreams extends React.Component {
             //  {apiDataItem}
             const returnFragment = (
                 <React.Fragment>
-                    <Grid spacing={24} container>
+                    <Grid spacing={8} container>
                         {apiDataItem}
                     </Grid>
                 </React.Fragment>

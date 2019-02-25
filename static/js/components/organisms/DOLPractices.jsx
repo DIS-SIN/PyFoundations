@@ -200,7 +200,7 @@ class DOLPractices extends React.Component {
                             cover="http://placeimg.com/640/360/tech"
                             text={<ApiDataItem apiitem={apiitem} index={index} literals={literals} />}
                             links={link_group_practices}
-                            xs={6} sm={3} md={3}
+                            xs={12} sm={3} md={3}
                             fetchid={apiitem.id}
                         />
                     ))
@@ -218,7 +218,7 @@ class DOLPractices extends React.Component {
             //  {apiDataItem}
             const returnFragment = (
                 <React.Fragment>
-                    <Grid spacing={24} container>
+                    <Grid spacing={8} container>
                         {apiDataItem}
                     </Grid>
                 </React.Fragment>

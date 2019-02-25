@@ -25,6 +25,7 @@ import HeroHeader from "../molecules/HeroHeader";
 import DOLStreams from "../organisms/DOLStreams";
 import DOLPractices from "../organisms/DOLPractices";
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import DOLExploreTree from "../organisms/DOLExploreTree";
 
 const styles = theme => ({
     appBar: {
@@ -138,6 +139,7 @@ class DOLPageExplore extends React.Component {
                 />
                 <div className={classes.bodyUnit}>
                     <div className={classes.bodyContent}>
+                        <DOLExploreTree />
                         <DOLStreams />
                         <DOLPractices />
                     </div>
