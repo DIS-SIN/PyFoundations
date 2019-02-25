@@ -30,7 +30,12 @@
         "episodes": "Épisodes",
         "tag": "Mot clés",
         "tags": "Mots clés",
-        "actions": "Actions"
+        "actions": "Actions",
+        "back": "Retour",
+        "rate": "Évaluer le contenu",
+        "related": "Contenu connexe",
+        "comment": "Commentaire",
+        "like": "J'aime ça"
     },
     "organisms": {
         "signin": {

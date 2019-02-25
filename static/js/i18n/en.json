@@ -30,7 +30,12 @@
         "episodes": "Episodes",
         "tag": "Tag",
         "tags": "Tags",
-        "actions": "Actions"
+        "actions": "Actions",
+        "back": "Back",
+        "rate": "Rate Content",
+        "related": "Related Content",
+        "comment": "Comment",
+        "like": "Like"
     },
     "organisms": {
         "signin": {

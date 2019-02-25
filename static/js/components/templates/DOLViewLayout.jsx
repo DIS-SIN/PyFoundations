@@ -123,7 +123,12 @@ class DOLViewLayout extends React.Component {
             <div>
                 <div className={classes.toolbar} />
                 <List>
-                    {['Back', 'Add to Profile', 'Rate Content', 'Related Content'].map((text, index) => (
+                    {[
+                        literals.common.back,
+                        literals.common.addto + " " + literals.common.profile,
+                        literals.common.rate,
+                        literals.common.related
+                    ].map((text, index) => (
                         <ListItem component={Link} to={"/explore/" + fetchid} button key={text}>
                             <ListItemIcon className={classes.highContrast}>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                             <ListItemText primary={text} classes={{ primary: classes.highContrast }} />
@@ -132,7 +137,11 @@ class DOLViewLayout extends React.Component {
                 </List>
                 <Divider />
                 <List>
-                    {['Share Content', 'Comment', 'Like'].map((text, index) => (
+                    {[
+                        literals.common.share,
+                        literals.common.comment,
+                        literals.common.like
+                    ].map((text, index) => (
                         <ListItem button key={text}>
                             <ListItemIcon className={classes.highContrast}>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                             <ListItemText primary={text} classes={{ primary: classes.highContrast }} />

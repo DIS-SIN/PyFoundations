@@ -1,31 +1,18 @@
 import React from 'react';
-import ReactDOM from "react-dom";
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import Chip from '@material-ui/core/Chip';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Grid from '@material-ui/core/Grid';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import ArchiveIcon from '@material-ui/icons/Archive';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import { Typography, CssBaseline } from '@material-ui/core';
 import { connect } from "react-redux";
 import { LearningArchitecture } from '../atoms/LearningArchitecture'
 import { LearningArchitectureTree } from '../atoms/LearningArchitectureTree'
 import { Link } from 'react-router-dom';
-import classNames from 'classnames';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-
 import Tree from 'react-tree-graph';
 import 'react-tree-graph/dist/style.css'
-import GridInfoCard from '../molecules/GridInfoCard';
 import GridExploreTree from '../molecules/GridExploreTree';
 
 /*
