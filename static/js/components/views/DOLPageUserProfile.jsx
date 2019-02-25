@@ -100,7 +100,7 @@ class DOLPageUserProfile extends React.Component {
                     <div className={classes.bodyContent}>
                         <Grid container spacing={16} >
                             <Grid item xs={12} sm={4}>
-                                <Avatar alt="Avatar" src="https://via.placeholder.com/500/333333" className={classes.avatar} >
+                                <Avatar alt="Avatar" src="https://placeimg.com/640/480/animals" className={classes.avatar} >
                                     EW
                             </Avatar>
                             </Grid>
@@ -162,21 +162,21 @@ class DOLPageUserProfile extends React.Component {
                                     <img
                                         alt="post"
                                         style={{ width: '100%' }}
-                                        src="https://via.placeholder.com/500/f5f5f5"
+                                        src="https://placeimg.com/640/480/tech"
                                     />
                                 </Grid>
                                 <Grid item xs={4}>
                                     <img
                                         alt="post"
                                         style={{ width: '100%' }}
-                                        src="https://via.placeholder.com/500/f5f5f5"
+                                        src="https://placeimg.com/640/480/nature"
                                     />
                                 </Grid>
                                 <Grid item xs={4}>
                                     <img
                                         alt="post"
                                         style={{ width: '100%' }}
-                                        src="https://via.placeholder.com/500/f5f5f5"
+                                        src="https://placeimg.com/640/480/any"
                                     />
                                 </Grid>
                             </Grid>
