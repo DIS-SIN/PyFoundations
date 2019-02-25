@@ -29,7 +29,8 @@
         "episode": "Épisode",
         "episodes": "Épisodes",
         "tag": "Mot clés",
-        "tags": "Mots clés"
+        "tags": "Mots clés",
+        "actions": "Actions"
     },
     "organisms": {
         "signin": {

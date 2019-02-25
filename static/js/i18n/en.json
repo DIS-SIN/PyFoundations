@@ -29,7 +29,8 @@
         "episode": "Episode",
         "episodes": "Episodes",
         "tag": "Tag",
-        "tags": "Tags"
+        "tags": "Tags",
+        "actions": "Actions"
     },
     "organisms": {
         "signin": {
