@@ -221,9 +221,9 @@ class DOLExploreTree extends React.Component {
                         key="exploretree"
                         title={
                             <React.Fragment>
+                                {literals.pages.home.hero.title}
                                 <Button onClick={this.resetTree} color="primary">Reset</Button>
-                                Learning Architecture
-                        </React.Fragment>
+                            </React.Fragment>
                         }
                         cover="http://placeimg.com/640/360/tech"
                         text={

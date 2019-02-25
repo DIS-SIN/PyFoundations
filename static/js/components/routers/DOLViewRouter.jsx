@@ -22,19 +22,19 @@ class DOLViewRouter extends React.Component {
         const { literals, classes, match } = this.props;
 
         const langroutes = [
-            { path: '/:lang/view/experience/:id', name: 'View Experience', Component: DOLPageViewExperience },
-            { path: '/:lang/view/episode/:id', name: 'View Episode', Component: DOLPageViewEpisode },
-            { path: '/:lang/view/stream/:id', name: 'View Stream', Component: DOLPageViewStream },
-            { path: '/:lang/view/practice/:id', name: 'View Practice', Component: DOLPageViewPractice },
+            { path: '/:lang/view/experience/:id', mod: "experiences", name: 'View Experience', Component: DOLPageViewExperience },
+            { path: '/:lang/view/episode/:id', mod: "episodes", name: 'View Episode', Component: DOLPageViewEpisode },
+            { path: '/:lang/view/stream/:id', mod: "streams", name: 'View Stream', Component: DOLPageViewStream },
+            { path: '/:lang/view/practice/:id', mod: "practices", name: 'View Practice', Component: DOLPageViewPractice },
         ]
 
         const IdRoute = ({ match, location }) => (
             <Switch>
-                {langroutes.map(({ path, Component }) => (
+                {langroutes.map(({ path, mod, Component }) => (
                     <Route key={path} exact path={path}>
                         <React.Fragment>
                             {/*console.log(match.params.id)*/}
-                            <DOLViewLayout content={<Component location={location} fetchid={match.params.id} />} />
+                            <DOLViewLayout fetchid={mod} content={<Component location={location} fetchid={match.params.id} />} />
                         </React.Fragment>
                     </Route>
                 ))}

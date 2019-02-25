@@ -22,6 +22,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import DOLPageExploreEpisodes from "../views/DOLPageExploreEpisodes";
 import DOLEpisodes from "../organisms/DOLEpisodes";
 import ScrollToTop from "../atoms/ScrollToTop";
+import { Link } from 'react-router-dom';
 
 const mapStateToProps = state => {
     return {
@@ -75,7 +76,7 @@ const styles = theme => ({
 class DOLViewLayout extends React.Component {
 
     render() {
-        const { literals, classes, match, content, location } = this.props;
+        const { literals, classes, match, content, location, fetchid } = this.props;
 
         return (
             <React.Fragment>
@@ -96,8 +97,8 @@ class DOLViewLayout extends React.Component {
                     >
                         <div className={classes.toolbar} />
                         <List>
-                            {['Add to Profile', 'Rate Content', 'Related Content'].map((text, index) => (
-                                <ListItem button key={text}>
+                            {['Back', 'Add to Profile', 'Rate Content', 'Related Content'].map((text, index) => (
+                                <ListItem component={Link} to={"/explore/" + fetchid} button key={text}>
                                     <ListItemIcon className={classes.highContrast}>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                                     <ListItemText primary={text} classes={{ primary: classes.highContrast }} />
                                 </ListItem>

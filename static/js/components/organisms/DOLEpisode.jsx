@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import ReactMarkdown from "react-markdown"
+import ReactMarkdown from "react-markdown";
 import Promise from 'promise-polyfill';
 import "whatwg-fetch";
 import Typography from "@material-ui/core/Typography";

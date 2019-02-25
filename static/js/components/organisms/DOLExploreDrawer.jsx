@@ -171,9 +171,10 @@ class DOLExploreDrawer extends React.Component {
     render() {
         const { errorStream, errorPractice, isLoadedStream, isLoadedPractice, apireturn_stream, apireturn_practice, post, response, responseToPost } = this.state;
         const { literals, location, classes } = this.props;
+        let apiDataItem = "";
 
         if (errorStream || errorPractice) {
-            return (
+            apiDataItem = (
                 <ListItem button component={Link} to="/explore" key="drawerError" >
                     <Typography component={ListItem} secondary={literals.common.streams} variant="button" color="inherit" className={classes.drawerTextLight}>
                         {literals.ajaxtest.error}
@@ -184,7 +185,7 @@ class DOLExploreDrawer extends React.Component {
                 </ListItem >
             );
         } else if (!isLoadedStream || !isLoadedPractice) {
-            return (
+            apiDataItem = (
                 <ListItem button component={Link} to="/explore" key="drawerLoading" >
                     <Typography component={ListItem} secondary={literals.common.streams} variant="button" color="inherit" className={classes.drawerTextLight}>
                         {literals.ajaxtest.loading}...
@@ -200,8 +201,6 @@ class DOLExploreDrawer extends React.Component {
 
             const api_state_practice = apireturn_practice.slice(0)[0].api_return;
             const api_content_practice = apireturn_practice.slice(0)[0].api_data;
-
-            let apiDataItem = "";
 
             if (api_state_stream === "success" && api_state_practice === "success") {
                 if (api_content_stream.length === 0 || api_content_practice.length === 0) {
@@ -258,25 +257,24 @@ class DOLExploreDrawer extends React.Component {
                     </ListItem >
                 );
             }
-
-            return (
-                <React.Fragment>
-                    <IconButton onClick={this.toggleDrawer('left', true)} className={classes.menuButton} color="inherit" aria-label="Open drawer">
-                        <MenuIcon />
-                    </IconButton>
-                    <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>
-                        <div
-                            tabIndex={0}
-                            role="button"
-                            onClick={this.toggleDrawer('left', false)}
-                            onKeyDown={this.toggleDrawer('left', false)}
-                        >
-                            {apiDataItem}
-                        </div>
-                    </Drawer>
-                </React.Fragment>
-            );
         }
+        return (
+            <React.Fragment>
+                <IconButton onClick={this.toggleDrawer('left', true)} className={classes.menuButton} color="inherit" aria-label="Open drawer">
+                    <MenuIcon />
+                </IconButton>
+                <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>
+                    <div
+                        tabIndex={0}
+                        role="button"
+                        onClick={this.toggleDrawer('left', false)}
+                        onKeyDown={this.toggleDrawer('left', false)}
+                    >
+                        {apiDataItem}
+                    </div>
+                </Drawer>
+            </React.Fragment>
+        );
     }
 }
 

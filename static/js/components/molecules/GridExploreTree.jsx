@@ -72,9 +72,6 @@ class GridExploreTree extends React.Component {
                                 {text}
                             </div>
                         </CardContent>
-                        <CardActions>
-                            {linksFragment}
-                        </CardActions>
                     </Card>
                 </Grid>
             </React.Fragment>
