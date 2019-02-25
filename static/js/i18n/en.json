@@ -89,7 +89,7 @@
         },
         "home": {
             "hero": {
-                "title": "Digital Open Learing",
+                "title": "Digital Open Learning",
                 "text": "<strong>Let's get you started with Digital</strong>. DOL will help <strong>build awareness</strong> of possibilities, <strong>increase confidence</strong> and <strong>capacity</strong> of government employees in their <strong>digital skills</strong>. Explore below to find curated and <strong>personalized learning opportunities</strong>"
             },
             "body": {}
@@ -97,14 +97,14 @@
         "streams": {
             "hero": {
                 "title": "STREAMS",
-                "text": "<strong>Learing Stream</strong>. The top level hierarchy of <strong>Digital Open Learning</strong>."
+                "text": "<strong>Learning Stream</strong>. The top level hierarchy of <strong>Digital Open Learning</strong>."
             },
             "body": {}
         },
         "practices": {
             "hero": {
                 "title": "PRACTICES",
-                "text": "<strong>Learing Practice</strong>. The second level hierarchy of <strong>Digital Open Learning</strong>."
+                "text": "<strong>Learning Practice</strong>. The second level hierarchy of <strong>Digital Open Learning</strong>."
             },
             "body": {}
         },
