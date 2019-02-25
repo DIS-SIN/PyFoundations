@@ -163,8 +163,17 @@ class DOLEpisode extends React.Component {
                         <GridInfoCard
                             key={apiitem.slug}
                             title={apiitem.title}
-                            cover="http://placeimg.com/640/360/tech"
-                            text={<ReactMarkdown source={apiitem.body} />}
+                            video={
+                                <iframe frameBorder="0" width="100%" height="315"
+                                    src={apiitem.videos[0].Path}></iframe>
+                            }//"http://placeimg.com/640/360/any"
+                            text={
+                                <React.Fragment>
+                                    <iframe width="100%" height="166" scrolling="no"
+                                        frameBorder="no" src={"https://w.soundcloud.com/player/?url=" + apiitem.podcasts[0].Path}></iframe>
+                                    <ReactMarkdown source={apiitem.body} />
+                                </React.Fragment>
+                            }
                             links={link_group_episode}
                             xs={12}
                             sm={12}
