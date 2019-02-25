@@ -5,7 +5,7 @@ import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import ListItem from '@material-ui/core/ListItem';
-import { Typography, CssBaseline } from '@material-ui/core';
+import { Typography, CssBaseline, Paper } from '@material-ui/core';
 import { connect } from "react-redux";
 import { LearningArchitecture } from '../atoms/LearningArchitecture'
 import { LearningArchitectureTree } from '../atoms/LearningArchitectureTree'
@@ -56,9 +56,33 @@ const styles = theme => ({
     drawerTextLight: {
         color: '#ffffff',
     },
-
+    paper: {
+        padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
+    },
 });
 
+/**
+ *                     <span
+                        onClick={() => props.onClick(item.trim())}
+                    >{item}</span>
+ * 
+ */
+const Breadcrumb = props => (
+    <Paper className={props.classes.paper}>
+
+        {props.breadcrumb.split(">").map((item, index) => (
+            item ? (
+                <React.Fragment key={index} >
+                    <Button color="primary" component="span" onClick={() => props.onClick(item.trim())}>
+                        {item}
+                    </Button>
+                    <span>&raquo;</span>
+                </React.Fragment>
+            ) : ""
+        ))}
+
+    </Paper>
+);
 
 class DOLExploreTree extends React.Component {
     constructor(props) {
@@ -71,6 +95,7 @@ class DOLExploreTree extends React.Component {
             right: false,
             lat: LearningArchitectureTree(),
             data: { name: "..." },
+            breadcrumb: "DOL/AON",
         };
     }
 
@@ -96,7 +121,8 @@ class DOLExploreTree extends React.Component {
     componentDidMount() {
         this.setState({
             isMounted: true,
-            data: this.searchTreeBFS(this.state.lat, "DOL/AON")
+            data: this.searchTreeBFS(this.state.lat, "DOL/AON"),
+            breadcrumb: "DOL/AON",
         })
     };
     componentWillUnmount() {
@@ -112,19 +138,48 @@ class DOLExploreTree extends React.Component {
 
     resetTree = () => {
         this.setState({
-            data: this.searchTreeBFS(this.state.lat, "DOL/AON")
+            data: this.searchTreeBFS(this.state.lat, "DOL/AON"),
+            breadcrumb: "DOL/AON",
         });
+    };
+
+    focusTreeBreadcrumb = (nodeKey) => {
+        //console.log(nodeKey);
+        let treeRenderNode = this.state.lat;
+        let breadcrumbArray = this.state.breadcrumb.split(">");
+        let breadcrumNew = ""
+
+        for (let i = 0; i < breadcrumbArray.length; i++) {
+            //console.log(breadcrumbArray[i].trim());
+            if (breadcrumbArray[i].trim().length != 0) {
+                if (breadcrumbArray[i].trim() != nodeKey) {
+
+                    breadcrumNew += breadcrumbArray[i].trim() + " > ";
+                } else {
+                    breadcrumNew += nodeKey;
+                    this.setState({
+                        data: this.searchTreeBFS(treeRenderNode, nodeKey),
+                        breadcrumb: breadcrumNew,
+                        //treeRenderNode[0].children[nodeKey].children,
+                    });
+                }
+            }
+
+        }
     };
 
     focusTree = (e) => {
         //console.log(e);
         let nodeKey = e.target.parentNode.getElementsByTagName("text")[0].innerHTML;
         let treeRenderNode = this.state.lat;
+        let breadcrumbArray = this.state.breadcrumb.split(">");
 
-        this.setState({
-            data: this.searchTreeBFS(treeRenderNode, nodeKey)
-            //treeRenderNode[0].children[nodeKey].children,
-        });
+        if (breadcrumbArray[breadcrumbArray.length - 1].trim() != nodeKey) {
+            this.setState({
+                data: this.searchTreeBFS(treeRenderNode, nodeKey),
+                breadcrumb: this.state.breadcrumb + " > " + nodeKey,
+            });
+        }
     };
 
     searchTreeBFS = (element, matchingTitle) => {
@@ -162,7 +217,8 @@ class DOLExploreTree extends React.Component {
         const la = LearningArchitecture();
         //const data = LearningArchitectureTree();
         const { classes, literals } = this.props;
-        const { data } = this.state;
+        const { data, breadcrumb } = this.state;
+        //console.log(breadcrumb);
 
         const practices = la.loach_structure.architecture.slice(0);
         const streams = la.loach_structure.streams.slice(0);
@@ -210,6 +266,7 @@ class DOLExploreTree extends React.Component {
                             <React.Fragment>
                                 {literals.pages.home.hero.title}
                                 <Button onClick={this.resetTree} color="primary">Reset</Button>
+                                <Breadcrumb breadcrumb={breadcrumb} onClick={this.focusTreeBreadcrumb} classes={classes} />
                             </React.Fragment>
                         }
                         cover="http://placeimg.com/640/360/tech"

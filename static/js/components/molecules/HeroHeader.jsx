@@ -11,6 +11,7 @@ const styles = theme => ({
     heroUnit: {
         backgroundColor: theme.palette.background.paper,
         backgroundImage: `url('/static/images/sp-bg-12.jpg')`,
+        backgroundSize: 'cover',
     },
     heroContent: {
         maxWidth: 600,
