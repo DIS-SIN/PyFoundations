@@ -12,13 +12,9 @@ from sqlalchemy import (
 )
 from sqlalchemy.schema import FetchedValue
 from sqlalchemy.orm import relationship
-from flask_sqlalchemy import SQLAlchemy
+from .basemodel import Base
 
-
-db = SQLAlchemy()
-
-
-class CharacterModel(db.Model):
+class CharacterModel(Base.Model):
     __tablename__ = "character_models"
 
     id = Column(BigInteger, primary_key=True, server_default=FetchedValue())
@@ -32,7 +28,7 @@ class CharacterModel(db.Model):
     updated_at = Column(DateTime(True))
 
 
-class CultModel(db.Model):
+class CultModel(Base.Model):
     __tablename__ = "cult_models"
 
     id = Column(BigInteger, primary_key=True, server_default=FetchedValue())
@@ -47,7 +43,7 @@ class CultModel(db.Model):
     updated_at = Column(DateTime(True))
 
 
-class Episode(db.Model):
+class Episode(Base.Model):
     __tablename__ = "episodes"
 
     id = Column(BigInteger, primary_key=True, server_default=FetchedValue())
@@ -71,7 +67,7 @@ class Episode(db.Model):
     slug = Column(Text)
 
 
-class Experience(db.Model):
+class Experience(Base.Model):
     __tablename__ = "experiences"
 
     id = Column(BigInteger, primary_key=True, server_default=FetchedValue())
@@ -93,7 +89,7 @@ class Experience(db.Model):
     comments = Column(JSON)
 
 
-class HomelandModel(db.Model):
+class HomelandModel(Base.Model):
     __tablename__ = "homeland_models"
 
     id = Column(BigInteger, primary_key=True, server_default=FetchedValue())
@@ -108,7 +104,7 @@ class HomelandModel(db.Model):
     updated_at = Column(DateTime(True))
 
 
-class Image(db.Model):
+class Image(Base.Model):
     __tablename__ = "images"
 
     id = Column(BigInteger, primary_key=True, server_default=FetchedValue())
@@ -118,7 +114,7 @@ class Image(db.Model):
     added_on = Column(DateTime(True))
 
 
-class KnowledgePoint(db.Model):
+class KnowledgePoint(Base.Model):
     __tablename__ = "knowledge_points"
 
     id = Column(BigInteger, primary_key=True, server_default=FetchedValue())
@@ -128,7 +124,7 @@ class KnowledgePoint(db.Model):
     tags = Column(JSON)
 
 
-class LearningPoint(db.Model):
+class LearningPoint(Base.Model):
     __tablename__ = "learning_points"
 
     id = Column(BigInteger, primary_key=True, server_default=FetchedValue())
@@ -139,7 +135,7 @@ class LearningPoint(db.Model):
     difficulty = Column(BigInteger)
 
 
-class LearningResource(db.Model):
+class LearningResource(Base.Model):
     __tablename__ = "learning_resources"
 
     id = Column(BigInteger, primary_key=True, server_default=FetchedValue())
@@ -152,7 +148,7 @@ class LearningResource(db.Model):
     added_on = Column(DateTime(True))
 
 
-class OccupationModel(db.Model):
+class OccupationModel(Base.Model):
     __tablename__ = "occupation_models"
 
     id = Column(BigInteger, primary_key=True, server_default=FetchedValue())
@@ -167,7 +163,7 @@ class OccupationModel(db.Model):
     updated_at = Column(DateTime(True))
 
 
-class Podcast(db.Model):
+class Podcast(Base.Model):
     __tablename__ = "podcasts"
 
     id = Column(BigInteger, primary_key=True, server_default=FetchedValue())
@@ -178,7 +174,7 @@ class Podcast(db.Model):
     added_on = Column(DateTime(True))
 
 
-class Practice(db.Model):
+class Practice(Base.Model):
     __tablename__ = "practices"
 
     id = Column(BigInteger, primary_key=True, server_default=FetchedValue())
@@ -188,7 +184,7 @@ class Practice(db.Model):
     slug = Column(Text)
 
 
-class Skill(db.Model):
+class Skill(Base.Model):
     __tablename__ = "skills"
 
     id = Column(BigInteger, primary_key=True, server_default=FetchedValue())
@@ -200,7 +196,7 @@ class Skill(db.Model):
     tags = Column(JSON)
 
 
-class Stream(db.Model):
+class Stream(Base.Model):
     __tablename__ = "streams"
 
     id = Column(BigInteger, primary_key=True, server_default=FetchedValue())
@@ -211,7 +207,7 @@ class Stream(db.Model):
     expertise = Column(Integer)
 
 
-class User(db.Model):
+class User(Base.Model):
     __tablename__ = "users"
 
     id = Column(BigInteger, primary_key=True, server_default=FetchedValue())
@@ -228,7 +224,7 @@ class User(db.Model):
     language = Column(String(12))
 
 
-class Video(db.Model):
+class Video(Base.Model):
     __tablename__ = "videos"
 
     id = Column(BigInteger, primary_key=True, server_default=FetchedValue())

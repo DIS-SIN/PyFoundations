@@ -1,6 +1,6 @@
 from flask import jsonify, request
-from src.json_encoder import AlchemyEncoder
-from src.database.middleware import (
+from src.utils.json_encoder import AlchemyEncoder
+from src.database.utils.crud import (
     get_models_by_id,
     get_all_of_model,
     update_model_by_id,

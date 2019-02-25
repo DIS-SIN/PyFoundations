@@ -21,15 +21,15 @@ from flask_restful import Api
 import warnings
 import settings
 from src import dol
-from models import models
-from src.blueprint.api.user_bp import UserResource
-from src.blueprint.api.stream_bp import StreamResource
-from src.blueprint.api.episode_bp import EpisodeResource
-from src.blueprint.api.practice_bp import PracticeResource
-from src.blueprint.api.experience_bp import ExperienceResource
-from src.blueprint.api.learning_point_bp import LearningPointResource
-from src.blueprint.api.learning_resource_bp import LearningResourceResource
-def create_app(mode = 'development'):
+from src.database import db
+from src.apis.apiV1_0.user_bp import UserResource
+from src.apis.apiV1_0.stream_bp import StreamResource
+from src.apis.apiV1_0.episode_bp import EpisodeResource
+from src.apis.apiV1_0.practice_bp import PracticeResource
+from src.apis.apiV1_0.experience_bp import ExperienceResource
+from src.apis.apiV1_0.learning_point_bp import LearningPointResource
+from src.apis.apiV1_0.learning_resource_bp import LearningResourceResource
+def create_app(mode = 'development', initdb = False):
     ##########TODO##########
     # Modify app factory to allow configuration from file  STATUS:incomplete
     # Incoporporate unit testing and testing configurations STATUS:incomplete
@@ -100,8 +100,9 @@ def create_app(mode = 'development'):
             }
         }
         return jsonify(ret_val)
-
-    models.db.init_app(app)
+    db.init_app(app)
+    if initdb:
+        db.init_db(app)
     return app
 #creating click command to quickly configure application at runtime 
 @click.command()
@@ -109,8 +110,9 @@ def create_app(mode = 'development'):
     recognized modes : \n \
         development \n \
         production')
-def run(mode):
-    app = create_app(mode)
+@click.option('--initdb', default=0 , help = "when set to 1 db will be initialised on application creation" )
+def run(mode,initdb):
+    app = create_app(mode, initdb)
     app.run(host="0.0.0.0", port=5054)
 if __name__ == "__main__":
     run()

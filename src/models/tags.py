@@ -6,13 +6,12 @@ from .basemodel import Base
 # Status: Prototype Done, Mapping from real db TODO
 
 
-class Tag(Base):
+class Tag(Base.Model):
     __tablename__ = "tags"
 
     id = Column(
         BigInteger,
-        primary_key=True,
-        server_default=text("nextval('tag_id_seq'::regclass)"),
+        primary_key=True
     )
     tag = Column(Text)
     added_timestamp = Column(DateTime, server_default=text("now()"))
