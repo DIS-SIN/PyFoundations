@@ -15,15 +15,15 @@ export const LearningArchitectureTree = () => (
                 }, {
                     "name": "Empowering People"
                 }, {
-                    "name": "Ethidcal & Responsible Use"
+                    "name": "Ethidcal and Responsible Use"
                 }, {
                     "name": "Inclusive Design"
                 }, {
-                    "name": "Open Standards & Solutions"
+                    "name": "Open Standards and Solutions"
                 }, {
                     "name": "Open By Default"
                 }, {
-                    "name": "Security & Privacy"
+                    "name": "Security and Privacy"
                 }, {
                     "name": "User-Centric Design"
                 }
@@ -35,17 +35,17 @@ export const LearningArchitectureTree = () => (
                 , "description": "Digital literacy is the ability to use a range of technological tools for varied purposes and to understand the digital environment sufficiently to make well-informed decisions and understand the art of the possible."
                 , "children": [
                     { "name": "Community Building" }, {
-                        "name": "Creativity & Problem Solving"
+                        "name": "Creativity and Problem Solving"
                     }, {
-                        "name": "Critical Thinking & Evaluation"
+                        "name": "Critical Thinking and Evaluation"
                     }, {
                         "name": "Digital Citizenship"
                     }, {
-                        "name": "Privacy & Security"
+                        "name": "Privacy and Security"
                     }, {
-                        "name": "Using Information & Data"
+                        "name": "Using Information and Data"
                     }, {
-                        "name": "Using Tools & Technology"
+                        "name": "Using Tools and Technology"
                     }
                 ]
             },
@@ -71,7 +71,7 @@ export const LearningArchitectureTree = () => (
                     }, {
                         "name": "Leading Change"
                     }, {
-                        "name": "Openness & Colaboration"
+                        "name": "Openness and Colaboration"
                     }, {
                         "name": "User-Centred Service Design"
                     }
@@ -89,19 +89,19 @@ export const LearningArchitectureTree = () => (
                     }, {
                         "name": "Biotechnology"
                     }, {
-                        "name": "Blockchain & Distributed Systems"
+                        "name": "Blockchain and Distributed Systems"
                     }, {
-                        "name": "Drones & Robotics"
+                        "name": "Drones and Robotics"
                     }, {
                         "name": "Foresight"
                     }, {
-                        "name": "Intellignece & Cognitive Augmentation"
+                        "name": "Intellignece and Cognitive Augmentation"
                     }, {
                         "name": "IoT Networks"
                     }, {
-                        "name": "Micro & Nano-Materials"
+                        "name": "Micro and Nano-Materials"
                     }, {
-                        "name": "VR & Augmented Reality"
+                        "name": "VR and Augmented Reality"
                     }
                 ]
             },
@@ -145,13 +145,13 @@ export const LearningArchitectureTree = () => (
                 , "description": "Machine learning is an application of artificial intelligence (AI) that provides systems the ability to automatically learn and improve from experience without being explicitly programmed. Machine learning focuses on the development of computer programs that can access data and use it learn for themselves."
                 , "children": [
                     {
-                        "name": "Bias & Ethics"
+                        "name": "Bias and Ethics"
                     }, {
                         "name": "Big Data"
                     }, {
                         "name": "Data Pipelines"
                     }, {
-                        "name": "Deep Learning & Neural Networks"
+                        "name": "Deep Learning and Neural Networks"
                     }, {
                         "name": "GANS"
                     }, {
@@ -209,13 +209,13 @@ export const LearningArchitectureTree = () => (
                     }, {
                         "name": "Front-End Development"
                     }, {
-                        "name": "GitHub & Git"
+                        "name": "GitHub and Git"
                     }, {
                         "name": "Mobile Development"
                     }, {
                         "name": "Open Source"
                     }, {
-                        "name": "Packages & Libraries"
+                        "name": "Packages and Libraries"
                     }, {
                         "name": "Programming Languages"
                     }, {
