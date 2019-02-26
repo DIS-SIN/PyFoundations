@@ -15,16 +15,6 @@ import Tree from 'react-tree-graph';
 import 'react-tree-graph/dist/style.css'
 import GridExploreTree from '../molecules/GridExploreTree';
 
-/*
-let data = {
-    name: 'Parent',
-    children: [{
-        name: 'Child One'
-    }, {
-        name: 'Child Two'
-    }]
-};*/
-
 const mapStateToProps = state => {
     return {
         literals: state.literals
@@ -61,12 +51,6 @@ const styles = theme => ({
     },
 });
 
-/**
- *                     <span
-                        onClick={() => props.onClick(item.trim())}
-                    >{item}</span>
- * 
- */
 const Breadcrumb = props => (
     <Paper className={props.classes.paper}>
 
@@ -265,7 +249,7 @@ class DOLExploreTree extends React.Component {
                         title={
                             <React.Fragment>
                                 {literals.pages.home.hero.title}
-                                <Button onClick={this.resetTree} color="primary">Reset</Button>
+                                <Button onClick={this.resetTree} color="primary">{literals.common.reset}</Button>
                                 <Breadcrumb breadcrumb={breadcrumb} onClick={this.focusTreeBreadcrumb} classes={classes} />
                             </React.Fragment>
                         }

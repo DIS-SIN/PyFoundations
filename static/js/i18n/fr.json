@@ -36,7 +36,8 @@
         "related": "Contenu connexe",
         "comment": "Commentaire",
         "like": "J'aime ça",
-        "clear": "Effacer"
+        "clear": "Effacer",
+        "reset": "Réinitialiser"
     },
     "organisms": {
         "signin": {
