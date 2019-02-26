@@ -49,7 +49,69 @@
             "description": "<strong> L’apprentissage en ligne numérique est plus qu’un catalogue. </ strong> En vous connectant, vous pouvez créer un <strong> programme personnalisé </ strong> de <strong> connaissances et points d'apprentissage numériques </ strong>."
         },
         "primaryactionpanel": {
-            "title": "Ajouter une expérience"
+            "title": "Ajouter une expérience",
+            "formtitle": "Les expériences d'apprentissage se produisent partout. Parlez-nous de la vôtre",
+            "urltitle": "Où pouvez-vous trouver votre expérience d'apprentissage?",
+            "urllabel": "Collez votre URL ici ...",
+            "verbtitle": "Quel genre de contenu est-ce?",
+            "verblabel": "Type de contenu",
+            "impressiontitle": "Comment décririez-vous l'expérience d'apprentissage? Choisissez autant de tags que vous souhaitez.",
+            "impressionlabel": "Impression",
+            "streamtitle": "A quel flux numérique appartient-il?",
+            "streamlabel": "Ruisseaux numérique",
+            "durationtitle": "Combien de temps cela a-t-il pris?",
+            "durationlabel": "Durée",
+            "valuabletitle": "Quelle était sa valeur?",
+            "valuablelabel": "Valeur",
+            "difficultytitle": "A quel point était-ce difficile?",
+            "difficultylabel": "Difficulté",
+            "tagtitle": " Si vous le souhaitez, vous pouvez ajouter un ou plusieurs tags personnels pour décrire votre expérience. Cela nous aidera à vous faire de meilleures suggestions plus tard.",
+            "saveexp": "Enregistrer expérience",
+            "ctrl": {
+                "read": "Lire",
+                "watch": "Regarde",
+                "listen": "Écoute",
+                "participate": "Participe",
+                "practice": "Pratique",
+                "study": "Étude",
+                "do": "Faire",
+                "accessible": "Accessible",
+                "clear": "Clair",
+                "entertaining": "Divertissant",
+                "relevant": "Pertinent",
+                "informative": "Informatif",
+                "insightful": "Perspicace",
+                "useful": "Utile",
+                "digitalgov": "Gouvernement numérique",
+                "digitalliteracy": "Alphabétisation numérique",
+                "design": "Conception",
+                "leadership": "Direction",
+                "disruptivetech": "Technologie perturbatrice",
+                "dataanalysis": "L'analyse des données",
+                "aiml": "AI / Apprentissage machine",
+                "devops": "DevOps",
+                "development": "Développement",
+                "times": {
+                    "few": "Quelques minutes",
+                    "some": "30 - 60 minutes",
+                    "hours": "Quelques heures",
+                    "days": "Quelques jours",
+                    "weeks": "Semaines"
+                },
+                "value": {
+                    "little": "Peu de valeur",
+                    "some": "Plutôt utile",
+                    "solid": "Apprentissage solide",
+                    "good": "Très bon contenu",
+                    "great": "Expérience d'apprentissage incroyable"
+                },
+                "difficulty": {
+                    "easy": "Facile",
+                    "normal": "Quelques concepts difficiles",
+                    "hard": "Avancé",
+                    "expert": "Mon cerveau me fait mal!"
+                }
+            }
         },
         "header": {
             "samples": {

@@ -149,53 +149,53 @@ class DOLPrimaryActionPanel extends React.Component {
             url, tag1, tag2, tag3 } = this.state;
 
         const verb_form_control_fields = [
-            { "value": "read", "label": "Read", "checked": verb },
-            { "value": "watch", "label": "Watch", "checked": verb },
-            { "value": "listen", "label": "Listen", "checked": verb },
-            { "value": "participate", "label": "Participate", "checked": verb },
-            { "value": "practice", "label": "Practice", "checked": verb },
-            { "value": "study", "label": "Study", "checked": verb },
-            { "value": "do", "label": "Do", "checked": verb },
+            { "value": "read", "label": literals.organisms.primaryactionpanel.ctrl.read, "checked": verb },
+            { "value": "watch", "label": literals.organisms.primaryactionpanel.ctrl.watch, "checked": verb },
+            { "value": "listen", "label": literals.organisms.primaryactionpanel.ctrl.listen, "checked": verb },
+            { "value": "participate", "label": literals.organisms.primaryactionpanel.ctrl.participate, "checked": verb },
+            { "value": "practice", "label": literals.organisms.primaryactionpanel.ctrl.practice, "checked": verb },
+            { "value": "study", "label": literals.organisms.primaryactionpanel.ctrl.study, "checked": verb },
+            { "value": "do", "label": literals.organisms.primaryactionpanel.ctrl.do, "checked": verb },
         ];
         const impression_form_control_fields = [
-            { "value": "accessible", "label": "Accessible", "checked": accessible },
-            { "value": "clear", "label": "Clear", "checked": clear },
-            { "value": "entertaining", "label": "Entertaining", "checked": entertaining },
-            { "value": "relevant", "label": "Participate", "checked": relevant },
-            { "value": "informative", "label": "Informative", "checked": informative },
-            { "value": "insightful", "label": "Insightful", "checked": insightful },
-            { "value": "useful", "label": "Useful", "checked": useful },
+            { "value": "accessible", "label": literals.organisms.primaryactionpanel.ctrl.accessible, "checked": accessible },
+            { "value": "clear", "label": literals.organisms.primaryactionpanel.ctrl.clear, "checked": clear },
+            { "value": "entertaining", "label": literals.organisms.primaryactionpanel.ctrl.entertaining, "checked": entertaining },
+            { "value": "relevant", "label": literals.organisms.primaryactionpanel.ctrl.participate, "checked": relevant },
+            { "value": "informative", "label": literals.organisms.primaryactionpanel.ctrl.informative, "checked": informative },
+            { "value": "insightful", "label": literals.organisms.primaryactionpanel.ctrl.insightful, "checked": insightful },
+            { "value": "useful", "label": literals.organisms.primaryactionpanel.ctrl.useful, "checked": useful },
         ];
         const stream_form_control_fields = [
-            { "value": "0", "label": "Digital Government", "checked": stream },
-            { "value": "1", "label": "Digital Literacy", "checked": stream },
-            { "value": "2", "label": "Design", "checked": stream },
-            { "value": "3", "label": "Leadership", "checked": stream },
-            { "value": "4", "label": "Disruptive Technology", "checked": stream },
-            { "value": "5", "label": "Data Analysis", "checked": stream },
-            { "value": "6", "label": "AI / Machine Learning", "checked": stream },
-            { "value": "7", "label": "DevOps", "checked": stream },
-            { "value": "8", "label": "Development", "checked": stream },
+            { "value": "0", "label": literals.organisms.primaryactionpanel.ctrl.digitalgov, "checked": stream },
+            { "value": "1", "label": literals.organisms.primaryactionpanel.ctrl.digitalliteracy, "checked": stream },
+            { "value": "2", "label": literals.organisms.primaryactionpanel.ctrl.design, "checked": stream },
+            { "value": "3", "label": literals.organisms.primaryactionpanel.ctrl.leadership, "checked": stream },
+            { "value": "4", "label": literals.organisms.primaryactionpanel.ctrl.disruptivetech, "checked": stream },
+            { "value": "5", "label": literals.organisms.primaryactionpanel.ctrl.dataanalysis, "checked": stream },
+            { "value": "6", "label": literals.organisms.primaryactionpanel.ctrl.aiml, "checked": stream },
+            { "value": "7", "label": literals.organisms.primaryactionpanel.ctrl.devops, "checked": stream },
+            { "value": "8", "label": literals.organisms.primaryactionpanel.ctrl.development, "checked": stream },
         ];
         const duration_form_control_fields = [
-            { "value": "0d0h15m", "label": "A few minutes", "checked": duration },
-            { "value": "0d0h60m", "label": "30 - 60 Minutes", "checked": duration },
-            { "value": "0d3h0m", "label": "A few hours", "checked": duration },
-            { "value": "3d0h0m", "label": "A few days", "checked": duration },
-            { "value": "21d0h0m", "label": "Weeks", "checked": duration },
+            { "value": "0d0h15m", "label": literals.organisms.primaryactionpanel.ctrl.times.few, "checked": duration },
+            { "value": "0d0h60m", "label": literals.organisms.primaryactionpanel.ctrl.times.some, "checked": duration },
+            { "value": "0d3h0m", "label": literals.organisms.primaryactionpanel.ctrl.times.hours, "checked": duration },
+            { "value": "3d0h0m", "label": literals.organisms.primaryactionpanel.ctrl.times.days, "checked": duration },
+            { "value": "21d0h0m", "label": literals.organisms.primaryactionpanel.ctrl.times.weeks, "checked": duration },
         ];
         const valuable_form_control_fields = [
-            { "value": "0", "label": "Little value", "checked": valuable },
-            { "value": "1", "label": "Pretty useful", "checked": valuable },
-            { "value": "2", "label": "Solid learning", "checked": valuable },
-            { "value": "3", "label": "Very good content", "checked": valuable },
-            { "value": "4", "label": "Amazing learning experience", "checked": valuable },
+            { "value": "0", "label": literals.organisms.primaryactionpanel.ctrl.value.little, "checked": valuable },
+            { "value": "1", "label": literals.organisms.primaryactionpanel.ctrl.value.some, "checked": valuable },
+            { "value": "2", "label": literals.organisms.primaryactionpanel.ctrl.value.solid, "checked": valuable },
+            { "value": "3", "label": literals.organisms.primaryactionpanel.ctrl.value.good, "checked": valuable },
+            { "value": "4", "label": literals.organisms.primaryactionpanel.ctrl.value.great, "checked": valuable },
         ];
         const difficulty_form_control_fields = [
-            { "value": "0", "label": "Easy", "checked": difficulty },
-            { "value": "1", "label": "Some tricky concepts", "checked": difficulty },
-            { "value": "2", "label": "Advanced", "checked": difficulty },
-            { "value": "3", "label": "My brain hurts!", "checked": difficulty },
+            { "value": "0", "label": literals.organisms.primaryactionpanel.ctrl.difficulty.easy, "checked": difficulty },
+            { "value": "1", "label": literals.organisms.primaryactionpanel.ctrl.difficulty.normal, "checked": difficulty },
+            { "value": "2", "label": literals.organisms.primaryactionpanel.ctrl.difficulty.hard, "checked": difficulty },
+            { "value": "3", "label": literals.organisms.primaryactionpanel.ctrl.difficulty.expert, "checked": difficulty },
         ];
         return (
             <div>
@@ -226,18 +226,18 @@ class DOLPrimaryActionPanel extends React.Component {
                         </Toolbar>
                     </AppBar>
                     <div className={classNames(classes.layout, classes.cardGrid)}>
-                        <DialogTitle id="form-dialog-title">Learning experiences happen everywhere. Tell us about yours.</DialogTitle>
+                        <DialogTitle id="form-dialog-title">{literals.organisms.primaryactionpanel.formtitle}</DialogTitle>
                         <DialogContent>
                             <Grid container spacing={16}>
                                 <Grid item xs={12} sm={12}>
                                     <DialogContentText>
-                                        Where can you find your learning experience?
+                                        {literals.organisms.primaryactionpanel.urltitle}
                                     </DialogContentText>
                                     <TextField
                                         autoFocus
                                         margin="dense"
                                         id="url"
-                                        label="Paste your URL here..."
+                                        label={literals.organisms.primaryactionpanel.urllabel}
                                         type="url"
                                         fullWidth
                                         value={url}
@@ -246,12 +246,12 @@ class DOLPrimaryActionPanel extends React.Component {
                                 </Grid>
                                 <Grid item xs={12} sm={4}>
                                     <DialogContentText>
-                                        What kind of content is it?
+                                        {literals.organisms.primaryactionpanel.verbtitle}
                                     </DialogContentText>
                                     <FormControl component="fieldset" className={classes.formControl}>
-                                        <FormLabel component="legend">Content Type</FormLabel>
+                                        <FormLabel component="legend">{literals.organisms.primaryactionpanel.verblabel}</FormLabel>
                                         <RadioGroup
-                                            aria-label="Content Type"
+                                            aria-label={literals.organisms.primaryactionpanel.verblabel}
                                             name="verb"
                                             className={classes.group}
                                             value={verb}
@@ -270,10 +270,10 @@ class DOLPrimaryActionPanel extends React.Component {
                                 </Grid>
                                 <Grid item xs={12} sm={4}>
                                     <DialogContentText>
-                                        How would you describe the learning experience? Choose as many tags as you need.
+                                        {literals.organisms.primaryactionpanel.impressiontitle}
                                     </DialogContentText>
                                     <FormControl component="fieldset" className={classes.formControl}>
-                                        <FormLabel component="legend">Impression</FormLabel>
+                                        <FormLabel component="legend">{literals.organisms.primaryactionpanel.impressionlabel}</FormLabel>
                                         <FormGroup>
                                             {impression_form_control_fields.map((ctrl, index) => (
                                                 <FormControlLabel
@@ -293,12 +293,12 @@ class DOLPrimaryActionPanel extends React.Component {
                                 </Grid>
                                 <Grid item xs={12} sm={4}>
                                     <DialogContentText>
-                                        What digital stream does this belong to?
+                                        {literals.organisms.primaryactionpanel.streamtitle}
                                     </DialogContentText>
                                     <FormControl component="fieldset" className={classes.formControl}>
-                                        <FormLabel component="legend">Digital Stream</FormLabel>
+                                        <FormLabel component="legend">{literals.organisms.primaryactionpanel.streamlabel}</FormLabel>
                                         <RadioGroup
-                                            aria-label="Stream"
+                                            aria-label={literals.organisms.primaryactionpanel.streamlabel}
                                             name="stream"
                                             className={classes.group}
                                             value={stream}
@@ -317,12 +317,12 @@ class DOLPrimaryActionPanel extends React.Component {
                                 </Grid>
                                 <Grid item xs={12} sm={4}>
                                     <DialogContentText>
-                                        How long did it take?
+                                        {literals.organisms.primaryactionpanel.durationtitle}
                                     </DialogContentText>
                                     <FormControl component="fieldset" className={classes.formControl}>
-                                        <FormLabel component="legend">Duration</FormLabel>
+                                        <FormLabel component="legend">{literals.organisms.primaryactionpanel.durationlabel}</FormLabel>
                                         <RadioGroup
-                                            aria-label="Duration"
+                                            aria-label={literals.organisms.primaryactionpanel.durationlabel}
                                             name="duration"
                                             className={classes.group}
                                             value={duration}
@@ -341,12 +341,12 @@ class DOLPrimaryActionPanel extends React.Component {
                                 </Grid>
                                 <Grid item xs={12} sm={4}>
                                     <DialogContentText>
-                                        How valuable was it?
+                                        {literals.organisms.primaryactionpanel.valuabletitle}
                                     </DialogContentText>
                                     <FormControl component="fieldset" className={classes.formControl}>
-                                        <FormLabel component="legend">Value</FormLabel>
+                                        <FormLabel component="legend">{literals.organisms.primaryactionpanel.valuablelabel}</FormLabel>
                                         <RadioGroup
-                                            aria-label="Valuable"
+                                            aria-label={literals.organisms.primaryactionpanel.valuablelabel}
                                             name="valuable"
                                             className={classes.group}
                                             value={valuable}
@@ -365,12 +365,12 @@ class DOLPrimaryActionPanel extends React.Component {
                                 </Grid>
                                 <Grid item xs={12} sm={4}>
                                     <DialogContentText>
-                                        How difficult was it?
+                                        {literals.organisms.primaryactionpanel.difficultytitle}
                                     </DialogContentText>
                                     <FormControl component="fieldset" className={classes.formControl}>
-                                        <FormLabel component="legend">Difficulty</FormLabel>
+                                        <FormLabel component="legend">{literals.organisms.primaryactionpanel.difficultylabel}</FormLabel>
                                         <RadioGroup
-                                            aria-label="Difficulty"
+                                            aria-label={literals.organisms.primaryactionpanel.difficultylabel}
                                             name="difficulty"
                                             className={classes.group}
                                             value={difficulty}
@@ -389,14 +389,14 @@ class DOLPrimaryActionPanel extends React.Component {
                                 </Grid>
                                 <Grid item xs={12} sm={12}>
                                     <DialogContentText>
-                                        If you want, you can add one or more personal tags to describe your experience. This will help us give you better suggestions later.
+                                        {literals.organisms.primaryactionpanel.tagtitle}
                                     </DialogContentText>
                                 </Grid>
                                 <Grid item xs={12} sm={4}>
                                     <TextField
                                         margin="dense"
                                         id="tag1"
-                                        label="Tag #1"
+                                        label={literals.common.tag + " #1"}
                                         type="text"
                                         value={tag1}
                                         onChange={this.handleChangeText('tag1')}
@@ -406,7 +406,7 @@ class DOLPrimaryActionPanel extends React.Component {
                                     <TextField
                                         margin="dense"
                                         id="tag1"
-                                        label="Tag #2"
+                                        label={literals.common.tag + " #2"}
                                         type="text"
                                         value={tag2}
                                         onChange={this.handleChangeText('tag2')}
@@ -416,7 +416,7 @@ class DOLPrimaryActionPanel extends React.Component {
                                     <TextField
                                         margin="dense"
                                         id="tag1"
-                                        label="Tag #3"
+                                        label={literals.common.tag + " #3"}
                                         type="text"
                                         value={tag3}
                                         onChange={this.handleChangeText('tag3')}
@@ -424,7 +424,7 @@ class DOLPrimaryActionPanel extends React.Component {
                                 </Grid>
                                 <Grid item xs={12} sm={12}>
                                     <Button variant="contained" color="secondary" className={classes.button}>
-                                        Save Experience
+                                        {literals.organisms.primaryactionpanel.saveexp}
                                     </Button>
                                 </Grid>
                             </Grid>
