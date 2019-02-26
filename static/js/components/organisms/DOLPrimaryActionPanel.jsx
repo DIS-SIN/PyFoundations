@@ -84,6 +84,12 @@ function Transition(props) {
     return <Slide direction="up" {...props} />;
 }
 
+function peekAtState(name, props, state, nextProps, nextState) {
+    console.log(state.stream);
+    console.log(nextState)
+    return true;//state[name] !== nextState[name] || nextState[name] === null
+};
+
 class DOLPrimaryActionPanel extends React.Component {
     state = {
         open: false,
@@ -106,7 +112,7 @@ class DOLPrimaryActionPanel extends React.Component {
     };
 
     handleClear = () => {
-        console.log(this.state.stream + " > " + null);
+        //console.log(this.state.stream);
         this.setState({
             accessible: false,
             clear: false,
@@ -125,7 +131,8 @@ class DOLPrimaryActionPanel extends React.Component {
             tag2: "",
             tag3: "",
         });
-        this.forceUpdate();
+        //this.render();
+        //this.forceUpdate();
     };
 
     handleClickOpen = () => {
@@ -141,18 +148,28 @@ class DOLPrimaryActionPanel extends React.Component {
     };
 
     handleChangeRadio = name => event => {
-        console.log(name + " " + this.state[name] + " > " + event.target.value);
+        //console.log([name] + " " + name + " " + this.state[name] + " > " + event.target.value);
         this.setState({ [name]: event.target.value });
+        // this.render();
     };
 
     handleChangeCheckbox = name => event => {
         this.setState({ [name]: event.target.checked });
     };
-    render() {
 
+
+    /*
+        shouldComponentUpdate(nextProps, nextState) {
+            return true;
+            //return peekAtState('stream', this.props, this.state, nextProps, nextState)
+            //    || peekAtState('accessible', this.props, this.state, nextProps, nextState)
+        };*/
+
+    render() {
+        //console.log("render: ", this.state.stream);
         const { classes, literals } = this.props;
         const { accessible, clear, entertaining, relevant, informative,
-            insightful, useful, stream, valuable, difficulty, duration,
+            insightful, useful, verb, stream, valuable, difficulty, duration,
             url, tag1, tag2, tag3 } = this.state;
         return (
             <div>
@@ -214,16 +231,16 @@ class DOLPrimaryActionPanel extends React.Component {
                                             aria-label="Content Type"
                                             name="verb"
                                             className={classes.group}
-                                            value={duration}
+                                            value={verb}
                                             onChange={this.handleChangeRadio('verb')}
                                         >
-                                            <FormControlLabel value="read" control={<Radio />} label="Read" />
-                                            <FormControlLabel value="watch" control={<Radio />} label="Watch" />
-                                            <FormControlLabel value="listen" control={<Radio />} label="Listen" />
-                                            <FormControlLabel value="participate" control={<Radio />} label="Participate" />
-                                            <FormControlLabel value="practice" control={<Radio />} label="Practice" />
-                                            <FormControlLabel value="study" control={<Radio />} label="Study" />
-                                            <FormControlLabel value="do" control={<Radio />} label="Do" />
+                                            <FormControlLabel value="read" control={<Radio checked={verb === "read" ? "checked" : ""} />} label="Read" />
+                                            <FormControlLabel value="watch" control={<Radio checked={verb === "watch" ? "checked" : ""} />} label="Watch" />
+                                            <FormControlLabel value="listen" control={<Radio checked={verb === "listen" ? "checked" : ""} />} label="Listen" />
+                                            <FormControlLabel value="participate" control={<Radio checked={verb === "participate" ? "checked" : ""} />} label="Participate" />
+                                            <FormControlLabel value="practice" control={<Radio checked={verb === "practice" ? "checked" : ""} />} label="Practice" />
+                                            <FormControlLabel value="study" control={<Radio checked={verb === "study" ? "checked" : ""} />} label="Study" />
+                                            <FormControlLabel value="do" control={<Radio checked={verb === "do" ? "checked" : ""} />} label="Do" />
                                         </RadioGroup>
                                     </FormControl>
                                 </Grid>
@@ -317,18 +334,18 @@ class DOLPrimaryActionPanel extends React.Component {
                                             aria-label="Stream"
                                             name="stream"
                                             className={classes.group}
-                                            value={this.state.stream}
+                                            value={stream}
                                             onChange={this.handleChangeRadio('stream')}
                                         >
-                                            <FormControlLabel value="0" control={<Radio />} label="Digital Government" />
-                                            <FormControlLabel value="1" control={<Radio />} label="Digital Literacy" />
-                                            <FormControlLabel value="2" control={<Radio />} label="Design" />
-                                            <FormControlLabel value="3" control={<Radio />} label="Leadership" />
-                                            <FormControlLabel value="4" control={<Radio />} label="Disruptive Technology" />
-                                            <FormControlLabel value="5" control={<Radio />} label="Data Analysis" />
-                                            <FormControlLabel value="6" control={<Radio />} label="AI / Machine Learning" />
-                                            <FormControlLabel value="7" control={<Radio />} label="DevOps" />
-                                            <FormControlLabel value="8" control={<Radio />} label="Development" />
+                                            <FormControlLabel value="0" control={<Radio checked={stream === "0" ? "checked" : ""} />} label="Digital Government" />
+                                            <FormControlLabel value="1" control={<Radio checked={stream === "1" ? "checked" : ""} />} label="Digital Literacy" />
+                                            <FormControlLabel value="2" control={<Radio checked={stream === "2" ? "checked" : ""} />} label="Design" />
+                                            <FormControlLabel value="3" control={<Radio checked={stream === "3" ? "checked" : ""} />} label="Leadership" />
+                                            <FormControlLabel value="4" control={<Radio checked={stream === "4" ? "checked" : ""} />} label="Disruptive Technology" />
+                                            <FormControlLabel value="5" control={<Radio checked={stream === "5" ? "checked" : ""} />} label="Data Analysis" />
+                                            <FormControlLabel value="6" control={<Radio checked={stream === "6" ? "checked" : ""} />} label="AI / Machine Learning" />
+                                            <FormControlLabel value="7" control={<Radio checked={stream === "7" ? "checked" : ""} />} label="DevOps" />
+                                            <FormControlLabel value="8" control={<Radio checked={stream === "8" ? "checked" : ""} />} label="Development" />
                                         </RadioGroup>
                                     </FormControl>
                                 </Grid>
@@ -346,11 +363,11 @@ class DOLPrimaryActionPanel extends React.Component {
                                             value={duration}
                                             onChange={this.handleChangeRadio('duration')}
                                         >
-                                            <FormControlLabel value="0d0h15m" control={<Radio />} label="A few minutes" />
-                                            <FormControlLabel value="0d0h60m" control={<Radio />} label="30 - 60 minutes" />
-                                            <FormControlLabel value="0d3h0m" control={<Radio />} label="A few hours" />
-                                            <FormControlLabel value="3d0h0m" control={<Radio />} label="A few days" />
-                                            <FormControlLabel value="21d0h0m" control={<Radio />} label="Weeks" />
+                                            <FormControlLabel value="0d0h15m" control={<Radio checked={duration === "0d0h15m" ? "checked" : ""} />} label="A few minutes" />
+                                            <FormControlLabel value="0d0h60m" control={<Radio checked={duration === "0d0h60m" ? "checked" : ""} />} label="30 - 60 minutes" />
+                                            <FormControlLabel value="0d3h0m" control={<Radio checked={duration === "0d3h0m" ? "checked" : ""} />} label="A few hours" />
+                                            <FormControlLabel value="3d0h0m" control={<Radio checked={duration === "3d0h0m" ? "checked" : ""} />} label="A few days" />
+                                            <FormControlLabel value="21d0h0m" control={<Radio checked={duration === "21d0h0m" ? "checked" : ""} />} label="Weeks" />
                                         </RadioGroup>
                                     </FormControl>
                                 </Grid>
@@ -367,11 +384,11 @@ class DOLPrimaryActionPanel extends React.Component {
                                             value={valuable}
                                             onChange={this.handleChangeRadio('valuable')}
                                         >
-                                            <FormControlLabel value="0" control={<Radio />} label="Little value" />
-                                            <FormControlLabel value="1" control={<Radio />} label="Pretty useful" />
-                                            <FormControlLabel value="2" control={<Radio />} label="Solid learning" />
-                                            <FormControlLabel value="3" control={<Radio />} label="Very good content" />
-                                            <FormControlLabel value="4" control={<Radio />} label="Amazing learning experience" />
+                                            <FormControlLabel value="0" control={<Radio checked={valuable === "0" ? "checked" : ""} />} label="Little value" />
+                                            <FormControlLabel value="1" control={<Radio checked={valuable === "1" ? "checked" : ""} />} label="Pretty useful" />
+                                            <FormControlLabel value="2" control={<Radio checked={valuable === "2" ? "checked" : ""} />} label="Solid learning" />
+                                            <FormControlLabel value="3" control={<Radio checked={valuable === "3" ? "checked" : ""} />} label="Very good content" />
+                                            <FormControlLabel value="4" control={<Radio checked={valuable === "4" ? "checked" : ""} />} label="Amazing learning experience" />
 
                                         </RadioGroup>
                                     </FormControl>
@@ -389,10 +406,10 @@ class DOLPrimaryActionPanel extends React.Component {
                                             value={difficulty}
                                             onChange={this.handleChangeRadio('difficulty')}
                                         >
-                                            <FormControlLabel value="0" control={<Radio />} label="Easy" />
-                                            <FormControlLabel value="1" control={<Radio />} label="Some tricky concepts" />
-                                            <FormControlLabel value="2" control={<Radio />} label="Advanced" />
-                                            <FormControlLabel value="3" control={<Radio />} label="My brain hurts!" />
+                                            <FormControlLabel value="0" control={<Radio checked={difficulty === "0" ? "checked" : ""} />} label="Easy" />
+                                            <FormControlLabel value="1" control={<Radio checked={difficulty === "1" ? "checked" : ""} />} label="Some tricky concepts" />
+                                            <FormControlLabel value="2" control={<Radio checked={difficulty === "2" ? "checked" : ""} />} label="Advanced" />
+                                            <FormControlLabel value="3" control={<Radio checked={difficulty === "3" ? "checked" : ""} />} label="My brain hurts!" />
                                         </RadioGroup>
                                     </FormControl>
                                 </Grid>
