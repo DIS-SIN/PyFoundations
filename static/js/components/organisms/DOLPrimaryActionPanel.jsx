@@ -5,21 +5,17 @@ import Button from '@material-ui/core/Button';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
-import AjaxTest from '../../samples/AjaxTest';
 import classNames from 'classnames';
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import { connect } from "react-redux";
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import Checkbox from '@material-ui/core/Checkbox';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -84,12 +80,6 @@ function Transition(props) {
     return <Slide direction="up" {...props} />;
 }
 
-function peekAtState(name, props, state, nextProps, nextState) {
-    console.log(state.stream);
-    console.log(nextState)
-    return true;//state[name] !== nextState[name] || nextState[name] === null
-};
-
 class DOLPrimaryActionPanel extends React.Component {
     state = {
         open: false,
@@ -131,39 +121,25 @@ class DOLPrimaryActionPanel extends React.Component {
             tag2: "",
             tag3: "",
         });
-        //this.render();
-        //this.forceUpdate();
+    };
+    handleChangeText = name => event => {
+        this.setState({ [name]: event.target.value });
+    };
+    handleChangeRadio = name => event => {
+        this.setState({ [name]: event.target.value });
+    };
+    handleChangeCheckbox = name => event => {
+        this.setState({ [name]: event.target.checked });
     };
 
     handleClickOpen = () => {
         this.setState({ open: true });
     };
-
     handleClose = () => {
         this.setState({ open: false });
     };
 
-    handleChangeText = name => event => {
-        this.setState({ [name]: event.target.value });
-    };
 
-    handleChangeRadio = name => event => {
-        //console.log([name] + " " + name + " " + this.state[name] + " > " + event.target.value);
-        this.setState({ [name]: event.target.value });
-        // this.render();
-    };
-
-    handleChangeCheckbox = name => event => {
-        this.setState({ [name]: event.target.checked });
-    };
-
-
-    /*
-        shouldComponentUpdate(nextProps, nextState) {
-            return true;
-            //return peekAtState('stream', this.props, this.state, nextProps, nextState)
-            //    || peekAtState('accessible', this.props, this.state, nextProps, nextState)
-        };*/
 
     render() {
         //console.log("render: ", this.state.stream);
@@ -171,6 +147,56 @@ class DOLPrimaryActionPanel extends React.Component {
         const { accessible, clear, entertaining, relevant, informative,
             insightful, useful, verb, stream, valuable, difficulty, duration,
             url, tag1, tag2, tag3 } = this.state;
+
+        const verb_form_control_fields = [
+            { "value": "read", "label": "Read", "checked": verb },
+            { "value": "watch", "label": "Watch", "checked": verb },
+            { "value": "listen", "label": "Listen", "checked": verb },
+            { "value": "participate", "label": "Participate", "checked": verb },
+            { "value": "practice", "label": "Practice", "checked": verb },
+            { "value": "study", "label": "Study", "checked": verb },
+            { "value": "do", "label": "Do", "checked": verb },
+        ];
+        const impression_form_control_fields = [
+            { "value": "accessible", "label": "Accessible", "checked": accessible },
+            { "value": "clear", "label": "Clear", "checked": clear },
+            { "value": "entertaining", "label": "Entertaining", "checked": entertaining },
+            { "value": "relevant", "label": "Participate", "checked": relevant },
+            { "value": "informative", "label": "Informative", "checked": informative },
+            { "value": "insightful", "label": "Insightful", "checked": insightful },
+            { "value": "useful", "label": "Useful", "checked": useful },
+        ];
+        const stream_form_control_fields = [
+            { "value": "0", "label": "Digital Government", "checked": stream },
+            { "value": "1", "label": "Digital Literacy", "checked": stream },
+            { "value": "2", "label": "Design", "checked": stream },
+            { "value": "3", "label": "Leadership", "checked": stream },
+            { "value": "4", "label": "Disruptive Technology", "checked": stream },
+            { "value": "5", "label": "Data Analysis", "checked": stream },
+            { "value": "6", "label": "AI / Machine Learning", "checked": stream },
+            { "value": "7", "label": "DevOps", "checked": stream },
+            { "value": "8", "label": "Development", "checked": stream },
+        ];
+        const duration_form_control_fields = [
+            { "value": "0d0h15m", "label": "A few minutes", "checked": duration },
+            { "value": "0d0h60m", "label": "30 - 60 Minutes", "checked": duration },
+            { "value": "0d3h0m", "label": "A few hours", "checked": duration },
+            { "value": "3d0h0m", "label": "A few days", "checked": duration },
+            { "value": "21d0h0m", "label": "Weeks", "checked": duration },
+        ];
+        const valuable_form_control_fields = [
+            { "value": "0", "label": "Little value", "checked": valuable },
+            { "value": "1", "label": "Pretty useful", "checked": valuable },
+            { "value": "2", "label": "Solid learning", "checked": valuable },
+            { "value": "3", "label": "Very good content", "checked": valuable },
+            { "value": "4", "label": "Amazing learning experience", "checked": valuable },
+        ];
+        const difficulty_form_control_fields = [
+            { "value": "0", "label": "Easy", "checked": difficulty },
+            { "value": "1", "label": "Some tricky concepts", "checked": difficulty },
+            { "value": "2", "label": "Advanced", "checked": difficulty },
+            { "value": "3", "label": "My brain hurts!", "checked": difficulty },
+        ];
         return (
             <div>
                 <ScrollToTop />
@@ -200,9 +226,6 @@ class DOLPrimaryActionPanel extends React.Component {
                         </Toolbar>
                     </AppBar>
                     <div className={classNames(classes.layout, classes.cardGrid)}>
-                        {/*<Typography variant="h5" color="inherit">
-                            Learning experiences happen everywhere. Tell us about yours.
-                        </Typography>*/}
                         <DialogTitle id="form-dialog-title">Learning experiences happen everywhere. Tell us about yours.</DialogTitle>
                         <DialogContent>
                             <Grid container spacing={16}>
@@ -234,13 +257,14 @@ class DOLPrimaryActionPanel extends React.Component {
                                             value={verb}
                                             onChange={this.handleChangeRadio('verb')}
                                         >
-                                            <FormControlLabel value="read" control={<Radio checked={verb === "read" ? "checked" : ""} />} label="Read" />
-                                            <FormControlLabel value="watch" control={<Radio checked={verb === "watch" ? "checked" : ""} />} label="Watch" />
-                                            <FormControlLabel value="listen" control={<Radio checked={verb === "listen" ? "checked" : ""} />} label="Listen" />
-                                            <FormControlLabel value="participate" control={<Radio checked={verb === "participate" ? "checked" : ""} />} label="Participate" />
-                                            <FormControlLabel value="practice" control={<Radio checked={verb === "practice" ? "checked" : ""} />} label="Practice" />
-                                            <FormControlLabel value="study" control={<Radio checked={verb === "study" ? "checked" : ""} />} label="Study" />
-                                            <FormControlLabel value="do" control={<Radio checked={verb === "do" ? "checked" : ""} />} label="Do" />
+                                            {verb_form_control_fields.map((ctrl, index) => (
+                                                <FormControlLabel
+                                                    key={index}
+                                                    value={ctrl.value}
+                                                    control={<Radio checked={ctrl.checked === ctrl.value ? "checked" : ""} />}
+                                                    label={ctrl.label}
+                                                />
+                                            ))}
                                         </RadioGroup>
                                     </FormControl>
                                 </Grid>
@@ -251,76 +275,19 @@ class DOLPrimaryActionPanel extends React.Component {
                                     <FormControl component="fieldset" className={classes.formControl}>
                                         <FormLabel component="legend">Impression</FormLabel>
                                         <FormGroup>
-                                            <FormControlLabel
-                                                control={
-                                                    <Checkbox
-                                                        checked={accessible}
-                                                        onChange={this.handleChangeCheckbox('accessible')}
-                                                        value="accessible"
-                                                    />
-                                                }
-                                                label="Accessible"
-                                            />
-                                            <FormControlLabel
-                                                control={
-                                                    <Checkbox
-                                                        checked={clear}
-                                                        onChange={this.handleChangeCheckbox('clear')}
-                                                        value="clear"
-                                                    />
-                                                }
-                                                label="Clear"
-                                            />
-                                            <FormControlLabel
-                                                control={
-                                                    <Checkbox
-                                                        checked={entertaining}
-                                                        onChange={this.handleChangeCheckbox('entertaining')}
-                                                        value="entertaining"
-                                                    />
-                                                }
-                                                label="Entertaining"
-                                            />
-                                            <FormControlLabel
-                                                control={
-                                                    <Checkbox
-                                                        checked={relevant}
-                                                        onChange={this.handleChangeCheckbox('relevant')}
-                                                        value="relevant"
-                                                    />
-                                                }
-                                                label="Relevant"
-                                            />
-                                            <FormControlLabel
-                                                control={
-                                                    <Checkbox
-                                                        checked={informative}
-                                                        onChange={this.handleChangeCheckbox('informative')}
-                                                        value="informative"
-                                                    />
-                                                }
-                                                label="Informative"
-                                            />
-                                            <FormControlLabel
-                                                control={
-                                                    <Checkbox
-                                                        checked={insightful}
-                                                        onChange={this.handleChangeCheckbox('insightful')}
-                                                        value="insightful"
-                                                    />
-                                                }
-                                                label="Insightful"
-                                            />
-                                            <FormControlLabel
-                                                control={
-                                                    <Checkbox
-                                                        checked={useful}
-                                                        onChange={this.handleChangeCheckbox('useful')}
-                                                        value="useful"
-                                                    />
-                                                }
-                                                label="Useful"
-                                            />
+                                            {impression_form_control_fields.map((ctrl, index) => (
+                                                <FormControlLabel
+                                                    key={index}
+                                                    control={
+                                                        <Checkbox
+                                                            checked={ctrl.checked}
+                                                            onChange={this.handleChangeCheckbox(ctrl.value)}
+                                                            value={ctrl.value}
+                                                        />
+                                                    }
+                                                    label={ctrl.label}
+                                                />
+                                            ))}
                                         </FormGroup>
                                     </FormControl>
                                 </Grid>
@@ -337,19 +304,17 @@ class DOLPrimaryActionPanel extends React.Component {
                                             value={stream}
                                             onChange={this.handleChangeRadio('stream')}
                                         >
-                                            <FormControlLabel value="0" control={<Radio checked={stream === "0" ? "checked" : ""} />} label="Digital Government" />
-                                            <FormControlLabel value="1" control={<Radio checked={stream === "1" ? "checked" : ""} />} label="Digital Literacy" />
-                                            <FormControlLabel value="2" control={<Radio checked={stream === "2" ? "checked" : ""} />} label="Design" />
-                                            <FormControlLabel value="3" control={<Radio checked={stream === "3" ? "checked" : ""} />} label="Leadership" />
-                                            <FormControlLabel value="4" control={<Radio checked={stream === "4" ? "checked" : ""} />} label="Disruptive Technology" />
-                                            <FormControlLabel value="5" control={<Radio checked={stream === "5" ? "checked" : ""} />} label="Data Analysis" />
-                                            <FormControlLabel value="6" control={<Radio checked={stream === "6" ? "checked" : ""} />} label="AI / Machine Learning" />
-                                            <FormControlLabel value="7" control={<Radio checked={stream === "7" ? "checked" : ""} />} label="DevOps" />
-                                            <FormControlLabel value="8" control={<Radio checked={stream === "8" ? "checked" : ""} />} label="Development" />
+                                            {stream_form_control_fields.map((ctrl, index) => (
+                                                <FormControlLabel
+                                                    key={index}
+                                                    value={ctrl.value}
+                                                    control={<Radio checked={ctrl.checked === ctrl.value ? "checked" : ""} />}
+                                                    label={ctrl.label}
+                                                />
+                                            ))}
                                         </RadioGroup>
                                     </FormControl>
                                 </Grid>
-
                                 <Grid item xs={12} sm={4}>
                                     <DialogContentText>
                                         How long did it take?
@@ -363,18 +328,21 @@ class DOLPrimaryActionPanel extends React.Component {
                                             value={duration}
                                             onChange={this.handleChangeRadio('duration')}
                                         >
-                                            <FormControlLabel value="0d0h15m" control={<Radio checked={duration === "0d0h15m" ? "checked" : ""} />} label="A few minutes" />
-                                            <FormControlLabel value="0d0h60m" control={<Radio checked={duration === "0d0h60m" ? "checked" : ""} />} label="30 - 60 minutes" />
-                                            <FormControlLabel value="0d3h0m" control={<Radio checked={duration === "0d3h0m" ? "checked" : ""} />} label="A few hours" />
-                                            <FormControlLabel value="3d0h0m" control={<Radio checked={duration === "3d0h0m" ? "checked" : ""} />} label="A few days" />
-                                            <FormControlLabel value="21d0h0m" control={<Radio checked={duration === "21d0h0m" ? "checked" : ""} />} label="Weeks" />
+                                            {duration_form_control_fields.map((ctrl, index) => (
+                                                <FormControlLabel
+                                                    key={index}
+                                                    value={ctrl.value}
+                                                    control={<Radio checked={ctrl.checked === ctrl.value ? "checked" : ""} />}
+                                                    label={ctrl.label}
+                                                />
+                                            ))}
                                         </RadioGroup>
                                     </FormControl>
                                 </Grid>
                                 <Grid item xs={12} sm={4}>
                                     <DialogContentText>
                                         How valuable was it?
-                                </DialogContentText>
+                                    </DialogContentText>
                                     <FormControl component="fieldset" className={classes.formControl}>
                                         <FormLabel component="legend">Value</FormLabel>
                                         <RadioGroup
@@ -384,19 +352,21 @@ class DOLPrimaryActionPanel extends React.Component {
                                             value={valuable}
                                             onChange={this.handleChangeRadio('valuable')}
                                         >
-                                            <FormControlLabel value="0" control={<Radio checked={valuable === "0" ? "checked" : ""} />} label="Little value" />
-                                            <FormControlLabel value="1" control={<Radio checked={valuable === "1" ? "checked" : ""} />} label="Pretty useful" />
-                                            <FormControlLabel value="2" control={<Radio checked={valuable === "2" ? "checked" : ""} />} label="Solid learning" />
-                                            <FormControlLabel value="3" control={<Radio checked={valuable === "3" ? "checked" : ""} />} label="Very good content" />
-                                            <FormControlLabel value="4" control={<Radio checked={valuable === "4" ? "checked" : ""} />} label="Amazing learning experience" />
-
+                                            {valuable_form_control_fields.map((ctrl, index) => (
+                                                <FormControlLabel
+                                                    key={index}
+                                                    value={ctrl.value}
+                                                    control={<Radio checked={ctrl.checked === ctrl.value ? "checked" : ""} />}
+                                                    label={ctrl.label}
+                                                />
+                                            ))}
                                         </RadioGroup>
                                     </FormControl>
                                 </Grid>
                                 <Grid item xs={12} sm={4}>
                                     <DialogContentText>
                                         How difficult was it?
-                                </DialogContentText>
+                                    </DialogContentText>
                                     <FormControl component="fieldset" className={classes.formControl}>
                                         <FormLabel component="legend">Difficulty</FormLabel>
                                         <RadioGroup
@@ -406,10 +376,14 @@ class DOLPrimaryActionPanel extends React.Component {
                                             value={difficulty}
                                             onChange={this.handleChangeRadio('difficulty')}
                                         >
-                                            <FormControlLabel value="0" control={<Radio checked={difficulty === "0" ? "checked" : ""} />} label="Easy" />
-                                            <FormControlLabel value="1" control={<Radio checked={difficulty === "1" ? "checked" : ""} />} label="Some tricky concepts" />
-                                            <FormControlLabel value="2" control={<Radio checked={difficulty === "2" ? "checked" : ""} />} label="Advanced" />
-                                            <FormControlLabel value="3" control={<Radio checked={difficulty === "3" ? "checked" : ""} />} label="My brain hurts!" />
+                                            {difficulty_form_control_fields.map((ctrl, index) => (
+                                                <FormControlLabel
+                                                    key={index}
+                                                    value={ctrl.value}
+                                                    control={<Radio checked={ctrl.checked === ctrl.value ? "checked" : ""} />}
+                                                    label={ctrl.label}
+                                                />
+                                            ))}
                                         </RadioGroup>
                                     </FormControl>
                                 </Grid>
@@ -448,10 +422,9 @@ class DOLPrimaryActionPanel extends React.Component {
                                         onChange={this.handleChangeText('tag3')}
                                     />
                                 </Grid>
-
                                 <Grid item xs={12} sm={12}>
                                     <Button variant="contained" color="secondary" className={classes.button}>
-                                        <CloudUploadIcon /> Save
+                                        Save Experience
                                     </Button>
                                 </Grid>
                             </Grid>
