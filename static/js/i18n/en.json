@@ -35,7 +35,8 @@
         "rate": "Rate Content",
         "related": "Related Content",
         "comment": "Comment",
-        "like": "Like"
+        "like": "Like",
+        "clear": "Clear"
     },
     "organisms": {
         "signin": {
