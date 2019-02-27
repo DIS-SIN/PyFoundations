@@ -28,7 +28,7 @@ def get_rows(model, filters = None, default_join = "and"):
         filters dict must be in the following structure
         [  {
                 'column': {
-                    'comparitor': '>=' OR '==' OR '<=' OR '>' OR '<'
+                    'comparitor': '>=' OR '==' OR '<=' OR '>' OR '<' OR !=
                     'data': str OR int OR float  
                 },
                 join = "and" OR "or"
@@ -37,7 +37,9 @@ def get_rows(model, filters = None, default_join = "and"):
     """
     if filters is not None:
         #array which will con
-        parsed_filters = []
+        query = ParseTree(model,filters)
+        results = query.query()
+        return results.all()
         if default_join != 'and' and default_join != 'or':
             raise ValueError("default_join must be of value 'and' or 'or' ")
         if isinstance(filters, list):
