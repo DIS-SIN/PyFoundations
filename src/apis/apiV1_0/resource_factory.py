@@ -1,40 +1,46 @@
 from flask import jsonify, request
 from src.utils.json_encoder import AlchemyEncoder
+from  sqlalchemy.orm.exc import NoResultsFound, MultipleResultsFound
 from src.database.utils.crud import (
-    get_models_by_id,
+    get_row_by_id,
     get_all_of_model,
     update_model_by_id,
     insert_model,
     delete_model_by_id,
-)
+) 
+json_en = AlchemyEncoder()
+def get_one_row(model, id):
+    """Return JSON representation of a row in a table
 
-json_en = AlchemyEncoder
-
-
-def view_one(model, id):
-    """Return a jsonified version of a model in a db that matches id
-
-    first retreive model from the db
+    first retreive mapped model from the db
     if the return size is 0, or more than 1, return no data with a fail
     if the return size is 1, continue
-        using an implimentation of flask.json.JSONEnsrcr, process model into json
-        return jsonified model with a success
+        using an implimentation of flask.json.JSONEncoder, process model into json
+
+    Parameters
+    ----------
+    model
+        sqlalchemy.ext.declarative.api.DeclativeMeta
+        class that inherits the sqlalchemy.ext.declarative.Base, this is the class that is mapped to the data
+    id
+       int
+       the primary key of the row selected
+    Returns
+    -------
+    dict
+       JSON serializable dict
     """
-    db_return = get_models_by_id(model, id)
-    if len(db_return) == 1:
-        return jsonify(
-            [
-                {
-                    "api_data": json_en.default(json_en, db_return[0]),
-                    "api_return": "success",
-                }
-            ]
-        )
-    return jsonify([{"api_return": "failure"}])
-
-
-def view_all(model):
-    """Return an array of jsonified versions of all models in a db
+    try:
+        db_return = get_row_by_id(model, id)
+        return json_en.default(db_return)
+    except NoResultsFound as e:
+        return {'error': repr(e)},400
+    except MultipleResultsFound as e:
+        return {'error': repr(e)}, 500
+    except TypeError as e:
+        return {'error': repr(e)}, 500
+def get_all_rows(model):
+    """Return JSON representation of all rows in a table 
 
     first retreive all models from the db
     create an array to store jsonified version of each model
@@ -43,6 +49,17 @@ def view_all(model):
         add to the array
     return jsonified array with a success
     (if there are no models in the db it returns empty array with api_return:success)
+
+    Parameters
+    ----------
+    model
+        sqlalchemy.ext.declarative.api.DeclativeMeta
+        class that inherits the sqlalchemy.ext.declarative.Base, this is the class that is mapped to the data
+
+    Returns
+    ------
+    dict
+        JSON serializable dict 
     """
     db_return = get_all_of_model(model)
     return_obj = []

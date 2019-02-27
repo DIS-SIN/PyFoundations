@@ -31,7 +31,7 @@ from src.apis.apiV1_0.learning_point_bp import LearningPointResource
 from src.apis.apiV1_0.learning_resource_bp import LearningResourceResource
 def create_app(mode = 'development', initdb = False):
     ##########TODO##########
-    # Modify app factory to allow configuration from file  STATUS:incomplete
+    # Modify app factory to allow configuration from file  STATUS:completed
     # Incoporporate unit testing and testing configurations STATUS:incomplete
  
     """
@@ -73,11 +73,11 @@ def create_app(mode = 'development', initdb = False):
     #creating flask-restful Api class instance
     api = Api(app)
     #registering api routes
-    api.add_resource(UserResource, "/api/user/", "/api/user/<int:id>")
-    api.add_resource(StreamResource, "/api/stream/", "/api/stream/<int:id>")
-    api.add_resource(EpisodeResource, "/api/episode/", "/api/episode/<int:id>")
-    api.add_resource(PracticeResource, "/api/practice/", "/api/practice/<int:id>")
-    api.add_resource(ExperienceResource, "/api/experience/", "/api/experience/<int:id>")
+    api.add_resource(UserResource, "/api/user", "/api/user/<int:id>")
+    api.add_resource(StreamResource, "/api/stream", "/api/stream/<int:id>")
+    api.add_resource(EpisodeResource, "/api/episode", "/api/episode/<int:id>")
+    api.add_resource(PracticeResource, "/api/practice", "/api/practice/<int:id>")
+    api.add_resource(ExperienceResource, "/api/experience", "/api/experience/<int:id>")
     api.add_resource(
         LearningPointResource, "/api/learning_point/", "/api/learning_point?<int:id>"
     )
