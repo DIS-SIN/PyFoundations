@@ -124,19 +124,19 @@ class DOLPageUserProfile extends React.Component {
 
                                 <Grid container spacing={16}>
                                     <Grid item>
-                                        <Typography variant="subtitle1">
+                                        <Typography variant="subtitle1" component="span">
                                             <b>4</b> {literals.common.streams}
                                         </Typography>
                                         <ProgressBarLinear completed={progressMain} />
                                     </Grid>
                                     <Grid item>
-                                        <Typography variant="subtitle1">
+                                        <Typography variant="subtitle1" component="span">
                                             <b>22</b> {literals.common.practices}
                                         </Typography>
                                         <ProgressBarLinear completed={progressMain} />
                                     </Grid>
                                     <Grid item>
-                                        <Typography variant="subtitle1">
+                                        <Typography variant="subtitle1" component="span">
                                             <b>260</b> {literals.common.experiences}
                                         </Typography>
                                         <ProgressBarLinear completed={progressMain} />
@@ -145,15 +145,15 @@ class DOLPageUserProfile extends React.Component {
 
                                 <Grid container spacing={16}>
                                     <Grid item>
-                                        <Typography variant="subtitle1">
+                                        <Typography variant="subtitle1" component="span">
                                             learner@email.com
                                         </Typography>
                                     </Grid>
                                     <Grid item>
-                                        <Typography variant="subtitle1">CSPS, DIS/DAT</Typography>
+                                        <Typography variant="subtitle1" component="span">CSPS, DIS/DAT</Typography>
                                     </Grid>
                                     <Grid item>
-                                        <Typography variant="subtitle1">Ottawa, ON</Typography>
+                                        <Typography variant="subtitle1" component="span">Ottawa, ON</Typography>
                                     </Grid>
                                 </Grid>
                             </Grid>
@@ -162,7 +162,7 @@ class DOLPageUserProfile extends React.Component {
                                     title={"Overall Progress for 2019"}
                                     text={
                                         <React.Fragment>
-                                            <Typography variant="subtitle2">
+                                            <Typography variant="subtitle2" component="span">
                                                 500 / 75000 pts
                                             </Typography>
                                             <ProgressBarLinear completed={progressMain} />
@@ -172,7 +172,7 @@ class DOLPageUserProfile extends React.Component {
                                     title={" AI / Machine Learning - Current Skill: Experienced"}
                                     text={
                                         <React.Fragment>
-                                            <Typography variant="subtitle2">
+                                            <Typography variant="subtitle2" component="span">
                                                 500 / 75000 pts
                                             </Typography>
                                             <ProgressBarLinear completed={progressMain} />
@@ -186,7 +186,7 @@ class DOLPageUserProfile extends React.Component {
                                     text={
                                         <React.Fragment>
 
-                                            <Typography variant="subtitle2">
+                                            <Typography variant="subtitle2" component="span">
                                                 500 / 75000 pts
                                             </Typography>
                                             <ProgressBarLinear completed={progressMain} />

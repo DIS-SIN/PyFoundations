@@ -184,7 +184,6 @@ class DOLPrimaryActionPanel extends React.Component {
         tag2: "",
         tag3: "",
         episodetitle: "",
-        episodetitle: "",
         episodetagline: "",
         episodeblogtext: "",
         episodevideotitle: "",
@@ -216,7 +215,6 @@ class DOLPrimaryActionPanel extends React.Component {
             tag1: "",
             tag2: "",
             tag3: "",
-            episodetitle: "",
             episodetitle: "",
             episodetagline: "",
             episodeblogtext: "",
@@ -253,11 +251,88 @@ class DOLPrimaryActionPanel extends React.Component {
     handleClose = () => {
         this.setState({ open: false });
     };
-    handleSave = () => {
-        alert("Save!");
-        this.handleClose();
-    };
 
+    handleSave = async e => {
+        e.preventDefault();
+        let api_url = "/api/experience";
+        let api_post = {};
+        if (this.state.isepisodetype == true) {
+            api_url = "/api/episode";
+            api_post = {
+                "title": this.state.episodetitle,
+                "tagline": this.state.episodetagline,
+                "sub_title": this.state.episodetagline,
+                "body": this.state.episodeblogtext,
+                "author": "TBD",
+                "image": { "src": this.state.itemcover },
+                "videos": {
+                    "title": this.state.episodevideotitle,
+                    "description": this.state.episodevideodescription,
+                    "url": this.state.episodevideourl
+                },
+                podcasts: {
+                    "title": this.state.episodepodcasttitle,
+                    "description": this.state.episodepodcastdescription,
+                    "url": this.state.episodepodcasturl
+                },
+                likes: 0,
+                published_on: "",
+                edits: {},
+                tags: [{
+                    "tag": this.state.tag1
+                }, {
+                    "tag": this.state.tag2
+                }, {
+                    "tag": this.state.tag3
+                }],
+                learning_points: {},
+                learning_resources: {},
+                experience: {},
+                digital_standards: {},
+                banner_image: this.state.itemcover,
+                slug: this.state.episodetitle
+            };
+        } else {
+            api_url = "/api/experience";
+            api_post = {
+                "user_name": "TBD",
+                "verb": this.state.verb,
+                "stream": this.state.stream,
+                "practices": {},
+                skills: {},
+                learning_resource_id: 0,
+                learning_resource: {},
+                occurred_at: "",
+                validated: false,
+                time: "",
+                value: this.state.valuable,
+                difficulty: this.state.difficulty,
+                points: 0,
+                depth: 0,
+                tags: [{
+                    "tag": this.state.tag1
+                }, {
+                    "tag": this.state.tag2
+                }, {
+                    "tag": this.state.tag3
+                }],
+                comments: {},
+            };
+        }
+        const response = await fetch(api_url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(api_post),
+        });
+        const body = await response.json();//response.text();
+        this.setState({
+            responseToPost: body
+        });
+        alert(JSON.stringify(body));
+        this.handleClose();
+    }
 
     render() {
         //console.log("render: ", this.state.stream);
