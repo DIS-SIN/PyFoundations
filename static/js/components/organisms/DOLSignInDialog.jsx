@@ -20,6 +20,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import Grid from '@material-ui/core/Grid';
 
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { connect } from "react-redux";
@@ -124,8 +125,13 @@ class DOLSignInDialog extends React.Component {
         const { email, password } = this.state;
 
         return (
-            <div>
-                <Button variant="contained" color="secondary" onClick={this.handleClickOpen}>
+            <React.Fragment>
+
+                <Button
+                    fullWidth
+                    variant="contained"
+                    color="secondary"
+                    onClick={this.handleClickOpen}>
                     {literals.common.signin}
                 </Button>
                 <Dialog
@@ -189,7 +195,7 @@ class DOLSignInDialog extends React.Component {
                         </Button>
                     </DialogActions>
                 </Dialog>
-            </div>
+            </React.Fragment>
         );
     }
 }

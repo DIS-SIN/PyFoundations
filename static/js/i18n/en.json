@@ -220,7 +220,7 @@
                 "title": "Profile",
                 "text": "Let's <strong>track how far</strong> you've come and <strong>what you now</strong> know!",
                 "setgoals": "SET GOALS",
-                "updateprofile": "UPDATE LEARNER PROFILE"
+                "updateprofile": "UPDATE PROFILE"
             },
             "editprofile": "EDIT PROFILE"
         },
