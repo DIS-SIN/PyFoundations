@@ -20,6 +20,15 @@ import { Link } from 'react-router-dom';
 import GridTextGroup from "../molecules/GridTextGroup";
 import GridProfileCard from "../molecules/GridProfileCard";
 
+import FormLabel from '@material-ui/core/FormLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
+
+import Checkbox from '@material-ui/core/Checkbox';
+import DashboardExample from '../../samples/DashboardExample';
+
 const styles = theme => ({
     layout: {
         width: 'auto',
@@ -64,6 +73,9 @@ const styles = theme => ({
         padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`,
         paddingTop: 0,
     },
+    formControl: {
+        margin: theme.spacing.unit * 3,
+    },
 });
 
 const mapStateToProps = state => {
@@ -75,17 +87,33 @@ const mapStateToProps = state => {
 class DOLPageUserProfile extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            stream: null,
+        };
     }
-
+    handleChangeCheckbox = name => event => {
+        this.setState({ [name]: event.target.checked });
+    };
     render() {
         const { literals, location, classes } = this.props;
+        const { stream } = this.state;
         const progressMain = 80;
 
         const link_group_hero = [
             { "href": "/profile/update", "title": literals.pages.profile.hero.setgoals },
             { "href": "/profile/update", "title": literals.pages.profile.hero.updateprofile },
         ];
-
+        const stream_form_control_fields = [
+            { "value": "0", "label": literals.organisms.primaryactionpanel.ctrl.digitalgov, "checked": stream },
+            { "value": "1", "label": literals.organisms.primaryactionpanel.ctrl.digitalliteracy, "checked": stream },
+            { "value": "2", "label": literals.organisms.primaryactionpanel.ctrl.design, "checked": stream },
+            { "value": "3", "label": literals.organisms.primaryactionpanel.ctrl.leadership, "checked": stream },
+            { "value": "4", "label": literals.organisms.primaryactionpanel.ctrl.disruptivetech, "checked": stream },
+            { "value": "5", "label": literals.organisms.primaryactionpanel.ctrl.dataanalysis, "checked": stream },
+            { "value": "6", "label": literals.organisms.primaryactionpanel.ctrl.aiml, "checked": stream },
+            { "value": "7", "label": literals.organisms.primaryactionpanel.ctrl.devops, "checked": stream },
+            { "value": "8", "label": literals.organisms.primaryactionpanel.ctrl.development, "checked": stream },
+        ];
         return (
             <React.Fragment>
                 <CssBaseline />
@@ -149,6 +177,29 @@ class DOLPageUserProfile extends React.Component {
                                                         <ProgressBarLinear completed={progressMain} />
                                                     </Grid>
                                                 </Grid>
+                                                <Grid item xs={12} sm={12}>
+                                                    <Grid item xs={12}>
+                                                        <FormControl required component="fieldset" className={classes.formControl}>
+                                                            <FormLabel component="legend">{literals.common.streams}</FormLabel>
+                                                            <FormGroup row>
+                                                                {stream_form_control_fields.map((ctrl, index) => (
+                                                                    <FormControlLabel
+                                                                        key={index}
+                                                                        control={
+                                                                            <Checkbox
+
+                                                                                checked={ctrl.checked}
+                                                                                onChange={this.handleChangeCheckbox(ctrl.value)}
+                                                                                value={ctrl.value}
+                                                                            />
+                                                                        }
+                                                                        label={ctrl.label}
+                                                                    />
+                                                                ))}
+                                                            </FormGroup>
+                                                        </FormControl>
+                                                    </Grid>
+                                                </Grid>
                                             </Grid>
                                         </Grid>
                                     </React.Fragment>
@@ -200,6 +251,14 @@ class DOLPageUserProfile extends React.Component {
 
 
 
+
+                                <GridProfileCard
+                                    xs={12} sm={12} md={12} lg={12}
+                                    title="Elle Weasela"
+                                    text={<React.Fragment>
+                                        <DashboardExample />
+                                    </React.Fragment>
+                                    } />
                             </Grid>
                         </Grid>
                     </div>
