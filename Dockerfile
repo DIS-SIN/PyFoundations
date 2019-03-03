@@ -1,3 +1,4 @@
+
 # Use an official Python runtime as a parent image
 FROM python:3.7-slim
 
@@ -14,10 +15,10 @@ RUN pip install -r requirements.txt
 EXPOSE 5054
 
 # Define environment variable
-ENV NAME pyfoundations
+ENV NAME dol
 
 # Run app.py when the container launches
-CMD ["python", "application.py"]
+#CMD ["python", "application.py"]
 
 ############################################################################
 # docker for newbs manpage
@@ -59,12 +60,12 @@ CMD ["python", "application.py"]
 #
 # -- IN GIT BASH: Start the docker magic
 # -- note the period. That's key magic
-# docker build --tag=pyfoundations .
+# docker build --tag=dol .
 #
 # -- note the /tcp, That's key magic
 # -- you are punching a hole through realities and wiring them up
 #
-# docker run -p 5054:5054/tcp pyfoundations
+# docker run -p 5054:5054/tcp dol
 #
 # -- in the real world
 # http://localhost:5054/

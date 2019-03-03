@@ -10,6 +10,7 @@ _site
 /*.gz
 /*.map
 .ipynb_checkpoints
+.vscode
 dist/
 node_modules/
 npm-debug.log
@@ -24,3 +25,7 @@ npm-debug.log
 .vscode
 .eslintcache
 package-lock.json
+**/__pycache__/
+.pytest_cache/*
+code/__pycache__/*
+code/__pycache__/**

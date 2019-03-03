@@ -30,14 +30,6 @@ Node.js/NPM - looks like this is a big part of how people build MD style pages a
 
 The following is a short list of the Views, Blocks, Elements, and Modifiers we will be creating and managing.
 
-## Views
-
-* / (root)
-* /about
-* /login
-* /add_rating_target (needs new name, profile desires, goals, plan, objectives)
-* /add_first_experience
-
 ### General Data Structure
 
 * STREAM
