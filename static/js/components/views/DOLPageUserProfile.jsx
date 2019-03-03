@@ -17,6 +17,7 @@ import ProgressBarLinear from "../atoms/ProgressBarLinear";
 import HeroHeader from "../molecules/HeroHeader";
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import { Link } from 'react-router-dom';
+import GridTextGroup from "../molecules/GridTextGroup";
 
 const styles = theme => ({
     layout: {
@@ -146,7 +147,7 @@ class DOLPageUserProfile extends React.Component {
                                     <Grid item>
                                         <Typography variant="subtitle1">
                                             learner@email.com
-                                    </Typography>
+                                        </Typography>
                                     </Grid>
                                     <Grid item>
                                         <Typography variant="subtitle1">CSPS, DIS/DAT</Typography>
@@ -156,7 +157,61 @@ class DOLPageUserProfile extends React.Component {
                                     </Grid>
                                 </Grid>
                             </Grid>
+                            <Grid container spacing={16}>
+                                <GridTextGroup
+                                    title={"Overall Progress for 2019"}
+                                    text={
+                                        <React.Fragment>
+                                            <Typography variant="subtitle2">
+                                                500 / 75000 pts
+                                            </Typography>
+                                            <ProgressBarLinear completed={progressMain} />
+                                        </React.Fragment>
+                                    } />
+                                <GridTextGroup
+                                    title={" AI / Machine Learning - Current Skill: Experienced"}
+                                    text={
+                                        <React.Fragment>
+                                            <Typography variant="subtitle2">
+                                                500 / 75000 pts
+                                            </Typography>
+                                            <ProgressBarLinear completed={progressMain} />
+                                            <Typography variant="caption">
+                                                Interests: Bias &amp; Ethics | Deep Learning / Neural Networks | Reinforcement Learning | Unsupervised Learning
+                                            </Typography>
+                                        </React.Fragment>
+                                    } />
+                                <GridTextGroup
+                                    title={" Digital Government - Current Skill: Experienced"}
+                                    text={
+                                        <React.Fragment>
 
+                                            <Typography variant="subtitle2">
+                                                500 / 75000 pts
+                                            </Typography>
+                                            <ProgressBarLinear completed={progressMain} />
+                                            <Typography variant="caption">
+                                                Interests: Bias &amp; Ethics | Deep Learning / Neural Networks | Reinforcement Learning | Unsupervised Learning
+                                            </Typography>
+                                        </React.Fragment>
+                                    } />
+
+                                {/*
+                                    Experiences
+                                    Busrides - Episode 2
+                                    Digital Government > Empowering People | Agile | Open Standards & Solutions |
+                                    Value: 2
+                                    Time: 1
+                                    Difficulty: 2
+                                    Comments: Entertaining
+                                    Tags: Digital Leadership | Academy | AI Translation
+
+                                    Learning Library
+                                    Will sort by category
+
+                                    Busrides - Episode 2 (2019-02-04) | Link */}
+
+                            </Grid>
                             <Grid container spacing={16}>
                                 <Grid item xs={4}>
                                     <img
@@ -183,7 +238,7 @@ class DOLPageUserProfile extends React.Component {
                         </Grid>
                     </div>
                 </div>
-            </React.Fragment>
+            </React.Fragment >
         );
     }
 }

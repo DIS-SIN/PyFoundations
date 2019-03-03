@@ -79,7 +79,7 @@ class DOLExploreTree extends React.Component {
             right: false,
             lat: LearningArchitectureTree(),
             data: { name: "..." },
-            breadcrumb: "DOL/AON",
+            breadcrumb: "Digital",
         };
     }
 
@@ -105,8 +105,8 @@ class DOLExploreTree extends React.Component {
     componentDidMount() {
         this.setState({
             isMounted: true,
-            data: this.searchTreeBFS(this.state.lat, "DOL/AON"),
-            breadcrumb: "DOL/AON",
+            data: this.searchTreeBFS(this.state.lat, "Digital"),
+            breadcrumb: "Digital",
         })
     };
     componentWillUnmount() {
@@ -122,8 +122,8 @@ class DOLExploreTree extends React.Component {
 
     resetTree = () => {
         this.setState({
-            data: this.searchTreeBFS(this.state.lat, "DOL/AON"),
-            breadcrumb: "DOL/AON",
+            data: this.searchTreeBFS(this.state.lat, "Digital"),
+            breadcrumb: "Digital",
         });
     };
 
@@ -195,49 +195,9 @@ class DOLExploreTree extends React.Component {
         return null;
     };
 
-    //chartWidth = ReactDOM.findDOMNode(this.content).offsetWidth;
-
     render() {
-        const la = LearningArchitecture();
-        //const data = LearningArchitectureTree();
         const { classes, literals } = this.props;
         const { data, breadcrumb } = this.state;
-        //console.log(breadcrumb);
-
-        const practices = la.loach_structure.architecture.slice(0);
-        const streams = la.loach_structure.streams.slice(0);
-
-        const learningArchStreamItems = streams.map((learningarch, index) => (
-            <ListItem button component={Link} to="/view/stream" key={index} >
-                <Typography component={ListItem} secondary={literals.common.streams} variant="button" color="inherit" className={classes.drawerTextLight}>
-                    {learningarch.stream}
-                </Typography>
-            </ListItem >
-        ));
-        const learningArchPracticeItems = practices.map((learningarch, index) => (
-            <ListItem button component={Link} to="/view/practice" key={index} >
-                <Typography component={ListItem} secondary={literals.common.practice} variant="button" color="inherit" className={classes.drawerTextLight}>
-                    {learningarch.practice}
-                </Typography>
-            </ListItem >
-        ));
-
-        const learnList = (
-            <div className={classes.fullList}>
-                <List className={classes.drawerDark}>{/** learningarchitecture.loach_structure.streams[].stream */}
-                    <Typography component={ListItem} variant="h6" color="inherit" className={classes.drawerTextLight}>
-                        {literals.common.streams}
-                    </Typography>
-                    {learningArchStreamItems}
-                    <Divider />
-                    <Typography component={ListItem} variant="h6" color="inherit" className={classes.drawerTextLight}>
-                        {literals.common.practices}
-                    </Typography>
-                    {learningArchPracticeItems}
-                </List>
-            </div>
-        );
-
         return (
             <React.Fragment>
                 <div className="treeChartContainer">
