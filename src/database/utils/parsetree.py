@@ -192,7 +192,7 @@ class ParseTree:
                         #if not we create a new or parent enqueing the expression to the current and expression parent
                         #we set the root to the new or parent and push it to the traverse stack
                         if parent_parent is None:
-                            current_parent.enqueue(elem_expression)
+                            current_parent.enqueue_child(elem_expression)
                             self.root = Operator('or')
                             self.root.enqueue_child(current_parent)
                             traverse_stack.push(self.root)
@@ -214,7 +214,7 @@ class ParseTree:
                         #we enqueue the current expression to this new and parent
                         child.enqueue_child(elem_expression)
                         #we penqueue the new operator parent to the root or parent
-                        current_parent.enqueue(child)
+                        current_parent.enqueue_child(child)
                         #we push back the root onto the traverse stack
                         traverse_stack.push(current_parent)
                         #we push the new child into the traverse stack
@@ -261,7 +261,8 @@ class ParseTree:
             elif self.root.get_operator() == 'or':
                 #create an or queue to perserve the precedence of nodes that come first
                 or_queue = Queue()
-                #go over elements in root 
+                #go over elements in root
+                filters = []
                 while not self.root.isEmpty():
                     current_child = self.root.dequeue_child()
                     #if the current_child is an expression append it to the or_queue
@@ -269,16 +270,22 @@ class ParseTree:
                         or_queue.enqueue(current_child)
                     #otherwise if it is an operator filter the data on the children of the operator
                     elif isinstance(current_child, Operator):
-                        filters = []
+                        one_filter = []
                         while not current_child.isEmpty():
-                            filters.append(current_child.dequeue_child().get_expression())
-                        results = results.filter(*filters)
+                            one_filter.append(current_child.dequeue_child().get_expression())
+                        filters.append(one_filter)
+                if len(filters) > 0 :
+                    filts = []
+                    for filt in filters:
+                        filts.append(and_(*filt))
+                    results = results.filter(or_(*filts))
                 filters = []
                 #filter the data on the expression children of the root
-                while not or_queue.isEmpty():
-                    filters = []
-                    filters.append(or_queue.dequeue().get_expression())
-                return results.filter(*filters)
+                if not or_queue.isEmpty():
+                    while not or_queue.isEmpty():
+                        filters.append(or_queue.dequeue().get_expression())
+                    results = results.filter(or_(*filters))
+                return results
                     
             
                     
