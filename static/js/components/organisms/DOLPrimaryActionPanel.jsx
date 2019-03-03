@@ -46,9 +46,9 @@ class DOLPrimaryActionPanel extends React.Component {
 
     render() {
         //console.log("render: ", this.state.stream);
-        const { classes, literals } = this.props;
+        const { classes, literals, noFab } = this.props;
 
-        return (
+        const actionPanel = noFab ? null : (
             <div>
                 <ScrollToTop />
                 <Fab color="secondary" aria-label="Add" onClick={this.handleClickOpen} className={classes.fabButton}>
@@ -65,6 +65,8 @@ class DOLPrimaryActionPanel extends React.Component {
                 </Dialog>
             </div >
         );
+
+        return actionPanel;
     }
 }
 
