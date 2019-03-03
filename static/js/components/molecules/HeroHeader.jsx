@@ -44,7 +44,7 @@ class HeroHeader extends React.Component {
     render() {
         const { title, links, icon, text, signin, classes } = this.props;
 
-        const linksFragment = this.props.links.map((link, index) => (
+        const linksFragment = this.props.links ? (this.props.links.map((link, index) => (
             <Grid key={index} item xs={12} sm={6}>
                 <Button
                     fullWidth
@@ -54,7 +54,7 @@ class HeroHeader extends React.Component {
                     {link.title}
                 </Button>
             </Grid>
-        ));
+        ))) : "";
 
         return (
             <React.Fragment>

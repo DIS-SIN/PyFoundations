@@ -215,6 +215,12 @@
             },
             "body": {}
         },
+        "share": {
+            "hero": {
+                "title": "PARTAGER",
+                "text": "Provir le contenu <strong>pour assister l'autres</strong>"
+            }
+        },
         "profile": {
             "hero": {
                 "title": "Profil",

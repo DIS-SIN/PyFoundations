@@ -215,6 +215,12 @@
             },
             "body": {}
         },
+        "share": {
+            "hero": {
+                "title": "SHARE",
+                "text": "Add new content to <strong>help everyone learn</strong>"
+            }
+        },
         "profile": {
             "hero": {
                 "title": "Profile",
