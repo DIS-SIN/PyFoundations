@@ -756,7 +756,7 @@ class DOLPrimaryActionPanel extends React.Component {
                                             value={tag3}
                                             onChange={this.handleChangeText('tag3')}
                                         />
-                                    </Grid> {/*compare*/}
+                                    </Grid>
                                     <Grid item xs={12}>
                                         <DialogContentText component={Typography} variant="subtitle2">
                                             {literals.organisms.primaryactionpanel.pickcover}
