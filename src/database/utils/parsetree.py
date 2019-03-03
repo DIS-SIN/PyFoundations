@@ -10,7 +10,7 @@ Expression
 import typing
 #the sqlalchemy DeclarativeMeta class is imported to check if methods that require model arguments are actually modelsS
 from sqlalchemy.ext.declarative.api import DeclarativeMeta as base
-from sqlalchemy import or_ 
+from sqlalchemy import or_, and_
 from src.utils.datastructures import Queue, Stack
 class Expression:
     """
@@ -56,18 +56,18 @@ class Expression:
         elif not isinstance(value, (str,int,float,bool)):
             raise TypeError('value must be of type str OR int OR float OR bool')
         #call __getattribute__ to ensure that the object attribute exists 
-        model.__getattribute__(module_attribute)
+        model.__getattribute__(model,module_attribute)
         #construct a dictionary with the possible lambda functions for each of the operators 
         valid_operators = {
-            '==': lambda: model.__getattribute__(module_attribute) == value,
-            '>=': lambda: model.__getattribute__(module_attribute) >= value,
-            '<=': lambda: model.__getattribute__(module_attribute) <= value,
-            '>': lambda: model.__getattribute__(module_attribute) > value,
-            '<': lambda: model.__getattribute__(module_attribute) < value,
-            '!=': lambda: model.__getattribute__(module_attribute) != value
+            '==': lambda: model.__getattribute__(model,module_attribute) == value,
+            '>=': lambda: model.__getattribute__(model,module_attribute) >= value,
+            '<=': lambda: model.__getattribute__(model,module_attribute) <= value,
+            '>': lambda: model.__getattribute__(model,module_attribute) > value,
+            '<': lambda: model.__getattribute__(model,module_attribute) < value,
+            '!=': lambda: model.__getattribute__(model,module_attribute) != value
         }
         #get the appriopriate lambda function 
-        self.expression = valid_operators.get(operator)
+        self.expression = valid_operators.get(operator)()
         #if self.expression is none this means that the operator is invalid
         if self.expression is None:
             raise ValueError('operator is not valid')
@@ -256,7 +256,7 @@ class ParseTree:
                 #get the expressions and then returned the Query for the results by invoking the filter method on the list of filters
                 while not self.root.isEmpty():
                     filters.append(self.root.dequeue_child().get_expression())
-                results.filter(*filters)
+                results = results.filter(*filters)
                 return results
             elif self.root.get_operator() == 'or':
                 #create an or queue to perserve the precedence of nodes that come first
