@@ -20,7 +20,7 @@ def create_app(mode = 'development', initdb = False, static_path = None, templat
     #used to provide warnings for the user
     import warnings
     import settings
-    import src.dol
+    import src.views.dol as dol
     from .database import db
     ##########TODO##########
     # Modify app factory to allow configuration from file  STATUS:completed
