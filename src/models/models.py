@@ -9,6 +9,7 @@ from sqlalchemy import (
     Table,
     Text,
     ForeignKey,
+    Sequence
 )
 from sqlalchemy.schema import FetchedValue
 from sqlalchemy.orm import relationship
@@ -17,7 +18,7 @@ from .basemodel import Base
 class CharacterModel(Base.Model):
     __tablename__ = "character_models"
 
-    id = Column(BigInteger, primary_key=True, server_default=FetchedValue())
+    id = Column(BigInteger,Sequence('character_models_sequence'),  primary_key=True, server_default=FetchedValue())
     author = Column(JSON)
     character = Column(JSON)
     open = Column(Boolean)

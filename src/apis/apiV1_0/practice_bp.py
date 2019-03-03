@@ -1,23 +1,32 @@
 from flask_restful import Resource
 from src.models.models import Practice
-from .resource_factory import view_one, view_all, insert_one, update_one, delete_one
-
+from flask import request
+from .utils.crud_wrapper import (
+    get_one_row,
+    get_all_rows,
+    create_one_row,
+    update_one_row,
+    delete_one_row
+)
+from .utils.api_helpers import construct_row_object
 model = Practice
 json_object_name = "practice"
-
-
 class PracticeResource(Resource):
     def get(self, id=None):
         if id is not None:
-            return view_one(model, id)
+            return get_one_row(model, id)
         else:
-            return view_all(model)
-
+            return get_all_rows(model)
     def post(self):
-        return insert_one(model, json_object_name)
-
+        req_vals = request.get_json()
+        try:
+            row = construct_row_object(model, req_vals)
+            return create_one_row(row)
+        except AttributeError as e:
+            return {'error': repr(e)}, 400
     def put(self, id):
-        return update_one(model, id, json_object_name)
-
+        req_vals = request.get_json()
+        return update_one_row(model, id, req_vals)
     def delete(self, id):
-        return delete_one(model, id)
+        return delete_one_row(model, id)
+

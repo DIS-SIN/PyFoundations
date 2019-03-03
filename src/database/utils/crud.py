@@ -1,21 +1,19 @@
 from src.database.db import get_db_session
+from .parsetree import ParseTree
+from sqlalchemy.orm.exc import NoResultFound, MultipleResultsFound
+import json
 # Query the database for a type matching model (tag, experience, etc)
 # that has the same id as the parameter id
-def get_row_by_id(model, id):
+def read_row_by_id(model, id):
     """
     get one row by it's primary key id
-
-
-
     """
     session, _ = get_db_session()
-    results = session.query(model).filter(model.id == id).one()
+    results = session.query(model).filter(model.id == id)
     return results
-
-
 # Query the database for a type matching model (tag, experience, etc)
 # that has the same id as the parameter id
-def get_rows(model, filters = None, default_join = "and"):
+def read_rows(model, filters = None):
     """
     get all rows from model where the criteria in the kwargs is met
 
@@ -35,51 +33,18 @@ def get_rows(model, filters = None, default_join = "and"):
             }
         ]
     """
-    if filters is not None:
-        #array which will con
-        query = ParseTree(model,filters)
-        results = query.query()
-        return results.all()
-        if default_join != 'and' and default_join != 'or':
-            raise ValueError("default_join must be of value 'and' or 'or' ")
-        if isinstance(filters, list):
-            #get operators
-            joins = []
-            for filt in filters:
-                join = filt.get('join')
-                if join is None:
-                    joins.append(default_join)
-                if join == 'and' or join == 'or':
-                    joins.append(join)
-                else:
-                    raise ValueError("join key in filters must be of value 'and' or 'or'")
-            
-            #get a list of the keys in the filters dict, these are the columns in the model
-            column_filters = list(filters.keys())
-            #loop through these columns
-            for column in column_filters:
-                #check if the attribute is valid by getting the attribute, this will 
-                #throws an AttributeError if it doesn't exist
-                model.__getattribute__(column)
-                #check if the data attribute is a list and if it is loop over the data
-                if isinstance(filters[column]['data'], list):
-                    for sub_val in filters[column]['data']:
-
-                
-        else:
-            raise TypeError('type of filters argument must be of type list')
-        
     session, _ = get_db_session()
-    results = session.query(model).all()
+    if filters is not None:
+        querier = ParseTree(model,filters)
+        results = querier.query(session)
+    else:
+        results = session.query(model)
     return results
-
-
 # Insert a new record in the database, for the sqlalchemy object matching
 # the type of the model parameter
-def insert_model(model):
+def create_row(model):
     session, _ = get_db_session()
     session.add(model)
-    db_status = True
     try:
         session.commit()
         session.flush()
@@ -88,39 +53,117 @@ def insert_model(model):
         print(repr(e))
         session.rollback()
         session.flush()
-        db_status = False
-    return db_status
-
-
-def update_model_by_id(model, id, update_val):
-    db_status = True
+        raise e
+def create_rows(*models):
     session, _ = get_db_session()
-    # if .update() returns 1, good request, keep status True
-    # if .update() returns 0/2, bad request, set status False
-    db_status = 1 == session.query(model).filter(model.id == id).update(update_val)
+    for model in models:
+        session.add(model)
     try:
         session.commit()
         session.flush()
-    except Exception:
+    except Exception as e:
         # TODO Logging.log.exception()
+        print(repr(e))
         session.rollback()
         session.flush()
-        db_status = False
-    session.close
-    return db_status
-
-
-def delete_model_by_id(model, id):
+        raise e
+def update_row_by_id(model, id, updates):
+    if not isinstance(updates, dict):
+        raise TypeError('updates must be of type dict')
     session, _ = get_db_session()
-    session.query(model).filter(model.id == id).delete()
-    db_status = True
+    query = read_row_by_id(model, id)
+    #check if row indeed exists by calling the one method
+    ##OPTOMIZATION REMARK##
+    ##this actually queries the db there needs to be a better way for determining this
+    ##DESIGN PATTERN REMARK##
+    ## reraising exceptions 
+    try:
+       query.one()
+    except NoResultFound as e:
+        raise NoResultFound(
+            "row cannot be updated because no row can be found with \
+                id: " + str(id))
+    except MultipleResultsFound as e:
+        raise MultipleResultsFound(
+            "the database contains multiple results for this id when \
+                only one is expected. id: " + str(id)
+        )
+    matched =  query.update(updates)
+    if matched == 0:
+        raise ValueError('bad update request, no columns could be matched \
+            updates requested: ' + json.dumps(updates))
     try:
         session.commit()
         session.flush()
-    except Exception:
+    except Exception as e:
         # TODO Logging.log.exception()
         session.rollback()
         session.flush()
-        db_status = False
-    session.close
-    return db_status
+        raise e
+def update_rows(model, updates, filters = None):
+    if not isinstance(updates, dict):
+        raise TypeError('updates must be of type dict')
+    session, _ = get_db_session()
+    results = read_rows(model,filters)
+    check_res = results.first()
+    if check_res == None:
+        raise NoResultFound(
+         "no rows can be updated because no rows can be found \
+             with the following filters: " + json.dumps(filters)
+        )
+    matched = results.update(updates)
+    if matched == 0:
+        raise ValueError('bad update request, no columns could be matched \
+            updates requested: ' + json.dumps(updates))
+    try:
+        session.commit()
+        session.flush()
+    except Exception as e:
+        # TODO Logging.log.exception()
+        session.rollback()
+        session.flush()
+        raise e
+def delete_row_by_id(model, id):
+    session, _ = get_db_session()
+    results = read_row_by_id(model, id)
+    matched = results.delete()
+    if matched == 0:
+        raise NoResultFound('a row with the id specified was not found \
+            id: ' + str(id))
+    try:
+        session.commit()
+        session.flush()
+    except Exception as e:
+        # TODO Logging.log.exception()
+        session.rollback()
+        session.flush()
+        raise e
+def delete_rows(model, filters = None):
+    session, _ = get_db_session()
+    results = read_rows(model, filters)
+    matched = results.delete()
+    if matched == 0:
+        raise NoResultFound('No rows were found to delete with the following \
+             filters: ' + json.dumps(filters))
+    try:
+        session.commit()
+        session.flush()
+    except Exception as e:
+        # TODO Logging.log.exception()
+        session.rollback()
+        session.flush()
+        raise e
+def execute_sql(sql):
+    if not isinstance(sql, str):
+        raise TypeError('sql must be of type str')
+    session, _ = get_db_session()
+    try:
+        results = session.execute(sql)
+        session.commit()
+        session.flush()
+        return results
+    except Exception as e:
+        session.rollback()
+        session.flush()
+        raise e
+    
