@@ -29,7 +29,7 @@ class DOLShareRouter extends React.Component {
             <Switch>
                 {langroutes.map(({ path, Component }) => (
                     <Route key={path} exact path={path}>
-                        <DOLLayout content={<Component location={location} />} />
+                        <DOLLayout noFab={true} content={<Component location={location} />} />
                     </Route>
                 ))}
                 <Route>
