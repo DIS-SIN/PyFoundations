@@ -411,12 +411,7 @@ class DOLAddContentFormContainer extends React.Component {
                                 }}
                                 message={
                                     <span id="message-id">
-                                        <span>
-                                            <CheckCircleIcon />
-                                        </span>
-                                        <span>
-                                            Ready to Submit!
-                                        </span>
+                                        Ready to Submit!
                                     </span>
                                 }
                                 action={[
@@ -427,7 +422,7 @@ class DOLAddContentFormContainer extends React.Component {
                                         className={classes.close}
                                         onClick={this.handleSnackbarClose}
                                     >
-                                        <CloseIcon />
+                                        <CheckCircleIcon />
                                     </IconButton>,
                                 ]}
                             />
