@@ -76,7 +76,7 @@ class DOLAddContentFormControls extends React.Component {
             url, tag1, tag2, tag3, episodetitle, episodetagline, episodeblogtext,
             episodevideotitle, episodevideodescription, episodevideourl,
             episodepodcasttitle, episodepodcastdescription, episodepodcasturl,
-            isepisodetype, itemcover } = this.props;
+            isepisodetype, itemcover, validsubmission } = this.props;
 
         const verb_form_control_fields = [
             { "value": "read", "label": literals.organisms.primaryactionpanel.ctrl.read, "checked": verb },
@@ -497,9 +497,15 @@ class DOLAddContentFormControls extends React.Component {
                             </div>
                         </Grid>
                         <Grid item xs={12} sm={12}>
-                            <Button type="submit" variant="contained" color="secondary" className={classes.button}>
-                                {isepisodetype == false ? literals.organisms.primaryactionpanel.saveexp : literals.organisms.primaryactionpanel.saveepisode}
-                            </Button>
+                            {validsubmission == false ? (
+                                <Button type="submit" disabled variant="contained" color="secondary" className={classes.button}>
+                                    {isepisodetype == false ? literals.organisms.primaryactionpanel.saveexp : literals.organisms.primaryactionpanel.saveepisode}
+                                </Button>
+                            ) : (
+                                    <Button type="submit" variant="contained" color="secondary" className={classes.button}>
+                                        {isepisodetype == false ? literals.organisms.primaryactionpanel.saveexp : literals.organisms.primaryactionpanel.saveepisode}
+                                    </Button>
+                                )}
                         </Grid>
                     </Grid>
                 </DialogContent>

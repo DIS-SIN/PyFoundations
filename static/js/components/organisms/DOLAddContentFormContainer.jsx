@@ -138,8 +138,59 @@ class DOLAddContentFormContainer extends React.Component {
         episodepodcasturl: "",
         isepisodetype: false,
         itemcover: imageAI,
+        validsubmission: false,
     };
 
+    shallowValidate = () => {
+        const { accessible, clear, entertaining, relevant, informative,
+            insightful, useful, verb, stream, valuable, difficulty, duration,
+            url, tag1, tag2, tag3, episodetitle, episodetagline, episodeblogtext,
+            episodevideotitle, episodevideodescription, episodevideourl,
+            episodepodcasttitle, episodepodcastdescription, episodepodcasturl,
+            isepisodetype, itemcover, validsubmission } = this.state;
+
+        //console.log(validsubmission);
+        this.setState({
+            validsubmission: (isepisodetype == true) ?
+                (
+                    episodetitle != "" &&
+                    episodetagline != "" &&
+                    episodeblogtext != "" &&
+                    episodevideotitle != "" &&
+                    episodevideodescription != "" &&
+                    episodevideourl != "" &&
+                    episodepodcasttitle != "" &&
+                    episodepodcastdescription != "" &&
+                    episodepodcasturl != ""
+                ) && (
+                    stream != null &&
+                    valuable != null &&
+                    difficulty != null &&
+                    duration != null &&
+                    tag1 != "" &&
+                    tag2 != "" &&
+                    tag3 != ""
+                ) : (
+                    accessible == true ||
+                    clear == true ||
+                    entertaining == true ||
+                    relevant == true ||
+                    informative == true ||
+                    insightful == true ||
+                    useful == true
+                ) && (
+                    verb != null &&
+                    url != "" &&
+                    stream != null &&
+                    valuable != null &&
+                    difficulty != null &&
+                    duration != null &&
+                    tag1 != "" &&
+                    tag2 != "" &&
+                    tag3 != ""
+                )
+        });
+    }
     handleClear = () => {
         //console.log(this.state.stream);
         this.setState({
@@ -170,7 +221,10 @@ class DOLAddContentFormContainer extends React.Component {
             episodepodcasturl: "",
             isepisodetype: false,
             itemcover: imageAI,
-        });
+            validsubmission: false,
+        },
+            this.shallowValidate
+        );
     };
     handleChangeCover = img => {
         this.setState({ itemcover: img });
@@ -178,10 +232,11 @@ class DOLAddContentFormContainer extends React.Component {
     handleChangeControl = name => event => {
         event.target.type === "checkbox" ?
             (
-                this.setState({ [name]: event.target.checked })
+                this.setState({ [name]: event.target.checked }, this.shallowValidate)
             ) : (
-                this.setState({ [name]: event.target.value })
+                this.setState({ [name]: event.target.value }, this.shallowValidate)
             )
+
     }
     handleSave = async e => {
         e.preventDefault();
@@ -268,7 +323,7 @@ class DOLAddContentFormContainer extends React.Component {
     render() {
         //console.log("render: ", this.state.stream);
         const { classes, literals, handleClose, appFixed } = this.props;
-
+        const { validsubmission } = this.state;
 
         return (
             <React.Fragment>
@@ -287,13 +342,24 @@ class DOLAddContentFormContainer extends React.Component {
                     </Toolbar>
                 </AppBar>
                 <form onSubmit={this.handleSave}>
+
                     <div className={classNames(classes.layout, classes.cardGrid)}>
                         <DOLAddContentFormControls
+                            shallowValidate={this.shallowValidate}
                             handleChangeControl={this.handleChangeControl}
                             handleChangeCover={this.handleChangeCover}
                             handleSave={this.handleSave}
                             tileData={tileData}
                             {...this.state} />
+                        {validsubmission == true ? (
+                            <Typography variant="button" component="div">
+                                Valid Submission!
+                            </Typography>
+                        ) : (
+                                <Typography variant="button" component="div">
+                                    Form Incomplete...
+                            </Typography>
+                            )}
                     </div>
                 </form>
 
