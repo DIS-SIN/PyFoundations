@@ -39,7 +39,7 @@ def get_one_row(model, id):
     try:
         db_return = read_row_by_id(model, id).one()
         return json_en.default(db_return), 200
-    except NoResultsFound as e:
+    except NoResultFound as e:
         return {"error": "no results found"}, 400
     except Exception as e:
         return {"error": repr(e)}, 500
@@ -71,7 +71,7 @@ def get_all_rows(model, filters=None):
     """
     try:
         ##OPTOMIZATION REMARK##
-        ##good candidate for parrallel processing as IO bound
+        # good candidate for parrallel processing as IO bound
         db_return = read_rows(model, filters)
         return_obj = []
         for row in db_return:
@@ -86,7 +86,7 @@ def update_one_row(model, id, updates):
         update_row_by_id(model, id, updates)
     except ValueError as e:
         return {"error": repr(e)}, 400
-    except NoResultsFound as e:
+    except NoResultFound as e:
         return {"error": repr(e)}, 400
     except Exception as e:
         return {"error": repr(e)}, 500
@@ -119,7 +119,7 @@ def delete_one_row(model, id):
     try:
         delete_row_by_id(model, id)
         return {}, 200
-    except NoResultsFound as e:
+    except NoResultFound as e:
         return {"error": repr(e)}, 400
     except Exception as e:
         return {"error": repr(e)}, 500
@@ -130,7 +130,7 @@ def delete_selected_row(model, filters=None):
         delete_rows(model, filters)
         return {}, 200
 
-    except NoResultsFound as e:
+    except NoResultFound as e:
         return {"error": repr(e)}, 400
     except Exception as e:
         return {"error": repr(e)}, 500

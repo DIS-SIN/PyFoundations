@@ -34,7 +34,7 @@ class AlchemyEncoder(json.JSONEncoder):
                     # dumps used to validated data, throws exception if non-encodable
                     data = obj.__getattribute__(f)
                     if isinstance(data, datetime):
-                        json_data[f] = data.strftime("%Y-%M-%d %H:%m:%s")
+                        json_data[f] = data.strftime("%Y-%M-%d %H:%M:%S")
                     else:
                         json.dumps(data)
                         json_data[f] = data
