@@ -1,6 +1,6 @@
 from flask_restful import Resource
 from flask import request
-from src.models.experience import Experience
+from src.models.learning_practice import LearningPractice
 from .utils.crud_wrapper import (
     get_one_row,
     get_all_rows,
@@ -10,10 +10,11 @@ from .utils.crud_wrapper import (
 )
 from .utils.api_helpers import construct_row_object
 
-model = Experience
+model = LearningPractice
+json_object_name = "learning_practice"
 
 
-class ExperienceResource(Resource):
+class LearningPracticeResource(Resource):
     def get(self, id=None):
         if id is not None:
             return get_one_row(model, id)

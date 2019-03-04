@@ -1,16 +1,23 @@
 import src
 import os
 from src.database.utils import crud
-from src.models.models import CharacterModel
+
 app = None
+
+
 def test_create_tables():
     global app
     app = src.create_app()
     with app.app_context():
-        from src.models import models, tags
+        from src.models import load_metadata
+
+        load_metadata(app)
         from src.models.basemodel import Base
+
         Base.create_all()
-def test_create_row():
+
+
+"""def test_create_row():
     global app
     if app is None:
         app = src.create_app()
@@ -42,7 +49,8 @@ def test_delete_row():
         crud.delete_row_by_id(CharacterModel, 1)
         results = crud.read_row_by_id(CharacterModel,1).one_or_none()
         assert results is None
-def test_create_rows():
+"""
+"""def test_create_rows():
     global app
     if app is None:
         app = src.create_app()
@@ -169,4 +177,4 @@ def test_delete_tables():
     with app.app_context():
         from src.models.basemodel import Base
         Base.drop_all()
-    
+    """

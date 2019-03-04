@@ -55,6 +55,7 @@ def create_app(mode="development", initdb=False, static_path=None, template_path
         else:
             app.config["SECRET_KEY"] = SECRET_KEY
         SQLALCHEMY_DATABASE_URI = os.environ.get("DOL_SQLALCHEMY_DATABASE_URI")
+
         if SQLALCHEMY_DATABASE_URI is None:
             raise ValueError(
                 "DOL_SQLALCHEMY_DATABASE_URI must be set \
@@ -72,6 +73,7 @@ def create_app(mode="development", initdb=False, static_path=None, template_path
         # get DOL sqlalchemy database uri if it exists and set it in the app config object
         SQLALCHEMY_DATABASE_URI = os.environ.get("DOL_SQLALCHEMY_DATABASE_URI")
         if SQLALCHEMY_DATABASE_URI is not None:
+            print(SQLALCHEMY_DATABASE_URI)
             app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
     if not static_path is None:
         app.static_folder = static_path

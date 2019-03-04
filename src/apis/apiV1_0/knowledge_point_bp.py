@@ -1,6 +1,6 @@
 from flask_restful import Resource
 from flask import request
-from src.models.experience import Experience
+from src.models.knowledge_point import KnowledgePoint
 from .utils.crud_wrapper import (
     get_one_row,
     get_all_rows,
@@ -10,10 +10,10 @@ from .utils.crud_wrapper import (
 )
 from .utils.api_helpers import construct_row_object
 
-model = Experience
+model = KnowledgePoint
 
 
-class ExperienceResource(Resource):
+class KnowledgePointResource(Resource):
     def get(self, id=None):
         if id is not None:
             return get_one_row(model, id)
