@@ -10,6 +10,14 @@ import CloseIcon from '@material-ui/icons/Close';
 import classNames from 'classnames';
 import { connect } from "react-redux";
 import DOLAddContentFormControls from './DOLAddContentFormControls';
+import Snackbar from '@material-ui/core/Snackbar';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import ErrorIcon from '@material-ui/icons/Error';
+import InfoIcon from '@material-ui/icons/Info';
+import green from '@material-ui/core/colors/green';
+import amber from '@material-ui/core/colors/amber';
+import SnackbarContent from '@material-ui/core/SnackbarContent';
+import WarningIcon from '@material-ui/icons/Warning';
 
 const mapStateToProps = state => {
     return {
@@ -47,6 +55,32 @@ const styles = theme => ({
     },
     cardGrid: {
         padding: `${theme.spacing.unit * 8}px 0`,
+    },
+    close: {
+        padding: theme.spacing.unit / 2,
+    },
+    success: {
+        backgroundColor: green[600],
+    },
+    error: {
+        backgroundColor: theme.palette.error.dark,
+    },
+    info: {
+        backgroundColor: theme.palette.primary.dark,
+    },
+    warning: {
+        backgroundColor: amber[700],
+    },
+    icon: {
+        fontSize: 20,
+    },
+    iconVariant: {
+        opacity: 0.9,
+        marginRight: theme.spacing.unit,
+    },
+    message: {
+        display: 'flex',
+        alignItems: 'center',
     },
 })
 
@@ -111,6 +145,7 @@ const tileData = [
 
 class DOLAddContentFormContainer extends React.Component {
     state = {
+        snackbaropen: false,
         accessible: false,
         clear: false,
         entertaining: false,
@@ -151,6 +186,7 @@ class DOLAddContentFormContainer extends React.Component {
 
         //console.log(validsubmission);
         this.setState({
+            snackbaropen: true,
             validsubmission: (isepisodetype == true) ?
                 (
                     episodetitle != "" &&
@@ -194,6 +230,7 @@ class DOLAddContentFormContainer extends React.Component {
     handleClear = () => {
         //console.log(this.state.stream);
         this.setState({
+            snackbaropen: false,
             accessible: false,
             clear: false,
             entertaining: false,
@@ -320,6 +357,15 @@ class DOLAddContentFormContainer extends React.Component {
         this.props.handleClose();
     }
 
+    handleSnackbarClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        this.setState({ snackbaropen: false });
+    };
+
+
     render() {
         //console.log("render: ", this.state.stream);
         const { classes, literals, handleClose, appFixed } = this.props;
@@ -352,13 +398,64 @@ class DOLAddContentFormContainer extends React.Component {
                             tileData={tileData}
                             {...this.state} />
                         {validsubmission == true ? (
-                            <Typography variant="button" component="div">
-                                Valid Submission!
-                            </Typography>
+                            <Snackbar
+                                anchorOrigin={{
+                                    vertical: 'bottom',
+                                    horizontal: 'left',
+                                }}
+                                open={this.state.snackbaropen}
+                                autoHideDuration={6000}
+                                onClose={this.handleSnackbarClose}
+                                ContentProps={{
+                                    'aria-describedby': 'message-id',
+                                }}
+                                message={
+                                    <span id="message-id">
+                                        <span>
+                                            <CheckCircleIcon />
+                                        </span>
+                                        <span>
+                                            Ready to Submit!
+                                        </span>
+                                    </span>
+                                }
+                                action={[
+                                    <IconButton
+                                        key="close"
+                                        aria-label="Close"
+                                        color="inherit"
+                                        className={classes.close}
+                                        onClick={this.handleSnackbarClose}
+                                    >
+                                        <CloseIcon />
+                                    </IconButton>,
+                                ]}
+                            />
                         ) : (
-                                <Typography variant="button" component="div">
-                                    Form Incomplete...
-                            </Typography>
+                                <Snackbar
+                                    anchorOrigin={{
+                                        vertical: 'bottom',
+                                        horizontal: 'left',
+                                    }}
+                                    open={this.state.snackbaropen}
+                                    autoHideDuration={6000}
+                                    onClose={this.handleSnackbarClose}
+                                    ContentProps={{
+                                        'aria-describedby': 'message-id',
+                                    }}
+                                    message={<span id="message-id">Keep Going! Almost There!</span>}
+                                    action={[
+                                        <IconButton
+                                            key="close"
+                                            aria-label="Close"
+                                            color="inherit"
+                                            className={classes.close}
+                                            onClick={this.handleSnackbarClose}
+                                        >
+                                            <CloseIcon />
+                                        </IconButton>,
+                                    ]}
+                                />
                             )}
                     </div>
                 </form>
