@@ -59,7 +59,7 @@ class Queue:
         elif not isinstance(arr,list):
             raise TypeError('arr must be of type list')
         else:
-            self.stack = arr
+            self.queue = arr
             self.count = len(arr)
     def enqueue(self,elem):
         """enqueue element to queue"""
@@ -70,6 +70,7 @@ class Queue:
         if self.isEmpty():
             raise IndexError('dequeue from empty queue')
         if self.count == 1:
+            self.count -= 1
             return self.queue.pop()
         elem = self.queue[0]
         for i in range(1,self.count):
