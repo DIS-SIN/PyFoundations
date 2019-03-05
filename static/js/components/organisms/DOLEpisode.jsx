@@ -73,7 +73,8 @@ class DOLEpisode extends React.Component {
             learningpoints: [],
             post: "",
             response: "",
-            responseToPost: ""
+            responseToPost: "",
+            apireturn_status: null,
         };
     }
 
@@ -82,13 +83,19 @@ class DOLEpisode extends React.Component {
     componentDidMount() {
         let fetchid = this.props.fetchid;
         fetch("/api/episode/" + fetchid) // dol/api/gettest // /api/learning_point
-            .then(res => res.json())
+            .then((res) => {
+                //console.log(res.status);
+                this.setState({
+                    apireturn_status: res.status
+                });
+                return res.json();
+            })
             .then(
                 (result) => {
                     //console.log(result);
                     this.setState({
                         isLoaded: true,
-                        apireturn: result
+                        apireturn: [result]
                     });
                 },
                 (error) => {
@@ -107,7 +114,7 @@ class DOLEpisode extends React.Component {
     }
 
     render() {
-        const { error, isLoaded, apireturn, post, response, responseToPost } = this.state;
+        const { error, isLoaded, apireturn, post, response, responseToPost, apireturn_status } = this.state;
         const { literals, location, classes, fetchid } = this.props;
 
         const link_group_hero = [
@@ -117,17 +124,19 @@ class DOLEpisode extends React.Component {
             { "href": "/profile/add/episode", "title": literals.common.addto + " " + literals.common.profile },
         ];
 
+        let apiDataItem = "";
+        let apiDataItemBundle = "";
+
         if (error) {
-            return (
+            apiDataItem = (
                 <Grid item xs={12}>
-                    <h1>FETCH: {fetchid}</h1>
                     <Typography gutterBottom variant="headline" component="h2">
-                        {literals.ajaxtest.error} {error.message}
+                        {literals.ajaxtest.error} {error.message} {fetchid}
                     </Typography>
                 </Grid>
             );
         } else if (!isLoaded) {
-            return (
+            apiDataItem = (
                 <Grid item xs={12}>
                     <Typography gutterBottom variant="headline" component="h2">
                         {literals.ajaxtest.loading}...
@@ -138,71 +147,61 @@ class DOLEpisode extends React.Component {
                 </Grid>
             );
         } else {
-            const api_state = apireturn.slice(0)[0].api_return;
-            const api_content = apireturn.slice(0)[0].api_data;
-            const apiitem = apireturn.slice(0)[0].api_data;
-
-            //console.log(api_content);
-            let apiDataItem = "";
-
-            if (api_state === "success") {
-                if (api_content.length === 0) {
-                    //alert("N O D A T A, API OK " + api_content.length);
-                    apiDataItem = (
-                        <Grid item xs={12}>
-                            <Typography gutterBottom variant="headline" component="h2">
-                                No Records Found
-                            </Typography>
-                        </Grid>
-                    );
-                } else {
-
-                    //alert("S U C C E S S " + api_content.length);
-                    //apiDataItem = api_content.map((apiitem, index) => (
-                    apiDataItem = (
-                        <GridInfoCard
-                            key={apiitem.slug}
-                            title={apiitem.title}
-                            video={
-                                <iframe frameBorder="0" width="100%" height="315"
-                                    src={apiitem.videos[0].Path}></iframe>
-                            }//"http://placeimg.com/640/360/any"
-                            text={
-                                <React.Fragment>
+            if (apireturn_status === 200) {
+                const api_content = apireturn.slice(0);
+                const apiRenderItems = api_content.map((apiitem, index) => (
+                    <GridInfoCard
+                        key={apiitem.slug}
+                        title={apiitem.title}
+                        video={
+                            <iframe frameBorder="0" width="100%" height="315"
+                                src={apiitem.videos ? apiitem.videos[0].Path : "https://www.youtube.com/embed/EsL_TAfQxH8"}></iframe>
+                        }//"http://placeimg.com/640/360/any"
+                        text={
+                            <React.Fragment>
+                                {apiitem.podcasts ? (
                                     <iframe width="100%" height="166" scrolling="no"
-                                        frameBorder="no" src={"https://w.soundcloud.com/player/?url=" + apiitem.podcasts[0].Path}></iframe>
-                                    <ReactMarkdown source={apiitem.body} />
-                                </React.Fragment>
-                            }
-                            links={link_group_episode}
-                            xs={12}
-                            sm={12}
-                            md={12}
-                            fetchid={fetchid}
-                        />
-                    )
-                    //))
-                }
+                                        frameBorder="no" src={"https://w.soundcloud.com/player/?url=" + apiitem.podcasts[0].Path}>
+                                    </iframe>) : null
+                                }
+                                <ReactMarkdown source={apiitem.body} />
+                            </React.Fragment>
+                        }
+                        links={link_group_episode}
+                        xs={12}
+                        sm={12}
+                        md={12}
+                        fetchid={fetchid}
+                    />
+                ));
+                apiDataItemBundle = (
+                    <React.Fragment>
+                        {apiRenderItems}
+                    </React.Fragment>
+                );
             } else {
-                apiDataItem = (
-                    <Grid item xs={12}>
-                        <Typography gutterBottom variant="headline" component="h2">
-                            API Failed
-                        </Typography>
-                    </Grid>
+                apiDataItemBundle = (
+                    <Typography variant="button" color="inherit">
+                        ...
+                    </Typography>
                 );
             }
-
-            //  {apiDataItem}
-            const returnFragment = (
+            apiDataItem = (
                 <React.Fragment>
-                    <Grid spacing={0} alignItems="center" justify="center" container>
-                        {apiDataItem}
-                    </Grid>
+                    {apiDataItemBundle}
                 </React.Fragment>
-            )
-            return returnFragment;
+            );
         }
+        //  {apiDataItem}
+        const returnFragment = (
+            <React.Fragment>
+                <Grid spacing={0} container>
+                    {apiDataItem}
+                </Grid>
+            </React.Fragment>
+        )
+        return returnFragment;
+
     }
 }
 

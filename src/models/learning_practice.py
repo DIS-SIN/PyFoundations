@@ -23,9 +23,8 @@ class LearningPractice(Base.Model):
         lazy="subquery",
     )
 
-    def __json_relationships__(self):
+    def __json_fields__(self):
         return ["id", "name", "description", "slug"]
 
-    def __json_fields__(self):
+    def __json_relationships__(self):
         return [["tags", Tag]]
-
