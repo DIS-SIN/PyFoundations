@@ -29,7 +29,15 @@
         "episode": "Episode",
         "episodes": "Episodes",
         "tag": "Tag",
-        "tags": "Tags"
+        "tags": "Tags",
+        "actions": "Actions",
+        "back": "Back",
+        "rate": "Rate Content",
+        "related": "Related Content",
+        "comment": "Comment",
+        "like": "Like",
+        "clear": "Clear",
+        "reset": "Reset"
     },
     "organisms": {
         "signin": {
@@ -42,7 +50,85 @@
             "description": "<strong>Digital Online Learning is more than a catalog.</strong> By signing in you can create a <strong>personalized</strong> treasure trove of <strong>digital knowledge and learning points</strong>."
         },
         "primaryactionpanel": {
-            "title": "Add Experience"
+            "title": "Add Learning Experience",
+            "formtitle": "Learning experiences happen everywhere. Tell us about yours.",
+            "urltitle": "Where can you find your learning experience?",
+            "urllabel": "Paste your URL here...",
+            "verbtitle": "What kind of content is it?",
+            "verblabel": "Content Type",
+            "impressiontitle": "How would you describe the learning experience? Choose as many tags as you need.",
+            "impressionlabel": "Impression",
+            "streamtitle": "What digital stream does this belong to?",
+            "streamlabel": "Digital Stream",
+            "durationtitle": "How long did it take?",
+            "durationlabel": "Duration",
+            "valuabletitle": "How valuable was it?",
+            "valuablelabel": "Value",
+            "difficultytitle": "How difficult was it?",
+            "difficultylabel": "Difficulty",
+            "tagtitle": " If you want, you can add one or more personal tags to describe your experience. This will help us give you better suggestions later.",
+            "saveexp": "Save Experience",
+            "saveepisode": "Save Episode",
+            "episodeformat": "Episode Format",
+            "addepisode": "Add Episode",
+            "writeyourmasterpiece": "Write your masterpiece",
+            "episodetitle": "Episode Title",
+            "episodetagline": "Episode Tagline",
+            "episodeblogtext": "Episode Blog Text in Markdown Syntax",
+            "episodeaddavideo": "Add a Video",
+            "episodevideotitle": "Video Title",
+            "episodevideodescription": "Video Description",
+            "episodevideourl": "Video URL",
+            "episodeaddapodcast": "Add a Podcast",
+            "episodepodcasttitle": "Podcast Title",
+            "episodepodcastdescription": "Podcast Description",
+            "episodepodcasturl": "Podcast URL",
+            "pickcover": "Choose a Cover Image",
+            "ctrl": {
+                "read": "Read",
+                "watch": "Watch",
+                "listen": "Listen",
+                "participate": "Participate",
+                "practice": "Practice",
+                "study": "Study",
+                "do": "Do",
+                "accessible": "Accessible",
+                "clear": "Clear",
+                "entertaining": "Entertaining",
+                "relevant": "Relevant",
+                "informative": "Informative",
+                "insightful": "Insightful",
+                "useful": "Useful",
+                "digitalgov": "Digital Government",
+                "digitalliteracy": "Digital Literacy",
+                "design": "Design",
+                "leadership": "Leadership",
+                "disruptivetech": "Disruptive Technology",
+                "dataanalysis": "Data Analysis",
+                "aiml": "AI / Machine Learning",
+                "devops": "DevOps",
+                "development": "Development",
+                "times": {
+                    "few": "A few minutes",
+                    "some": "30 - 60 minutes",
+                    "hours": "A few hours",
+                    "days": "A few days",
+                    "weeks": "Weeks"
+                },
+                "value": {
+                    "little": "Little value",
+                    "some": "Pretty useful",
+                    "solid": "Solid learning",
+                    "good": "Very good content",
+                    "great": "Amazing learning experience"
+                },
+                "difficulty": {
+                    "easy": "Easy",
+                    "normal": "Some tricky concepts",
+                    "hard": "Advanced",
+                    "expert": "My brain hurts!"
+                }
+            }
         },
         "header": {
             "samples": {
@@ -89,7 +175,7 @@
         },
         "home": {
             "hero": {
-                "title": "Digital Open Learing",
+                "title": "Digital Open Learning",
                 "text": "<strong>Let's get you started with Digital</strong>. DOL will help <strong>build awareness</strong> of possibilities, <strong>increase confidence</strong> and <strong>capacity</strong> of government employees in their <strong>digital skills</strong>. Explore below to find curated and <strong>personalized learning opportunities</strong>"
             },
             "body": {}
@@ -97,14 +183,14 @@
         "streams": {
             "hero": {
                 "title": "STREAMS",
-                "text": "<strong>Learing Stream</strong>. The top level hierarchy of <strong>Digital Open Learning</strong>."
+                "text": "<strong>Learning Stream</strong>. The top level hierarchy of <strong>Digital Open Learning</strong>."
             },
             "body": {}
         },
         "practices": {
             "hero": {
                 "title": "PRACTICES",
-                "text": "<strong>Learing Practice</strong>. The second level hierarchy of <strong>Digital Open Learning</strong>."
+                "text": "<strong>Learning Practice</strong>. The second level hierarchy of <strong>Digital Open Learning</strong>."
             },
             "body": {}
         },
@@ -129,12 +215,18 @@
             },
             "body": {}
         },
+        "share": {
+            "hero": {
+                "title": "SHARE",
+                "text": "Add new content to <strong>help everyone learn</strong>"
+            }
+        },
         "profile": {
             "hero": {
                 "title": "Profile",
                 "text": "Let's <strong>track how far</strong> you've come and <strong>what you now</strong> know!",
                 "setgoals": "SET GOALS",
-                "updateprofile": "UPDATE LEARNER PROFILE"
+                "updateprofile": "UPDATE PROFILE"
             },
             "editprofile": "EDIT PROFILE"
         },

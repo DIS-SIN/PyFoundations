@@ -19,7 +19,7 @@ import DOLStreams from "../organisms/DOLStreams";
 
 const styles = theme => ({
     layout: {
-        width: '100%',
+        width: 'auto',
         marginTop: 0,
         marginLeft: 0,//theme.spacing.unit * 3,
         marginRight: 0,//theme.spacing.unit * 3,

@@ -181,7 +181,7 @@ class DOLEpisodes extends React.Component {
             //  {apiDataItem}
             const returnFragment = (
                 <React.Fragment>
-                    <Grid spacing={24} alignItems="center" justify="center" container>
+                    <Grid spacing={8} alignItems="center" justify="center" container>
                         {apiDataItem}
                     </Grid>
                 </React.Fragment>

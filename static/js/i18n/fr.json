@@ -9,7 +9,7 @@
         "logout": "Déconnexion",
         "explore": "Explorer",
         "share": "Partager",
-        "about": "À propos",
+        "about": "Propos",
         "profile": "Profil",
         "learnerprofile": "Profil d'apprentissage",
         "settings": "Réglages",
@@ -29,7 +29,15 @@
         "episode": "Épisode",
         "episodes": "Épisodes",
         "tag": "Mot clés",
-        "tags": "Mots clés"
+        "tags": "Mots clés",
+        "actions": "Actions",
+        "back": "Retour",
+        "rate": "Évaluer le contenu",
+        "related": "Contenu connexe",
+        "comment": "Commentaire",
+        "like": "J'aime ça",
+        "clear": "Effacer",
+        "reset": "Réinitialiser"
     },
     "organisms": {
         "signin": {
@@ -42,7 +50,85 @@
             "description": "<strong> L’apprentissage en ligne numérique est plus qu’un catalogue. </ strong> En vous connectant, vous pouvez créer un <strong> programme personnalisé </ strong> de <strong> connaissances et points d'apprentissage numériques </ strong>."
         },
         "primaryactionpanel": {
-            "title": "Ajouter une expérience"
+            "title": "Ajouter une expérience",
+            "formtitle": "Les expériences d'apprentissage se produisent partout. Parlez-nous de la vôtre",
+            "urltitle": "Où pouvez-vous trouver votre expérience d'apprentissage?",
+            "urllabel": "Collez votre URL ici ...",
+            "verbtitle": "Quel genre de contenu est-ce?",
+            "verblabel": "Type de contenu",
+            "impressiontitle": "Comment décririez-vous l'expérience d'apprentissage? Choisissez autant de tags que vous souhaitez.",
+            "impressionlabel": "Impression",
+            "streamtitle": "A quel flux numérique appartient-il?",
+            "streamlabel": "Ruisseaux numérique",
+            "durationtitle": "Combien de temps cela a-t-il pris?",
+            "durationlabel": "Durée",
+            "valuabletitle": "Quelle était sa valeur?",
+            "valuablelabel": "Valeur",
+            "difficultytitle": "A quel point était-ce difficile?",
+            "difficultylabel": "Difficulté",
+            "tagtitle": " Si vous le souhaitez, vous pouvez ajouter un ou plusieurs tags personnels pour décrire votre expérience. Cela nous aidera à vous faire de meilleures suggestions plus tard.",
+            "saveexp": "Enregistrer expérience",
+            "saveepisode": "Enregistrer Épisode",
+            "episodeformat": "Épisode Format",
+            "addepisode": "Ajouter Épisode",
+            "writeyourmasterpiece": "Ecrivez votre chef-d'œuvre",
+            "episodetitle": "Titre de l'épisode",
+            "episodetagline": "Description de l'Épisode",
+            "episodeblogtext": "Texte du blog de l'épisode dans la syntaxe de Markdown",
+            "episodeaddavideo": "Ajouter une vidéo",
+            "episodevideotitle": "Titre de la vidéo",
+            "episodevideodescription": "Description de la vidéo",
+            "episodevideourl": "URL de la vidéo",
+            "episodeaddapodcast": "Ajouter un podcast",
+            "episodepodcasttitle": "Titre du podcast",
+            "episodepodcastdescription": "Description du podcast",
+            "episodepodcasturl": "URL du podcast",
+            "pickcover": "Choisir une Image",
+            "ctrl": {
+                "read": "Lire",
+                "watch": "Regarde",
+                "listen": "Écoute",
+                "participate": "Participe",
+                "practice": "Pratique",
+                "study": "Étude",
+                "do": "Faire",
+                "accessible": "Accessible",
+                "clear": "Clair",
+                "entertaining": "Divertissant",
+                "relevant": "Pertinent",
+                "informative": "Informatif",
+                "insightful": "Perspicace",
+                "useful": "Utile",
+                "digitalgov": "Gouvernement numérique",
+                "digitalliteracy": "Alphabétisation numérique",
+                "design": "Conception",
+                "leadership": "Direction",
+                "disruptivetech": "Technologie perturbatrice",
+                "dataanalysis": "L'analyse des données",
+                "aiml": "AI / Apprentissage machine",
+                "devops": "DevOps",
+                "development": "Développement",
+                "times": {
+                    "few": "Quelques minutes",
+                    "some": "30 - 60 minutes",
+                    "hours": "Quelques heures",
+                    "days": "Quelques jours",
+                    "weeks": "Semaines"
+                },
+                "value": {
+                    "little": "Peu de valeur",
+                    "some": "Plutôt utile",
+                    "solid": "Apprentissage solide",
+                    "good": "Très bon contenu",
+                    "great": "Expérience d'apprentissage incroyable"
+                },
+                "difficulty": {
+                    "easy": "Facile",
+                    "normal": "Quelques concepts difficiles",
+                    "hard": "Avancé",
+                    "expert": "Mon cerveau me fait mal!"
+                }
+            }
         },
         "header": {
             "samples": {
@@ -57,7 +143,7 @@
                 "logout": "Déconnexion",
                 "explore": "Explorer",
                 "share": "Partager",
-                "about": "À propos",
+                "about": "Propos",
                 "profile": "Profil",
                 "settings": "Réglages",
                 "signin": "Connexion",
@@ -128,6 +214,12 @@
                 "text": "<strong> Découvrez ce que vous souhaitez </ strong>. Le catalogue ci-dessous contient des <strong> flux </ strong> regroupant des groupes de <strong> pratiques </ strong>. Chaque pratique comporte des <strong> points d'apprentissage </ strong> que vous pouvez explorer."
             },
             "body": {}
+        },
+        "share": {
+            "hero": {
+                "title": "PARTAGER",
+                "text": "Provir le contenu <strong>pour assister l'autres</strong>"
+            }
         },
         "profile": {
             "hero": {

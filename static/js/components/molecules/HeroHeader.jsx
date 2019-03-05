@@ -11,15 +11,20 @@ const styles = theme => ({
     heroUnit: {
         backgroundColor: theme.palette.background.paper,
         backgroundImage: `url('/static/images/sp-bg-12.jpg')`,
+        backgroundSize: 'cover',
     },
     heroContent: {
         maxWidth: 600,
         margin: '0 auto',
         padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`,
+        paddingRight: 0,
+        paddingLeft: 0,
         color: 'white',
     },
     heroButtons: {
         marginTop: theme.spacing.unit * 4,
+        marginLeft: 0,
+        marginRight: 0,
     },
     highContrast: {
         color: 'white',
@@ -39,16 +44,17 @@ class HeroHeader extends React.Component {
     render() {
         const { title, links, icon, text, signin, classes } = this.props;
 
-        const linksFragment = this.props.links.map((link, index) => (
-            <Grid key={index} item>
+        const linksFragment = this.props.links ? (this.props.links.map((link, index) => (
+            <Grid key={index} item xs={12} sm={6}>
                 <Button
+                    fullWidth
                     component={Link}
                     variant="contained" color="secondary"
                     to={link.href}>
                     {link.title}
                 </Button>
             </Grid>
-        ));
+        ))) : "";
 
         return (
             <React.Fragment>
@@ -60,12 +66,26 @@ class HeroHeader extends React.Component {
                         <Typography variant="h6" align="center" color="inherit" component="div" className={classes.fadeBacker}>
                             {icon} {text}
                         </Typography>
-                        <div className={classes.heroButtons}>
-                            <Grid container spacing={16} justify="center">
-                                {signin}
-                                {linksFragment}
+                        {/*<div className={classes.heroButtons}>*/}
+                        <Grid container spacing={0} justify="center">
+                            <Grid container spacing={8} justify="center" className={classes.heroButtons}>
+                                {/*<Grid container spacing={8} justify="center">*/}
+                                {signin ? (
+                                    <React.Fragment>
+                                        <Grid item xs={12} sm={6}>
+                                            {signin}
+                                        </Grid>
+                                        {linksFragment}
+                                    </React.Fragment>
+                                ) : (
+                                        <React.Fragment>
+                                            {linksFragment}
+                                        </React.Fragment>
+
+                                    )}
                             </Grid>
-                        </div>
+                        </Grid>
+                        {/*</div>*/}
                     </div>
                 </div>
             </React.Fragment>

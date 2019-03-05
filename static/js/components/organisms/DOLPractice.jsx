@@ -111,10 +111,19 @@ class DOLPractice extends React.Component {
     componentDidMount() {
         let fetchid = this.props.fetchid;
         fetch("/api/practice/" + fetchid) // dol/api/gettest // /api/learning_point
-            .then(res => res.json())
+            //.then(res => res.json())
+            .then(function (res) {
+                console.log(res.status);
+                //res.status     //=> number 100–599
+                //res.statusText //=> String
+                //res.headers    //=> Headers
+                //res.url        //=> String
+
+                return res.json()
+            })
             .then(
                 (result) => {
-                    //console.log(result);
+                    console.log(result);
                     this.setState({
                         isLoaded: true,
                         apireturn: result
