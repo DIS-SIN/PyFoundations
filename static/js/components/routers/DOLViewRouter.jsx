@@ -8,6 +8,7 @@ import DOLPageViewExperience from "../views/DOLPageViewExperience";
 import DOLPageViewEpisode from "../views/DOLPageViewEpisode";
 import DOLPageViewStream from "../views/DOLPageViewStream";
 import DOLPageViewPractice from "../views/DOLPageViewPractice";
+import DOLPageViewLearningResource from "../views/DOLPageViewLearningResource";
 import DOLViewLayout from "../templates/DOLViewLayout";
 
 const mapStateToProps = state => {
@@ -26,6 +27,7 @@ class DOLViewRouter extends React.Component {
             { path: '/:lang/view/episode/:id', mod: "episodes", name: 'View Episode', Component: DOLPageViewEpisode },
             { path: '/:lang/view/stream/:id', mod: "streams", name: 'View Stream', Component: DOLPageViewStream },
             { path: '/:lang/view/practice/:id', mod: "practices", name: 'View Practice', Component: DOLPageViewPractice },
+            { path: '/:lang/view/learning_resource/:id', mod: "learning_resources", name: 'View Learning Resource', Component: DOLPageViewLearningResource },
         ]
 
         const IdRoute = ({ match, location }) => (
