@@ -277,30 +277,29 @@ class DOLAddContentFormContainer extends React.Component {
     }
     handleSave = async e => {
         e.preventDefault();
-        let api_url = "/api/experience";
+        let api_url = "/api/experience/";
         let api_post = {};
         if (this.state.isepisodetype == true) {
-            api_url = "/api/episode";
+            api_url = "/api/episode/";
             api_post = {
                 "title": this.state.episodetitle,
                 "tagline": this.state.episodetagline,
                 "sub_title": this.state.episodetagline,
                 "body": this.state.episodeblogtext,
-                "author": "TBD",
-                "image": { "src": this.state.itemcover },
-                "videos": {
-                    "title": this.state.episodevideotitle,
-                    "description": this.state.episodevideodescription,
-                    "url": this.state.episodevideourl
-                },
-                podcasts: {
-                    "title": this.state.episodepodcasttitle,
-                    "description": this.state.episodepodcastdescription,
-                    "url": this.state.episodepodcasturl
-                },
                 likes: 0,
-                published_on: "",
-                edits: {},
+                published_on: (new Date()).toDateString(),
+                //"image": { "src": this.state.itemcover },
+                //"videos": {
+                //    "title": this.state.episodevideotitle,
+                //    "description": this.state.episodevideodescription,
+                //    "url": this.state.episodevideourl
+                //},
+                //podcasts: {
+                //    "title": this.state.episodepodcasttitle,
+                //    "description": this.state.episodepodcastdescription,
+                //    "url": this.state.episodepodcasturl
+                //},
+                slug: this.state.episodetitle,
                 tags: [{
                     "tag": this.state.tag1
                 }, {
@@ -308,30 +307,24 @@ class DOLAddContentFormContainer extends React.Component {
                 }, {
                     "tag": this.state.tag3
                 }],
-                learning_points: {},
-                learning_resources: {},
-                experience: {},
-                digital_standards: {},
-                banner_image: this.state.itemcover,
-                slug: this.state.episodetitle
+                learning_points: [],
+                learning_resources: [],
+                experience: []
+                //banner_image: this.state.itemcover,
             };
         } else {
-            api_url = "/api/experience";
+            api_url = "/api/experience/";
             api_post = {
                 "user_name": "TBD",
                 "verb": this.state.verb,
-                "stream": this.state.stream,
-                "practices": {},
-                skills: {},
-                learning_resource_id: 0,
-                learning_resource: {},
-                occurred_at: "",
+                "occurred_at": (new Date()).toISOString(),
                 validated: false,
                 time: "",
                 value: this.state.valuable,
                 difficulty: this.state.difficulty,
                 points: 0,
                 depth: 0,
+                learning_resources: [],
                 tags: [{
                     "tag": this.state.tag1
                 }, {
@@ -339,7 +332,10 @@ class DOLAddContentFormContainer extends React.Component {
                 }, {
                     "tag": this.state.tag3
                 }],
-                comments: {},
+                learning_practices: [],
+                skills: [],
+                learning_stream: {},//this.state.stream,
+                comments: [],
             };
         }
         const response = await fetch(api_url, {

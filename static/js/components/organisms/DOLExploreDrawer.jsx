@@ -104,8 +104,10 @@ class DOLExploreDrawer extends React.Component {
         this.state = {
             errorStream: null,
             isLoadedStream: false,
+            apireturn_status_stream: null,
             errorPractice: null,
             isLoadedPractice: false,
+            apireturn_status_practice: null,
             learningpoints: [],
             post: "",
             response: "",
@@ -126,8 +128,14 @@ class DOLExploreDrawer extends React.Component {
     // this fires when the component loads
 
     componentDidMount() {
-        fetch("/api/stream") // dol/api/gettest // /api/learning_point
-            .then(res => res.json())
+        fetch("/api/learning_stream/") // dol/api/gettest // /api/learning_point
+            .then((res) => {
+                //console.log(res.status);
+                this.setState({
+                    apireturn_status_stream: res.status
+                });
+                return res.json();
+            })
             .then(
                 (resultStream) => {
                     //console.log(result);
@@ -143,8 +151,20 @@ class DOLExploreDrawer extends React.Component {
                     });
                 }
             )
-        fetch("/api/practice") // dol/api/gettest // /api/learning_point
-            .then(res => res.json())
+        fetch("/api/learning_practice/") // dol/api/gettest // /api/learning_point
+            //.then(res => res.json())
+            .then((res) => {
+                //console.log(res.status);
+                //res.status     //=> number 100–599
+                //res.statusText //=> String
+                //res.headers    //=> Headers
+                //res.url        //=> String
+                this.setState({
+                    apireturn_status_practice: res.status
+                });
+                //let resjson = res.status == 200 ? res.json() : [res.json()]
+                return res.json();
+            })
             .then(
                 (resultPractice) => {
                     //console.log(result);
@@ -169,9 +189,12 @@ class DOLExploreDrawer extends React.Component {
     }
 
     render() {
-        const { errorStream, errorPractice, isLoadedStream, isLoadedPractice, apireturn_stream, apireturn_practice, post, response, responseToPost } = this.state;
+        const { errorStream, errorPractice, isLoadedStream, isLoadedPractice,
+            apireturn_status_stream, apireturn_status_practice, apireturn_stream, apireturn_practice, post, response, responseToPost } = this.state;
         const { literals, location, classes } = this.props;
         let apiDataItem = "";
+        let apiDataItemStream = "";
+        let apiDataItemPractice = "";
 
         if (errorStream || errorPractice) {
             apiDataItem = (
@@ -196,67 +219,69 @@ class DOLExploreDrawer extends React.Component {
                 </ListItem >
             );
         } else {
-            const api_state_stream = apireturn_stream.slice(0)[0].api_return;
-            const api_content_stream = apireturn_stream.slice(0)[0].api_data;
-
-            const api_state_practice = apireturn_practice.slice(0)[0].api_return;
-            const api_content_practice = apireturn_practice.slice(0)[0].api_data;
-
-            if (api_state_stream === "success" && api_state_practice === "success") {
-                if (api_content_stream.length === 0 || api_content_practice.length === 0) {
-                    //alert("N O D A T A, API OK " + api_content.length);
-                    apiDataItem = (
-                        <ListItem button component={Link} to="/view/stream" key="drawerNoRec" >
-                            <Typography component={ListItem} secondary={literals.common.streams} variant="button" color="inherit" className={classes.drawerTextLight}>
-                                ...
-                            </Typography>
-                        </ListItem >
-                    );
-                } else {
-                    const learningArchStreamItems = api_content_stream.map((apiitem, index) => (
-                        <ListItem button component={Link} to={"/view/stream/" + apiitem.id} key={index} >
-                            <Typography component={ListItem} secondary={literals.common.streams} variant="button" color="inherit" className={classes.drawerTextLight}>
-                                {apiitem.name}
-                            </Typography>
-                        </ListItem >
-                    ));
-                    const learningArchPracticeItems = api_content_practice.map((apiitem, index) => (
-                        <ListItem button component={Link} to={"/view/practice/" + apiitem.id} key={index} >
-                            <Typography component={ListItem} secondary={literals.common.practice} variant="button" color="inherit" className={classes.drawerTextLight}>
-                                {apiitem.name}
-                            </Typography>
-                        </ListItem >
-                    ));
-                    apiDataItem = (
-                        <div className={classes.fullList}>
-                            <List className={classes.drawerDark}>{/** learningarchitecture.loach_structure.streams[].stream */}
-                                <ListItem button component={Link} to="/explore/streams" key="expStreams" >
-                                    <Typography component={ListItem} variant="h6" color="inherit" className={classes.drawerTextLight}>
-                                        {literals.common.streams}
-                                    </Typography>
-                                </ListItem>
-                                {learningArchStreamItems}
-                                <Divider />
-                                <ListItem button component={Link} to="/explore/practices" key="expPractices" >
-                                    <Typography component={ListItem} variant="h6" color="inherit" className={classes.drawerTextLight}>
-                                        {literals.common.practices}
-                                    </Typography>
-                                </ListItem>
-                                {learningArchPracticeItems}
-                            </List>
-                        </div>
-                    );
-
-                }
+            if (apireturn_status_stream === 200) {
+                const api_content_stream = apireturn_stream.slice(0);
+                const learningArchStreamItems = api_content_stream.map((apiitem, index) => (
+                    <ListItem button component={Link} to={"/view/stream/" + apiitem.id} key={index} >
+                        <Typography component={ListItem} secondary={literals.common.streams} variant="button" color="inherit" className={classes.drawerTextLight}>
+                            {apiitem.name}
+                        </Typography>
+                    </ListItem >
+                ));
+                apiDataItemStream = (
+                    <React.Fragment>
+                        {learningArchStreamItems}
+                    </React.Fragment>
+                );
             } else {
-                apiDataItem = (
-                    <ListItem button component={Link} to="/explore" key={index} >
+                apiDataItemStream = (
+                    <ListItem button component={Link} to="/view/stream" key="drawerNoRec" >
                         <Typography component={ListItem} secondary={literals.common.streams} variant="button" color="inherit" className={classes.drawerTextLight}>
                             ...
                         </Typography>
                     </ListItem >
                 );
             }
+            if (apireturn_status_practice === 200) {
+                const api_content_practice = apireturn_practice.slice(0);
+                const learningArchPracticeItems = api_content_practice.map((apiitem, index) => (
+                    <ListItem button component={Link} to={"/view/practice/" + apiitem.id} key={index} >
+                        <Typography component={ListItem} secondary={literals.common.practices} variant="button" color="inherit" className={classes.drawerTextLight}>
+                            {apiitem.name}
+                        </Typography>
+                    </ListItem >
+                ));
+                apiDataItemPractice = (
+                    <React.Fragment>
+                        {learningArchPracticeItems}
+                    </React.Fragment>
+                );
+            } else {
+                apiDataItemPractice = (
+                    <ListItem button component={Link} to="/view/practice" key="drawerNoRec" >
+                        <Typography component={ListItem} secondary={literals.common.practices} variant="button" color="inherit" className={classes.drawerTextLight}>
+                            ...
+                        </Typography>
+                    </ListItem >
+                );
+            }
+            apiDataItem = (
+                <React.Fragment>
+                    <ListItem button component={Link} to="/explore/streams" key="expStreams" >
+                        <Typography component={ListItem} variant="h6" color="inherit" className={classes.drawerTextLight}>
+                            {literals.common.streams}
+                        </Typography>
+                    </ListItem>
+                    {apiDataItemStream}
+                    <Divider />
+                    <ListItem button component={Link} to="/explore/practices" key="expPractices" >
+                        <Typography component={ListItem} variant="h6" color="inherit" className={classes.drawerTextLight}>
+                            {literals.common.practices}
+                        </Typography>
+                    </ListItem>
+                    {apiDataItemPractice}
+                </React.Fragment>
+            );
         }
         return (
             <React.Fragment>
@@ -270,7 +295,11 @@ class DOLExploreDrawer extends React.Component {
                         onClick={this.toggleDrawer('left', false)}
                         onKeyDown={this.toggleDrawer('left', false)}
                     >
-                        {apiDataItem}
+                        <div className={classes.fullList}>
+                            <List className={classes.drawerDark}>{/** learningarchitecture.loach_structure.streams[].stream */}
+                                {apiDataItem}
+                            </List>
+                        </div>
                     </div>
                 </Drawer>
             </React.Fragment>
