@@ -12,7 +12,9 @@ app
 """
 
 
-def create_app(mode="development", initdb=False, static_path=None, template_path=None):
+def create_app(mode="development", 
+initdb=False, static_path='../static', template_path='../templates', 
+instance_path = '../instance', **kwargs):
     import os
     import click
 
@@ -28,6 +30,9 @@ def create_app(mode="development", initdb=False, static_path=None, template_path
     import src.views.dol as dol
     from .database import db
     from .apis.apiV1_0 import register_routes
+    from flask_wtf import CSRFProtect
+    from firebase_admin import initialize_app
+    from firebase_admin.credentials import Certificate
 
     ##########TODO##########
     # Modify app factory to allow configuration from file  STATUS:completed
@@ -42,6 +47,8 @@ def create_app(mode="development", initdb=False, static_path=None, template_path
         Flask class instance configured with DOL application and API routes
     """
     app = Flask(__name__)
+    csfr = CSRFProtect(app)
+
     # add configs for sqlalchemy
     if mode == "production":
         app.config.from_object("settings.production_settings")
@@ -75,10 +82,42 @@ def create_app(mode="development", initdb=False, static_path=None, template_path
         if SQLALCHEMY_DATABASE_URI is not None:
             print(SQLALCHEMY_DATABASE_URI)
             app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
-    if not static_path is None:
+    static_path = os.path.abspath(static_path)
+    if os.path.isdir(static_path):
         app.static_folder = static_path
-    if not template_path is None:
+    else:
+        os.mkdir(static_path)
+        app.static_folder = static_path
+    template_path  = os.path.abspath(template_path)
+    if os.path.isdir(template_path):
         app.template_folder = template_path
+    else:
+        os.mkdir(template_path)
+        app.template_folder = template_path
+    instance_path = os.path.abspath(instance_path)
+    if os.path.isdir(instance_path):
+        app.instance_path = instance_path
+    else:
+        os.mkdir(static_path)
+        app.instance_path = instance_path
+    #check if a firebase certificate name has been provided in the kwargs
+    if kwargs.get('firebase_certificate') is not None:
+        #attempt to load the certificate and initialise the app validating that the file exists and that it is a json file
+        firebase_certificate = kwargs.get('firebase_certificate')
+        if firebase_certificate.split('.')[-1] != 'json':
+            raise ValueError('firebase_certificate must be a json file')
+        firebase_certificate_path = os.path.join(instance_path, firebase_certificate)
+        if os.path.isfile(firebase_certificate_path):
+            cert = Certificate(firebase_certificate_path)
+            firebase_app = initialize_app(cert)
+        else:
+            raise FileNotFoundError('the specified certificate file could not be found in the instance folder')
+    else:
+        #if the firebase_certificate param attempt to initialize the firebase app anyways
+        #this will attempt to get the configs from the  FIREBASE_CONFIG environment variable if set
+        firebase_app = initialize_app()
+    app.static_folder = os.path.realpath(static_path)
+    app.template_folder = os.path.realpath(template_path)
     # registering dol blueprint
     app.register_blueprint(dol.bp)
     # creating flask-restful Api class instance

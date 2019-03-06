@@ -25,6 +25,9 @@ SEND_FILE_MAX_AGE_DEFAULT = 0
 ##THIS SHOUD BE SET AS AN ENVIRONMENT VARIABLE IN PRODUCTION##
 SECRET_KEY = "dev"
 
+#Variable used to encrypt tokens used in URLs for things like email verification
+##This should be set as an environment variable in production
+SECURITY_PASSWORD_SALT = "mylovelysecret"
 # Used to enable rendering JSON as utf8
 JSON_AS_ASCII = False
 
