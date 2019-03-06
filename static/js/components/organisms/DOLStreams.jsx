@@ -95,8 +95,8 @@ const styles = theme => ({
 
 const ApiDataItem = props => (
     <React.Fragment>
-        <ApiDataItemChildText apiitem={props.apiitem} childnode="learning_targets" childval="learning_targets" />
-        <Typography gutterBottom variant="h6" component="div">{props.literals.common.practices}</Typography>
+        <ApiDataItemChildText apiitem={props.apiitem} childnode="learning_targets" childval="target_name" />
+        <Typography gutterBottom variant="h6" component="div">{props.literals.common.streams}</Typography>
         <ApiDataItemChild apiitem={props.apiitem} childnode="tags" childval="tag" />
     </React.Fragment>
 );
