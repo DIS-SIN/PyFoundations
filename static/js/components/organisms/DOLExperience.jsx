@@ -72,7 +72,7 @@ const ApiDataItem = props => (
         <Typography gutterBottom variant="caption" component="div">{props.apiitem.occurred_at}</Typography>
         <Typography gutterBottom variant="overline" component="div">{props.apiitem.difficulty}</Typography>
         <Typography gutterBottom variant="h6" component="div">{props.literals.common.practices}</Typography>
-        <ApiDataItemChild apiitem={props.apiitem} childnode="learning_practices" childval="Name" />
+        <ApiDataItemChild apiitem={props.apiitem} childnode="learning_practices" childval="name" />
         <Typography gutterBottom variant="h6" component="div">{props.literals.common.tags}</Typography>
         <ApiDataItemChild apiitem={props.apiitem} childnode="tags" childval="tag" />
     </React.Fragment>

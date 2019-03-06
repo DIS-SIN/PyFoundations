@@ -57,7 +57,7 @@ if (!window.Promise) {
 
 const ApiDataItem = props => (
     <React.Fragment>
-        <ApiDataItemChildText apiitem={props.apiitem} childnode="learning_targets" childval="learning_targets" />
+        <ApiDataItemChildText apiitem={props.apiitem} childnode="learning_targets" childval="target_name" />
         <Typography gutterBottom variant="h6" component="div">{props.literals.common.practices}</Typography>
         <ApiDataItemChild apiitem={props.apiitem} childnode="tags" childval="tag" />
     </React.Fragment>
