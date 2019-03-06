@@ -29,3 +29,4 @@ package-lock.json
 .pytest_cache/*
 code/__pycache__/*
 code/__pycache__/**
+**/instance/
