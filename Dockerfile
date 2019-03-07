@@ -32,7 +32,7 @@ RUN echo "source activate $(head -1 /app/environment.yml | cut -d' ' -f2)" > ~/.
 ENV PATH /opt/conda/envs/$(head -1 /tmp/environment.yml | cut -d' ' -f2)/bin:$PATH
 #RUN echo "python /app/application.py --mode production" >> ~/.bashrc
 ENTRYPOINT ["/opt/conda/envs/PyFoundations/bin/python"]
-CMD ["application.py"] 
+CMD ["dockerapplication.py"] 
 EXPOSE 5054
 
 # Define environment variable
