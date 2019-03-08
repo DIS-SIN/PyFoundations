@@ -317,7 +317,7 @@ class DOLAddContentFormContainer extends React.Component {
             api_post = {
                 "user_name": "TBD",
                 "verb": this.state.verb,
-                "occurred_at": (new Date()).toISOString(),
+                "occurred_at": (new Date()).toDateString(),
                 validated: false,
                 time: "",
                 value: this.state.valuable,
