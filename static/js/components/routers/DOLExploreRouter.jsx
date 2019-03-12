@@ -9,6 +9,7 @@ import DOLPageExploreStreams from "../views/DOLPageExploreStreams";
 import DOLPageExplorePractices from "../views/DOLPageExplorePractices";
 import DOLPageExploreEpisodes from "../views/DOLPageExploreEpisodes";
 import DOLPageExploreExperiences from "../views/DOLPageExploreExperiences";
+import DOLPageExploreLearningResources from "../views/DOLPageExploreLearningResources";
 
 const mapStateToProps = state => {
     return {
@@ -27,6 +28,7 @@ class DOLExploreRouter extends React.Component {
             { path: '/:lang/explore/practices', name: 'Practices', Component: DOLPageExplorePractices },
             { path: '/:lang/explore/experiences', name: 'Experiences', Component: DOLPageExploreExperiences },
             { path: '/:lang/explore/episodes', name: 'Episodes', Component: DOLPageExploreEpisodes },
+            { path: '/:lang/explore/learning_resources', name: 'Episodes', Component: DOLPageExploreLearningResources },
         ]
 
         const LanguifiedRoute = ({ match, location }) => (

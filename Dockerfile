@@ -1,21 +1,42 @@
 
-# Use an official Python runtime as a parent image
-FROM python:3.7-slim
+# anaconda 4 will be used as the base image
+FROM node:8.15
 
+WORKDIR /app
+
+COPY . /app
+
+WORKDIR /app/static
+
+RUN npm install
+
+RUN npm run build
+
+FROM store/continuumio/anaconda:4.0.0
+
+RUN conda update conda 
 # Set the working directory to /app
 WORKDIR /app
 
 # Copy the current directory contents into the container at /app
-COPY . /app
+COPY --from=0 /app .
 
 # Install any needed packages specified in requirements.txt
-RUN pip install -r requirements.txt
-
+RUN conda env update -f environment.yml
+ARG DOL_SECRET_KEY
+ENV DOL_SECRET_KEY = $DOL_SECRET_KEY
+ARG DOL_SQLALCHEMY_DATABASE_URI
+ENV DOL_SQLALCHEMY_DATABASE_URI = $DOL_SQLALCHEMY_DATABASE_URI
 # Make port 80 available to the world outside this container
+RUN echo "source activate $(head -1 /app/environment.yml | cut -d' ' -f2)" > ~/.bashrc
+ENV PATH /opt/conda/envs/$(head -1 /tmp/environment.yml | cut -d' ' -f2)/bin:$PATH
+#RUN echo "python /app/application.py --mode production" >> ~/.bashrc
+ENTRYPOINT ["/opt/conda/envs/PyFoundations/bin/python"]
+CMD ["dockerapplication.py"] 
 EXPOSE 5054
 
 # Define environment variable
-ENV NAME dol
+
 
 # Run app.py when the container launches
 #CMD ["python", "application.py"]

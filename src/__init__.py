@@ -47,8 +47,8 @@ instance_path = '../instance', **kwargs):
         Flask class instance configured with DOL application and API routes
     """
     app = Flask(__name__)
-    csfr = CSRFProtect(app)
 
+    #csfr = CSRFProtect(app)
     # add configs for sqlalchemy
     if mode == "production":
         app.config.from_object("settings.production_settings")
@@ -79,6 +79,7 @@ instance_path = '../instance', **kwargs):
         app.config.from_object("settings.default_settings")
         # get DOL sqlalchemy database uri if it exists and set it in the app config object
         SQLALCHEMY_DATABASE_URI = os.environ.get("DOL_SQLALCHEMY_DATABASE_URI")
+        print(SQLALCHEMY_DATABASE_URI)
         if SQLALCHEMY_DATABASE_URI is not None:
             print(SQLALCHEMY_DATABASE_URI)
             app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
@@ -94,28 +95,14 @@ instance_path = '../instance', **kwargs):
     else:
         os.mkdir(template_path)
         app.template_folder = template_path
+
     instance_path = os.path.abspath(instance_path)
     if os.path.isdir(instance_path):
         app.instance_path = instance_path
     else:
-        os.mkdir(static_path)
+        os.mkdir(instance_path)
         app.instance_path = instance_path
     #check if a firebase certificate name has been provided in the kwargs
-    if kwargs.get('firebase_certificate') is not None:
-        #attempt to load the certificate and initialise the app validating that the file exists and that it is a json file
-        firebase_certificate = kwargs.get('firebase_certificate')
-        if firebase_certificate.split('.')[-1] != 'json':
-            raise ValueError('firebase_certificate must be a json file')
-        firebase_certificate_path = os.path.join(instance_path, firebase_certificate)
-        if os.path.isfile(firebase_certificate_path):
-            cert = Certificate(firebase_certificate_path)
-            firebase_app = initialize_app(cert)
-        else:
-            raise FileNotFoundError('the specified certificate file could not be found in the instance folder')
-    else:
-        #if the firebase_certificate param attempt to initialize the firebase app anyways
-        #this will attempt to get the configs from the  FIREBASE_CONFIG environment variable if set
-        firebase_app = initialize_app()
     app.static_folder = os.path.realpath(static_path)
     app.template_folder = os.path.realpath(template_path)
     # registering dol blueprint

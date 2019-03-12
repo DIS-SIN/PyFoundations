@@ -11,7 +11,7 @@ class LearningResource(Base.Model):
         primary_key=True,
         server_default=text("nextval('learning_resource_id_seq'::regclass)"),
     )
-    # author = Column(Text)
+    author = Column(Text)
     copyright = Column(Boolean)
     licence = Column(Text)
     title = Column(Text)

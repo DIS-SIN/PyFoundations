@@ -22,10 +22,6 @@ import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import DOLSignInDialog from "../organisms/DOLSignInDialog";
 import { LearningArchitecture } from '../atoms/LearningArchitecture'
 import HeroHeader from "../molecules/HeroHeader";
-import DOLStreams from "../organisms/DOLStreams";
-import DOLPractices from "../organisms/DOLPractices";
-import DOLExperiences from "../organisms/DOLExperiences";
-import DOLEpisodes from "../organisms/DOLEpisodes";
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import DOLExploreTree from "../organisms/DOLExploreTree";
 import GridInfoCard from "../molecules/GridInfoCard";
@@ -126,6 +122,7 @@ class DOLPageExplore extends React.Component {
             { "href": "/explore/episodes", "title": literals.common.episodes },
             { "href": "/explore/streams", "title": literals.common.streams },
             { "href": "/explore/practices", "title": literals.common.practices },
+            { "href": "/explore/learning_resources", "title": "Resources" },
         ];
         const link_group_selector = [
             { "href": "/explore", "title": literals.common.explore },
@@ -182,6 +179,15 @@ class DOLPageExplore extends React.Component {
                                 links={link_group_selector}
                                 xs={12} sm={6} md={3}
                                 fetchid="episodes"
+                            />
+                            <GridInfoCard
+                                key="learningResourceSelect"
+                                title="Resources"
+                                cover="https://placeimg.com/640/480/tech"
+                                text={ReactHtmlParser("TBD")}
+                                links={link_group_selector}
+                                xs={12} sm={6} md={3}
+                                fetchid="learning_resources"
                             />
                         </Grid>
 

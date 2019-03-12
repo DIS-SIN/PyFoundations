@@ -155,7 +155,7 @@ class DOLEpisode extends React.Component {
                         title={apiitem.title}
                         video={
                             <iframe frameBorder="0" width="100%" height="315"
-                                src={apiitem.videos ? apiitem.videos[0].Path : "https://www.youtube.com/embed/EsL_TAfQxH8"}></iframe>
+                                src={apiitem.videos ? apiitem.videos[0].Path : "https://www.youtube.com/embed/lv7TU4ESuMM"}></iframe>
                         }//"http://placeimg.com/640/360/any"
                         text={
                             <React.Fragment>
