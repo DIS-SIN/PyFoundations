@@ -7,12 +7,8 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import PropTypes from 'prop-types';
 import { withStyles, withTheme } from '@material-ui/core/styles';
-import LabelIcon from '@material-ui/icons/Label';
-import LearningArchitecture from "../atoms/LearningArchitecture";
-import CircularProgress from '@material-ui/core/CircularProgress';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import GridInfoCard from "../molecules/GridInfoCard";
-import ReactMarkdown from "react-markdown"
 
 const mapStateToProps = state => {
     return {
@@ -99,8 +95,8 @@ const styles = theme => ({
 
 const ApiDataItem = props => (
     <React.Fragment>
-        <ApiDataItemChildText apiitem={props.apiitem} childnode="learning_targets" childval="learning_targets" />
-        <Typography gutterBottom variant="h6" component="div">{props.literals.common.practices}</Typography>
+        <ApiDataItemChildText apiitem={props.apiitem} childnode="learning_targets" childval="target_name" />
+        <Typography gutterBottom variant="h6" component="div">{props.literals.common.streams}</Typography>
         <ApiDataItemChild apiitem={props.apiitem} childnode="tags" childval="tag" />
     </React.Fragment>
 );
@@ -149,15 +145,22 @@ class DOLStreams extends React.Component {
             learningpoints: [],
             post: "",
             response: "",
-            responseToPost: ""
+            responseToPost: "",
+            apireturn_status: null,
         };
     }
 
     // this fires when the component loads
 
     componentDidMount() {
-        fetch("/api/stream") // dol/api/gettest // /api/learning_point
-            .then(res => res.json())
+        fetch("/api/learning_stream/") // dol/api/gettest // /api/learning_point
+            .then((res) => {
+                //console.log(res.status);
+                this.setState({
+                    apireturn_status: res.status
+                });
+                return res.json();
+            })
             .then(
                 (result) => {
                     //console.log(result);
@@ -182,7 +185,7 @@ class DOLStreams extends React.Component {
     }
 
     render() {
-        const { error, isLoaded, apireturn, post, response, responseToPost } = this.state;
+        const { error, isLoaded, apireturn, post, response, responseToPost, apireturn_status } = this.state;
         const { literals, location, classes } = this.props;
 
         const link_group_hero = [
@@ -193,8 +196,11 @@ class DOLStreams extends React.Component {
             { "href": "/profile/add/stream", "title": literals.common.addto + " " + literals.common.profile },
         ];
 
+        let apiDataItem = "";
+        let apiDataItemBundle = "";
+
         if (error) {
-            return (
+            apiDataItem = (
                 <Grid item xs={12}>
                     <Typography gutterBottom variant="headline" component="h2">
                         {literals.ajaxtest.error} {error.message}
@@ -202,7 +208,7 @@ class DOLStreams extends React.Component {
                 </Grid>
             );
         } else if (!isLoaded) {
-            return (
+            apiDataItem = (
                 <Grid item xs={12}>
                     <Typography gutterBottom variant="headline" component="h2">
                         {literals.ajaxtest.loading}...
@@ -213,62 +219,49 @@ class DOLStreams extends React.Component {
                 </Grid>
             );
         } else {
-            const api_state = apireturn.slice(0)[0].api_return;
-            const api_content = apireturn.slice(0)[0].api_data;
 
-            let apiDataItem = "";
-            const sqlgrn = LearningArchitecture().loach_structure.streams;
-
-            if (api_state === "success") {
-                if (api_content.length === 0) {
-                    //alert("N O D A T A, API OK " + api_content.length);
-                    apiDataItem = (
-                        <Grid item xs={12}>
-                            <Typography gutterBottom variant="headline" component="h2">
-                                No Records Found
-                            </Typography>
-                            {sqlgrn.map((sqlitem, index) => (
-                                <pre key={index}>
-                                    INSERT INTO public.streams(id, name, tags, slug, learning_targets, expertise)
-                                    VALUES ({index}, '{sqlitem.stream}', '{JSON.stringify(sqlitem.practices)}', '{sqlitem.cover}', '["{sqlitem.description}"]', 0);
-                                </pre>
-                            ))}
-                        </Grid>
-                    );
-                } else {
-                    //alert("S U C C E S S " + api_content.length);
-                    apiDataItem = api_content.map((apiitem, index) => (
-                        <GridInfoCard
-                            key={index}
-                            title={apiitem.name}
-                            cover={apiitem.slug}//"http://placeimg.com/640/360/tech"
-                            text={<ApiDataItem apiitem={apiitem} index={index} literals={literals} />}
-                            links={link_group_streams}
-                            xs={6} sm={4} md={4}
-                            fetchid={apiitem.id}
-                        />
-                    ))
-                }
+            if (apireturn_status === 200) {
+                const api_content = apireturn.slice(0);
+                const apiRenderItems = api_content.map((apiitem, index) => (
+                    <GridInfoCard
+                        key={index}
+                        title={apiitem.name}
+                        cover={apiitem.slug}//"http://placeimg.com/640/360/tech"
+                        text={<ApiDataItem apiitem={apiitem} index={index} literals={literals} />}
+                        links={link_group_streams}
+                        xs={12} sm={4} md={4}
+                        fetchid={apiitem.id}
+                    />
+                ));
+                apiDataItemBundle = (
+                    <React.Fragment>
+                        {apiRenderItems}
+                    </React.Fragment>
+                );
             } else {
-                apiDataItem = (
-                    <Grid item xs={12}>
-                        <Typography gutterBottom variant="headline" component="h2">
-                            API Failed
-                        </Typography>
-                    </Grid>
+                apiDataItemBundle = (
+                    <Typography variant="button" color="inherit">
+                        ...
+                    </Typography>
                 );
             }
-
-            //  {apiDataItem}
-            const returnFragment = (
+            apiDataItem = (
                 <React.Fragment>
-                    <Grid spacing={24} container>
-                        {apiDataItem}
-                    </Grid>
+                    {apiDataItemBundle}
                 </React.Fragment>
-            )
-            return returnFragment;
+            );
         }
+
+        //  {apiDataItem}
+        const returnFragment = (
+            <React.Fragment>
+                <Grid spacing={8} container>
+                    {apiDataItem}
+                </Grid>
+            </React.Fragment>
+        )
+        return returnFragment;
+
     }
 }
 

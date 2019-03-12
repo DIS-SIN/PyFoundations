@@ -72,15 +72,22 @@ class DOLEpisodes extends React.Component {
             learningpoints: [],
             post: "",
             response: "",
-            responseToPost: ""
+            responseToPost: "",
+            apireturn_status: null,
         };
     }
 
     // this fires when the component loads
 
     componentDidMount() {
-        fetch("/api/episode") // dol/api/gettest // /api/learning_point
-            .then(res => res.json())
+        fetch("/api/episode/") // dol/api/gettest // /api/learning_point
+            .then((res) => {
+                //console.log(res.status);
+                this.setState({
+                    apireturn_status: res.status
+                });
+                return res.json();
+            })
             .then(
                 (result) => {
                     //console.log(result);
@@ -105,7 +112,7 @@ class DOLEpisodes extends React.Component {
     }
 
     render() {
-        const { error, isLoaded, apireturn, post, response, responseToPost } = this.state;
+        const { error, isLoaded, apireturn, post, response, responseToPost, apireturn_status } = this.state;
         const { literals, location, classes } = this.props;
 
         const link_group_hero = [
@@ -115,8 +122,11 @@ class DOLEpisodes extends React.Component {
             { "href": "/view/episode", "title": literals.common.episode },
             { "href": "/profile/add/episode", "title": literals.common.addto + " " + literals.common.profile },
         ];
+
+        let apiDataItem = "";
+        let apiDataItemBundle = "";
         if (error) {
-            return (
+            apiDataItem = (
                 <Grid item xs={12}>
                     <Typography gutterBottom variant="headline" component="h2">
                         {literals.ajaxtest.error} {error.message}
@@ -124,7 +134,7 @@ class DOLEpisodes extends React.Component {
                 </Grid>
             );
         } else if (!isLoaded) {
-            return (
+            apiDataItem = (
                 <Grid item xs={12}>
                     <Typography gutterBottom variant="headline" component="h2">
                         {literals.ajaxtest.loading}...
@@ -135,59 +145,51 @@ class DOLEpisodes extends React.Component {
                 </Grid>
             );
         } else {
-            const api_state = apireturn.slice(0)[0].api_return;
-            const api_content = apireturn.slice(0)[0].api_data;
 
-            let apiDataItem = "";
-
-            if (api_state === "success") {
-                if (api_content.length === 0) {
-                    //alert("N O D A T A, API OK " + api_content.length);
-                    apiDataItem = (
-                        <Grid item xs={12}>
-                            <Typography gutterBottom variant="headline" component="h2">
-                                No Records Found
-                            </Typography>
-                        </Grid>
-                    );
-                } else {
-
-                    //alert("S U C C E S S " + api_content.length);
-                    apiDataItem = api_content.map((apiitem, index) => (
-                        <GridInfoCard
-                            key={index}
-                            title={apiitem.title}
-                            cover="http://placeimg.com/640/360/tech"
-                            text={<div><div><small>{apiitem.published_on}</small></div><ReactMarkdown source={apiitem.tagline} /></div>}
-                            links={link_group_episode}
-                            xs={12}
-                            sm={4}
-                            md={4}
-                            fetchid={apiitem.id}
-                        />
-
-                    ))
-                }
+            if (apireturn_status === 200) {
+                const api_content = apireturn.slice(0);
+                const apiRenderItems = api_content.map((apiitem, index) => (
+                    <GridInfoCard
+                        key={index}
+                        title={apiitem.title}
+                        cover="http://placeimg.com/640/360/tech"
+                        text={<div><div><small>{apiitem.published_on}</small></div><ReactMarkdown source={apiitem.tagline} /></div>}
+                        links={link_group_episode}
+                        xs={12}
+                        sm={4}
+                        md={4}
+                        fetchid={apiitem.id}
+                    />
+                ));
+                apiDataItemBundle = (
+                    <React.Fragment>
+                        {apiRenderItems}
+                    </React.Fragment>
+                );
             } else {
-                apiDataItem = (
-                    <Grid item xs={12}>
-                        <Typography gutterBottom variant="headline" component="h2">
-                            API Failed
-                        </Typography>
-                    </Grid>
+                apiDataItemBundle = (
+                    <Typography variant="button" color="inherit">
+                        ...
+                    </Typography>
                 );
             }
-
-            //  {apiDataItem}
-            const returnFragment = (
+            apiDataItem = (
                 <React.Fragment>
-                    <Grid spacing={24} alignItems="center" justify="center" container>
-                        {apiDataItem}
-                    </Grid>
+                    {apiDataItemBundle}
                 </React.Fragment>
-            )
-            return returnFragment;
+            );
         }
+
+        //  {apiDataItem}
+        const returnFragment = (
+            <React.Fragment>
+                <Grid spacing={8} container>
+                    {apiDataItem}
+                </Grid>
+            </React.Fragment>
+        )
+        return returnFragment;
+
     }
 }
 

@@ -27,5 +27,5 @@ npm-debug.log
 package-lock.json
 **/__pycache__/
 .pytest_cache/*
-code/__pycache__/*
-code/__pycache__/**
+**/instance/
+

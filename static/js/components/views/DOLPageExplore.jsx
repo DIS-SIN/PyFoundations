@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
+import ReactMarkdown from "react-markdown"
 import { withStyles, withTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
@@ -22,9 +22,9 @@ import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import DOLSignInDialog from "../organisms/DOLSignInDialog";
 import { LearningArchitecture } from '../atoms/LearningArchitecture'
 import HeroHeader from "../molecules/HeroHeader";
-import DOLStreams from "../organisms/DOLStreams";
-import DOLPractices from "../organisms/DOLPractices";
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import DOLExploreTree from "../organisms/DOLExploreTree";
+import GridInfoCard from "../molecules/GridInfoCard";
 
 const styles = theme => ({
     appBar: {
@@ -117,18 +117,21 @@ class DOLPageExplore extends React.Component {
     render() {
         const { literals, location, classes } = this.props;
         const link_group_hero = [
-            { "href": "/profile", "title": literals.common.learnerprofile },
+            //{ "href": "/profile", "title": literals.common.learnerprofile },
             { "href": "/explore/experiences", "title": literals.common.experiences },
             { "href": "/explore/episodes", "title": literals.common.episodes },
             { "href": "/explore/streams", "title": literals.common.streams },
             { "href": "/explore/practices", "title": literals.common.practices },
+            { "href": "/explore/learning_resources", "title": "Resources" },
         ];
-
+        const link_group_selector = [
+            { "href": "/explore", "title": literals.common.explore },
+        ];
         return (
             <React.Fragment>
                 <CssBaseline />
+                {/*signin={<Grid key="signindialog" item><DOLSignInDialog /></Grid>}*/}
                 <HeroHeader
-                    signin={<Grid key="signindialog" item><DOLSignInDialog /></Grid>}
                     title={literals.pages.explore.hero.title}
                     icon={<HelpOutlineIcon />}
                     text={<React.Fragment key="herotext">
@@ -138,8 +141,63 @@ class DOLPageExplore extends React.Component {
                 />
                 <div className={classes.bodyUnit}>
                     <div className={classes.bodyContent}>
+
+                        <DOLExploreTree />
+                        <Grid spacing={8} container>
+                            <GridInfoCard
+                                key="streamSelect"
+                                title={literals.common.streams}
+                                cover="https://placeimg.com/640/480/any"
+                                text={ReactHtmlParser(literals.pages.streams.hero.text)}
+                                links={link_group_selector}
+                                xs={12} sm={6} md={3}
+                                fetchid="streams"
+                            />
+                            <GridInfoCard
+                                key="practiceSelect"
+                                title={literals.common.practices}
+                                cover="https://placeimg.com/640/480/animals"
+                                text={ReactHtmlParser(literals.pages.practices.hero.text)}
+                                links={link_group_selector}
+                                xs={12} sm={6} md={3}
+                                fetchid="practices"
+                            />
+                            <GridInfoCard
+                                key="experienceSelect"
+                                title={literals.common.experiences}
+                                cover="https://placeimg.com/640/480/nature"
+                                text={ReactHtmlParser(literals.pages.experiences.hero.text)}
+                                links={link_group_selector}
+                                xs={12} sm={6} md={3}
+                                fetchid="experiences"
+                            />
+                            <GridInfoCard
+                                key="episodeSelect"
+                                title={literals.common.episodes}
+                                cover="https://placeimg.com/640/480/tech"
+                                text={ReactHtmlParser(literals.pages.episodes.hero.text)}
+                                links={link_group_selector}
+                                xs={12} sm={6} md={3}
+                                fetchid="episodes"
+                            />
+                            <GridInfoCard
+                                key="learningResourceSelect"
+                                title="Resources"
+                                cover="https://placeimg.com/640/480/tech"
+                                text={ReactHtmlParser("TBD")}
+                                links={link_group_selector}
+                                xs={12} sm={6} md={3}
+                                fetchid="learning_resources"
+                            />
+                        </Grid>
+
+
+                        {/** 
+                        <DOLEpisodes />
                         <DOLStreams />
                         <DOLPractices />
+                        <DOLExperiences />
+                        */}
                     </div>
                 </div>
             </React.Fragment>

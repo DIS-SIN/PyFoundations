@@ -7,7 +7,7 @@ import click
 import os
 #creating click command to quickly configure application at runtime 
 @click.command()
-@click.option('--mode', default='development', help = 'Mode to run application \n \
+@click.option('--mode', default='production', help = 'Mode to run application \n \
     recognized modes : \n \
         development \n \
         production')

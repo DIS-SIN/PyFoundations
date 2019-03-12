@@ -1,12 +1,14 @@
 from sqlalchemy.ext.declarative import DeclarativeMeta
 from flask import json
+from datetime import datetime
 
 
 class AlchemyEncoder(json.JSONEncoder):
     """
     global JSON converter for SQLAlchemy models
     """
-    def default(self, obj):  # pylint: disable=E0202
+
+    def default(self, obj, depth=2):  # pylint: disable=E0202
         """
         default encoder for SQLAlchemy models
 
@@ -22,22 +24,33 @@ class AlchemyEncoder(json.JSONEncoder):
         dict
             JSON serializable dictionary 
         """
-        #check if obj is instance of DeclarativeMeta
+        # check if obj is instance of DeclarativeMeta
         if isinstance(obj.__class__, DeclarativeMeta):
-            fields = {}
-            #loop over fields in DeclarativeMeta object
-            for field in [
-                x for x in dir(obj) if not x.startswith("_") and x != "metadata"
-            ]:
-                #get the field from the object
-                data = obj.__getattribute__(field)
+            # an SQLAlchemy class
+            json_data = {}
+            for f in obj.__json_fields__():
+                print(f)
                 try:
-                    # this will fail on non-encodable values, like other classes
-                    json.dumps(data)
-                    fields[field] = data
+                    # dumps used to validated data, throws exception if non-encodable
+                    data = obj.__getattribute__(f)
+                    if isinstance(data, datetime):
+                        json_data[f] = data.strftime("%Y-%M-%d %H:%M:%S")
+                    else:
+                        json.dumps(data)
+                        json_data[f] = data
                 except TypeError:
-                    fields[field] = None
-            # a json-encodable dict
-            return fields
-        #fall back to parent default if not
+                    json_data[f] = None
+            if hasattr(obj, "__json_relationships__") and depth > 0:
+                depth -= 1  # We've entered the relationships so decrement
+                # [[]]
+                for r in obj.__json_relationships__():
+                    arr = []
+                    # returns list of tags
+                    data = obj.__getattribute__(r[0])
+                    for dp in data:
+                        arr.append(self.default(dp, depth))
+                    json_data[r[0]] = arr
+            print(json_data)
+            return json_data
+        # fall back to parent default if not
         return super().default(obj)

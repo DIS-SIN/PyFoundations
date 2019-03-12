@@ -212,9 +212,9 @@ class DashboardExample extends Component {
                             <Grid item xs={12}>
                                 <div className={classes.topBar}>
                                     <div className={classes.block}>
-                                        <Typography variant="h6" gutterBottom>Dashboard</Typography>
+                                        <Typography variant="h6" gutterBottom>Learning Objectives Dashboard</Typography>
                                         <Typography variant="body2">
-                                            Adjust and play with our sliders.
+                                            Project your learning objectives.
                     </Typography>
                                     </div>
                                     <div>
@@ -228,14 +228,14 @@ class DashboardExample extends Component {
                                 <Paper className={classes.paper}>
                                     <div>
                                         <Typography variant="subtitle1" gutterBottom>
-                                            How much you want to transfer
+                                            How much you want to learn
                     </Typography>
                                         <Typography variant="body2">
-                                            Use slider to set the amount you need.
+                                            Use slider to set the amount you know.
                     </Typography>
                                         <div className={classes.blockCenter}>
                                             <Typography color='secondary' variant="h6" gutterBottom>
-                                                {numeral(amount).format()} USD
+                                                {numeral(amount).format()} Learning Points
                       </Typography>
                                         </div>
                                         <div>
@@ -250,12 +250,12 @@ class DashboardExample extends Component {
                                         <div className={classes.rangeLabel}>
                                             <div>
                                                 <Typography variant="subtitle2">
-                                                    15,000 USD
+                                                    15,000 Points
                         </Typography>
                                             </div>
                                             <div>
                                                 <Typography variant="subtitle2">
-                                                    150,000 USD
+                                                    150,000 Points
                         </Typography>
                                             </div>
                                         </div>
@@ -269,7 +269,7 @@ class DashboardExample extends Component {
                                             Period
                     </Typography>
                                         <Typography variant="body2">
-                                            A sample period
+                                            Learning Timeline
                     </Typography>
                                         <div className={classes.blockCenter}>
                                             <Typography color='secondary' variant="h6" gutterBottom>
@@ -344,28 +344,28 @@ class DashboardExample extends Component {
                                         <Loading loading={loading} />
                                         <div className={loading ? classes.loadingState : ''}>
                                             <Typography variant="subtitle1" gutterBottom>
-                                                Some details
+                                                Current Interests (Streams)
                       </Typography>
                                             <Typography variant="body2">
-                                                Details about the graph
+                                                With Streams Chosen
                       </Typography>
                                             <div style={{ marginTop: 14, marginBottom: 14 }}>
                                                 <div className={classes.inlining}>
                                                     <Avatar className={classes.loanAvatar}></Avatar>
                                                     <Typography className={classes.inlining} variant="subtitle2" gutterBottom>
-                                                        Type
+                                                        Learning
                           </Typography>
                                                     <Typography className={classes.inlining} color='secondary' variant="h6" gutterBottom>
-                                                        {numeral(monthlyPayment).format()} units
+                                                        {numeral(monthlyPayment).format()} Points
                           </Typography>
                                                 </div>
                                                 <div className={classes.inlining}>
                                                     <Avatar className={classes.interestAvatar}></Avatar>
                                                     <Typography className={classes.inlining} variant="subtitle2" gutterBottom>
-                                                        Othe type
+                                                        Experiences
                           </Typography>
                                                     <Typography className={classes.inlining} color="secondary" variant="h6" gutterBottom>
-                                                        {numeral(monthlyInterest).format()} units
+                                                        {numeral(monthlyInterest).format()} Points
                           </Typography>
                                                 </div>
                                             </div>
