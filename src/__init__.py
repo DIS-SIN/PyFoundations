@@ -47,8 +47,8 @@ instance_path = '../instance', **kwargs):
         Flask class instance configured with DOL application and API routes
     """
     app = Flask(__name__)
-    #csfr = CSRFProtect(app)
 
+    #csfr = CSRFProtect(app)
     # add configs for sqlalchemy
     if mode == "production":
         app.config.from_object("settings.production_settings")
@@ -95,6 +95,7 @@ instance_path = '../instance', **kwargs):
     else:
         os.mkdir(template_path)
         app.template_folder = template_path
+
     instance_path = os.path.abspath(instance_path)
     if os.path.isdir(instance_path):
         app.instance_path = instance_path
