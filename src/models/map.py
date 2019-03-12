@@ -14,11 +14,6 @@ def __create_map_table__(table_name, source, destination):
 
 
 _map_info_ = [
-    # Episodes Mappers
-    ["m_Episodes_Tags", "episodes", "tags"],
-    # ["m_Episodes_Likes", "episodes", "likes"],
-    # ["m_Episodes_Media", "episodes", "media"],
-    # ["m_Episodes_Images", "episodes", "media"],
     ["m_Episodes_Experiences", "episodes", "experiences"],
     # Experiences Mappers
     ["m_Experiences_Tags", "experiences", "tags"],

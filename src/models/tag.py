@@ -1,4 +1,5 @@
 from sqlalchemy import BigInteger, Column, Text, text, Sequence, DateTime
+from sqlalchemy.ext.associationproxy import association_proxy
 from .basemodel import Base
 
 
@@ -13,6 +14,6 @@ class Tag(Base.Model):
     )
     tag = Column(Text)
     added_on = Column(DateTime, server_default=text("now()"))
-
+    episodes = association_proxy("episodeTags", "episode")
     def __json_fields__(self):
         return ["id", "tag", "added_on"]
