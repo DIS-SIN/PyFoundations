@@ -1,7 +1,6 @@
 from .basemodel import Base
 from sqlalchemy import Column, BigInteger, Text, ForeignKey, DateTime, text
 from sqlalchemy.orm import relationship
-from .episode import Episode
 from datetime import timedelta
 timedelta()
 class Podcast(Base.Model):
@@ -17,18 +16,4 @@ class Podcast(Base.Model):
     addedOn = Column("added_on",DateTime, server_default = text("now()"))
     episodeId = Column("episode_id",BigInteger, ForeignKey("episodes.id"))
     episode = relationship("Episode", back_populates= "podcast", uselist= True)
-    def __json_fields(self):
-        return [
-            "id",
-            "title",
-            "link",
-            "durationString",
-            "durationInMilliseconds",
-            "artwork",
-            "addedOn",
-            "episodeId"
-        ]
-    def __json_relationships(self):
-        return [
-            ["episode", Episode]
-        ]
+    

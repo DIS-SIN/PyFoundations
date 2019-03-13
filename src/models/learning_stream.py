@@ -2,7 +2,7 @@ from sqlalchemy import BigInteger, Column, Text, text, Sequence, DateTime, Forei
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy.ext.associationproxy import association_proxy
 from .basemodel import Base
-from .tag import Tag
+
 class LearningStream(Base.Model):
     __tablename__ = "learning_streams"
 
@@ -18,12 +18,6 @@ class LearningStream(Base.Model):
     slug = Column(Text)
     tags = association_proxy("learningStreamTags", "tag")
     learningPractices = association_proxy("learningStreamLearningPractices", "learningPractice")
-
-    def __json_fields__(self):
-        return ["id", "name", "slug", "expertise"]
-
-    def __json_relationships__(self):
-        return [["tags", Tag]]
 
 class LearningStreamTags(Base.Model):
     __tablename__ = "learning_stream_tags"

@@ -29,36 +29,3 @@ class User(Base.Model):
     onboarded = Column(Boolean)
     role = Column(Text)
     language = Column(Text)
-    # learner_profile = Column(JSON)
-    learning_stream = relationship(
-        "LearningStream",
-        secondary="m_Users_LearningStreams",
-        backref=backref("m_Users_LearningStreams.source_id"),
-        lazy="subquery",
-    )
-    user_profile = relationship(
-        "UserProfile",
-        secondary="m_Users_UserProfiles",
-        backref=backref("m_Users_UserProfiles.source_id"),
-        lazy="subquery",
-    )
-
-    def __json_fields__(self):
-        return [
-            "id",
-            "user_name",
-            "email",
-            "password",
-            "is_admin",
-            "created_at",
-            "updated_at",
-            "onboarded",
-            "role",
-            "language",
-        ]
-
-    def __json_relationships__(self):
-        return [
-            ["learning_streams", LearningStream]
-        ]  # ["learner_profile", LearnerProfile],
-

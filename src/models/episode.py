@@ -2,10 +2,7 @@ from sqlalchemy import BigInteger, Column, Text, text, Sequence, DateTime, Forei
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy.ext.associationproxy import association_proxy
 from .basemodel import Base
-from .tag import Tag
-from .video import Video
-from .podcast import Podcast
-from .blog import Blog
+
 class Episode(Base.Model):
     """
     The episode class represents a row of the episodes table in the database. The purpose of this model is to record information on an episode.
@@ -44,27 +41,10 @@ class Episode(Base.Model):
     blog = relationship("Blog", back_populates="episode", uselist= False)
     podcast = relationship("Podcast", back_populates="episode", uselist = False)
     video = relationship("Video", back_populates = "episode", uselist = False)
-    def __json_fields__(self):
-        return [
-            "id",
-            "title",
-            "tagline",
-            "description",
-            "body",
-            "addedOn",
-            "slug",
-        ]
-
-    def __json_relationships__(self):
-        return [
-            ["tags", Tag, "episodeTags", "addedOn"],
-            ["blog", Blog],
-            ["podcast", Podcast],
-            ["video", Video]
-        ]
-
+    learningPoints = association_proxy('episodesLearningPoints', 'learningPoint')
+ 
 class EpisodeTag(Base.Model):
-    __tablename__ = "episodeTags"
+    __tablename__ = "episode_tags"
     #reason as to why the foreign keya have the primary_key=True
     #here: https://stackoverflow.com/questions/47995784/why-are-the-foreign-keys-in-a-sqlalchemy-association-object-marked-as-primary-ke
     #TLDR
@@ -93,4 +73,17 @@ class EpisodeTag(Base.Model):
         "Tag",
         backref =backref("episodeTags", cascade= "all, delete-orphan")
     )
+class EpisodeLearningPoint(Base.Model):
+    __tablename__ = 'episode_learning_point'
 
+    episodeId = Column("episode_id",BigInteger,
+       ForeignKey('episodes.id'),
+       primary_key = True
+       )
+    learningPointId = Column('learning_point_id', BigInteger, 
+    ForeignKey('learning_points.id'), 
+    primary_key = True )
+    episode = relationship('Episode', 
+    backref= backref('episodeLearningPoints', cascade = "all, delete-orphan"))
+    learningPoint = relationship('LearningPoint', 
+    backref = backref('episodeLearningPoints', cascade = "all, delete-orphan"))

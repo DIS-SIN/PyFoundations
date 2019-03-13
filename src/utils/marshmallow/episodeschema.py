@@ -1,7 +1,9 @@
 from .baseschema import ma
 from src.models.episode import Episode, EpisodeTag
-from marshmallow import fields, post_dump
-
+from marshmallow import fields, post_dump, post_load
+#TODO
+# finish EpisodeLearningPointSchema
+# ensure that refrences to tags do not include fields that point to other models 
 class EpisodeSchema(ma.ModelSchema):
     podcast = fields.Nested('PodcastSchema', many = True, exclude=('episode','episodeId'))
     blog = fields.Nested('BlogSchema', many = True, exclude=('episode','episodeId'))
@@ -17,9 +19,9 @@ class EpisodeSchema(ma.ModelSchema):
             data['tags'] = data['episodeTags']
             del data['episodeTags']
         return data
-
 class EpisodeTagsSchema(ma.ModelSchema):
     episode = fields.Nested(EpisodeSchema, exclude=('episodeTags',))
-    tag = fields.Nested('TagSchema', exclude=('episodeTags',))
+    tag = fields.Nested('TagSchema', exclude=('episodeTags','tags'))
     class Meta:
         model = EpisodeTag
+#class EpisodeLearningPoint

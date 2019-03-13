@@ -1,9 +1,10 @@
 from sqlalchemy import BigInteger, Column, Text, text, Sequence, DateTime, Boolean
 from sqlalchemy.orm import relationship, backref
 from .basemodel import Base
-from .tag import Tag
+
 class Experience(Base.Model):
     __tablename__ = "experiences"
+    
     id = Column(
         BigInteger,
         Sequence("experience_id_seq"),
@@ -18,22 +19,5 @@ class Experience(Base.Model):
     difficulty = Column(BigInteger)
     points = Column(BigInteger)
     depth = Column(BigInteger)
-    def __json_fields__(self):
-        return [
-            "id",
-            "user_name",
-            "verb",
-            "occurred_at",
-            "validated",
-            "time",
-            "value",
-            "difficulty",
-            "points",
-            "depth",
-        ]
-
-    def __json_relationships__(self):
-        return [
-            ["tags", Tag] 
-            ]
+    
 
