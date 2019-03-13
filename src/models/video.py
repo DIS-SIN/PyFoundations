@@ -1,30 +1,24 @@
 from .basemodel import Base
-from sqlalchemy import Column, BigInteger, Text, ForeignKey, DateTime, text
+from sqlalchemy import Column, BigInteger, Text,ForeignKey, DateTime, text
 from sqlalchemy.orm import relationship
 from .episode import Episode
-from datetime import timedelta
-timedelta()
-class Podcast(Base.Model):
-    __tablename__ = "podcasts"
+class Video(Base.Model):
+    __tablename__="videos"
     id = Column(BigInteger, primary_key = True)
     title = Column(Text)
-    link = Column(Text)
-    #timedelta will be used to construct the string
     durationString = Column("duration_string",Text)
-    durationInMilliseconds = Column("duration_in_milliseconds",BigInteger)
-    #link to artwork
-    artwork = Column(Text)
+    durationMilliseconds = Column("duration_milliseconds",BigInteger)
+    thumbnail = Column(Text)
     addedOn = Column("added_on",DateTime, server_default = text("now()"))
     episodeId = Column("episode_id",BigInteger, ForeignKey("episodes.id"))
-    episode = relationship("Episode", back_populates= "podcast", uselist= True)
+    episode = relationship("Episode", back_populates="video", uselist = False)
     def __json_fields(self):
         return [
             "id",
             "title",
-            "link",
             "durationString",
-            "durationInMilliseconds",
-            "artwork",
+            "durationMilliseconds",
+            "thumbnail",
             "addedOn",
             "episodeId"
         ]
@@ -32,3 +26,4 @@ class Podcast(Base.Model):
         return [
             ["episode", Episode]
         ]
+

@@ -1,3 +1,5 @@
+import json
+from sqlalchemy.ext.declarative import DeclarativeMeta
 def new_alchemy_encoder(revisit_self = False, fields_to_expand = []):
     _visited_objs = []
     class AlchemyEncoder(json.JSONEncoder):
@@ -11,7 +13,7 @@ def new_alchemy_encoder(revisit_self = False, fields_to_expand = []):
 
                 # go through each field in this SQLalchemy class
                 fields = {}
-                for field in [x for x in dir(obj) if not x.startswith('_') and x != 'metadata']:
+                for field in [x for x in dir(obj) if not x.startswith('_') and x != 'metadata' and not x.startswith('query')]:
                     val = obj.__getattribute__(field)
 
                     # is this field another SQLalchemy object, or a list of SQLalchemy objects?
@@ -21,11 +23,10 @@ def new_alchemy_encoder(revisit_self = False, fields_to_expand = []):
                             # not expanding this field: set it to None and continue
                             fields[field] = None
                             continue
-
+                        if isinstance()
                     fields[field] = val
                 # a json-encodable dict
                 return fields
-
             return json.JSONEncoder.default(self, obj)
 
     return AlchemyEncoder

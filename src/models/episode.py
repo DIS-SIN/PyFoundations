@@ -3,6 +3,9 @@ from sqlalchemy.orm import relationship, backref
 from sqlalchemy.ext.associationproxy import association_proxy
 from .basemodel import Base
 from .tag import Tag
+from .video import Video
+from .podcast import Podcast
+from .blog import Blog
 class Episode(Base.Model):
     """
     The episode class represents a row of the episodes table in the database. The purpose of this model is to record information on an episode.
@@ -26,9 +29,11 @@ class Episode(Base.Model):
     # this is verbose code
     title = Column(Text)
     tagline = Column(Text)
+    description = Column(Text)
     body = Column(Text)
     #this is non timezone specific consider using TIMESTAMPZ 
-    publishedOn = Column(DateTime, server_default=text("now()"))
+    addedOn = Column("added_on",DateTime, server_default=text("now()"))
+
     slug = Column(Text)
     #association_proxy is an sqlalchemy proxy 
     #it forwards a desired attribute from objects in a relationship
@@ -38,21 +43,24 @@ class Episode(Base.Model):
     tags = association_proxy("episodeTags", "tag")
     blog = relationship("Blog", back_populates="episode", uselist= False)
     podcast = relationship("Podcast", back_populates="episode", uselist = False)
+    video = relationship("Video", back_populates = "episode", uselist = False)
     def __json_fields__(self):
         return [
             "id",
             "title",
             "tagline",
-            "subTitle",
+            "description",
             "body",
-            "likes",
-            "publishedOn",
+            "addedOn",
             "slug",
         ]
 
     def __json_relationships__(self):
         return [
-            ["tags", Tag]
+            ["tags", Tag, "episodeTags", "addedOn"],
+            ["blog", Blog],
+            ["podcast", Podcast],
+            ["video", Video]
         ]
 
 class EpisodeTag(Base.Model):
@@ -62,15 +70,15 @@ class EpisodeTag(Base.Model):
     #TLDR
     #1 to ensure that the relationship is unique
     #2 to speed up joins by creating an index
-    episodeId = Column(BigInteger,
+    episodeId = Column("episode_id",BigInteger,
        ForeignKey('episodes.id'),
        primary_key = True
        )
-    tagId = Column(BigInteger,
+    tagId = Column("tag_id",BigInteger,
        ForeignKey('tags.id'),
        primary_key = True 
        )
-    addedOn = Column(DateTime, 
+    addedOn = Column("added_on",DateTime, 
        server_default = text("now()")
        )
     episode = relationship(

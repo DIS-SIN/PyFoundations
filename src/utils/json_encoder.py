@@ -44,13 +44,16 @@ class AlchemyEncoder(json.JSONEncoder):
                 depth -= 1  # We've entered the relationships so decrement
                 # [[]]
                 for r in obj.__json_relationships__():
-                    arr = []
+                    value = None
                     # returns list of tags
                     data = obj.__getattribute__(r[0])
-                    for dp in data:
-                        arr.append(self.default(dp, depth))
-                    json_data[r[0]] = arr
-            print(json_data)
+                    if isinstance(data, list):
+                        value = []
+                        for dp in data:
+                            value.append(self.default(dp, depth))
+                    elif isinstance(data, r[1]):
+                        value = self.default(data, depth)
+                    json_data[r[0]] = value
             return json_data
         # fall back to parent default if not
         return super().default(obj)
