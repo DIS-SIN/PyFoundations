@@ -42,6 +42,15 @@ class Episode(Base.Model):
     podcast = relationship("Podcast", back_populates="episode", uselist = False)
     video = relationship("Video", back_populates = "episode", uselist = False)
     learningPoints = association_proxy('episodesLearningPoints', 'learningPoint')
+    def __init__(self, keywords = None, tags = None, learningPoints = None, *args, **kwargs):
+        super(Episode, self).__init__(*args,**kwargs)
+        tags = tags or []
+        for tag in tags:
+            self.tags.append(tag)
+        learningPoints = learningPoints or []
+        for learningPoint in learningPoints:
+            self.learningPoints.append(learningPoint)
+        
  
 class EpisodeTag(Base.Model):
     __tablename__ = "episode_tags"

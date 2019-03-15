@@ -41,7 +41,9 @@ class EpisodeSchema(ma.ModelSchema):
         if data.get('episodeTags') is not None:
             data['tags'] = data['episodeTags']
             del data['episodeTags']
-        if data.get('')
+        if data.get('episodeLearningPoints') is not None:
+            data['learningPoints'] = data['episodeLearningPoints']
+            del data['episodeLearningPoints']
         return data
 class EpisodeTagsSchema(ma.ModelSchema):
     episode = fields.Nested(EpisodeSchema, 
