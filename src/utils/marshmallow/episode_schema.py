@@ -1,6 +1,6 @@
 from .baseschema import ma
 from src.models.episode import Episode, EpisodeTag, EpisodeLearningPoint
-from marshmallow import fields, post_dump, post_load
+from marshmallow import fields, post_dump, pre_load
 #TODO
 # finish EpisodeLearningPointSchema
 # ensure that refrences to tags do not include fields that point to other models
@@ -35,6 +35,10 @@ class EpisodeSchema(ma.ModelSchema):
             ma.URLFor("apiV1_0.episodes", slug="<slug>")
         ], "collection": ma.URLFor("apiV1_0.episodes")}
     )
+    @pre_load
+    def pre_process(self, data):
+        if data.get('language') is None:
+            raise ValueError('language must be provided')
     @post_dump
     def clean_up(self, data):
         #if episodeTag exists meaning it has not been excluded
@@ -49,7 +53,7 @@ class EpisodeTagsSchema(ma.ModelSchema):
     episode = fields.Nested(EpisodeSchema, 
      exclude=('episodeTags','tags',
       'episodeLearningPoints', 'learningPoints'))
-    tags = fields.Nested('TagSchema', 
+    tag = fields.Nested('TagSchema', 
      many = True, 
      exclude = ('learningPoints', 'learningPointTags', 
       'episodes', 'episodeTags', 

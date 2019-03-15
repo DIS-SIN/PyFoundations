@@ -25,13 +25,20 @@ class LearningPointSchema(ma.ModelSchema):
      dump_only = True)
     learningPracticeLearningPoints = fields.Nested('LearningPracticeLearningPointsSchema', 
      many = True, 
-     exclude = ('learningPoint', 'learningPointID'))
+     exclude = ('learningPoint', 'learningPointID'),
+     dump_only = True)
     learningPractices = fields.Nested('LearningPracticesSchema', 
      many = True, 
-     exclude= ('learningPractices', 'learningPracticesLearningPoints', 
-     'learningPracticeTags', 'tags'))
+     exclude= ('learningPoints', 'learningPracticesLearningPoints'))
     class Meta:
         model = LearningPoint
+    href = ma.Hyperlinks({
+        "self":[
+            ma.URLFor('apiV1_0.learning_points', id = '<id>'),
+            ma.URLFor('apiV1_0.learning_points', slug = '<slug>')
+        ],
+        "collection": ma.URLFor('apiV1_0.learning_points')
+    })
     @post_dump
     def cleanup(self, data):
         if data.get('episodeLearnigPoints') is not None:
@@ -44,9 +51,9 @@ class LearningPointSchema(ma.ModelSchema):
             data['learningPractices'] = data['learningPracticeLearningPoints']
             del data['learningPractices']
         return data
+    
 class LearningPointTagsSchema(ma.ModelSchema):
-    tags = fields.Nested('TagSchema', 
-     many = True, 
+    tag = fields.Nested('TagSchema',  
      exclude = ('learningPoints', 'learningPointTags', 
      'episodes', 'episodeTags', 
      'learningPracticesTags', 'learningPractices',

@@ -30,7 +30,7 @@ class Episode(Base.Model):
     body = Column(Text)
     #this is non timezone specific consider using TIMESTAMPZ 
     addedOn = Column("added_on",DateTime, server_default=text("now()"))
-
+    language = Column(Text)
     slug = Column(Text)
     #association_proxy is an sqlalchemy proxy 
     #it forwards a desired attribute from objects in a relationship
