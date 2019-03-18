@@ -1,19 +1,20 @@
 from flask_restful import Resource
 from flask import request
-from src.models.episode import Episode
-from ..utils.crud_wrapper import (
+from src.models.learning_practice import LearningPractice
+from apiV1_0.utils.crud_wrapper import (
     get_one_row,
     get_all_rows,
     create_one_row,
     update_one_row,
     delete_one_row,
 )
-from ..utils.api_helpers import construct_row_object
+from apiV1_0.utils.api_helpers import construct_row_object
 
-model = Episode
+model = LearningPractice
+json_object_name = "learning_practice"
 
 
-class EpisodeResource(Resource):
+class LearningPracticeResource(Resource):
     def get(self, id=None):
         if id is not None:
             return get_one_row(model, id)

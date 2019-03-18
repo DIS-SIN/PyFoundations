@@ -7,6 +7,7 @@ This file has the default configurations for a development environment.
 Production environments should make sure to use production_settings.py
 for more configuration options see http://flask.pocoo.org/docs/1.0/config/
 """
+import os
 ###############################FLASK SETTINGS#############################################
 # Used to switch the app environment between production and development
 ENV = "development"
@@ -38,4 +39,15 @@ SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://postgres:password@localhost:543
 
 # Flask-SQLAlchemy's event notification system see https://stackoverflow.com/questions/33738467/how-do-i-know-if-i-can-disable-sqlalchemy-track-modifications
 SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+#############################DOL SETTIINGS################################################
+# specialised configs specific to the DOL app
+
+#used to specify if the learning architecture should be loaded into the database when initialised
+INITIALISE_LEARNING_ARCHITECTURE = True
+
+#the absolute path of the learning architecture data file name 
+LEARNING_ARCHITECTURE_DATA_FILE_NAME = "learning_architecture.json"
+
+
 

@@ -1,0 +1,305 @@
+[
+	{
+		"learningPractices": [
+			{
+				"learningPractice": {
+					"name": "Agile",
+					"image": null,
+					"slug": "agile",
+					"learningPoints": [
+
+					],
+					"addedOn": "2019-03-18T02:20:55.637554+00:00",
+					"tags": [
+
+					],
+					"id": 1,
+					"description": null
+				},
+				"addedOn": "2019-03-18T02:20:55.648648+00:00"
+			},
+			{
+				"learningPractice": {
+					"name": "Collaboration",
+					"image": null,
+					"slug": "collaboration",
+					"learningPoints": [
+
+					],
+					"addedOn": "2019-03-18T02:20:55.648648+00:00",
+					"tags": [
+
+					],
+					"id": 2,
+					"description": null
+				},
+				"addedOn": "2019-03-18T02:20:55.664762+00:00"
+			},
+			{
+				"learningPractice": {
+					"name": "Empowering People",
+					"image": null,
+					"slug": "empowering_people",
+					"learningPoints": [
+
+					],
+					"addedOn": "2019-03-18T02:20:55.664762+00:00",
+					"tags": [
+
+					],
+					"id": 3,
+					"description": null
+				},
+				"addedOn": "2019-03-18T02:20:55.678109+00:00"
+			},
+			{
+				"learningPractice": {
+					"name": "Ethidcal & Responsible Use",
+					"image": null,
+					"slug": "ethidcal_responsible_use",
+					"learningPoints": [
+
+					],
+					"addedOn": "2019-03-18T02:20:55.678109+00:00",
+					"tags": [
+
+					],
+					"id": 4,
+					"description": null
+				},
+				"addedOn": "2019-03-18T02:20:55.687918+00:00"
+			},
+			{
+				"learningPractice": {
+					"name": "Inclusive Design",
+					"image": null,
+					"slug": "inclusive_design",
+					"learningPoints": [
+						{
+							"learningPoint": {
+								"difficulty": null,
+								"name": "Understainding differences between universal design, inclusive design, accessibility",
+								"image": null,
+								"slug": "understainding_differences_between_universal_design,_inclusive_design,_accessibility",
+								"addedOn": "2019-03-18T02:20:55.687918+00:00",
+								"id": 1,
+								"description": null
+							},
+							"addedOn": "2019-03-18T02:20:55.696516+00:00"
+						},
+						{
+							"learningPoint": {
+								"difficulty": null,
+								"name": "Designing for many rather than few",
+								"image": null,
+								"slug": "designing_for_many_rather_than_few",
+								"addedOn": "2019-03-18T02:20:55.696516+00:00",
+								"id": 2,
+								"description": null
+							},
+							"addedOn": "2019-03-18T02:20:55.701746+00:00"
+						},
+						{
+							"learningPoint": {
+								"difficulty": null,
+								"name": "Recognizing diversity and uniqueness",
+								"image": null,
+								"slug": "recognizing_diversity_and_uniqueness",
+								"addedOn": "2019-03-18T02:20:55.701746+00:00",
+								"id": 3,
+								"description": null
+							},
+							"addedOn": "2019-03-18T02:20:55.707367+00:00"
+						},
+						{
+							"learningPoint": {
+								"difficulty": null,
+								"name": "Recognizing interconnectedness of users and systems",
+								"image": null,
+								"slug": "recognizing_interconnectedness_of_users_and_systems",
+								"addedOn": "2019-03-18T02:20:55.707367+00:00",
+								"id": 4,
+								"description": null
+							},
+							"addedOn": "2019-03-18T02:20:55.711797+00:00"
+						},
+						{
+							"learningPoint": {
+								"difficulty": null,
+								"name": "Asking quesitons about who benefits and who doesn't",
+								"image": null,
+								"slug": "asking_quesitons_about_who_benefits_and_who_doesn't",
+								"addedOn": "2019-03-18T02:20:55.711797+00:00",
+								"id": 5,
+								"description": null
+							},
+							"addedOn": "2019-03-18T02:20:55.716064+00:00"
+						},
+						{
+							"learningPoint": {
+								"difficulty": null,
+								"name": "Challengeg your biases",
+								"image": null,
+								"slug": "challengeg_your_biases",
+								"addedOn": "2019-03-18T02:20:55.716064+00:00",
+								"id": 6,
+								"description": null
+							},
+							"addedOn": "2019-03-18T02:20:55.720642+00:00"
+						},
+						{
+							"learningPoint": {
+								"difficulty": null,
+								"name": "Considering broader beneficial impact",
+								"image": null,
+								"slug": "considering_broader_beneficial_impact",
+								"addedOn": "2019-03-18T02:20:55.720642+00:00",
+								"id": 7,
+								"description": null
+							},
+							"addedOn": "2019-03-18T02:20:55.725472+00:00"
+						},
+						{
+							"learningPoint": {
+								"difficulty": null,
+								"name": "Creating inclusive processes and tools",
+								"image": null,
+								"slug": "creating_inclusive_processes_and_tools",
+								"addedOn": "2019-03-18T02:20:55.725472+00:00",
+								"id": 8,
+								"description": null
+							},
+							"addedOn": "2019-03-18T02:20:55.729926+00:00"
+						},
+						{
+							"learningPoint": {
+								"difficulty": null,
+								"name": "Inclusive language",
+								"image": null,
+								"slug": "inclusive_language",
+								"addedOn": "2019-03-18T02:20:55.729926+00:00",
+								"id": 9,
+								"description": null
+							},
+							"addedOn": "2019-03-18T02:20:55.734706+00:00"
+						},
+						{
+							"learningPoint": {
+								"difficulty": null,
+								"name": "Understanding accessibility",
+								"image": null,
+								"slug": "understanding_accessibility",
+								"addedOn": "2019-03-18T02:20:55.734706+00:00",
+								"id": 10,
+								"description": null
+							},
+							"addedOn": "2019-03-18T02:20:55.739282+00:00"
+						},
+						{
+							"learningPoint": {
+								"difficulty": null,
+								"name": "Implementing accessibility",
+								"image": null,
+								"slug": "implementing_accessibility",
+								"addedOn": "2019-03-18T02:20:55.739282+00:00",
+								"id": 11,
+								"description": null
+							},
+							"addedOn": "2019-03-18T02:20:55.743922+00:00"
+						}
+					],
+					"addedOn": "2019-03-18T02:20:55.696516+00:00",
+					"tags": [
+
+					],
+					"id": 5,
+					"description": null
+				},
+				"addedOn": "2019-03-18T02:20:55.748026+00:00"
+			},
+			{
+				"learningPractice": {
+					"name": "Open Standards & Solutions",
+					"image": null,
+					"slug": "open_standards_solutions",
+					"learningPoints": [
+
+					],
+					"addedOn": "2019-03-18T02:20:55.748026+00:00",
+					"tags": [
+
+					],
+					"id": 6,
+					"description": null
+				},
+				"addedOn": "2019-03-18T02:20:55.752531+00:00"
+			},
+			{
+				"learningPractice": {
+					"name": "Open By Default",
+					"image": null,
+					"slug": "open_by_default",
+					"learningPoints": [
+
+					],
+					"addedOn": "2019-03-18T02:20:55.752531+00:00",
+					"tags": [
+
+					],
+					"id": 7,
+					"description": null
+				},
+				"addedOn": "2019-03-18T02:20:55.756926+00:00"
+			},
+			{
+				"learningPractice": {
+					"name": "Security & Privacy",
+					"image": null,
+					"slug": "security_privacy",
+					"learningPoints": [
+
+					],
+					"addedOn": "2019-03-18T02:20:55.756926+00:00",
+					"tags": [
+
+					],
+					"id": 8,
+					"description": null
+				},
+				"addedOn": "2019-03-18T02:20:55.761097+00:00"
+			},
+			{
+				"learningPractice": {
+					"name": "User-Centric Design",
+					"image": null,
+					"slug": "user-centric_design",
+					"learningPoints": [
+
+					],
+					"addedOn": "2019-03-18T02:20:55.761097+00:00",
+					"tags": [
+
+					],
+					"id": 9,
+					"description": null
+				},
+				"addedOn": "2019-03-18T02:20:55.765459+00:00"
+			}
+		],
+		"name": "Digital Government",
+		"image": "/static/images/covers/digital_government.png",
+		"slug": "digital_government",
+		"learningStreamTags": [
+
+		],
+		"addedOn": "2019-03-18T02:20:55.648648+00:00",
+		"tags": [
+
+		],
+		"id": 1,
+		"description": "The use of digital technologies, as an integrated part of governments\u2019 modernisation strategies, to create public value. Relies on a digital government ecosystem comprised of government actors, non-governmental organisations, businesses, citizens\u2019 associations and individuals which supports the production of and access to data, services and content through interactions with the government."
+	},
+	{
+
+	}
+]

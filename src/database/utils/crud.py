@@ -48,9 +48,9 @@ def create_row(model):
     try:
         session.commit()
         session.flush()
+        
     except Exception as e:
         # TODO Logging.log.exception()
-        print(repr(e))
         session.rollback()
         session.flush()
         raise e

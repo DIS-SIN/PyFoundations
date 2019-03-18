@@ -1,13 +1,4 @@
 from firebase_admin import auth
-from src.utils.json_decoder import AlchemyDecoder
-
-
-def construct_row_object(model, json, key_of_columns=None):
-    if not key_of_columns is None:
-        json = json[key_of_columns]
-    json_de = AlchemyDecoder()
-    new_row = json_de.default(json, model)
-    return new_row
 
 
 def access_restricted_content(req):
@@ -27,7 +18,7 @@ def access_restricted_content(req):
         return {"error": "Session has been revoked"}
 
 
-def create_user_if_not_exists(cookie_dict):
+"""def create_user_if_not_exists(cookie_dict):
     uid = cookie_dict["sub"]
     user = auth.get_user(uid)
     # waiting to see which model to put in
@@ -39,6 +30,7 @@ def create_user_if_not_exists(cookie_dict):
         "phoneNumber": user.phone_number,
         "provider": user.provider_id,
     }
+"""    
 
 
 def download_photo(photo_url, user_info):

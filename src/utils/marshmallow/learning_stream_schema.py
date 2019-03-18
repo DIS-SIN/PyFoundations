@@ -3,7 +3,7 @@ from src.models.learning_stream import LearningStream, LearningStreamLearningPra
 from marshmallow import fields, post_dump
 
 class LearningStreamSchema(ma.ModelSchema):
-    learningStreamTags = fields.Nested('LearningStreamTags',
+    learningStreamTags = fields.Nested('LearningStreamTagsSchema',
         many = True,
         exclude = ('learningStream', 'learningStreamId'),
         dump_only = True)
@@ -23,7 +23,7 @@ class LearningStreamSchema(ma.ModelSchema):
         exclude = ('learningStreamLearningPractices' , 'LearningStreams'))
     class Meta:
         model = LearningStream
-    href = ma.Hyperlinks(
+    """href = ma.Hyperlinks(
         {
             'self': [
                 ma.URLFor('apiV1_0.learning_streams', id = '<id>'),
@@ -31,7 +31,16 @@ class LearningStreamSchema(ma.ModelSchema):
             ],
             'collection': ma.URLFor('apiv1_0.learning_streams')
         }
-    )
+    )"""
+    @post_dump
+    def clean_up(self,data):
+        if data.get('learningStreamLearningPractices') is not None:
+            data['learningPractices'] = data['learningStreamLearningPractices']
+            del data['learningStreamLearningPractices']
+        if data.get('learningStreamTags'):
+            data['tags'] = data['learningStreamTags']
+            del data['learningStreamTags']
+
 class LearningStreamTagsSchema(ma.ModelSchema):
     learningStream = fields.Nested('LearningStreamSchema',
         exclude = ('learningStreamTags', 'tags',

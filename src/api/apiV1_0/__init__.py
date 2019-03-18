@@ -6,6 +6,6 @@ def register_routes(app, latest=False):
         api = Api(api_bp, prefix= '/api' )
     else:
         api = Api(api_bp, prefix='/api/V1.0')
-    #add resources
+    
    
 

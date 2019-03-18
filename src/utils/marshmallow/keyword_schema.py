@@ -1,4 +1,4 @@
-from .basechema import ma
+from .baseschema import ma
 from src.models.keyword import Keyword
 from marshmallow import fields, post_dump
 
@@ -7,7 +7,7 @@ class KeywordSchema(ma.ModelSchema):
     blogs = fields.Nested('BlogSchema', many = True, exclude = ('blogKeywords', 'keywords'))
     class Meta:
         model = Keyword
-    href = ma.Hyperlinks(
+    """href = ma.Hyperlinks(
         {
             "self": [
                 ma.URLFor("apiV1_0.keywords", id="<id>"),
@@ -15,4 +15,4 @@ class KeywordSchema(ma.ModelSchema):
             ],
             "collection" : ma.URLFor("apiV1_0.keywords")
         }
-    )
+    )"""

@@ -1,5 +1,4 @@
 from flask import jsonify, request
-from src.utils.json_encoder import AlchemyEncoder
 from sqlalchemy.orm.exc import NoResultFound, MultipleResultsFound
 from src.database.utils.crud import (
     create_row,
@@ -12,10 +11,7 @@ from src.database.utils.crud import (
     delete_rows,
 )
 
-json_en = AlchemyEncoder()
-
-
-def get_one_row(model, id):
+def get_one_row_by_id(model, id, dataConverter):
     """Return JSON representation of a row in a table
     first retreive mapped model from the db
     if the return size is 0, or more than 1, return no data with a fail
@@ -38,14 +34,46 @@ def get_one_row(model, id):
     """
     try:
         db_return = read_row_by_id(model, id).one()
-        return json_en.default(db_return), 200
+        return  dataConverter.load(db_return), 200
+    except NoResultFound as e:
+        return {"error": "no results found"}, 400
+    except Exception as e:
+        return {"error": repr(e)}, 500
+def get_one_row_by_slug(model, slug, dataConverter):
+    """Return JSON representation of a row in a table
+    first retreive mapped model from the db
+    if the return size is 0, or more than 1, return no data with a fail
+    if the return size is 1, continue
+        using an implimentation of flask.json.JSONEncoder, process model into json
+    Parameters
+    ----------
+    model
+        sqlalchemy.ext.declarative.api.DeclativeMeta
+        class that inherits the sqlalchemy.ext.declarative.Base, this is the class that is mapped to the data
+    slug
+       str
+       the slug of the row selected
+    Returns
+    -------
+    dict
+       JSON serializable dict
+    int
+       HTTP status code of response
+    """
+    try:
+        db_return = read_rows(model,[{
+            'slug':{
+                'comparitor': '==',
+                'data': slug
+            }
+        }]).one()
+        return  dataConverter.load(db_return), 200
     except NoResultFound as e:
         return {"error": "no results found"}, 400
     except Exception as e:
         return {"error": repr(e)}, 500
 
-
-def get_all_rows(model, filters=None):
+def get_all_rows(model, dataConverter, filters=None):
     """Return JSON representation of all rows in a table 
 
     first retreive all models from the db
@@ -75,13 +103,13 @@ def get_all_rows(model, filters=None):
         db_return = read_rows(model, filters)
         return_obj = []
         for row in db_return:
-            return_obj.append(json_en.default(row))
+            return_obj.append(dataConverter.load(row))
         return return_obj, 200
     except Exception as e:
         return {"error": repr(e)}, 500
 
 
-def update_one_row(model, id, updates):
+def update_one_row_by_id(model, id, updates):
     try:
         update_row_by_id(model, id, updates)
     except ValueError as e:
@@ -90,7 +118,20 @@ def update_one_row(model, id, updates):
         return {"error": repr(e)}, 400
     except Exception as e:
         return {"error": repr(e)}, 500
-
+def update_one_row_by_slug(model, slug, updates):
+    try:
+        update_rows(model,updates,[{
+            'slug': {
+                'comparitor': '==',
+                'data': slug
+            }
+        }])
+    except ValueError as e:
+        return {"error": repr(e)}, 400
+    except NoResultFound as e:
+        return {"error": repr(e)}, 400
+    except Exception as e:
+        return {"error": repr(e)}, 500
 
 def update_selected_rows(model, updates, filters=None):
     try:
@@ -115,7 +156,7 @@ def create_multiple_rows(*models):
         return {"error": repr(e)}, 500
 
 
-def delete_one_row(model, id):
+def delete_one_row_by_id(model, id):
     try:
         delete_row_by_id(model, id)
         return {}, 200
@@ -124,8 +165,21 @@ def delete_one_row(model, id):
     except Exception as e:
         return {"error": repr(e)}, 500
 
+def delete_one_row_by_slug(model, slug):
+    try:
+        delete_rows(model, [{
+            'slug': {
+                'comparitor': '==',
+                'data': slug
+            }
+        }])
+        return {}, 200
+    except NoResultFound as e:
+        return {"error": repr(e)}, 400
+    except Exception as e:
+        return {"error": repr(e)}, 500
 
-def delete_selected_row(model, filters=None):
+def delete_selected_rows(model, filters=None):
     try:
         delete_rows(model, filters)
         return {}, 200

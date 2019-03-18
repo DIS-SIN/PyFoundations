@@ -1,6 +1,8 @@
 from .baseschema import ma
 from src.models.episode import Episode, EpisodeTag, EpisodeLearningPoint
 from marshmallow import fields, post_dump, pre_load
+from src.database.utils.crud import read_rows
+from src.models.tag import Tag
 #TODO
 # finish EpisodeLearningPointSchema
 # ensure that refrences to tags do not include fields that point to other models
@@ -29,16 +31,12 @@ class EpisodeSchema(ma.ModelSchema):
       'learningPracticeLearningPoint', 'learningPractice'))
     class Meta:
         model = Episode
-    href = ma.Hyperlinks(
+    """href = ma.Hyperlinks(
         {"self": [
             ma.URLFor("apiV1_0.episodes", id="<id>"),
             ma.URLFor("apiV1_0.episodes", slug="<slug>")
         ], "collection": ma.URLFor("apiV1_0.episodes")}
-    )
-    @pre_load
-    def pre_process(self, data):
-        if data.get('language') is None:
-            raise ValueError('language must be provided')
+    )"""
     @post_dump
     def clean_up(self, data):
         #if episodeTag exists meaning it has not been excluded

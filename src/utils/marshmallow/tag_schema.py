@@ -35,7 +35,7 @@ class TagSchema(ma.ModelSchema):
         ))
     class Meta:
         model = Tag
-    href = ma.Hyperlinks(
+    """href = ma.Hyperlinks(
         {
             'self': [
                 ma.URLFor('apiv1_0.tags', id = '<id>'),
@@ -43,7 +43,7 @@ class TagSchema(ma.ModelSchema):
             ],
             'collection': ma.URLFor('apiV1_0.tags')
         }
-    )
+    )"""
     @post_dump
     def clean_up(self, data):
         if data.get('episodeTags') is not None:
@@ -58,7 +58,20 @@ class TagSchema(ma.ModelSchema):
         if data.get('learningStreamTags') is not None:
             data['learningStreams'] = data['learningStreamTags']
         return data
-    
+    @post_load
+    def check_if_exists(self, data):
+        res = read_rows(Tag, [
+            {
+                'tagtext':{
+                    'comparitor': '==',
+                    'data': data['tagtext']
+                }
+            }
+        ]).one_or_none()
+        if res is not None:
+            return res
+        return data
+
         
 
 

@@ -2,7 +2,8 @@ from sqlalchemy import BigInteger, Column, Text, text, Sequence, DateTime, Forei
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy.ext.associationproxy import association_proxy
 from .basemodel import Base
-
+from .tag import Tag
+from .learning_point import LearningPoint
 class Episode(Base.Model):
     """
     The episode class represents a row of the episodes table in the database. The purpose of this model is to record information on an episode.
@@ -38,9 +39,9 @@ class Episode(Base.Model):
     #associationproxy also masks the association table by managing the updating of the different relationships
     #thus when I add a tag to the tags relationship the episodeTags relationship updates
     tags = association_proxy("episodeTags", "tag")
-    blog = relationship("Blog", back_populates="episode", uselist= False)
-    podcast = relationship("Podcast", back_populates="episode", uselist = False)
-    video = relationship("Video", back_populates = "episode", uselist = False)
+    blog = relationship("Blog", backref=backref("episode", uselist = False), uselist= False)
+    podcast = relationship("Podcast", backref=backref("episode", uselist = False), uselist = False)
+    video = relationship("Video", backref=backref("episode", uselist = False), uselist = False)
     learningPoints = association_proxy('episodesLearningPoints', 'learningPoint')
     def __init__(self, keywords = None, tags = None, learningPoints = None, *args, **kwargs):
         super(Episode, self).__init__(*args,**kwargs)
@@ -49,8 +50,7 @@ class Episode(Base.Model):
             self.tags.append(tag)
         learningPoints = learningPoints or []
         for learningPoint in learningPoints:
-            self.learningPoints.append(learningPoint)
-        
+            self.learningPoints.append(learningPoint) 
  
 class EpisodeTag(Base.Model):
     __tablename__ = "episode_tags"
@@ -76,12 +76,25 @@ class EpisodeTag(Base.Model):
         #it specifies that an EpisodeTag object exists
         #so long as the parent does
         #doc-url: https://docs.sqlalchemy.org/en/latest/orm/cascades.html
-        backref=backref("episodeTags", cascade= "all, delete-orphan")
+        backref= backref("episodeTags", 
+            cascade= "all, delete-orphan"),
+        single_parent= True
     )
     tag = relationship(
         "Tag",
-        backref =backref("episodeTags", cascade= "all, delete-orphan")
+        backref = backref("episodeTags", 
+            cascade= "all, delete-orphan"),
+        single_parent= True
     )
+    def __init__(self, tag = None, episode = None, *args, **kwargs):
+        super(EpisodeTag, self).__init(*args, **kwargs)
+        if isinstance(tag, Tag):
+            self.tag = Tag
+            self.episode = episode
+        elif isinstance(tag, Episode):
+            self.tag = episode
+            self.episode = tag
+    
 class EpisodeLearningPoint(Base.Model):
     __tablename__ = 'episode_learning_point'
 
@@ -93,6 +106,20 @@ class EpisodeLearningPoint(Base.Model):
     ForeignKey('learning_points.id'), 
     primary_key = True )
     episode = relationship('Episode', 
-    backref= backref('episodeLearningPoints', cascade = "all, delete-orphan"))
+        backref= backref('episodeLearningPoints', 
+            cascade = "all, delete-orphan"),
+        single_parent= True)
     learningPoint = relationship('LearningPoint', 
-    backref = backref('episodeLearningPoints', cascade = "all, delete-orphan"))
+        backref = backref('episodeLearningPoints', 
+            cascade = "all, delete-orphan"),
+        single_parent= True)
+    def __init__(self, learningPoint = None, episode = None, *args, **kwargs):
+        super(EpisodeLearningPoint, self).__init(*args, **kwargs)
+        if isinstance(learningPoint, LearningPoint):
+            self.learningPoint = learningPoint
+            self.episode = episode
+        #This is a hack because SQLAlchemy didn't realise you would want two bidirectional relationships with association tables
+        elif isinstance(learningPoint, Episode):
+            self.episode = learningPoint
+            self.learningPoint = episode
+        
