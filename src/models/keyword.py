@@ -6,7 +6,7 @@ from sqlalchemy.ext.associationproxy import association_proxy
 class Keyword(Base.Model):
     __tablename__ = "keywords"
     id = Column(BigInteger, primary_key = True)
-    keyword = Column(Text)
+    keyword = Column(Text, unique = True)
     addedOn = Column("added_on", DateTime, server_default = text("now()"))
     blogs = association_proxy("blogKeywords", "episode")
     def __init__(self,keyword = None, *args,**kwargs):

@@ -34,7 +34,8 @@ def get_one_row_by_id(model, id, dataConverter):
     """
     try:
         db_return = read_row_by_id(model, id).one()
-        return  dataConverter.load(db_return), 200
+        dataConverter = dataConverter()
+        return  dataConverter.dump(db_return), 200
     except NoResultFound as e:
         return {"error": "no results found"}, 400
     except Exception as e:
@@ -67,7 +68,8 @@ def get_one_row_by_slug(model, slug, dataConverter):
                 'data': slug
             }
         }]).one()
-        return  dataConverter.load(db_return), 200
+        dataConverter = dataConverter()
+        return  dataConverter.dump(db_return), 200
     except NoResultFound as e:
         return {"error": "no results found"}, 400
     except Exception as e:
@@ -102,8 +104,9 @@ def get_all_rows(model, dataConverter, filters=None):
         # good candidate for parrallel processing as IO bound
         db_return = read_rows(model, filters)
         return_obj = []
+        dataConverter = dataConverter()
         for row in db_return:
-            return_obj.append(dataConverter.load(row))
+            return_obj.append(dataConverter.dump(row))
         return return_obj, 200
     except Exception as e:
         return {"error": repr(e)}, 500

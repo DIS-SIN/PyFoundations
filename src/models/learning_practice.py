@@ -43,12 +43,10 @@ class LearningPracticeTags(Base.Model):
     addedOn = Column("added_on",DateTime, server_default = text("now()"))
     learningPractice = relationship("LearningPractice", 
         backref= backref("learningPracticeTags", 
-            cascade= "all, delete-orphan"), 
-        single_parent= True)
+            cascade= "all, delete-orphan"))
     tag = relationship("Tag", 
         backref = backref("learningPracticeTags", 
-            cascade= "all, delete-orphan"),
-        single_parent= True)
+            cascade= "all, delete-orphan"))
     def __init__(self, tag = None, learningPractice = None, *args, **kwargs):
         super(LearningPracticeTags,self).__init__(*args,**kwargs)
         if isinstance(tag, Tag):

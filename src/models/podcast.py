@@ -7,6 +7,7 @@ timedelta()
 class Podcast(Base.Model):
     __tablename__ = "podcasts"
     id = Column(BigInteger, primary_key = True)
+    slug = Column(Text)
     title = Column(Text)
     link = Column(Text)
     #timedelta will be used to construct the string

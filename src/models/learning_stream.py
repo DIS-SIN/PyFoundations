@@ -39,12 +39,10 @@ class LearningStreamTags(Base.Model):
     addedOn = Column("added_on",DateTime, server_default = text("now()"))
     learningStream = relationship("LearningStream", 
         backref= backref("learningStreamTags", 
-            cascade= "all, delete-orphan"),
-        single_parent= True)
+            cascade= "all, delete-orphan"))
     tag = relationship("Tag", 
         backref = backref("learningStreamTags", 
-            cascade= "all, delete-orphan"),
-        single_parent= True)
+            cascade= "all, delete-orphan"))
     def __init__(self, tag = None, learningStream = None, *args,**kwargs):
         super(LearningStreamTags, self).__init__(*args,**kwargs)
         if isinstance(tag, Tag):
@@ -60,12 +58,10 @@ class LearningStreamLearningPractices(Base.Model):
     addedOn = Column("added_on",DateTime, server_default = text("now()"))
     learningStream = relationship("LearningStream", 
         backref= backref("learningStreamLearningPractices", 
-            cascade= "all, delete-orphan"),
-        single_parent= True)
+            cascade= "all, delete-orphan"))
     learningPractice = relationship("LearningPractice", 
         backref = backref("learningStreamLearningPractices", 
-            cascade = "all, delete-orphan"),
-        single_parent= True)
+            cascade = "all, delete-orphan"))
     def __init__(self,learningPractice = None, learningStream = None, *args,**kwargs):
         super(LearningStreamLearningPractices, self).__init__(*args,**kwargs)
         if isinstance(learningPractice, LearningPractice):

@@ -9,7 +9,7 @@ class LearningPoint(Base.Model):
     id = Column(
         BigInteger,
         Sequence("learning_point_id_seq"),
-        primary_key=True,
+        primary_key=True
     )
     name = Column(Text)
     description = Column(Text)
@@ -42,12 +42,10 @@ class LearningPointTags(Base.Model):
     addedOn = Column("added_on", DateTime, server_default = text("now()"))
     tag = relationship("Tag", 
         backref = backref("learningPointTags", 
-            cascade= "all, delete-orphan"),
-        single_parent= True)
+            cascade= "all, delete-orphan"))
     learningPoint = relationship("LearningPoint", 
         backref= backref("learningPointTags", 
-            cascade = "all, delete-orphan"),
-        single_parent= True)
+            cascade = "all, delete-orphan"))
     def __init__(self, tag = None, learningPoint = None, *args, **kwargs):
         super(LearningPointTags, self).__init__(*args, **kwargs)
         if isinstance(tag, Tag):

@@ -5,6 +5,7 @@ class Video(Base.Model):
     __tablename__="videos"
     id = Column(BigInteger, primary_key = True)
     title = Column(Text)
+    slug = Column(Text)
     durationString = Column("duration_string",Text)
     durationMilliseconds = Column("duration_milliseconds",BigInteger)
     thumbnail = Column(Text)

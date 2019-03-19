@@ -115,9 +115,8 @@ instance_path = '../instance', **kwargs):
     # registering dol blueprint
     app.register_blueprint(dol.bp)
     # creating flask-restful Api class instance
-    api = Api(app)
     # registering api routes
-    # register_routes(api, True)
+    register_routes(app, True)
 
     @app.route("/")
     def index():

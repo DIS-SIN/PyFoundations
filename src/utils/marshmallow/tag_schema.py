@@ -1,6 +1,6 @@
 from .baseschema import ma
 from src.models.tag import Tag
-from marshmallow import fields, post_dump, post_load
+from marshmallow import fields, post_dump, pre_load
 from src.database.utils.crud import read_rows
 class TagSchema(ma.ModelSchema):
     episodeTags = fields.Nested('EpisodeTagsSchema', 
@@ -44,6 +44,28 @@ class TagSchema(ma.ModelSchema):
             'collection': ma.URLFor('apiV1_0.tags')
         }
     )"""
+    @pre_load
+    def check_data(self, data):
+        if data.get('tagtext') is None:
+            if data.get('id') is None:
+                raise ValueError('must provide tagtext or id')
+            for key in data:
+                if key != 'id':
+                    del data[key]
+        else:
+            res = read_rows(Tag, filters= [
+                {
+                'tagtext': {
+                    'comparitor': '==',
+                    'data': data['tagtext']}
+                }
+            ]
+            ).one_or_none()
+            if res is not None:
+                data['id'] = res.id
+                for key in data:
+                    if key != 'id':
+                        del data[key]
     @post_dump
     def clean_up(self, data):
         if data.get('episodeTags') is not None:
@@ -58,19 +80,7 @@ class TagSchema(ma.ModelSchema):
         if data.get('learningStreamTags') is not None:
             data['learningStreams'] = data['learningStreamTags']
         return data
-    @post_load
-    def check_if_exists(self, data):
-        res = read_rows(Tag, [
-            {
-                'tagtext':{
-                    'comparitor': '==',
-                    'data': data['tagtext']
-                }
-            }
-        ]).one_or_none()
-        if res is not None:
-            return res
-        return data
+    
 
         
 

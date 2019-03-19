@@ -22,6 +22,7 @@ class Blog(Base.Model):
     # if this is the case I will not explicilty specify the sequence moving forward 
     id = Column(BigInteger, primary_key = True)
     title = Column(Text)
+    slug = Column(Text)
     body = Column(Text)
     language = Column(Text)
     numberOfWords = Column("number_of_words",BigInteger)
@@ -33,7 +34,6 @@ class Blog(Base.Model):
        server_default = text("now()")
        )
     episodeId = Column(BigInteger, ForeignKey("episodes.id"))
-
     keywords = association_proxy("blogKeywords", "keyword")
     def __init__(self,language = None, keywords = None, *args,**kwargs):
         super(Blog , self).__init__(*args,**kwargs)
@@ -42,6 +42,7 @@ class Blog(Base.Model):
         french_syns = ['fr', 'frn','french']
         #check if this blog has keywords if not calculate them
         if not bool(keywords):
+            print(keywords)
             from src.database.utils.crud import read_rows
             from .keyword import Keyword
             word_tokenizer = TweetTokenizer()
@@ -50,6 +51,7 @@ class Blog(Base.Model):
             #each cell is a word 
             #words are only included if they are not punctuation or \
             #special characters
+            #generate_slug
             data = [[word.lower() for word in word_tokenizer.tokenize(sentence) \
                     if not word in punctuations and re.match("(\\d|\\W)+", word) is None]\
                     for sentence in sent_tokenize(self.body)]
@@ -154,12 +156,10 @@ class BlogKeyword(Base.Model):
     keywordId = Column("keyword_id", BigInteger, ForeignKey("keywords.id"), primary_key = True)
     blog = relationship("Blog", 
         backref = backref("blogKeywords", 
-            cascade = "all, delete-orphan"),
-        single_parent= True)
+            cascade = "all, delete-orphan"))
     keyword = relationship(Keyword,
         backref = backref("blogKeywords",
-            cascade = "all, delete-orphan"),
-        single_parent= True)
+            cascade = "all, delete-orphan"))
     frequency = Column(Integer)
     addedOn = Column("added_on", DateTime, server_default = text("now()"))
     def __init__(self, keyword = None, episode = None, frequency = None, *args, **kwargs):
