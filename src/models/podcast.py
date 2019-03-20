@@ -10,6 +10,7 @@ class Podcast(Base.Model):
     slug = Column(Text)
     title = Column(Text)
     link = Column(Text)
+    language = Column(Text)
     #timedelta will be used to construct the string
     durationString = Column("duration_string",Text)
     durationInMilliseconds = Column("duration_in_milliseconds",BigInteger)

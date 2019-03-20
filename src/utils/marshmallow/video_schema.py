@@ -3,12 +3,16 @@ from src.models.video import Video
 from marshmallow import fields, pre_load
 from src.database.utils.crud import read_rows
 from nltk.tokenize import TweetTokenizer
+from flask import g
 import string
 import re
+from src.database.db import get_db_session
 class VideoSchema(ma.ModelSchema):
-    episode = fields.Nested('EpisodeSchema', many = True, exclude = ('video',))
+    episode = fields.Nested('EpisodeSchema', exclude = ('video',))
     class Meta:
-        model = Video 
+        model = Video
+        init_session, _ = get_db_session()
+        sqla_session = init_session
     """href = ma.Hyperlinks(
         {
             'self': [
@@ -20,10 +24,10 @@ class VideoSchema(ma.ModelSchema):
     @pre_load
     def check_data(self, data):
         if data.get('id') is None:
-            if data.get('body') is None:
-                raise ValueError('Must include body')
+            print("this works 1")
             if data.get('title') is None:
                 raise ValueError('Must Include title')
+            print("this works 2")
             punct = set(string.punctuation)
             #if both the id and the slug is none then this is a completely new blog
             #generate the slug from the title by tokenizing the lowered title and filtering for only alphanumeric characters
@@ -42,6 +46,9 @@ class VideoSchema(ma.ModelSchema):
                     }
                 }
             ]).one_or_none()
+            print("this works three")
+            print("hello")
+            print("ho")
             count = 1
             #loop over until you find a unique slug by appending an incrementing count to the end of the slug
             while query is not None:
@@ -56,7 +63,8 @@ class VideoSchema(ma.ModelSchema):
                 ]).one_or_none()
                 data['slug'] = slug
                 count += 1
+            print("done")
         else:
-            for key in data:
+            for key in list(data.keys()):
                 if key != 'id':
                     del data[key]

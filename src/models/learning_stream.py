@@ -51,6 +51,7 @@ class LearningStreamTags(Base.Model):
         elif isinstance(tag, LearningStream):
             self.learningStream = tag
             self.tag = learningStream
+            
 class LearningStreamLearningPractices(Base.Model):
     __tablename__ = "learning_stream_learning_practices"
     learningStreamId = Column("learning_stream_id",BigInteger, ForeignKey("learning_streams.id"), primary_key = True)

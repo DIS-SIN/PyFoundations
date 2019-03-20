@@ -105,8 +105,9 @@ def get_all_rows(model, dataConverter, filters=None):
         db_return = read_rows(model, filters)
         return_obj = []
         dataConverter = dataConverter()
+        #return_obj = dataConverter.dump(db_return)
         for row in db_return:
-            return_obj.append(dataConverter.dump(row))
+            return_obj.append(dataConverter.dump(row, many = False))
         return return_obj, 200
     except Exception as e:
         return {"error": repr(e)}, 500

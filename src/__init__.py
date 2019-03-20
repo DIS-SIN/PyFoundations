@@ -116,8 +116,6 @@ instance_path = '../instance', **kwargs):
     app.register_blueprint(dol.bp)
     # creating flask-restful Api class instance
     # registering api routes
-    register_routes(app, True)
-
     @app.route("/")
     def index():
         return redirect(url_for("dol.render_home"))
@@ -131,12 +129,13 @@ instance_path = '../instance', **kwargs):
             }
         }
         return jsonify(ret_val)
-
-    db.init_app(app)
-
-    if initdb:
-        db.init_db(app, 
-            learning_architecture_path= app.config.get('LEARNING_ARCHITECTURE_DATA_FILE_PATH'))
+    f = app.app_context()
+    with f:
+        db.init_app(app)
+        register_routes(app, True)
+        if initdb:
+            db.init_db(app, 
+                learning_architecture_path= app.config.get('LEARNING_ARCHITECTURE_DATA_FILE_PATH'))
     return app
 
 

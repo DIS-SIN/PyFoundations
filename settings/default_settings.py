@@ -32,6 +32,8 @@ SECURITY_PASSWORD_SALT = "mylovelysecret"
 # Used to enable rendering JSON as utf8
 JSON_AS_ASCII = False
 
+#SERVER_NAME = "localhost"
+
 ##############################FLASK SQLAlchemy SETTINGS###################################
 # Postgres Database URI used by the SQLAlchemy ORM
 ##THIS SHOULD BE SET AS AN ENVIRONMENT VARIABLE IN PRODUCTION##
@@ -48,6 +50,5 @@ INITIALISE_LEARNING_ARCHITECTURE = True
 
 #the absolute path of the learning architecture data file name 
 LEARNING_ARCHITECTURE_DATA_FILE_NAME = "learning_architecture.json"
-
 
 

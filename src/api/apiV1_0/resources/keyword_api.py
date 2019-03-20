@@ -7,14 +7,14 @@ from ..utils.crud_wrapper import (
     get_all_rows
 )
 model = Keyword
-class TagResource(Resource):
+class KeywordResource(Resource):
     def get(self, id=None, keyword = None):
         if id is not None:
             return get_one_row_by_id(model, id, KeywordSchema)
         elif keyword is not None:
             return get_all_rows(model,KeywordSchema, filters = [
                 {
-                    'keword': {
+                    'keyword': {
                         'comparitor': '==',
                         'data': keyword
                     }

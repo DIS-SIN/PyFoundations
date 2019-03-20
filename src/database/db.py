@@ -30,6 +30,8 @@ def init_db(app, learning_architecture_path = None):
     if learning_architecture_path is not None:
         from .data.loaders.learning_architecture import load_learning_architecture
         load_learning_architecture(app, learning_architecture_path)
+        from .data.loaders.episodes import load_episodes
+        load_episodes(app, os.path.join(app.static_folder, "data", "episodes.json"))
 
 
 def init_app(app):

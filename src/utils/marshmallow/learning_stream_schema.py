@@ -3,6 +3,7 @@ from src.models.learning_stream import LearningStream, LearningStreamLearningPra
 from marshmallow import fields, post_dump, pre_load
 from src.database.utils.crud import read_rows
 from nltk.tokenize import TweetTokenizer
+from src.database.db import get_db_session
 import re
 import string 
 class LearningStreamSchema(ma.ModelSchema):
@@ -26,6 +27,8 @@ class LearningStreamSchema(ma.ModelSchema):
         exclude = ('learningStreamLearningPractices' , 'LearningStreams'))
     class Meta:
         model = LearningStream
+        init_session, _ = get_db_session()
+        sqla_session = init_session
     href = ma.Hyperlinks(
         {
             'self': [
@@ -73,7 +76,7 @@ class LearningStreamSchema(ma.ModelSchema):
                 data['slug'] = slug
                 count += 1
         else:
-            for key in data:
+            for key in list(data.keys()):
                 if key != 'id':
                     del data[key]
     @post_dump

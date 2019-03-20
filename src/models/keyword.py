@@ -8,7 +8,7 @@ class Keyword(Base.Model):
     id = Column(BigInteger, primary_key = True)
     keyword = Column(Text, unique = True)
     addedOn = Column("added_on", DateTime, server_default = text("now()"))
-    blogs = association_proxy("blogKeywords", "episode")
+    blogs = association_proxy("blogKeywords", "blog")
     def __init__(self,keyword = None, *args,**kwargs):
         super(Keyword, self).__init__(*args,**kwargs)
         self.keyword = keyword

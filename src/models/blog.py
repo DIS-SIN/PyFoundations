@@ -35,7 +35,7 @@ class Blog(Base.Model):
        )
     episodeId = Column(BigInteger, ForeignKey("episodes.id"))
     keywords = association_proxy("blogKeywords", "keyword")
-    def __init__(self,language = None, keywords = None, *args,**kwargs):
+    def __init__(self,keywords = None, *args,**kwargs):
         super(Blog , self).__init__(*args,**kwargs)
         keywords = keywords or []
         english_syns = ['eng', 'en', 'english']
@@ -67,7 +67,6 @@ class Blog(Base.Model):
             #if no language was provided we use TextBlob to detect language which uses the google API
             if self.language is None:
                 language = TextBlob(self.body).detect_language()
-                print(language)
                 #ensure that language is english or french
                 if language != 'en' and language != 'fr':
                     ValueError('language not recognized or supported')
@@ -95,9 +94,9 @@ class Blog(Base.Model):
                 stop_words = set(stopwords.words('french'))
             else:
                 #raise error if language is not english or french
-                print(self.language)
                 raise ValueError('language not recognized or supported')
             cleaned_data = []
+            #print("test")
             for sentence in data:
                 #construct corpus from array of words and load this into the spacy neural net
                 full_sentence = ' '.join(sentence)
@@ -119,7 +118,6 @@ class Blog(Base.Model):
             sum_words = frequency_matrix.sum(axis = 0)
             word_frequencies = [(word, sum_words[0,idx]) for word, idx in count_vectorizer.vocabulary_.items()]
             word_frequencies = sorted(word_frequencies, key = lambda x: x[1], reverse = True)[:5]
-            print(word_frequencies)
             self.blogKeywords = []
             for word in word_frequencies:
                 #ensure that the keyword is a unigram

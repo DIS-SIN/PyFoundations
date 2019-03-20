@@ -3,6 +3,7 @@ from marshmallow import fields, post_dump, post_load, pre_load
 from src.models.learning_point import LearningPoint, LearningPointTags
 from src.database.utils.crud import read_rows
 from nltk.tokenize import TweetTokenizer
+from src.database.db import get_db_session
 import re
 import string 
 #TODO:
@@ -36,6 +37,8 @@ class LearningPointSchema(ma.ModelSchema):
      exclude= ('learningPoints', 'learningPracticesLearningPoints'))
     class Meta:
         model = LearningPoint
+        init_session, _ = get_db_session()
+        sqla_session = init_session
     href = ma.Hyperlinks({
         "self":[
             ma.URLFor('apiV1_0.learning_points_id', id = '<id>'),
@@ -81,9 +84,11 @@ class LearningPointSchema(ma.ModelSchema):
                 data['slug'] = slug
                 count += 1
         else:
-            for key in data:
+            print("learning point working 1")
+            for key in list(data.keys()):
                 if key != 'id':
                     del data[key]
+            print("learning point done")
     @post_dump
     def cleanup(self, data):
         if data.get('episodeLearnigPoints') is not None:

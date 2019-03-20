@@ -3,12 +3,15 @@ from src.models.podcast import Podcast
 from marshmallow import fields, pre_load
 from src.database.utils.crud import read_rows
 from nltk.tokenize import TweetTokenizer
+from src.database.db import get_db_session
 import string
 import re
 class PodcastSchema(ma.ModelSchema):
-    episode = fields.Nested('EpisodeSchema', many = True, exclude =("podcast",))
+    episode = fields.Nested('EpisodeSchema', exclude =("podcast",))
     class Meta:
         model = Podcast
+        init_session, _ = get_db_session()
+        sqla_session = init_session
     """href = ma.Hyperlinks(
         {
             'self': [
@@ -55,6 +58,6 @@ class PodcastSchema(ma.ModelSchema):
                     data['slug'] = slug
                     count += 1
         else:
-            for key in data:
+            for key in list(data.keys()):
                 if key != 'id':
                     del data[key]

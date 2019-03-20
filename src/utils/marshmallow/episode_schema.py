@@ -6,15 +6,16 @@ from src.models.tag import Tag
 from nltk.tokenize import TweetTokenizer
 import re
 import string
+from src.database.db import get_db_session
 #TODO
 # finish EpisodeLearningPointSchema
 # ensure that refrences to tags do not include fields that point to other models
 # urlfor link 
 class EpisodeSchema(ma.ModelSchema):
     #exclude the reverse relationships to prevent an infinite loop 
-    podcast = fields.Nested('PodcastSchema', many = True, exclude=('episode','episodeId'))
-    blog = fields.Nested('BlogSchema', many = True, exclude=('episode','episodeId'))
-    video = fields.Nested('VideoSchema', many = True, exclude=('episode','episodeId'))
+    podcast = fields.Nested('PodcastSchema', exclude=('episode','episodeId'))
+    blog = fields.Nested('BlogSchema', exclude=('episode','episodeId'))
+    video = fields.Nested('VideoSchema', exclude=('episode','episodeId'))
     #Nesting EpisodeTag association model, this will overide the tags field if it is not excluded
     episodeTags = fields.Nested('EpisodeTagsSchema', many = True, exclude = ('episode','episodeId'), dump_only = True)
     #exlude any other many to many relationships with tags to avoid serializing the entire database
@@ -26,6 +27,8 @@ class EpisodeSchema(ma.ModelSchema):
       'learningStreamTags', 'learningStreams'))
     #same concept as tags many to many relationship
     episodeLearningPoints = fields.Nested('EpisodeLearningPointsSchema',
+       many = True,
+       exclude= ('episodes', 'episodeId')
     )
     learningPoints = fields.Nested('LearningPointSchema',
      many = True, 
@@ -34,12 +37,14 @@ class EpisodeSchema(ma.ModelSchema):
       'learningPracticeLearningPoint', 'learningPractice'))
     class Meta:
         model = Episode
-    """href = ma.Hyperlinks(
+        init_session, _ = get_db_session()
+        sqla_session = init_session
+    href = ma.Hyperlinks(
         {"self": [
-            ma.URLFor("apiV1_0.episodes", id="<id>"),
-            ma.URLFor("apiV1_0.episodes", slug="<slug>")
+            ma.URLFor("apiV1_0.episodes_id", id="<id>"),
+            ma.URLFor("apiV1_0.episodes_slug", slug="<slug>")
         ], "collection": ma.URLFor("apiV1_0.episodes")}
-    )"""
+    )
     @pre_load
     def check_data(self, data):
         if data.get('id') is None:
@@ -78,7 +83,7 @@ class EpisodeSchema(ma.ModelSchema):
                 data['slug'] = slug
                 count += 1
         else:
-            for key in data:
+            for key in list(data.keys()):
                 if key != 'id':
                     del data[key]
 
@@ -97,7 +102,6 @@ class EpisodeTagsSchema(ma.ModelSchema):
      exclude=('episodeTags','tags',
       'episodeLearningPoints', 'learningPoints'))
     tag = fields.Nested('TagSchema', 
-     many = True, 
      exclude = ('learningPoints', 'learningPointTags', 
       'episodes', 'episodeTags', 
       'learningPracticesTags', 'learningPractices',

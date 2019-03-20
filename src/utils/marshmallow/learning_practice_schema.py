@@ -3,6 +3,7 @@ from src.models.learning_practice import LearningPractice, LearningPracticeLearn
 from src.database.utils.crud import read_rows
 from marshmallow import fields, post_dump, pre_load
 from nltk.tokenize import TweetTokenizer
+from src.database.db import get_db_session
 import re
 import string 
 class LearningPracticeSchema(ma.ModelSchema):
@@ -35,6 +36,8 @@ class LearningPracticeSchema(ma.ModelSchema):
             'learningPracticeLearningPoints', 'learningPractices'))
     class Meta:
         model = LearningPractice
+        init_session, _ = get_db_session()
+        sqla_session = init_session
     href = ma.Hyperlinks(
         {
             'self': [
@@ -82,7 +85,7 @@ class LearningPracticeSchema(ma.ModelSchema):
                 data['slug'] = slug
                 count += 1
         else:
-            for key in data:
+            for key in list(data.keys()):
                 if key != 'id':
                     del data[key]
     @post_dump

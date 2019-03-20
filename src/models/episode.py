@@ -4,6 +4,9 @@ from sqlalchemy.ext.associationproxy import association_proxy
 from .basemodel import Base
 from .tag import Tag
 from .learning_point import LearningPoint
+from src.models.blog import Blog
+from src.models.video import Video
+from src.models.podcast import Podcast
 class Episode(Base.Model):
     """
     The episode class represents a row of the episodes table in the database. The purpose of this model is to record information on an episode.
@@ -28,7 +31,6 @@ class Episode(Base.Model):
     title = Column(Text)
     tagline = Column(Text)
     description = Column(Text)
-    body = Column(Text)
     #this is non timezone specific consider using TIMESTAMPZ 
     addedOn = Column("added_on",DateTime, server_default=text("now()"))
     language = Column(Text)
@@ -39,10 +41,10 @@ class Episode(Base.Model):
     #associationproxy also masks the association table by managing the updating of the different relationships
     #thus when I add a tag to the tags relationship the episodeTags relationship updates
     tags = association_proxy("episodeTags", "tag")
-    blog = relationship("Blog", backref=backref("episode", uselist = False), uselist= False)
-    podcast = relationship("Podcast", backref=backref("episode", uselist = False), uselist = False)
-    video = relationship("Video", backref=backref("episode", uselist = False), uselist = False)
-    learningPoints = association_proxy('episodesLearningPoints', 'learningPoint')
+    blog = relationship(Blog, backref=backref("episode", uselist = False), uselist= False)
+    podcast = relationship(Podcast, backref=backref("episode", uselist = False), uselist = False)
+    video = relationship(Video, backref=backref("episode", uselist = False), uselist = False)
+    learningPoints = association_proxy('episodeLearningPoints', 'learningPoint')
     def __init__(self, keywords = None, tags = None, learningPoints = None, *args, **kwargs):
         super(Episode, self).__init__(*args,**kwargs)
         tags = tags or []
@@ -87,9 +89,9 @@ class EpisodeTag(Base.Model):
         single_parent= True
     )
     def __init__(self, tag = None, episode = None, *args, **kwargs):
-        super(EpisodeTag, self).__init(*args, **kwargs)
+        super(EpisodeTag, self).__init__(*args, **kwargs)
         if isinstance(tag, Tag):
-            self.tag = Tag
+            self.tag = tag
             self.episode = episode
         elif isinstance(tag, Episode):
             self.tag = episode
@@ -114,7 +116,7 @@ class EpisodeLearningPoint(Base.Model):
             cascade = "all, delete-orphan"),
         single_parent= True)
     def __init__(self, learningPoint = None, episode = None, *args, **kwargs):
-        super(EpisodeLearningPoint, self).__init(*args, **kwargs)
+        super(EpisodeLearningPoint, self).__init__(*args, **kwargs)
         if isinstance(learningPoint, LearningPoint):
             self.learningPoint = learningPoint
             self.episode = episode

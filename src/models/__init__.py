@@ -1,6 +1,7 @@
 def load_metadata(app):
     from .basemodel import Base
     Base.init_app(app)
+    from src.database.db import get_db_session
     from .episode import Episode, EpisodeLearningPoint, EpisodeTag
     from .blog import Blog, BlogKeyword
     from .podcast import Podcast

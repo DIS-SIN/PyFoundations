@@ -2,6 +2,8 @@ from .baseschema import ma
 from src.models.tag import Tag
 from marshmallow import fields, post_dump, pre_load
 from src.database.utils.crud import read_rows
+from flask import g
+from src.database.db import get_db_session
 class TagSchema(ma.ModelSchema):
     episodeTags = fields.Nested('EpisodeTagsSchema', 
         many = True, 
@@ -35,17 +37,20 @@ class TagSchema(ma.ModelSchema):
         ))
     class Meta:
         model = Tag
-    """href = ma.Hyperlinks(
+        init_session, _ = get_db_session()
+        sqla_session = init_session
+    href = ma.Hyperlinks(
         {
             'self': [
-                ma.URLFor('apiv1_0.tags', id = '<id>'),
-                ma.URLFor('apiv1_0.tags', tagtext = '<tag>')
+                ma.URLFor('apiV1_0.tags_id', id = '<id>'),
+                ma.URLFor('apiV1_0.tags_tag', tag = '<tagtext>')
             ],
             'collection': ma.URLFor('apiV1_0.tags')
         }
-    )"""
+    )
     @pre_load
     def check_data(self, data):
+        print("tag works")
         if data.get('tagtext') is None:
             if data.get('id') is None:
                 raise ValueError('must provide tagtext or id')
@@ -63,9 +68,10 @@ class TagSchema(ma.ModelSchema):
             ).one_or_none()
             if res is not None:
                 data['id'] = res.id
-                for key in data:
+                for key in list(data.keys()):
                     if key != 'id':
                         del data[key]
+        print("tag done")
     @post_dump
     def clean_up(self, data):
         if data.get('episodeTags') is not None:

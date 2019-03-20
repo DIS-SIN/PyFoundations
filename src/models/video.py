@@ -6,6 +6,8 @@ class Video(Base.Model):
     id = Column(BigInteger, primary_key = True)
     title = Column(Text)
     slug = Column(Text)
+    link = Column(Text)
+    language = Column(Text)
     durationString = Column("duration_string",Text)
     durationMilliseconds = Column("duration_milliseconds",BigInteger)
     thumbnail = Column(Text)
