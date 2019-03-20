@@ -3,26 +3,22 @@ import React, { Component } from "react";
 // redux state
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import ReactMarkdown from "react-markdown"
-import { withStyles, withTheme } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
+import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
+
+import Breadcrumbs from '@material-ui/lab/Breadcrumbs';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+
+
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 
-import DOLSignInDialog from "../organisms/DOLSignInDialog";
 import { LearningArchitecture } from '../atoms/LearningArchitecture'
 import HeroHeader from "../molecules/HeroHeader";
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import ReactHtmlParser from 'react-html-parser';
 import DOLExploreTree from "../organisms/DOLExploreTree";
 import GridInfoCard from "../molecules/GridInfoCard";
 
@@ -97,7 +93,22 @@ const styles = theme => ({
         margin: '0 auto',
         padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`,
         paddingTop: 0,
-    },
+	},
+	
+
+    root: {
+        justifyContent: 'center',
+        flexWrap: 'wrap',
+      },
+    paper: {
+		padding: theme.spacing.unit * 2,
+	},
+	button: {
+		margin: theme.spacing.unit,
+	},
+	input: {
+		display: 'none',
+	},
 });
 
 const streams = LearningArchitecture().loach_structure.streams;
@@ -113,20 +124,19 @@ class DOLPageExplore extends React.Component {
     constructor(props) {
         super(props);
     }
-
+      
     render() {
         const { literals, location, classes } = this.props;
         const link_group_hero = [
             //{ "href": "/profile", "title": literals.common.learnerprofile },
-            { "href": "/explore/experiences", "title": literals.common.experiences },
             { "href": "/explore/episodes", "title": literals.common.episodes },
             { "href": "/explore/streams", "title": literals.common.streams },
             { "href": "/explore/practices", "title": literals.common.practices },
-            { "href": "/explore/learning_resources", "title": "Resources" },
         ];
         const link_group_selector = [
             { "href": "/explore", "title": literals.common.explore },
         ];
+
         return (
             <React.Fragment>
                 <CssBaseline />
@@ -137,11 +147,22 @@ class DOLPageExplore extends React.Component {
                     text={<React.Fragment key="herotext">
                         {ReactHtmlParser(literals.pages.explore.hero.text)}
                     </React.Fragment>}
-                    links={link_group_hero}
                 />
                 <div className={classes.bodyUnit}>
                     <div className={classes.bodyContent}>
-
+						<Paper className={classes.paper}>
+							<Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="Breadcrumb">
+								{
+									link_group_hero.map(button =>{
+										return (
+											<Button href={"#" + button.href} key={button.title} variant="contained" color="secondary">
+												{button.title}
+											</Button>
+										)
+									})
+								}
+							</Breadcrumbs> 
+						</Paper>  
                         <DOLExploreTree />
                         <Grid spacing={8} container>
                             <GridInfoCard

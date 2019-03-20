@@ -149,7 +149,6 @@ class DOLPractices extends React.Component {
         ];
         const link_group_practices = [
             { "href": "/view/practice", "title": literals.common.explore },
-            { "href": "/profile/add/practice", "title": literals.common.addto + " " + literals.common.profile },
         ];
 
         let apiDataItem = "";

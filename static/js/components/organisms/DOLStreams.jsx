@@ -193,7 +193,6 @@ class DOLStreams extends React.Component {
         ];
         const link_group_streams = [
             { "href": "/view/stream", "title": literals.common.explore },
-            { "href": "/profile/add/stream", "title": literals.common.addto + " " + literals.common.profile },
         ];
 
         let apiDataItem = "";

@@ -192,18 +192,6 @@ class DOLViewLayout extends React.Component {
 
                     <main className={classes.content}>
                         <div className={classes.toolbar} />
-                        <div className={classes.menuButtonActions}>
-                            <DOLPrimaryActionPanel />
-                        </div>
-                        <Fab
-                            variant="extended"
-                            color="secondary"
-                            aria-label="Open drawer"
-                            onClick={this.handleDrawerToggle}
-                            className={classes.fabButtonDrawer}>
-                            <NavigationIcon />
-                            {literals.common.actions}
-                        </Fab>
                         {content}
                         <DOLFooter />
                     </main>

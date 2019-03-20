@@ -76,7 +76,6 @@ class DOLPageHome extends React.Component {
 
         const link_group_stream = [
             { "href": "/explore/stream", "title": literals.common.explore },
-            { "href": "/profile/add/stream", "title": literals.common.addto + " " + literals.common.profile },
         ];
         const link_group_hero = [
             { "href": "/explore", "title": literals.common.explore },

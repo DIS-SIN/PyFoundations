@@ -37,7 +37,7 @@ class DOLLayout extends React.Component {
                 <DOLHeader location={location} />
                 <CssBaseline />
                 {content}
-                <DOLPrimaryActionPanel noFab={noFab} />
+                {/* <DOLPrimaryActionPanel noFab={noFab} /> */}
                 <DOLFooter />
             </React.Fragment>
         );
