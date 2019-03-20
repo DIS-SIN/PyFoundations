@@ -7,13 +7,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-
-import Breadcrumbs from '@material-ui/lab/Breadcrumbs';
-import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-
-
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 
 import { LearningArchitecture } from '../atoms/LearningArchitecture'
@@ -21,6 +14,7 @@ import HeroHeader from "../molecules/HeroHeader";
 import ReactHtmlParser from 'react-html-parser';
 import DOLExploreTree from "../organisms/DOLExploreTree";
 import GridInfoCard from "../molecules/GridInfoCard";
+import HierarchyCumbs from "../molecules/HierarchyCrumbs";
 
 const styles = theme => ({
     appBar: {
@@ -93,22 +87,7 @@ const styles = theme => ({
         margin: '0 auto',
         padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`,
         paddingTop: 0,
-	},
-	
-
-    root: {
-        justifyContent: 'center',
-        flexWrap: 'wrap',
-      },
-    paper: {
-		padding: theme.spacing.unit * 2,
-	},
-	button: {
-		margin: theme.spacing.unit,
-	},
-	input: {
-		display: 'none',
-	},
+	}
 });
 
 const streams = LearningArchitecture().loach_structure.streams;
@@ -129,9 +108,9 @@ class DOLPageExplore extends React.Component {
         const { literals, location, classes } = this.props;
         const link_group_hero = [
             //{ "href": "/profile", "title": literals.common.learnerprofile },
-            { "href": "/explore/episodes", "title": literals.common.episodes },
-            { "href": "/explore/streams", "title": literals.common.streams },
-            { "href": "/explore/practices", "title": literals.common.practices },
+            { "index": 3, "href": "/explore/episodes", "title": literals.common.episodes },
+            { "index": 1, "href": "/explore/streams", "title": literals.common.streams },
+            { "index": 2, "href": "/explore/practices", "title": literals.common.practices },
         ];
         const link_group_selector = [
             { "href": "/explore", "title": literals.common.explore },
@@ -150,19 +129,7 @@ class DOLPageExplore extends React.Component {
                 />
                 <div className={classes.bodyUnit}>
                     <div className={classes.bodyContent}>
-						<Paper className={classes.paper}>
-							<Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="Breadcrumb">
-								{
-									link_group_hero.map(button =>{
-										return (
-											<Button href={"#" + button.href} key={button.title} variant="contained" color="secondary">
-												{button.title}
-											</Button>
-										)
-									})
-								}
-							</Breadcrumbs> 
-						</Paper>  
+						<HierarchyCumbs groups={link_group_hero} />  
                         <DOLExploreTree />
                         <Grid spacing={8} container>
                             <GridInfoCard
