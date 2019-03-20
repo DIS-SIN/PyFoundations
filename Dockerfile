@@ -22,6 +22,10 @@ WORKDIR /app
 COPY --from=0 /app .
 
 # Install any needed packages specified in requirements.txt
+RUN apt-get update && \
+    apt-get -y install gcc mono-mcs && \
+    rm -rf /var/lib/apt/lists/*
+SHELL ["/bin/bash", "-c"]
 RUN conda env update -f environment.yml
 ARG DOL_SECRET_KEY
 ENV DOL_SECRET_KEY = $DOL_SECRET_KEY
@@ -31,8 +35,9 @@ ENV DOL_SQLALCHEMY_DATABASE_URI = $DOL_SQLALCHEMY_DATABASE_URI
 RUN echo "source activate $(head -1 /app/environment.yml | cut -d' ' -f2)" > ~/.bashrc
 ENV PATH /opt/conda/envs/$(head -1 /tmp/environment.yml | cut -d' ' -f2)/bin:$PATH
 #RUN echo "python /app/application.py --mode production" >> ~/.bashrc
+RUN source activate PyFoundations && python -m spacy download en && python nltk_config.py && python -m spacy download fr
 ENTRYPOINT ["/opt/conda/envs/PyFoundations/bin/python"]
-CMD ["dockerapplication.py"] 
+CMD ["application.py"] 
 EXPOSE 5054
 
 # Define environment variable
