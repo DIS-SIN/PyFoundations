@@ -29,7 +29,7 @@ instance_path = '../instance', **kwargs):
     import settings
     import src.views.dol as dol
     from .database import db
-    from .apis.apiV1_0 import register_routes
+    from .api.apiV1_0 import register_routes
     from flask_wtf import CSRFProtect
     from firebase_admin import initialize_app
     from firebase_admin.credentials import Certificate
@@ -79,9 +79,7 @@ instance_path = '../instance', **kwargs):
         app.config.from_object("settings.default_settings")
         # get DOL sqlalchemy database uri if it exists and set it in the app config object
         SQLALCHEMY_DATABASE_URI = os.environ.get("DOL_SQLALCHEMY_DATABASE_URI")
-        print(SQLALCHEMY_DATABASE_URI)
         if SQLALCHEMY_DATABASE_URI is not None:
-            print(SQLALCHEMY_DATABASE_URI)
             app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
     static_path = os.path.abspath(static_path)
     if os.path.isdir(static_path):
@@ -89,6 +87,15 @@ instance_path = '../instance', **kwargs):
     else:
         os.mkdir(static_path)
         app.static_folder = static_path
+    app.config['INITIALISE_LEARNING_ARCHITECTURE'] = app.config.get('INITIALISE_LEARNING_ARCHITECTURE') or False
+    if app.config['INITIALISE_LEARNING_ARCHITECTURE']:
+        if app.config.get('LEARNING_ARCHITECTURE_DATA_FILE_NAME') is None:
+            raise ValueError('Learning Architecture was specified to be loaded however LEARNING_ARCHITECTURE_DATA_FILE_NAME was not set in config')
+        else:
+            app.config['LEARNING_ARCHITECTURE_DATA_FILE_PATH'] = os.path.join(app.static_folder, 'data',
+                app.config['LEARNING_ARCHITECTURE_DATA_FILE_NAME'])
+            if not os.path.isfile(app.config['LEARNING_ARCHITECTURE_DATA_FILE_PATH']):
+                raise FileNotFoundError(f"The specified Learning Architecture data file:'{app.config['LEARNING_ARCHITECTURE_DATA_FILE_PATH']}' could not be found in src/database/data/files")
     template_path  = os.path.abspath(template_path)
     if os.path.isdir(template_path):
         app.template_folder = template_path
@@ -108,10 +115,7 @@ instance_path = '../instance', **kwargs):
     # registering dol blueprint
     app.register_blueprint(dol.bp)
     # creating flask-restful Api class instance
-    api = Api(app)
     # registering api routes
-    register_routes(api, True)
-
     @app.route("/")
     def index():
         return redirect(url_for("dol.render_home"))
@@ -125,11 +129,13 @@ instance_path = '../instance', **kwargs):
             }
         }
         return jsonify(ret_val)
-
-    db.init_app(app)
-
-    if initdb:
-        db.init_db(app)
+    f = app.app_context()
+    with f:
+        db.init_app(app)
+        register_routes(app, True)
+        if initdb:
+            db.init_db(app, 
+                learning_architecture_path= app.config.get('LEARNING_ARCHITECTURE_DATA_FILE_PATH'))
     return app
 
 
