@@ -111,7 +111,7 @@ class DOLStream extends React.Component {
 
     componentDidMount() {
         let fetchid = this.props.fetchid;
-        fetch("/api/learning_stream/" + fetchid) // dol/api/gettest // /api/learning_point
+        fetch("/api/learningStreams/" + fetchid) // dol/api/gettest // /api/learning_point
             .then((res) => {
                 //console.log(res.status);
                 this.setState({
@@ -147,7 +147,7 @@ class DOLStream extends React.Component {
         const { literals, location, classes, fetchid } = this.props;
 
         const link_group_hero = [
-            { "href": "/explore", "title": literals.common.explore },
+            { "href": "/explore", "title": literals.common.explore},
         ];
         const link_group_stream = [
             { "href": "/profile/add/stream", "title": literals.common.addto + " " + literals.common.profile },
@@ -180,7 +180,7 @@ class DOLStream extends React.Component {
                 const api_content = apireturn.slice(0);
                 const apiRenderItems = api_content.map((apiitem, index) => (
                     <GridInfoCard
-                        key={apiitem.id}
+                        key={index}
                         title={apiitem.name}
                         cover={apiitem.slug ? apiitem.slug : "http://placeimg.com/640/360/tech"}
                         text={<ApiDataItem apiitem={apiitem} index={apiitem.id} literals={literals} />}

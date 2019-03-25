@@ -136,7 +136,7 @@ class DOLExperiences extends React.Component {
     // this fires when the component loads
 
     componentDidMount() {
-        fetch("/api/experience/") // dol/api/gettest // /api/learning_point
+        fetch("/api/experiences/") // dol/api/gettest // /api/learning_point
             .then((res) => {
                 //console.log(res.status);
                 this.setState({

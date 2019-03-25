@@ -9,6 +9,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 
 import HeroHeader from "../molecules/HeroHeader";
+import HierarchyCrumbs from "../molecules/HierarchyCrumbs";
 import DOLPractices from "../organisms/DOLPractices";
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
@@ -32,6 +33,9 @@ const styles = theme => ({
     bodyUnit: {
         backgroundColor: theme.palette.background.paper,
         padding: `${theme.spacing.unit * 2}px`,
+        [theme.breakpoints.up('md')]: {
+            padding: "25px 90px",
+        },
     },
     bodyContent: {
         //maxWidth: 900,
@@ -54,7 +58,9 @@ class DOLPageExplorePractices extends React.Component {
 
     render() {
         const { literals, location, classes } = this.props;
-
+        const uri = window.location.href.replace('#','');
+        const url = new URL(uri);
+        const streamId = url.searchParams.get("streamId");
         const link_group_hero = [
             { "href": "/explore", "title": literals.common.explore },
         ];
@@ -67,11 +73,11 @@ class DOLPageExplorePractices extends React.Component {
                     text={<React.Fragment key="herotext">
                         {ReactHtmlParser(literals.pages.practices.hero.text)}
                     </React.Fragment>}
-                    links={link_group_hero}
                 />
                 <div className={classes.bodyUnit}>
                     <div className={classes.bodyContent}>
-                        <DOLPractices />
+                        <HierarchyCrumbs />
+                        <DOLPractices streamId={streamId} />
                     </div>
                 </div>
             </React.Fragment >

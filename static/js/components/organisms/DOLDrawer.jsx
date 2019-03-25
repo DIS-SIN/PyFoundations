@@ -44,7 +44,7 @@ const styles = theme => ({
         width: 'auto',
     },
     drawerDark: {
-        backgroundColor: '#333333',
+        backgroundColor: '#2E294E',
         color: '#ffffff',
     },
     drawerTextLight: {

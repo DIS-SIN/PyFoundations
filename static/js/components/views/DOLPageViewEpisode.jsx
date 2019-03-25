@@ -39,7 +39,7 @@ class DOLPageViewEpisode extends React.Component {
         const { literals, location, classes, fetchid } = this.props;
 
         const link_group_hero = [
-            { "href": "/explore/episodes", "title": literals.common.explore },
+            { "href": "/explore/episodes", "title": literals.common.explore + " " + literals.common.episode },
         ];
         return (
             <React.Fragment>

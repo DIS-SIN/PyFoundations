@@ -9,16 +9,16 @@ import { Link } from 'react-router-dom';
 
 const styles = theme => ({
     heroUnit: {
-        backgroundColor: theme.palette.background.paper,
-        backgroundImage: `url('/static/images/sp-bg-12.jpg')`,
+        backgroundColor: "#2E294E",
         backgroundSize: 'cover',
     },
     heroContent: {
         maxWidth: 600,
         margin: '0 auto',
-        padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`,
-        paddingRight: 0,
-        paddingLeft: 0,
+        padding: '79px 0 15px',
+        [theme.breakpoints.down('sm')]: {
+            padding: '79px 15px 15px',
+        },
         color: 'white',
     },
     heroButtons: {
@@ -30,8 +30,7 @@ const styles = theme => ({
         color: 'white',
     },
     fadeBacker: {
-        backgroundColor: `rgba(0,0,0,0.2)`,
-        padding: `${theme.spacing.unit * 2}px`,
+        padding: '`${theme.spacing.unit * 2}px`',
     }
 });
 
@@ -64,7 +63,7 @@ class HeroHeader extends React.Component {
                             {title}
                         </Typography>
                         <Typography variant="h6" align="center" color="inherit" component="div" className={classes.fadeBacker}>
-                            {icon} {text}
+                            {text}
                         </Typography>
                         {/*<div className={classes.heroButtons}>*/}
                         <Grid container spacing={0} justify="center">

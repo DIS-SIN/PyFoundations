@@ -27,11 +27,14 @@ const styles = theme => ({
     cardGrid: {
         padding: `${theme.spacing.unit * 8}px 0`,
     },
-    heroUnit: {
+    bodyUnit: {
         backgroundColor: theme.palette.background.paper,
         padding: `${theme.spacing.unit * 2}px`,
+        [theme.breakpoints.up('md')]: {
+            padding: "25px 90px",
+        },
     },
-    heroContent: {
+    bodyContent: {
         //maxWidth: 900,
         margin: '0 auto',
         padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`,
@@ -52,13 +55,6 @@ class DOLPageAbout extends React.Component {
 
     render() {
         const { literals, location, classes } = this.props;
-        const listfragment = (
-            <ul>
-                <li>{literals.pages.about.body.expectcard.text.li1}</li>
-                <li>{literals.pages.about.body.expectcard.text.li2}</li>
-                <li>{literals.pages.about.body.expectcard.text.li3}</li>
-            </ul>
-        );
         const link_group_hero = [
             { "href": "/getstarted", "title": literals.pages.about.hero.start },
             { "href": "/tour", "title": literals.pages.about.hero.tour },
@@ -89,8 +85,8 @@ class DOLPageAbout extends React.Component {
                     links={link_group_hero}
                 />
                 {/*<div className={classNames(classes.layout, classes.cardGrid)}>*/}
-                <div className={classes.heroUnit}>
-                    <div className={classes.heroContent}>
+                <div className={classes.bodyUnit}>
+                    <div className={classes.bodyContent}>
                         <Grid container spacing={8}>
                             <GridInfoCard
                                 title={literals.pages.about.body.dolcard.title}
@@ -99,7 +95,7 @@ class DOLPageAbout extends React.Component {
                             />
                             <GridInfoCard
                                 title={literals.pages.about.body.expectcard.title}
-                                text={listfragment}
+                                text={literals.pages.about.body.expectcard.text}
                                 links={link_group_expectcard}
                             />
                             <GridInfoCard

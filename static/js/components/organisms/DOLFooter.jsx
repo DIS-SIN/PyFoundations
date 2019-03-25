@@ -16,6 +16,9 @@ const styles = theme => ({
     footer: {
         backgroundColor: theme.palette.background.paper,
         padding: theme.spacing.unit * 6,
+        [theme.breakpoints.up('md')]: {
+            padding: "25px 90px",
+        },
     },
 });
 const mapStateToProps = state => {

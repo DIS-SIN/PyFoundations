@@ -46,11 +46,14 @@ const styles = theme => ({
         //paddingLeft: theme.spacing.unit * 3,
         //paddingRight: theme.spacing.unit * 3,
     },
-    heroUnit: {
+    bodyUnit: {
         backgroundColor: theme.palette.background.paper,
         padding: `${theme.spacing.unit * 2}px`,
+        [theme.breakpoints.up('md')]: {
+            padding: "25px 90px",
+        },
     },
-    heroContent: {
+    bodyContent: {
         //maxWidth: 900,
         margin: '0 auto',
         padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`,
@@ -85,16 +88,14 @@ class DOLPageHome extends React.Component {
             <React.Fragment>
                 <CssBaseline />
                 <HeroHeader
-                    signin={<Grid key="signindialog" item><DOLSignInDialog /></Grid>}
                     title={literals.pages.home.hero.title}
                     icon={<HelpOutlineIcon />}
                     text={<React.Fragment key="herotext">
                         {ReactHtmlParser(literals.pages.home.hero.text)}
                     </React.Fragment>}
-                    links={link_group_hero}
                 />
-                <div className={classes.heroUnit}>
-                    <div className={classes.heroContent}>
+                <div className={classes.bodyUnit}>
+                    <div className={classes.bodyContent}>
                         <DOLStreams />
                     </div>
                 </div>

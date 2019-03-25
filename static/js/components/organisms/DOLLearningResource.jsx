@@ -84,30 +84,30 @@ class DOLLearningResource extends React.Component {
 
     componentDidMount() {
         let fetchid = this.props.fetchid;
-        fetch("/api/learning_resource/" + fetchid) // dol/api/gettest // /api/learning_point
-            .then((res) => {
-                //console.log(res.status);
-                this.setState({
-                    apireturn_status: res.status
-                });
-                return res.json();
-            })
-            .then(
-                (result) => {
-                    //console.log(result);
-                    this.setState({
-                        isLoaded: true,
-                        apireturn: [result]
-                    });
-                },
-                (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    });
-                }
-            )
-        // end fetch
+        // fetch("/api/learningResource/" + fetchid) // dol/api/gettest // /api/learning_point
+        //     .then((res) => {
+        //         //console.log(res.status);
+        //         this.setState({
+        //             apireturn_status: res.status
+        //         });
+        //         return res.json();
+        //     })
+        //     .then(
+        //         (result) => {
+        //             //console.log(result);
+        //             this.setState({
+        //                 isLoaded: true,
+        //                 apireturn: [result]
+        //             });
+        //         },
+        //         (error) => {
+        //             this.setState({
+        //                 isLoaded: true,
+        //                 error
+        //             });
+        //         }
+        //     )
+        // // end fetch
     }
     componentWillUnmount() {
         this.setState = (state, callback) => {

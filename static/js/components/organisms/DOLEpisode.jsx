@@ -82,7 +82,7 @@ class DOLEpisode extends React.Component {
 
     componentDidMount() {
         let fetchid = this.props.fetchid;
-        fetch("/api/episode/" + fetchid) // dol/api/gettest // /api/learning_point
+        fetch("/api/episodes/" + fetchid) // dol/api/gettest // /api/learning_point
             .then((res) => {
                 //console.log(res.status);
                 this.setState({

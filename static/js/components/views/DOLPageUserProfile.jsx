@@ -66,6 +66,9 @@ const styles = theme => ({
     bodyUnit: {
         backgroundColor: theme.palette.background.paper,
         padding: `${theme.spacing.unit * 2}px`,
+        [theme.breakpoints.up('md')]: {
+            padding: "25px 90px",
+        },
     },
     bodyContent: {
         //maxWidth: 900,

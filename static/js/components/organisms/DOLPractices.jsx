@@ -109,7 +109,32 @@ class DOLPractices extends React.Component {
     // this fires when the component loads
 
     componentDidMount() {
-        fetch("/api/learning_practice/") // dol/api/gettest // /api/learning_point
+        if(this.props.streamId){
+            fetch("/api/learningStreams" + (this.props.streamId ? "/" + this.props.streamId : "")) // dol/api/gettest // /api/learning_point
+            .then((res) => {
+                //console.log(res.status);
+                this.setState({
+                    apireturn_status: res.status
+                });
+                return res.json();
+            })
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        apireturn: result
+                    });
+                },
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            )
+        // end fetch
+        } else {
+            fetch("/api/learningPractices") // dol/api/gettest // /api/learning_point
             .then((res) => {
                 //console.log(res.status);
                 this.setState({
@@ -133,6 +158,8 @@ class DOLPractices extends React.Component {
                 }
             )
         // end fetch
+        }
+        
     }
     componentWillUnmount() {
         this.setState = (state, callback) => {
@@ -148,7 +175,7 @@ class DOLPractices extends React.Component {
             { "href": "/explore", "title": literals.common.explore },
         ];
         const link_group_practices = [
-            { "href": "/view/practice", "title": literals.common.explore },
+            { "href": "/view/practice", "title": literals.common.explore + " " + literals.organisms.primaryactionpanel.ctrl.practice},
         ];
 
         let apiDataItem = "";
@@ -176,7 +203,13 @@ class DOLPractices extends React.Component {
         } else {
 
             if (apireturn_status === 200) {
-                const api_content = apireturn.slice(0);
+                let api_content = apireturn
+                if(apireturn[0].learningPractices){
+                    api_content = [];
+                    apireturn[0].learningPractices.map(element => {
+                        api_content = api_content.concat(element.learningPractice)
+                    });
+                }
                 const apiRenderItems = api_content.map((apiitem, index) => (
                     <GridInfoCard
                         key={index}

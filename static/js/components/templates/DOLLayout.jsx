@@ -29,8 +29,7 @@ const styles = theme => ({
 class DOLLayout extends React.Component {
 
     render() {
-        const { literals, classes, match, content, location, noFab } = this.props;
-
+        const { literals, classes, match, content, location, noFab, id } = this.props;
         return (
             <React.Fragment>
                 <ScrollToTop />

@@ -8,6 +8,8 @@ import classNames from 'classnames';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 
 import HeroHeader from "../molecules/HeroHeader";
+import HierarchyCrumbs from "../molecules/HierarchyCrumbs";
+
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import DOLEpisodes from "../organisms/DOLEpisodes";
 
@@ -32,6 +34,9 @@ const styles = theme => ({
     bodyUnit: {
         backgroundColor: theme.palette.background.paper,
         padding: `${theme.spacing.unit * 2}px`,
+        [theme.breakpoints.up('md')]: {
+            padding: "25px 90px",
+        },
     },
     bodyContent: {
         //maxWidth: 900,
@@ -67,10 +72,10 @@ class DOLPageExploreEpisodes extends React.Component {
                     text={<React.Fragment key="herotext">
                         {ReactHtmlParser(literals.pages.episodes.hero.text)}
                     </React.Fragment>}
-                    links={link_group_hero}
                 />
                 <div className={classes.bodyUnit}>
                     <div className={classes.bodyContent}>
+                        <HierarchyCrumbs />
                         <DOLEpisodes />
                     </div>
                 </div>

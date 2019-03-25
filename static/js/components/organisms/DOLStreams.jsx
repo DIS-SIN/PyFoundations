@@ -8,6 +8,9 @@ import Grid from "@material-ui/core/Grid";
 import PropTypes from 'prop-types';
 import { withStyles, withTheme } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import Breadcrumbs from '@material-ui/lab/Breadcrumbs';
+import Link from '@material-ui/core/Link';
+
 import GridInfoCard from "../molecules/GridInfoCard";
 
 const mapStateToProps = state => {
@@ -95,9 +98,23 @@ const styles = theme => ({
 
 const ApiDataItem = props => (
     <React.Fragment>
+        <Typography gutterBottom variant="h6" component="div">{props.literals.common.stream}</Typography>
+        <Typography gutterBottom variant="subheading" component="div">{props.apiitem.description}</Typography>
         <ApiDataItemChildText apiitem={props.apiitem} childnode="learning_targets" childval="target_name" />
-        <Typography gutterBottom variant="h6" component="div">{props.literals.common.streams}</Typography>
         <ApiDataItemChild apiitem={props.apiitem} childnode="tags" childval="tag" />
+        <Breadcrumbs separator="-" arial-label="Breadcrumb">
+            {
+                props.apiitem.learningPractices.map((learningPractice, index) => {
+                    return (
+                        <React.Fragment key={index}>
+                            <Link color="inherit" href="">
+                                {learningPractice.learningPractice.name}
+                            </Link>
+                        </React.Fragment>
+                    )
+                })
+            }
+        </Breadcrumbs>
     </React.Fragment>
 );
 const ApiDataItemChildText = props => (
@@ -153,7 +170,7 @@ class DOLStreams extends React.Component {
     // this fires when the component loads
 
     componentDidMount() {
-        fetch("/api/learning_stream/") // dol/api/gettest // /api/learning_point
+        fetch("/api/learningStreams") // dol/api/gettest // /api/learning_point
             .then((res) => {
                 //console.log(res.status);
                 this.setState({
@@ -192,7 +209,7 @@ class DOLStreams extends React.Component {
             { "href": "/explore", "title": literals.common.explore },
         ];
         const link_group_streams = [
-            { "href": "/view/stream", "title": literals.common.explore },
+            { "href": "/view/stream", "title": literals.common.explore + " " + literals.common.stream },
         ];
 
         let apiDataItem = "";
@@ -224,12 +241,14 @@ class DOLStreams extends React.Component {
                 const apiRenderItems = api_content.map((apiitem, index) => (
                     <GridInfoCard
                         key={index}
-                        title={apiitem.name}
-                        cover={apiitem.slug}//"http://placeimg.com/640/360/tech"
-                        text={<ApiDataItem apiitem={apiitem} index={index} literals={literals} />}
-                        links={link_group_streams}
+                        title={apiitem[0].name}
+                        cover={window.location.protocol + "//" + window.location.hostname + (window.location.port ? ":" + window.location.port : "") + apiitem[0].image}//"http://placeimg.com/640/360/tech"
+                        text={<ApiDataItem apiitem={apiitem[0]} index={index} literals={literals} />}
+                        links={[
+                            { "href": "/explore/practices?streamId=" + apiitem[0].id, "title": literals.common.explore + " " + literals.common.stream },
+                        ]}
                         xs={12} sm={4} md={4}
-                        fetchid={apiitem.id}
+                        fetchid={apiitem[0].id}
                     />
                 ));
                 apiDataItemBundle = (

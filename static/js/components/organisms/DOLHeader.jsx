@@ -11,6 +11,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import AddCommentIcon from '@material-ui/icons/AddComment';
 import ImageSearchIcon from '@material-ui/icons/ImageSearch';
 import LockIcon from '@material-ui/icons/Lock';
+import HomeIcon from '@material-ui/icons/Home';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import DOLExploreDrawer from './DOLExploreDrawer';
 
@@ -179,15 +180,15 @@ class DOLHeader extends React.Component {
                 onClose={this.handleMenuClose}
             >
                 <HeaderMenuItemMobile
-                    href="/explore"
-                    icon={<ImageSearchIcon />}
-                    text={literals.organisms.header.menu.explore}
+                    href="/home"
+                    icon={<HomeIcon />}
+                    text={literals.common.home}
                     action={this.handleMobileMenuClose}
                 />
                 <HeaderMenuItemMobile
-                    href="/share"
-                    icon={<AddCommentIcon />}
-                    text={literals.organisms.header.menu.share}
+                    href="/explore"
+                    icon={<ImageSearchIcon />}
+                    text={literals.organisms.header.menu.explore}
                     action={this.handleMobileMenuClose}
                 />
                 <HeaderMenuItemMobile
@@ -196,25 +197,7 @@ class DOLHeader extends React.Component {
                     text={literals.organisms.header.menu.about}
                     action={this.handleMobileMenuClose}
                 />
-                <HeaderMenuItemMobile
-                    href="/profile"
-                    icon={<AccountCircle />}
-                    text={literals.organisms.header.menu.profile}
-                    action={this.handleMobileMenuClose}
-                />
                 <LangSelectMenuItemMobile location={location} />
-                <HeaderMenuItemMobile
-                    href="/settings"
-                    icon={<SettingsIcon />}
-                    text={literals.organisms.header.menu.settings}
-                    action={this.handleMobileMenuClose}
-                />
-                <HeaderMenuItemMobile
-                    href="/logout"
-                    icon={<LockIcon />}
-                    text={literals.organisms.header.menu.logout}
-                    action={this.handleMobileMenuClose}
-                />
             </Menu>
         );
 
@@ -226,6 +209,11 @@ class DOLHeader extends React.Component {
                         <HeaderLogoItem text={literals.organisms.header.menu.logo} href="/home" />
                         <div className={classes.grow} />
                         <div className={classes.sectionDesktop}>
+                            <HeaderMenuItemDesktop
+                                href="/home"
+                                icon={<HomeIcon />}
+                                text={literals.common.home}
+                            />
                             <HeaderMenuItemDesktop
                                 href="/explore"
                                 icon={<ImageSearchIcon />}

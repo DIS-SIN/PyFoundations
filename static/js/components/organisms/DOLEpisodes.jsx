@@ -80,7 +80,7 @@ class DOLEpisodes extends React.Component {
     // this fires when the component loads
 
     componentDidMount() {
-        fetch("/api/episode/") // dol/api/gettest // /api/learning_point
+        fetch("/api/episodes") // dol/api/gettest // /api/learning_point
             .then((res) => {
                 //console.log(res.status);
                 this.setState({

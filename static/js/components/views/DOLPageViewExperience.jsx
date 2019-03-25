@@ -39,7 +39,7 @@ class DOLPageViewExperience extends React.Component {
         const { literals, location, classes, fetchid } = this.props;
 
         const link_group_hero = [
-            { "href": "/explore/experiences", "title": literals.common.explore },
+            { "href": "/explore/experiences", "title": literals.common.explore + " " + literals.common.experience },
         ];
         return (
             <React.Fragment>

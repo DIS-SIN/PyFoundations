@@ -68,7 +68,6 @@ class DOLAppRouter extends React.Component {
      */
     render() {
         const { literals, classes, match } = this.props;
-
         const routers = [
             { path: '/:lang/profile', name: 'Profile', Component: DOLProfileRouter },
             { path: '/:lang/explore', name: 'Explore', Component: DOLExploreRouter },

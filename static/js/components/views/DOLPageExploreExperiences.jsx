@@ -42,6 +42,9 @@ const styles = theme => ({
     bodyUnit: {
         backgroundColor: theme.palette.background.paper,
         padding: `${theme.spacing.unit * 2}px`,
+        [theme.breakpoints.up('md')]: {
+            padding: "25px 90px",
+        },
     },
     bodyContent: {
         //maxWidth: 900,
@@ -74,7 +77,6 @@ class DOLPageExploreExperiences extends React.Component {
                     text={<React.Fragment key="herotext">
                         {ReactHtmlParser(literals.pages.experiences.hero.text)}
                     </React.Fragment>}
-                    links={link_group_hero}
                 />
                 <div className={classes.bodyUnit}>
                     <div className={classes.bodyContent}>

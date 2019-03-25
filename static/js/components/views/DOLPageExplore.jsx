@@ -14,7 +14,7 @@ import HeroHeader from "../molecules/HeroHeader";
 import ReactHtmlParser from 'react-html-parser';
 import DOLExploreTree from "../organisms/DOLExploreTree";
 import GridInfoCard from "../molecules/GridInfoCard";
-import HierarchyCumbs from "../molecules/HierarchyCrumbs";
+import HierarchyCrumbs from "../molecules/HierarchyCrumbs";
 
 const styles = theme => ({
     appBar: {
@@ -81,6 +81,9 @@ const styles = theme => ({
     bodyUnit: {
         backgroundColor: theme.palette.background.paper,
         padding: `${theme.spacing.unit * 2}px`,
+        [theme.breakpoints.up('md')]: {
+            padding: "25px 90px",
+        },
     },
     bodyContent: {
         //maxWidth: 900,
@@ -106,12 +109,6 @@ class DOLPageExplore extends React.Component {
       
     render() {
         const { literals, location, classes } = this.props;
-        const link_group_hero = [
-            //{ "href": "/profile", "title": literals.common.learnerprofile },
-            { "index": 3, "href": "/explore/episodes", "title": literals.common.episodes },
-            { "index": 1, "href": "/explore/streams", "title": literals.common.streams },
-            { "index": 2, "href": "/explore/practices", "title": literals.common.practices },
-        ];
         const link_group_selector = [
             { "href": "/explore", "title": literals.common.explore },
         ];
@@ -129,57 +126,8 @@ class DOLPageExplore extends React.Component {
                 />
                 <div className={classes.bodyUnit}>
                     <div className={classes.bodyContent}>
-						<HierarchyCumbs groups={link_group_hero} />  
+						<HierarchyCrumbs />  
                         <DOLExploreTree />
-                        <Grid spacing={8} container>
-                            <GridInfoCard
-                                key="streamSelect"
-                                title={literals.common.streams}
-                                cover="https://placeimg.com/640/480/any"
-                                text={ReactHtmlParser(literals.pages.streams.hero.text)}
-                                links={link_group_selector}
-                                xs={12} sm={6} md={3}
-                                fetchid="streams"
-                            />
-                            <GridInfoCard
-                                key="practiceSelect"
-                                title={literals.common.practices}
-                                cover="https://placeimg.com/640/480/animals"
-                                text={ReactHtmlParser(literals.pages.practices.hero.text)}
-                                links={link_group_selector}
-                                xs={12} sm={6} md={3}
-                                fetchid="practices"
-                            />
-                            <GridInfoCard
-                                key="experienceSelect"
-                                title={literals.common.experiences}
-                                cover="https://placeimg.com/640/480/nature"
-                                text={ReactHtmlParser(literals.pages.experiences.hero.text)}
-                                links={link_group_selector}
-                                xs={12} sm={6} md={3}
-                                fetchid="experiences"
-                            />
-                            <GridInfoCard
-                                key="episodeSelect"
-                                title={literals.common.episodes}
-                                cover="https://placeimg.com/640/480/tech"
-                                text={ReactHtmlParser(literals.pages.episodes.hero.text)}
-                                links={link_group_selector}
-                                xs={12} sm={6} md={3}
-                                fetchid="episodes"
-                            />
-                            <GridInfoCard
-                                key="learningResourceSelect"
-                                title="Resources"
-                                cover="https://placeimg.com/640/480/tech"
-                                text={ReactHtmlParser("TBD")}
-                                links={link_group_selector}
-                                xs={12} sm={6} md={3}
-                                fetchid="learning_resources"
-                            />
-                        </Grid>
-
-
                         {/** 
                         <DOLEpisodes />
                         <DOLStreams />

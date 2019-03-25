@@ -41,7 +41,7 @@ const styles = theme => ({
         width: 'auto',
     },
     drawerDark: {
-        backgroundColor: '#333333',
+        backgroundColor: '#2E294E',
         color: '#ffffff',
     },
     drawerTextLight: {
@@ -128,7 +128,7 @@ class DOLExploreDrawer extends React.Component {
     // this fires when the component loads
 
     componentDidMount() {
-        fetch("/api/learning_stream/") // dol/api/gettest // /api/learning_point
+        fetch("/api/learningStreams") // dol/api/gettest // /api/learning_point
             .then((res) => {
                 //console.log(res.status);
                 this.setState({
@@ -151,7 +151,7 @@ class DOLExploreDrawer extends React.Component {
                     });
                 }
             )
-        fetch("/api/learning_practice/") // dol/api/gettest // /api/learning_point
+        fetch("/api/learningPractices") // dol/api/gettest // /api/learning_point
             //.then(res => res.json())
             .then((res) => {
                 //console.log(res.status);
@@ -220,11 +220,11 @@ class DOLExploreDrawer extends React.Component {
             );
         } else {
             if (apireturn_status_stream === 200) {
-                const api_content_stream = apireturn_stream.slice(0);
+                const api_content_stream = apireturn_stream;
                 const learningArchStreamItems = api_content_stream.map((apiitem, index) => (
-                    <ListItem button component={Link} to={"/view/stream/" + apiitem.id} key={index} >
+                    <ListItem button component={Link} to={"/view/stream/" + apiitem[0].id} key={index} >
                         <Typography component={ListItem} secondary={literals.common.streams} variant="button" color="inherit" className={classes.drawerTextLight}>
-                            {apiitem.name}
+                            {apiitem[0].name}
                         </Typography>
                     </ListItem >
                 ));
@@ -243,11 +243,11 @@ class DOLExploreDrawer extends React.Component {
                 );
             }
             if (apireturn_status_practice === 200) {
-                const api_content_practice = apireturn_practice.slice(0);
+                const api_content_practice = apireturn_practice;
                 const learningArchPracticeItems = api_content_practice.map((apiitem, index) => (
-                    <ListItem button component={Link} to={"/view/practice/" + apiitem.id} key={index} >
+                    <ListItem button component={Link} to={"/view/practice/" + apiitem[0].id} key={index} >
                         <Typography component={ListItem} secondary={literals.common.practices} variant="button" color="inherit" className={classes.drawerTextLight}>
-                            {apiitem.name}
+                            {apiitem[0].name}
                         </Typography>
                     </ListItem >
                 ));

@@ -114,7 +114,7 @@ class DOLExperience extends React.Component {
 
     componentDidMount() {
         let fetchid = this.props.fetchid;
-        fetch("/api/experience/" + fetchid) // dol/api/gettest // /api/learning_point
+        fetch("/api/experiences/" + fetchid) // dol/api/gettest // /api/learning_point
             .then((res) => {
                 //console.log(res.status);
                 this.setState({
