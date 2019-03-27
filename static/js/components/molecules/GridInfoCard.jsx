@@ -48,7 +48,6 @@ class GridInfoCard extends React.Component {
 
         const linksFragment = this.props.links ? this.props.links.map((link, index) => (
             <a href={"#" + link.href} key={index}>
-            {console.log(link.href)}
                 <Button 
                 
                 size="small"

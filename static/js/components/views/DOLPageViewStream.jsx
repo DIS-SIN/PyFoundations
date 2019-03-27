@@ -38,8 +38,7 @@ class DOLPageViewStream extends React.Component {
     }
 
     render() {
-        const { literals, location, classes, fetchid } = this.props;
-
+        const { literals, location, classes, id } = this.props;
         const link_group_hero = [
             { "href": "/explore/streams", "title": literals.common.explore },
         ];
@@ -48,7 +47,7 @@ class DOLPageViewStream extends React.Component {
                 <CssBaseline />
                 <div className={classes.heroUnit}>
                     <div className={classes.heroContent}>
-                        <DOLStream fetchid={fetchid} />
+                        <DOLStream fetchid={id} />
                     </div>
                 </div>
             </React.Fragment>

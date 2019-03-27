@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route, HashRouter, withRouter } from 'react-router-dom'
 import { connect } from "react-redux";
-import DOLRootRouter from './components/routers/DOLRootRouter';
+import DOLAppRouter from './components/routers/DOLAppRouter';
 const mapStateToProps = state => {
   return {
     literals: state.literals
@@ -21,7 +21,7 @@ class App extends React.Component {
   render() {
     return (
       <HashRouter>
-        <DOLRootRouter />
+        <DOLAppRouter />
       </HashRouter >
     );
   }
