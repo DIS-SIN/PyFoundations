@@ -22,7 +22,7 @@ python application.py
 terminal 2:
 cd PyFoundations/static
 npm install
-npm run watch
+npm start
 ```
 
 For production:
