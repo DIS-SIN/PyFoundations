@@ -1,10 +1,12 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger'
-import literals from "./literals.js";
-import lang from "./lang.js";
-import streams from "./streams.js";
-import error from "./error.js";
+import literals from "./literals"
+import lang from "./lang"
+import streams from "./streams"
+import error from "./error"
+import adminConsoleContent from './adminConsoleContent'
+import contentStatus from './contentStatus'
 
 const loggerMiddleware = createLogger()
 
@@ -13,7 +15,9 @@ const rootReducer = combineReducers({
     literals,
     lang,
     streams,
-    error
+    error,
+    adminConsoleContent,
+    contentStatus,
     // other reducers...
 });
 

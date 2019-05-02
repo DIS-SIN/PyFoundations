@@ -1,11 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from "react-redux";
+import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from "react-redux"
+import store from "../../store"
 
-import { withStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import DOLModeratorContentTable from "../organisms/DOLModeratorContentTable";
+import { loadAdminConsoleContent } from '../../actions/FecthAdminConsoleContent'
 
+import { withStyles } from '@material-ui/core/styles'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import DOLModeratorContentTable from "../organisms/DOLModeratorContentTable"
+import Snackbar from '../molecules/Snackbar'
 
 const styles = theme => ({
     bodyUnit: {
@@ -17,39 +20,48 @@ const styles = theme => ({
     },
 });
 
+store.dispatch(loadAdminConsoleContent())
+
 const mapStateToProps = state => {
     return {
         literals: state.literals,
+        adminConsoleContent: state.adminConsoleContent,
+        error: state.error
     };
 };
+
 
 class DOLPageAdminConsole extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            rows: [
-                {
-                  id: 1,
-                  timestamp: '2019-04-24 15:16:17.123',
-                  link: 'https://google.ca',
-                      categories: ['AI / Machine Learning', 'Data Analysis'],
-                }
-            ],
+            rows: ''
         }
     }
 
     render() {
-        const { classes } = this.props;
-        const { rows } = this.state;
-        // const link_group_hero = [
-        //     { "href": "/home", "title": literals.pages.stub.hero.home },
-        // ];
+        const { classes, adminConsoleContent, error } = this.props
+        const content = () => {
+            if(adminConsoleContent.length){
+                return adminConsoleContent
+            } else {
+                return [
+                    {
+                        id: 1,
+                        timestamp: '2019-04-24 15:16:17.123',
+                        link: 'https://google.ca',
+                        categories: ['AI / Machine Learning', 'Data Analysis'],
+                    }
+                ]
+            }
+        }
         return (
             <React.Fragment>
                 <CssBaseline />
                 <div className={classes.bodyUnit}>
                     <div className={classes.bodyContent}>
-                        <DOLModeratorContentTable rows={rows} />
+                        <Snackbar notice={error} />
+                        <DOLModeratorContentTable rows={content()} />
                     </div>
                 </div>
             </React.Fragment>

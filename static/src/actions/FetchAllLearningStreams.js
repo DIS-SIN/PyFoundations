@@ -1,6 +1,6 @@
-import {LOAD_STREAMS} from './../store/streams';
-import { ERROR } from './../store/error';
-import { checkHttpStatus, parseJSON } from './../utils/http';
+import {LOAD_STREAMS} from './../store/streams'
+import { checkHttpStatus, parseJSON } from './../utils/http'
+import { errorResultHandler } from './../utils/errorHandler'
 
 export function loadStreams(){
     return dispatch => {
@@ -19,9 +19,4 @@ export function loadStreams(){
 export const streamResultHandler = streams => ({
     type: LOAD_STREAMS,
     payload: streams,
-});
-
-export const errorResultHandler = error => ({
-    type: ERROR,
-    payload: {status: "error", message: error}
 });

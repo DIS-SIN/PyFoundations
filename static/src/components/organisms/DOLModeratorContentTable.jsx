@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
+import store from '../../store'
+import { changeContentStatus } from '../../actions/ChangeContentStatus'
 
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -152,6 +154,11 @@ class DOLModeratorContentTable extends React.Component {
     this.setState({ page: 0, rowsPerPage: event.target.value });
   };
 
+  handleStatusChange = (content_id, approved) => (e) => {
+    e.preventDefault()
+    store.dispatch(changeContentStatus(content_id, approved))
+  }
+
   render() {
     const { literals, classes } = this.props;
     const { rowsPerPage, page } = this.state;
@@ -183,11 +190,11 @@ class DOLModeratorContentTable extends React.Component {
                   ))}</TableCell>
                   <TableCell align="right">{row.timestamp}</TableCell>
                   <TableCell align="right">
-                    <Button color="primary" variant="contained" size="small" className={classes.button}>
+                    <Button onClick={this.handleStatusChange(row.id, 1)} color="primary" variant="contained" size="small" className={classes.button}>
                       <CheckCircle className={classes.leftIcon} />
                       {literals.common.approve}
                     </Button>
-                    <Button color="secondary" variant="contained" size="small" className={classes.button}>
+                    <Button onClick={this.handleStatusChange(row.id, 0)} color="secondary" variant="contained" size="small" className={classes.button}>
                       <RemoveCircle className={classes.leftIcon} />
                       {literals.common.reject}
                     </Button>
