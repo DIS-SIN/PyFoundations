@@ -4,7 +4,7 @@ import { createLogger } from 'redux-logger'
 import literals from "./literals"
 import lang from "./lang"
 import streams from "./streams"
-import error from "./error"
+import notice from "./notice"
 import adminConsoleContent from './adminConsoleContent'
 import contentStatus from './contentStatus'
 
@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
     literals,
     lang,
     streams,
-    error,
+    notice,
     adminConsoleContent,
     contentStatus,
     // other reducers...

@@ -1,6 +1,6 @@
 import { LOAD_ADMIN_CONSOLE_CONTENT } from './../store/adminConsoleContent'
 import { checkHttpStatus, parseJSON } from './../utils/http'
-import { errorResultHandler } from './../utils/errorHandler'
+import { noticeHandler } from './../utils/noticeHandler'
 
 export function loadAdminConsoleContent(){
     return dispatch => {
@@ -14,7 +14,7 @@ export function loadAdminConsoleContent(){
         })
         .catch( error => {
             dispatch(contentResultHandler([]));
-            dispatch(errorResultHandler(error.message));
+            dispatch(noticeHandler({status: "error", message: error.message}));
         })
     }
 }

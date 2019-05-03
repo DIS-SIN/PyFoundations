@@ -31,7 +31,7 @@ class Greeting extends React.Component {
     
 
     toggleCanadianOfficialLanguage = () => {
-        if (strings.getLanguage() == "en") {
+        if (strings.getLanguage() === "en") {
             strings.setLanguage('fr');
             this.setState({});
         } else {

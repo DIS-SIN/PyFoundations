@@ -45,14 +45,22 @@ const styles = theme => ({
     },
     notice: {
         marginTop: "25px",
+        marginBottom : "25px",        
     }
 });
 
 
 class Snackbar extends React.Component {
-  state = {
-    open: true,
-  };
+  constructor(props){
+      super(props)
+      this.state = {
+          open: true
+      }
+  }
+
+  componentWillReceiveProps(){
+      this.setState({open: true})
+  }
 
   render() {
     const { classes, notice } = this.props;
@@ -66,7 +74,7 @@ class Snackbar extends React.Component {
                       aria-describedby="client-snackbar"
                       message={
                         <span id="client-snackbar" className={classes.message}>
-                          <Icon className={classNames(classes.icon, classes.iconVariant)} />
+                          <Icon className={classNames(classes.icon, classes.iconVariant, classes.content)} />
                           {message}
                         </span>
                       }

@@ -12,12 +12,8 @@ import { connect } from "react-redux";
 import DOLAddContentFormControls from './DOLAddContentFormControls';
 import Snackbar from '@material-ui/core/Snackbar';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import ErrorIcon from '@material-ui/icons/Error';
-import InfoIcon from '@material-ui/icons/Info';
 import green from '@material-ui/core/colors/green';
 import amber from '@material-ui/core/colors/amber';
-import SnackbarContent from '@material-ui/core/SnackbarContent';
-import WarningIcon from '@material-ui/icons/Warning';
 
 const mapStateToProps = state => {
     return {
@@ -182,48 +178,48 @@ class DOLAddContentFormContainer extends React.Component {
             url, tag1, tag2, tag3, episodetitle, episodetagline, episodeblogtext,
             episodevideotitle, episodevideodescription, episodevideourl,
             episodepodcasttitle, episodepodcastdescription, episodepodcasturl,
-            isepisodetype, itemcover, validsubmission } = this.state;
+            isepisodetype } = this.state;
 
         //console.log(validsubmission);
         this.setState({
             snackbaropen: true,
-            validsubmission: (isepisodetype == true) ?
+            validsubmission: (isepisodetype === true) ?
                 (
-                    episodetitle != "" &&
-                    episodetagline != "" &&
-                    episodeblogtext != "" &&
-                    episodevideotitle != "" &&
-                    episodevideodescription != "" &&
-                    episodevideourl != "" &&
-                    episodepodcasttitle != "" &&
-                    episodepodcastdescription != "" &&
-                    episodepodcasturl != ""
+                    episodetitle !== "" &&
+                    episodetagline !== "" &&
+                    episodeblogtext !== "" &&
+                    episodevideotitle !== "" &&
+                    episodevideodescription !== "" &&
+                    episodevideourl !== "" &&
+                    episodepodcasttitle !== "" &&
+                    episodepodcastdescription !== "" &&
+                    episodepodcasturl !== ""
                 ) && (
-                    stream != null &&
-                    valuable != null &&
-                    difficulty != null &&
-                    duration != null &&
-                    tag1 != "" &&
-                    tag2 != "" &&
-                    tag3 != ""
+                    stream !== null &&
+                    valuable !== null &&
+                    difficulty !== null &&
+                    duration !== null &&
+                    tag1 !== "" &&
+                    tag2 !== "" &&
+                    tag3 !== ""
                 ) : (
-                    accessible == true ||
-                    clear == true ||
-                    entertaining == true ||
-                    relevant == true ||
-                    informative == true ||
-                    insightful == true ||
-                    useful == true
+                    accessible === true ||
+                    clear === true ||
+                    entertaining === true ||
+                    relevant === true ||
+                    informative === true ||
+                    insightful === true ||
+                    useful === true
                 ) && (
-                    verb != null &&
-                    url != "" &&
-                    stream != null &&
-                    valuable != null &&
-                    difficulty != null &&
-                    duration != null &&
-                    tag1 != "" &&
-                    tag2 != "" &&
-                    tag3 != ""
+                    verb !== null &&
+                    url !== "" &&
+                    stream !== null &&
+                    valuable !== null &&
+                    difficulty !== null &&
+                    duration !== null &&
+                    tag1 !== "" &&
+                    tag2 !== "" &&
+                    tag3 !== ""
                 )
         });
     }
@@ -279,7 +275,7 @@ class DOLAddContentFormContainer extends React.Component {
         e.preventDefault();
         let api_url = "/api/experience/";
         let api_post = {};
-        if (this.state.isepisodetype == true) {
+        if (this.state.isepisodetype === true) {
             api_url = "/api/episode/";
             api_post = {
                 "title": this.state.episodetitle,
@@ -393,7 +389,7 @@ class DOLAddContentFormContainer extends React.Component {
                             handleSave={this.handleSave}
                             tileData={tileData}
                             {...this.state} />
-                        {validsubmission == true ? (
+                        {validsubmission === true ? (
                             <Snackbar
                                 anchorOrigin={{
                                     vertical: 'bottom',

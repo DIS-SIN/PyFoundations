@@ -1,6 +1,6 @@
 import { CHANGE_CONTENT_STATUS } from './../store/contentStatus'
 import { checkHttpStatus, parseJSON } from './../utils/http'
-import { errorResultHandler } from './../utils/errorHandler'
+import { noticeHandler } from './../utils/noticeHandler'
 import { loadAdminConsoleContent } from './FecthAdminConsoleContent'
 
 
@@ -21,7 +21,7 @@ export function changeContentStatus(content_id, approved){
         })
         .catch( error => {
             dispatch(loadAdminConsoleContent())
-            dispatch(errorResultHandler(error.message))
+            dispatch(noticeHandler({status: "error", message: error.message}))
         })
     }
 }

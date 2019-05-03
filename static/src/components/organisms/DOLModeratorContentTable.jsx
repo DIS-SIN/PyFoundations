@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
+// import Moment from 'react-moment';
+
 import store from '../../store'
 import { changeContentStatus } from '../../actions/ChangeContentStatus'
 

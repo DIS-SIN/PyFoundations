@@ -1,6 +1,6 @@
 import {LOAD_STREAMS} from './../store/streams'
 import { checkHttpStatus, parseJSON } from './../utils/http'
-import { errorResultHandler } from './../utils/errorHandler'
+import { noticeHandler } from './../utils/noticeHandler'
 
 export function loadStreams(){
     return dispatch => {
@@ -11,7 +11,7 @@ export function loadStreams(){
             dispatch(streamResultHandler(response));
         })
         .catch( error => {
-            dispatch(errorResultHandler(error.message));
+            dispatch(noticeHandler({status: "error", message: error.message}));
         })
     }
 }

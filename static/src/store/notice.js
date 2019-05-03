@@ -1,11 +1,11 @@
 // redux reducer for literals
 const defaultState = {};
 
-export const ERROR = "error";
+export const NOTICE = "error";
 
 export default (state = defaultState, { type, payload }) => {
     switch (type) {
-        case ERROR:
+        case NOTICE:
             return payload;
         default:
             return state;

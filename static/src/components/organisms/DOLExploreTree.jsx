@@ -135,8 +135,8 @@ class DOLExploreTree extends React.Component {
 
         for (let i = 0; i < breadcrumbArray.length; i++) {
             //console.log(breadcrumbArray[i].trim());
-            if (breadcrumbArray[i].trim().length != 0) {
-                if (breadcrumbArray[i].trim() != nodeKey) {
+            if (breadcrumbArray[i].trim().length !== 0) {
+                if (breadcrumbArray[i].trim() !== nodeKey) {
 
                     breadcrumNew += breadcrumbArray[i].trim() + " > ";
                 } else {
@@ -158,7 +158,7 @@ class DOLExploreTree extends React.Component {
         let treeRenderNode = this.state.lat;
         let breadcrumbArray = this.state.breadcrumb.split(">");
 
-        if (breadcrumbArray[breadcrumbArray.length - 1].trim() != nodeKey) {
+        if (breadcrumbArray[breadcrumbArray.length - 1].trim() !== nodeKey) {
             this.setState({
                 data: this.searchTreeBFS(treeRenderNode, nodeKey),
                 breadcrumb: this.state.breadcrumb + " > " + nodeKey,
@@ -170,10 +170,10 @@ class DOLExploreTree extends React.Component {
         let treeSearchNode = this.searchTree(element, matchingTitle);
         let treeRenderNode = { "name": treeSearchNode.name, children: [] }
 
-        if (treeSearchNode.children != null) {
+        if (treeSearchNode.children !== null) {
             var i;
             var result = null;
-            for (i = 0; result == null && i < treeSearchNode.children.length; i++) {
+            for (i = 0; result === null && i < treeSearchNode.children.length; i++) {
                 treeRenderNode.children.push({ "name": treeSearchNode.children[i].name });
             }
             //return treeRenderNode;
@@ -182,12 +182,12 @@ class DOLExploreTree extends React.Component {
     };
 
     searchTree = (element, matchingTitle) => {
-        if (element.name == matchingTitle) {
+        if (element.name === matchingTitle) {
             return element;
-        } else if (element.children != null) {
+        } else if (element.children !== null) {
             var i;
             var result = null;
-            for (i = 0; result == null && i < element.children.length; i++) {
+            for (i = 0; result === null && i < element.children.length; i++) {
                 result = this.searchTree(element.children[i], matchingTitle);
             }
             return result;

@@ -62,7 +62,7 @@ if (!window.Promise) {
 //     </React.Fragment>
 // );
 // const ApiDataItemChildText = props => (
-//     props.apiitem[props.childnode] == null ? (
+//     props.apiitem[props.childnode] === null ? (
 //         <React.Fragment key={props.index}>
 //             <Typography gutterBottom variant="button" component="div">
 //                 ...
@@ -78,7 +78,7 @@ if (!window.Promise) {
 //             ))
 //         )
 // ); const ApiDataItemChild = props => (
-//     props.apiitem[props.childnode] == null ? (
+//     props.apiitem[props.childnode] === null ? (
 //         <React.Fragment key={props.index}>
 //             <Typography gutterBottom variant="button" component="div">
 //                 ...
@@ -161,7 +161,7 @@ class DOLExploreDrawer extends React.Component {
                 this.setState({
                     apireturn_status_practice: res.status
                 });
-                //let resjson = res.status == 200 ? res.json() : [res.json()]
+                //let resjson = res.status === 200 ? res.json() : [res.json()]
                 return res.json();
             })
             .then(

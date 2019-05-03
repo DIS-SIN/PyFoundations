@@ -26,7 +26,7 @@ const mapStateToProps = state => {
     return {
         literals: state.literals,
         adminConsoleContent: state.adminConsoleContent,
-        error: state.error
+        notice: state.notice
     };
 };
 
@@ -40,7 +40,7 @@ class DOLPageAdminConsole extends React.Component {
     }
 
     render() {
-        const { classes, adminConsoleContent, error } = this.props
+        const { classes, adminConsoleContent, notice } = this.props
         const content = () => {
             if(adminConsoleContent.length){
                 return adminConsoleContent
@@ -60,7 +60,7 @@ class DOLPageAdminConsole extends React.Component {
                 <CssBaseline />
                 <div className={classes.bodyUnit}>
                     <div className={classes.bodyContent}>
-                        <Snackbar notice={error} />
+                        <Snackbar notice={notice} />
                         <DOLModeratorContentTable rows={content()} />
                     </div>
                 </div>
@@ -74,4 +74,4 @@ DOLPageAdminConsole.propTypes = {
 };
 
 // connect redux state
-export default connect(mapStateToProps)(withStyles(styles)(DOLPageAdminConsole));
+export default connect(mapStateToProps)(withStyles(styles)(DOLPageAdminConsole))

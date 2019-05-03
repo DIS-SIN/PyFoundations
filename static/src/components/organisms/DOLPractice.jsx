@@ -75,7 +75,7 @@ const ApiDataItem = props => (
     </React.Fragment>
 );
 const ApiDataItemChild = props => (
-    props.apiitem[props.childnode] == null ? (
+    props.apiitem[props.childnode] === null ? (
         <React.Fragment key={props.index}>
             <Typography gutterBottom variant="button" component="div">
                 ...

@@ -3,8 +3,10 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom'
 import { connect } from "react-redux";
 
 import DOLPageAdminConsole from "../components/views/DOLPageAdminConsole";
+import DOLPageOpenRegistry from "../components/views/DOLPageOpenRegistry"
 import DOLPageLanguageSelect from "../components/views/DOLPageLanguageSelect";
 import DOLLayout from "../components/templates/DOLLayout";
+import DOLBareLayout from "../components/templates/DOLBareLayout";
 import DOL404 from "../components/templates/DOL404";
 
 const mapStateToProps = state => {
@@ -29,6 +31,9 @@ class DOLAppRouter extends React.Component {
             <Switch>
                 <Route exact path={'/:lang(en|fr)/admin'}>
                     <DOLLayout content={<DOLPageAdminConsole />} />
+                </Route>
+                <Route exact path={'/:lang(en|fr)/open-registry'}>
+                    <DOLBareLayout content={<DOLPageOpenRegistry />} />
                 </Route>
                 <Route>
                     <DOLLayout content={<DOL404 location={location} />} />
