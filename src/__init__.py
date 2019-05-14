@@ -48,6 +48,8 @@ instance_path = '../instance', **kwargs):
     """
     app = Flask(__name__)
 
+    print("Hello")
+    
     #csfr = CSRFProtect(app)
     # add configs for sqlalchemy
     if mode == "production":
